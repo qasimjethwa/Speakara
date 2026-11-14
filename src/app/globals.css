@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "@fontsource-variable/nunito";
+
+/* Speakara design tokens — see docs/design/DESIGN-SYSTEM.md */
+@theme {
+  --font-sans: "Nunito Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --color-brand: #12b76a;        --color-brand-dark: #0b8f52;   --color-brand-soft: #dcf7e9;
+  --color-sky: #2e9bff;          --color-sky-dark: #1b78d6;     --color-sky-soft: #dceeff;
+  --color-sun: #ffb224;          --color-sun-dark: #d98e04;     --color-sun-soft: #fff2d1;
+  --color-coral: #ff5d5d;        --color-coral-dark: #d93f3f;   --color-coral-soft: #ffe3e3;
+  --color-grape: #9163f2;        --color-grape-dark: #6f42d4;   --color-grape-soft: #ece4ff;
+  --color-ink: #2f3540;          --color-sub: #6a7282;          --color-line: #e3e6eb;
+  --color-line-dark: #c9ced6;    --color-paper: #ffffff;        --color-mist: #f6f7f9;
+  --radius-xl: 16px; --radius-2xl: 20px; --radius-3xl: 28px;
+}
+
+html, body { height: 100%; }
+body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); font-weight: 600; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-weight: 800; letter-spacing: -0.01em; }
+:focus-visible { outline: 3px solid var(--color-sky); outline-offset: 2px; border-radius: 8px; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+/* The tactile “key” edge shared by buttons, tiles and path nodes */
+.key { border-bottom-width: 4px; transition: transform .06s ease, border-bottom-width .06s ease, filter .15s ease; }
+.key:not(:disabled):hover { filter: brightness(1.04); }
+.key:not(:disabled):active { transform: translateY(3px); border-bottom-width: 1px; }
+
+@keyframes pop { 0% { transform: scale(.6); opacity: 0 } 70% { transform: scale(1.08) } 100% { transform: scale(1); opacity: 1 } }
+@keyframes rise { from { transform: translateY(100%) } to { transform: translateY(0) } }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
+@keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-6px) } 75% { transform: translateX(6px) } }
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .9 } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgb(18 183 106 / .45) } 100% { box-shadow: 0 0 0 18px rgb(18 183 106 / 0) } }
+.anim-pop { animation: pop .35s cubic-bezier(.2,.9,.3,1.3) both; }
+.anim-rise { animation: rise .22s ease-out both; }
+.anim-bob { animation: bob 2.4s ease-in-out infinite; }
+.anim-shake { animation: shake .3s ease-in-out; }
+.confetti { position: fixed; top: -20px; width: 10px; height: 16px; border-radius: 3px; animation: fall linear forwards; pointer-events: none; z-index: 60; }
+@media (prefers-reduced-motion: reduce) { .anim-pop, .anim-rise, .anim-bob, .anim-shake, .confetti { animation: none !important; } .confetti { display: none; } }
+html[data-motion="off"] .anim-pop, html[data-motion="off"] .anim-rise, html[data-motion="off"] .anim-bob, html[data-motion="off"] .anim-shake { animation: none !important; }
+html[data-motion="off"] .confetti { display: none; }
