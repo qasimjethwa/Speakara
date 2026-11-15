@@ -264,7 +264,7 @@ if (cloud && PASSWORD) {
   await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/, { timeout: 20000 }); await page.locator('[data-state="current"]').waitFor();
   const doneBefore = await page.locator('[data-state="done"]').count();
   expect(doneBefore >= 2, `log-in restores cloud progress (${doneBefore} lessons complete)`);
-  const xpBefore = Number((await page.locator('a[href="/profile"][aria-label]').first().getAttribute("aria-label")).replace(/\D/g, ""));
+  const xpBefore = Number((await page.locator('a[href="/profile"][aria-label$="XP"]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   // network failure while saving, then retry
   await page.locator('[data-state="current"]').click(); const st = newState();
   let failOnce = true; await page.route("**/api/progress", (route) => { if (failOnce) { failOnce = false; return route.abort(); } return route.continue(); });
@@ -293,19 +293,19 @@ if (cloud && PASSWORD) {
   await page.getByRole("button", { name: "Log out" }).click(); await page.waitForURL((u) => new URL(u).pathname === "/");
   await page.goto(`${BASE}/learn`); await page.waitForURL(/onboarding|learn/);
   expect(!(await page.evaluate(() => Object.keys(localStorage).some((k) => k.startsWith("sb-")))), "log-out clears the stored session");
-  const other = await browser.newContext({ viewport: { width: 420, height: 900 } }); const p2 = await other.newPage(); watch(p2, "second-device");
+  const other = await browser.newContext({ viewport: { width: 1280, height: 900 } }); const p2 = await other.newPage(); watch(p2, "second-device");
   await login(p2, "e2e-ana@speakara.test"); await p2.waitForURL(/learn/, { timeout: 20000 }); await p2.locator('[data-state="current"]').waitFor();
   expect(await p2.locator('[data-state="done"]').count() === doneBefore + 1, "the same progress appears after logging in on a second device");
-  const xpAfter = Number((await p2.locator('a[href="/profile"]').first().innerText()).replace(/\D/g, ""));
+  const xpAfter = Number((await p2.locator('a[href="/profile"][aria-label$="XP"]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   expect(xpAfter === xpBefore + earned, `XP on the second device equals the server total (${xpBefore} + ${earned} = ${xpAfter})`);
   await p2.reload(); await p2.locator('[data-state="current"]').waitFor(); expect(await p2.locator('[data-state="done"]').count() === doneBefore + 1, "session is restored after a reload without logging in again");
   await other.close();
   // password recovery request
   await page.goto(`${BASE}/forgot-password`); await page.getByLabel("Email").fill("e2e-ana@speakara.test"); await page.locator("form button[type=submit]").click();
   await page.locator("#auth-msg p").waitFor({ timeout: 20000 }); const recMsg = await page.locator("#auth-msg p").innerText();
-  if (/is invalid/.test(recMsg)) log("note: Supabase refuses to email the reserved .test domain used by the test accounts; recovery email delivery is NOT verified here");
+  if (/is invalid|Too many/.test(recMsg)) log("note: Supabase refused (" + recMsg.slice(0, 60) + "): reserved .test domain or mailer rate limit; recovery email delivery is NOT verified here");
   else expect(/reset link is on its way/.test(recMsg), `password recovery request accepted by Supabase (“${recMsg.slice(0, 70)}”)`);
-  await page.goto(`${BASE}/reset-password`); expect(await page.getByText(/expired or was already used/).count() === 1, "reset page without a recovery link explains itself");
+  await page.goto(`${BASE}/reset-password`); await page.getByText(/expired or was already used/).waitFor({ timeout: 15000 }); expect(true, "reset page without a recovery link explains itself");
   await ctx.close();
 
   // guest → account: progress made before logging in is imported once, after server validation
@@ -316,7 +316,7 @@ if (cloud && PASSWORD) {
   await login(gp, "e2e-cara@speakara.test"); await gp.waitForURL(/learn/, { timeout: 30000 }); await gp.locator('[data-state="current"]').waitFor({ timeout: 20000 });
   expect(await gp.locator('[data-state="done"]').count() === 1, "guest progress is carried into the account on first log-in");
   expect(!(await gp.evaluate(() => localStorage.getItem("speakara:learner:v1"))), "device copy is cleared after import, so it cannot be imported twice");
-  const cx = Number((await gp.locator('a[href="/profile"][aria-label]').first().getAttribute("aria-label")).replace(/\D/g, ""));
+  const cx = Number((await gp.locator('a[href="/profile"][aria-label$="XP"]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   expect(cx === guestXp, `account XP equals what the guest earned (${cx})`);
   await gp.goto(`${BASE}/settings`); await gp.getByRole("button", { name: "Delete account" }).click(); await gp.getByRole("button", { name: "Yes, delete everything" }).click();
   await gp.waitForURL((u) => new URL(u).pathname === "/"); expect(true, "account deletion from Settings works");

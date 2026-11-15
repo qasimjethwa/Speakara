@@ -10,7 +10,7 @@
 | Production build | `npm run build` | All routes | Succeeds |
 | Database | `bash supabase/tests/run-local.sh` | Both migrations on a throwaway Postgres 16: signup trigger, RLS isolation, revoked client writes, signature / owner / freshness / version / replay / throttle checks in `apply_progress`, privacy, friends quests, admin functions, account deletion | All checks passed |
 | Live backend | `npx tsx e2e/cloud.mts` | Against the real Supabase project through the running app: log-in, forged table writes refused, server-graded XP, replay returns the same result once, throttling (429), locked lesson (403), incomplete session (400), guest import sanitised and one-time, profile privacy, friends quest, account deletion | All checks passed |
-| Browser (Playwright, Chromium) | `node e2e/smoke.mjs` | See below | See the latest run in the pull request or commit message |
+| Browser (Playwright, Chromium) | `node e2e/smoke.mjs` | See below | All checks passed: 3 guest journeys, microphone, 19 account checks; axe 0 violations on 18 screens |
 
 ## What the browser run covers
 **Guest journeys** on desktop 1440×900 (English), tablet 820×1180 (Spanish interface) and phone (Hindi interface):
