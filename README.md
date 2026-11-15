@@ -3,7 +3,7 @@
 A free language-learning platform: bite-sized lessons, spaced review, stories, speaking practice and a tutor —
 with no paywalls, no lives and no subscription. Independent project; original content, mascot and design.
 
-> **Status:** the app is complete and tested locally against the live Supabase project. Production deployment on Vercel is pending team authorisation — see [Feature status](#feature-status).
+> **Live:** https://speakara.vercel.app (Vercel production, Supabase backend).
 
 ## Quick start
 ```bash

@@ -106,7 +106,9 @@ ok((await B.db.from("follows").insert({ follower_id: A.id, followee_id: B.id }))
 await A.db.from("follows").insert({ follower_id: A.id, followee_id: B.id });
 const fq = (await B.db.rpc("friend_quests")).data as { friend_id: string; combined_xp: number; target: number }[];
 ok(fq?.length === 1 && fq[0].combined_xp >= 20, `mutual follow creates a friends quest (${fq?.[0]?.combined_xp}/${fq?.[0]?.target} XP)`);
-ok((await progress(B.token, { op: "friend_claim", operationId: opId(), friendId: A.id })).status === 409, "friends quest reward cannot be claimed early");
+{ const claim = (await progress(B.token, { op: "friend_claim", operationId: opId(), friendId: A.id })).status;
+  if (fq[0].combined_xp < fq[0].target) ok(claim === 409, "friends quest reward cannot be claimed early");
+  else { ok(claim === 200, "a completed friends quest pays out"); ok((await progress(B.token, { op: "friend_claim", operationId: opId(), friendId: A.id })).status === 409, "a friends quest pays out only once"); } }
 await A.db.from("profiles").update({ is_public: false }).eq("id", A.id);
 ok(((await B.db.rpc("find_profiles", { q: "e2e_a" })).data as unknown[]).length === 0, "a private profile is not discoverable");
 ok(((await B.db.rpc("weekly_leaderboard", { max_rows: 30 })).data as { user_id: string; display_name: string }[]).find((r) => r.user_id === A.id)?.display_name === "Private learner", "a private profile is anonymised on the leaderboard");

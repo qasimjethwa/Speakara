@@ -11,7 +11,7 @@ guest persistence, Supabase schema with RLS, unit and end-to-end tests, document
 - [x] Log-in, sync, guest-to-account import, leaderboard and friends verified against the live project.
 - [x] Interface in English, Spanish and Hindi.
 - [x] Automated accessibility checks on every main screen; colour tokens meet AA.
-- [ ] Production deployment on Vercel (see README for current status).
+- [x] Production deployment on Vercel: https://speakara.vercel.app
 - [ ] Custom SMTP for confirmation and reset emails; test with real inboxes.
 - [ ] Configure an AI provider; review tutor output with native speakers for all four courses.
 - [ ] Native review of Spanish and Hindi interface text.

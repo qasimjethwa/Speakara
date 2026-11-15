@@ -4,7 +4,7 @@
 | Environment | Hosting | Data | Status |
 |---|---|---|---|
 | Local | `npm run dev` | Guest mode, or a Supabase project via `.env.local` | Working |
-| Production | Vercel (Next.js) + Supabase project `speakara` (`mpgldpkxfhxvbdoouqjw`, eu-west-3) | Postgres, Auth | Supabase live with both migrations applied; Vercel deployment pending team authorisation |
+| Production | Vercel (Next.js) + Supabase project `speakara` (`mpgldpkxfhxvbdoouqjw`, eu-west-3) | Postgres, Auth | **Live** at https://speakara.vercel.app (Vercel project `speakara`, auto-deploys on push to the production branch) |
 
 ## Environment variables
 | Variable | Scope | Required | Purpose |
