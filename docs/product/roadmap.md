@@ -7,24 +7,29 @@ Exercise engine, Spanish A1 course (3 units), three starter courses, practice hu
 guest persistence, Supabase schema with RLS, unit and end-to-end tests, documentation.
 
 ## Release 0.2 — Go live
-- [ ] Create the Supabase project, apply `supabase/migrations`, set env vars, deploy to Vercel.
-- [ ] Verify sign-up, sync, guest-to-account migration, leaderboard and friends against the live project.
-- [ ] Configure an AI provider; review tutor output quality with native speakers for all four courses.
-- [ ] Translate interface strings into Spanish and Hindi (string catalogue + `lang` routing).
+- [x] Supabase project created, migrations applied, environment configured.
+- [x] Log-in, sync, guest-to-account import, leaderboard and friends verified against the live project.
+- [x] Interface in English, Spanish and Hindi.
+- [x] Automated accessibility checks on every main screen; colour tokens meet AA.
+- [ ] Production deployment on Vercel (see README for current status).
+- [ ] Custom SMTP for confirmation and reset emails; test with real inboxes.
+- [ ] Configure an AI provider; review tutor output with native speakers for all four courses.
+- [ ] Native review of Spanish and Hindi interface text.
 - [ ] Error reporting and privacy-respecting analytics for the PRD metrics.
 - [ ] Manual accessibility audit with screen readers.
 
 ## Release 0.3 — Trustworthy progress
-- [ ] Move XP awarding and session completion into a Postgres function / Edge Function; client becomes optimistic only.
+- [x] Server-graded sessions with signed, idempotent, versioned updates; clients cannot write progress.
+- [x] Friends quests, profile privacy, account deletion.
+- [x] Typed dictation, timed matching, writing practice.
 - [ ] League cohorts of 30 with weekly promotion and demotion (scheduled job).
-- [ ] Friend challenges; weekly report.
-- [ ] Offline queue with retry for cloud writes; PWA install.
+- [ ] Offline queue with retry for cloud writes; PWA install; data export.
 
 ## Release 0.4 — Content scale
-- [ ] Content tables + admin editors (course, lesson, exercise) with review workflow and version history.
+- [ ] Content tables + admin editors (course, lesson, exercise) with version history (review queue exists).
 - [ ] Spanish A1 to 10 units; French, en-es, en-hi to 5 units each, all native-reviewed.
 - [ ] Recorded or high-quality synthesised audio assets cached in Supabase Storage.
-- [ ] New exercise types: typed dictation, error correction, timed match, free writing with AI feedback.
+- [ ] Error correction and free writing with AI feedback.
 
 ## Release 0.5 — Speaking
 - [ ] Server-side speech assessment provider (phoneme-level scores); pronunciation drills for new scripts.

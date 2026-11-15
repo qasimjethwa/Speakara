@@ -32,7 +32,7 @@ function Path() {
         return (
           <section key={unit.id} aria-labelledby={`${unit.id}-title`} className="mb-12">
             <div className={`flex items-center justify-between gap-3 rounded-2xl border-b-4 p-4 text-white ${unitOpen ? `${tone.bg} ${tone.edge}` : "border-line-dark bg-line !text-ink"}`}>
-              <div><h2 id={`${unit.id}-title`} className="text-xl">{t("Unit {n}", { n: ui + 1 })} · {unit.title}</h2><p className="text-[15px] opacity-90">{unit.objective}</p></div>
+              <div><h2 id={`${unit.id}-title`} className="text-xl">{t("Unit {n}", { n: ui + 1 })} · {unit.title}</h2><p className="text-[15px] font-semibold">{unit.objective}</p></div>
               <Link href={`/guidebook?unit=${unit.id}`} aria-label={`${t("Guidebook")}: ${unit.title}`} className={`key flex shrink-0 items-center gap-2 rounded-xl border-2 border-b-4 px-3 py-2 text-sm font-extrabold uppercase ${unitOpen ? "border-white/70 bg-black/10" : "border-line-dark bg-paper"}`}><NotebookText size={20} aria-hidden="true" /><span className="hidden sm:inline">{t("Guidebook")}</span></Link>
             </div>
             {!unitOpen && ui > 0 && (

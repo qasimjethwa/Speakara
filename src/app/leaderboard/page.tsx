@@ -9,19 +9,21 @@ import { useT } from "@/lib/i18n";
 
 interface Row { name: string; xp: number; me?: boolean; bot?: boolean }
 export default function Leaderboard() {
-  const { state, mode, userId } = useStore(); const { t, num } = useT(); const now = Date.now(); const mine = weeklyXp(state, now);
+  const { state, mode, userId, ready } = useStore(); const { t, num } = useT(); const now = Date.now(); const mine = weeklyXp(state, now);
   const [rows, setRows] = useState<Row[] | null>(null); const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
+    if (!ready) return;
     const me: Row = { name: state.profile.name || "You", xp: mine, me: true };
     const db = supabase();
     if (mode === "cloud" && db) {
+      setRows(null);
       db.rpc("weekly_leaderboard", { max_rows: 30 }).then(({ data, error }) => {
         if (error) { setErr(error.message); setRows([me]); return; }
         const list = (data as { user_id: string; display_name: string; weekly_xp: number }[]).map((r) => ({ name: r.display_name, xp: r.weekly_xp, me: r.user_id === userId }));
         setRows(list.some((r) => r.me) ? list : [...list, me].sort((a, b) => b.xp - a.xp));
       });
     } else setRows([...practiceBots(weekKey(now), now), me].sort((a, b) => b.xp - a.xp));
-  }, [mode, userId, mine]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [ready, mode, userId, mine]); // eslint-disable-line react-hooks/exhaustive-deps
   const league = leagueFor(state.xp);
   return (
     <AppShell>

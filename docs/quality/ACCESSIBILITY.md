@@ -1,7 +1,9 @@
 # Accessibility
 
-Target: WCAG 2.2 level AA. **Current state: not conformant** — the foundations are in place, there are known colour
-contrast failures, and no assistive-technology audit has been done.
+Target: WCAG 2.2 level AA. **Current state:** every main screen passes the axe-core WCAG 2.0/2.1/2.2 A and AA rule
+set in the browser test run (landing, onboarding, path, lesson intro, exercise, summary, practice, vocabulary,
+guidebook, tutor, quests, profile, settings, stories, speaking feedback, log-in, sign-up, signed-in profile). Automated
+rules cover only part of WCAG; no screen-reader or user testing has been done, so conformance is not claimed.
 
 ## Built in
 | Area | Implementation |
@@ -18,23 +20,20 @@ contrast failures, and no assistive-technology audit has been done.
 | Targets | 48 px minimum height on primary controls |
 | Zoom | Relative layout; no fixed-height text containers; 16 px inputs |
 
-## Known defects
-| # | Issue | WCAG | Proposed fix |
-|---|---|---|---|
-| 1 | White button labels on `brand`, `sky`, `coral` are 2.6–3.0:1 | 1.4.3 | Use `brand-dark`/`sky-dark`/`coral-dark` as fills with a still-darker edge, or dark text on the bright fills |
-| 2 | `sun-dark` text on white / `sun-soft` is 2.4–2.7:1 (streak count, summary title) | 1.4.3 | Add a darker amber text token (about `#8A5A00`) |
-| 3 | `*-dark` text on `*-soft` tints is 3.7–3.8:1 at body size (feedback sheet, notices) | 1.4.3 | Darken the three text shades by ~15% |
-| 4 | Word-bank tiles move between regions without focus management; the answer order is not announced | 2.4.3, 4.1.3 | Move focus predictably and announce the built sentence |
-| 5 | Matching pairs rely on two visual columns | 1.3.1 | Add group labels and "matched" announcements |
-| 6 | Quit dialog does not trap focus or close on Escape | 2.1.2, 2.4.3 | Use `<dialog>` or a focus trap |
-| 7 | The path's zig-zag uses CSS transforms; at 400% zoom nodes may clip on narrow screens | 1.4.10 | Reduce offsets under 360 px |
-| 8 | Interface is English only | 3.1.2 (partially) | Translate for en-es and en-hi courses |
-| 9 | Listening exercises have no non-audio equivalent beyond skipping | 1.2.1 | Offer "show text" as an alternative mode |
-| 10 | Timing: speech recognition ends on silence with no extension | 2.2.1 | Allow retry without penalty (present) and a longer window |
+## Fixed since the first build
+| Issue | Fix |
+|---|---|
+| White labels on bright fills, amber and tinted text below 4.5:1 | New colour tokens (see `DESIGN-SYSTEM.md`); all text pairs are 4.5:1 or better, checked by axe |
+| Word bank gave no feedback to screen readers | Answer and bank are labelled groups; the sentence so far is announced |
+| Matching relied on two visual columns | Labelled groups, pressed state, matches announced |
+| Quit dialog did not trap focus | Native `<dialog>`: focus trapped, Escape closes, focus returns |
+| Interface English only | English, Spanish, Hindi; `lang` set on the document |
+| Listening had no alternative | "Can't listen now" turns listening off for the session without counting it as answered |
 
-## Audit plan
-1. Fix defects 1–3 (token change) and re-compute ratios.
-2. Automated scan (axe) on every route in CI.
-3. Manual keyboard pass and screen-reader pass (NVDA + Firefox, VoiceOver + Safari, TalkBack + Chrome) over workflows W1–W6.
-4. Test at 200% and 400% zoom and with Windows high-contrast mode.
-5. Recruit learners with disabilities for the lesson loop specifically.
+## Open
+| # | Issue | WCAG |
+|---|---|---|
+| 1 | The path's zig-zag offsets have not been checked at 400% zoom on very narrow screens | 1.4.10 |
+| 2 | Speech recognition ends on silence; retry is free but the window cannot be extended | 2.2.1 |
+| 3 | No manual screen-reader pass (NVDA, VoiceOver, TalkBack) | — |
+| 4 | Hindi and Spanish interface text has not had native review | 3.1 |

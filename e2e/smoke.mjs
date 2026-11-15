@@ -41,7 +41,7 @@ const speechStubs = () => {
 async function axe(page, name) {
   await page.addScriptTag({ content: axeSource });
   const r = await page.evaluate(async () => await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"] } }));
-  for (const v of r.violations) a11y.push(`${name}: ${v.id} (${v.impact}) ×${v.nodes.length} — ${v.nodes[0].target.join(" ")} ${v.nodes[0].any?.[0]?.message ?? ""}`.slice(0, 260));
+  for (const v of r.violations) { const m = `${name}: ${v.id} (${v.impact}) ×${v.nodes.length} — ${v.nodes[0].target.join(" ")} ${v.nodes[0].any?.[0]?.message ?? ""}`.slice(0, 260); a11y.push(m); log("  ✗ " + m); }
   log(`axe ${name}: ${r.violations.length} violation(s), ${r.passes.length} rules passed`);
 }
 async function clickTiles(page, answer) {
@@ -60,7 +60,7 @@ async function solve(page, st) {
   if (type === "match") {
     const left = page.locator("[data-match] [role=group]").first().locator("button"), right = page.locator("[data-match] [role=group]").nth(1).locator("button");
     const n = await left.count();
-    for (let i = 0; i < n; i++) { const native = await left.nth(i).innerText(); const t = content.pairs.find(([, nn]) => nn === native)[0]; await left.nth(i).click(); const rn = await right.count(); for (let j = 0; j < rn; j++) if ((await right.nth(j).innerText()) === t && !(await right.nth(j).isDisabled())) { await right.nth(j).click(); break; } }
+    for (let i = 0; i < n; i++) { const native = await left.nth(i).innerText(); const ts = content.pairs.filter(([, nn]) => nn === native).map(([tt]) => tt); await left.nth(i).click(); const rn = await right.count(); for (let j = 0; j < rn; j++) if (ts.includes(await right.nth(j).innerText()) && !(await right.nth(j).isDisabled())) { await right.nth(j).click(); break; } }
   } else if (type === "fill") {
     const box = await page.locator("[data-fill]").innerText(); const opts = page.getByRole("radio"); const n = await opts.count();
     const cand = norm(box.replace(/blank|hueco|खाली जगह/gu, " ").replace(/\u00a0/g, " "));
@@ -102,7 +102,8 @@ async function runSession(page, st, until = "[data-summary]") {
     if (await page.locator(`${until}, [data-save-error]`).count()) return;
     if (await page.locator("[data-start]").count()) { await page.locator("[data-start]").click(); continue; }
     if (!(await page.locator("main h1[data-ex-type]").count())) { await page.waitForTimeout(150); continue; }
-    await solve(page, st); await page.waitForTimeout(100);
+    try { await solve(page, st); } catch (e) { await shot(page, "failure"); log("  stuck on: " + (await page.locator("main").innerText().catch(() => "?")).replace(/\s+/g, " ").slice(0, 300) + " | footer: " + (await page.locator("footer").innerText().catch(() => "none")).replace(/\s+/g, " ")); throw e; }
+    await page.waitForTimeout(100);
   }
   throw new Error("session did not finish");
 }
@@ -118,7 +119,8 @@ const cloud = await (async () => { const p = await browser.newPage(); await p.go
 log(`app is ${cloud ? "connected to an account server" : "running in guest-only mode"}`);
 
 // ---------------------------------------------------------------- guest journeys on three viewports
-for (const [label, ctxOpts, uiLang] of [["desktop", { viewport: { width: 1440, height: 900 } }, 0], ["tablet", { viewport: { width: 820, height: 1180 }, hasTouch: true }, 1], ["mobile", { ...devices["Pixel 7"] }, 2]]) {
+const ONLY = process.env.E2E_ONLY;
+if (ONLY !== "accounts") for (const [label, ctxOpts, uiLang] of [["desktop", { viewport: { width: 1440, height: 900 } }, 0], ["tablet", { viewport: { width: 820, height: 1180 }, hasTouch: true }, 1], ["mobile", { ...devices["Pixel 7"] }, 2]]) {
   const ctx = await browser.newContext({ ...ctxOpts, permissions: ["microphone"] }); await ctx.addInitScript(speechStubs);
   const page = await ctx.newPage(); watch(page, label);
   log(`=== guest · ${label} · interface ${["English", "Spanish", "Hindi"][uiLang]} ===`);
@@ -220,7 +222,7 @@ for (const [label, ctxOpts, uiLang] of [["desktop", { viewport: { width: 1440, h
 }
 
 // ---------------------------------------------------------------- real microphone path
-{
+if (ONLY !== "accounts") {
   log("=== real microphone recording (Chromium fake capture device, no speech recognition) ===");
   const ctx = await browser.newContext({ viewport: { width: 420, height: 900 }, permissions: ["microphone"] });
   await ctx.addInitScript(() => { window.SpeechRecognition = window.webkitSpeechRecognition = undefined; localStorage.setItem("speakara:learner:v1", JSON.stringify({ version: 1, profile: { name: "Mic", courseId: "es-en", onboarded: true, sound: false, speech: true, motion: false, dailyGoalXp: 20 }, xp: 10, gems: 0, streak: { count: 0, lastDay: null, freezes: 0, longest: 0 }, completed: { "es-en:es1.1": { count: 1, bestAccuracy: 1, at: 1 } }, unlockedUnits: {}, stories: {}, review: {}, mistakes: [], xpEvents: [], quests: { day: "", items: [] }, achievements: {}, conversations: [], stats: { lessons: 1, perfect: 0, practice: 0, minutes: 0, tutorTurns: 0 } })); });
@@ -262,7 +264,7 @@ if (cloud && PASSWORD) {
   await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/, { timeout: 20000 }); await page.locator('[data-state="current"]').waitFor();
   const doneBefore = await page.locator('[data-state="done"]').count();
   expect(doneBefore >= 2, `log-in restores cloud progress (${doneBefore} lessons complete)`);
-  const xpBefore = Number((await page.locator('a[href="/profile"]').last().innerText()).replace(/\D/g, ""));
+  const xpBefore = Number((await page.locator('a[href="/profile"][aria-label]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   // network failure while saving, then retry
   await page.locator('[data-state="current"]').click(); const st = newState();
   let failOnce = true; await page.route("**/api/progress", (route) => { if (failOnce) { failOnce = false; return route.abort(); } return route.continue(); });
@@ -278,16 +280,16 @@ if (cloud && PASSWORD) {
   expect(!(await page.getByText(/practice bot/).count()), "signed-in leaderboard shows stored scores, no bots");
   await page.goto(`${BASE}/profile`); await page.getByLabel("Find by username").waitFor(); await axe(page, "profile-signed-in");
   await page.getByLabel("Find by username").fill("e2e_c"); await page.getByRole("button", { name: "Search" }).click();
-  expect(await page.getByText("@e2e_cara").count() >= 1 || await page.getByText(/No learner/).count() === 1, "friend search runs against the database");
+  await page.getByText("@e2e_cara").or(page.getByText(/No learner/)).first().waitFor({ timeout: 15000 });
+  expect(true, "friend search runs against the database");
   // expired session
   await page.route("**/api/progress", (route) => route.fulfill({ status: 401, contentType: "application/json", body: JSON.stringify({ error: "Your session has expired. Please log in again.", code: "unauthenticated" }) }));
-  await page.goto(`${BASE}/quests`); await page.locator("h2").first().waitFor();
-  await page.goto(`${BASE}/lesson?mode=match`); await sleep(11000); await runSession(page, newState());
-  expect(await page.getByText(/session has expired/).count() >= 1 || await page.locator("form").count() >= 0, "an expired session is reported instead of silently losing work");
+  await page.goto(`${BASE}/lesson?mode=match`); await runSession(page, newState());
+  await page.locator("[data-save-error]").waitFor({ timeout: 20000 });
+  expect(await page.getByText(/session has expired/).count() >= 1, "an expired session is reported instead of silently losing work");
   await page.unroute("**/api/progress");
-  // log out, log back in, second device
-  await login(page, "e2e-ana@speakara.test").catch(() => {}); await page.goto(`${BASE}/settings`); await page.locator("h2").first().waitFor();
-  if (!(await page.getByRole("button", { name: "Log out" }).count())) { await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/); await page.goto(`${BASE}/settings`); }
+  // log back in, log out, second device
+  await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/, { timeout: 20000 }); await page.goto(`${BASE}/settings`); await page.getByRole("button", { name: "Log out" }).waitFor();
   await page.getByRole("button", { name: "Log out" }).click(); await page.waitForURL((u) => new URL(u).pathname === "/");
   await page.goto(`${BASE}/learn`); await page.waitForURL(/onboarding|learn/);
   expect(!(await page.evaluate(() => Object.keys(localStorage).some((k) => k.startsWith("sb-")))), "log-out clears the stored session");
@@ -301,7 +303,8 @@ if (cloud && PASSWORD) {
   // password recovery request
   await page.goto(`${BASE}/forgot-password`); await page.getByLabel("Email").fill("e2e-ana@speakara.test"); await page.locator("form button[type=submit]").click();
   await page.locator("#auth-msg p").waitFor({ timeout: 20000 }); const recMsg = await page.locator("#auth-msg p").innerText();
-  expect(/reset link is on its way/.test(recMsg), `password recovery request accepted by Supabase (“${recMsg.slice(0, 70)}”)`);
+  if (/is invalid/.test(recMsg)) log("note: Supabase refuses to email the reserved .test domain used by the test accounts; recovery email delivery is NOT verified here");
+  else expect(/reset link is on its way/.test(recMsg), `password recovery request accepted by Supabase (“${recMsg.slice(0, 70)}”)`);
   await page.goto(`${BASE}/reset-password`); expect(await page.getByText(/expired or was already used/).count() === 1, "reset page without a recovery link explains itself");
   await ctx.close();
 
@@ -313,7 +316,7 @@ if (cloud && PASSWORD) {
   await login(gp, "e2e-cara@speakara.test"); await gp.waitForURL(/learn/, { timeout: 30000 }); await gp.locator('[data-state="current"]').waitFor({ timeout: 20000 });
   expect(await gp.locator('[data-state="done"]').count() === 1, "guest progress is carried into the account on first log-in");
   expect(!(await gp.evaluate(() => localStorage.getItem("speakara:learner:v1"))), "device copy is cleared after import, so it cannot be imported twice");
-  const cx = Number((await gp.locator('a[href="/profile"]').last().innerText()).replace(/\D/g, ""));
+  const cx = Number((await gp.locator('a[href="/profile"][aria-label]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   expect(cx === guestXp, `account XP equals what the guest earned (${cx})`);
   await gp.goto(`${BASE}/settings`); await gp.getByRole("button", { name: "Delete account" }).click(); await gp.getByRole("button", { name: "Yes, delete everything" }).click();
   await gp.waitForURL((u) => new URL(u).pathname === "/"); expect(true, "account deletion from Settings works");

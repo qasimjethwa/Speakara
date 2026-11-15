@@ -12,13 +12,13 @@ estimates). MoSCoW column is what was decided for the MVP.
 | Streak, XP, quests | All | High | Medium | M | Must | Built |
 | One complete beginner course | All | Very high | High | L | Must | Built (Spanish A1: 3 units, 12 lessons, 3 stories) |
 | Scripted tutor | Most | Medium | Medium | M | Must | Built |
-| Accounts + sync | Returning | High | High | M | Must | Built, awaiting a Supabase project |
+| Accounts + sync | Returning | High | High | M | Must | Built and tested on the live Supabase project |
 | Provider-backed AI tutor | Most | High | Medium | M | Should | Built, untested against a live provider |
 | Leaderboard, friends | Some | Medium | Low | M | Should | Built on Supabase |
 | Stories | Most | Medium | Medium | S | Should | Built |
-| Native-language UI for en-es / en-hi | Asha, Miguel | High | High | M | Should | **Not built — top of next release** |
+| Native-language UI for en-es / en-hi | Asha, Miguel | High | High | M | Should | Built (English, Spanish, Hindi); needs native review |
 | Content editors (admin) | Authors | Medium | Medium | L | Could | Deferred; PR-based authoring works |
-| Timed challenges, dictation | Some | Low | Low | M | Could | Deferred |
+| Timed challenges, dictation | Some | Low | Low | M | Could | Built (timed matching, dictation) |
 | Video call, phoneme scoring | Some | Medium | Low | XL | Won't (now) | Deferred |
 | Native apps | Many | High | Medium | XL | Won't (now) | Deferred; PWA first |
 

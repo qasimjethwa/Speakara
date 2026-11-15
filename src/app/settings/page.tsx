@@ -37,14 +37,14 @@ function SettingsBody() {
         <p className="mb-3 text-sm text-sub">{mode === "cloud" ? t("Your progress syncs to your account.") : cloudConfigured ? t("You’re learning as a guest. Create an account to sync across devices.") : t("Progress is saved on this device.")}</p>
         {err && <div className="mb-3"><Notice tone="error">{t(err)}</Notice></div>}
         <div className="flex flex-wrap gap-3">
-          {mode === "cloud" ? <><Button variant="secondary" onClick={async () => { await signOut(); router.replace("/"); }}>{t("Log out")}</Button><Button variant="secondary" className="!text-coral-dark" onClick={() => setConfirm("delete")}>{t("Delete account")}</Button></>
+          {mode === "cloud" ? <><Button variant="secondary" onClick={async () => { await signOut(); window.location.replace("/"); }}>{t("Log out")}</Button><Button variant="secondary" className="!text-coral-dark" onClick={() => setConfirm("delete")}>{t("Delete account")}</Button></>
             : <>{cloudConfigured && <Button variant="sky" onClick={() => router.push("/signup")}>{t("Create account")}</Button>}<Button variant="secondary" className="!text-coral-dark" onClick={() => setConfirm("reset")}>{t("Reset progress")}</Button></>}
         </div></Card>
       <Dialog open={!!confirm} onClose={() => setConfirm(null)} labelledBy="confirm-title">
         <h2 id="confirm-title" className="text-xl">{confirm === "delete" ? t("Delete your account?") : t("Erase your progress?")}</h2>
         <p className="mt-2 text-sub">{confirm === "delete" ? t("This permanently deletes your account and all your learning data. It cannot be undone.") : t("This clears all learning progress stored on this device. It cannot be undone.")}</p>
         <div className="mt-5 space-y-3">
-          <Button variant="danger" className="w-full" onClick={async () => { if (confirm === "delete") { const e = await deleteAccount(); setConfirm(null); if (e) setErr(e); else router.replace("/"); } else { resetProgress(); setConfirm(null); router.replace("/onboarding"); } }}>{confirm === "delete" ? t("Yes, delete everything") : t("Yes, erase my progress")}</Button>
+          <Button variant="danger" className="w-full" onClick={async () => { if (confirm === "delete") { const e = await deleteAccount(); setConfirm(null); if (e) setErr(e); else window.location.replace("/"); } else { resetProgress(); setConfirm(null); router.replace("/onboarding"); } }}>{confirm === "delete" ? t("Yes, delete everything") : t("Yes, erase my progress")}</Button>
           <Button autoFocus variant="secondary" className="w-full" onClick={() => setConfirm(null)}>{t("Cancel")}</Button>
         </div>
       </Dialog>

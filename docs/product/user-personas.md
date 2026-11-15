@@ -17,4 +17,4 @@ validated with user research yet. Validation is task P-01 in the roadmap.
 - 48 px minimum touch targets, slow-audio button and a reduced-motion setting (Claire).
 - Guest mode with local persistence and tiny JS-free marketing pages (Asha, Mr. Okafor).
 - Skip buttons for speaking/listening so sessions work on a bus (Miguel).
-- Native-language instructions are needed for the Hindi and Spanish-speaker courses — currently a gap (UI chrome is English only).
+- Native-language instructions are needed for the Hindi and Spanish-speaker courses — now available (interface in Spanish and Hindi; awaiting native review).
