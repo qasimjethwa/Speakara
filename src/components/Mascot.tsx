@@ -30,11 +30,11 @@ export function Mascot({ mood = "happy", size = 120, className = "" }: { mood?: 
     </svg>
   );
 }
-export function Logo({ size = 28 }: { size?: number }) {
+export function Logo({ size = 28, iconOnly = false }: { size?: number; iconOnly?: boolean }) {
   return (
-    <span className="inline-flex items-center gap-2 font-extrabold text-brand" style={{ fontSize: size * 0.9 }}>
-      <svg viewBox="0 0 32 32" width={size} height={size} aria-hidden="true"><rect width="32" height="32" rx="10" fill="#12b76a" /><path d="M9 20 c0 -8 6 -11 11 -10 c4 1 5 5 2 7 c-3 2 -8 0 -6 -3" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" /><circle cx="22" cy="22" r="2.2" fill="#ffb224" /></svg>
-      speakara
+    <span className="inline-flex items-center gap-2 font-extrabold text-brand-dark" style={{ fontSize: size * 0.9 }}>
+      <svg viewBox="0 0 32 32" width={size} height={size} aria-hidden="true"><rect width="32" height="32" rx="10" fill="#0a8549" /><path d="M9 20 c0 -8 6 -11 11 -10 c4 1 5 5 2 7 c-3 2 -8 0 -6 -3" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" /><circle cx="22" cy="22" r="2.2" fill="#ffb224" /></svg>
+      {!iconOnly && "speakara"}
     </span>
   );
 }

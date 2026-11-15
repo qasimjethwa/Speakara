@@ -1,11 +1,16 @@
 import type { LearnerState, Quest } from "../state/types";
 import { DAY } from "./srs";
 
-export const dayKey = (t: number) => { const d = new Date(t); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+/** Day boundaries follow the learner's clock. In the browser that is the device time zone; on the server the
+ *  request supplies the learner's UTC offset through withDayOffset(). */
+let dayOffsetMin: number | null = null;
+export function withDayOffset<T>(offsetMin: number, fn: () => T): T { const prev = dayOffsetMin; dayOffsetMin = offsetMin; try { return fn(); } finally { dayOffsetMin = prev; } }
+const localParts = (t: number) => { const off = dayOffsetMin ?? -new Date(t).getTimezoneOffset(); const d = new Date(t + off * 60_000); return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), wd: d.getUTCDay() }; };
+export const dayKey = (t: number) => { const p = localParts(t); return `${p.y}-${String(p.m).padStart(2, "0")}-${String(p.d).padStart(2, "0")}`; };
 const dayNumber = (key: string) => { const [y, m, d] = key.split("-").map(Number); return Math.round(Date.UTC(y, m - 1, d) / DAY); };
 export const daysBetween = (a: string, b: string) => dayNumber(b) - dayNumber(a);
 /** Monday-based week key, used for weekly leagues. */
-export const weekKey = (t: number) => { const d = new Date(t); const day = (d.getDay() + 6) % 7; return dayKey(t - day * DAY); };
+export const weekKey = (t: number) => dayKey(t - ((localParts(t).wd + 6) % 7) * DAY);
 
 export type SessionKind = "lesson" | "practice" | "story" | "testout" | "tutor" | "placement";
 export const XP_RULES = { lesson: 10, practice: 10, story: 12, testout: 20, tutor: 8, placement: 15, perfectBonus: 5, firstTimeBonus: 5 } as const;
@@ -39,11 +44,12 @@ const QUEST_POOL: Omit<Quest, "progress" | "claimed">[] = [
   { id: "xp", target: 30, reward: 10 }, { id: "lessons", target: 2, reward: 10 }, { id: "perfect", target: 1, reward: 15 },
   { id: "practice", target: 1, reward: 10 }, { id: "story", target: 1, reward: 10 }, { id: "words", target: 8, reward: 10 },
 ];
-export const QUEST_LABELS: Record<string, (n: number) => string> = {
-  xp: (n) => `Earn ${n} XP`, lessons: (n) => `Complete ${n} lessons`, perfect: () => "Finish a lesson with no mistakes",
-  practice: () => "Do one practice session", story: () => "Read a story", words: (n) => `Practise ${n} words`,
+/** Quest names are translation keys; {n} is the target. */
+export const QUEST_LABELS: Record<string, string> = {
+  xp: "Earn {n} XP", lessons: "Complete {n} lessons", perfect: "Finish a lesson with no mistakes",
+  practice: "Do one practice session", story: "Read a story", words: "Practise {n} words",
 };
-export const questTitle = (id: string) => QUEST_LABELS[id]?.(QUEST_POOL.find((q) => q.id === id)?.target ?? 1) ?? id;
+export const questTarget = (id: string) => QUEST_POOL.find((q) => q.id === id)?.target ?? 1;
 /** Three quests a day, rotating deterministically so every learner sees the same set on the same date. */
 export function questsFor(day: string): Quest[] {
   const start = dayNumber(day) % QUEST_POOL.length;

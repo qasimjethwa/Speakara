@@ -1,23 +1,28 @@
 @import "tailwindcss";
 @import "@fontsource-variable/nunito";
+@import "@fontsource-variable/noto-sans-devanagari";
 
 /* Speakara design tokens — see docs/design/DESIGN-SYSTEM.md */
 @theme {
-  --font-sans: "Nunito Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
-  --color-brand: #12b76a;        --color-brand-dark: #0b8f52;   --color-brand-soft: #dcf7e9;
-  --color-sky: #2e9bff;          --color-sky-dark: #1b78d6;     --color-sky-soft: #dceeff;
-  --color-sun: #ffb224;          --color-sun-dark: #d98e04;     --color-sun-soft: #fff2d1;
-  --color-coral: #ff5d5d;        --color-coral-dark: #d93f3f;   --color-coral-soft: #ffe3e3;
-  --color-grape: #9163f2;        --color-grape-dark: #6f42d4;   --color-grape-soft: #ece4ff;
-  --color-ink: #2f3540;          --color-sub: #6a7282;          --color-line: #e3e6eb;
-  --color-line-dark: #c9ced6;    --color-paper: #ffffff;        --color-mist: #f6f7f9;
+  --font-sans: "Nunito Variable", "Noto Sans Devanagari Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  /* Fills carry white text at >= 4.5:1; *-dark shades carry text on white and on *-soft tints at >= 4.5:1. */
+  --color-brand: #0a8549;        --color-brand-dark: #0a6e3f;   --color-brand-soft: #dcf7e9;   --color-brand-bright: #12b76a;
+  --color-sky: #1a73d1;          --color-sky-dark: #125aa8;     --color-sky-soft: #dceeff;
+  --color-sun: #ffb224;          --color-sun-dark: #8a5a00;     --color-sun-soft: #fff2d1;     --color-sun-edge: #d98e04;
+  --color-coral: #d43838;        --color-coral-dark: #b02a2a;   --color-coral-soft: #ffe3e3;
+  --color-grape: #7a4fe0;        --color-grape-dark: #5b33b8;   --color-grape-soft: #ece4ff;
+  --color-ink: #2f3540;          --color-sub: #566070;          --color-line: #e3e6eb;
+  --color-line-dark: #868e9c;    --color-paper: #ffffff;        --color-mist: #f6f7f9;
   --radius-xl: 16px; --radius-2xl: 20px; --radius-3xl: 28px;
 }
 
 html, body { height: 100%; }
 body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); font-weight: 600; -webkit-font-smoothing: antialiased; }
 h1, h2, h3 { font-weight: 800; letter-spacing: -0.01em; }
-:focus-visible { outline: 3px solid var(--color-sky); outline-offset: 2px; border-radius: 8px; }
+:focus-visible { outline: 3px solid var(--color-sky-dark); outline-offset: 2px; border-radius: 8px; }
+dialog::backdrop { background: rgb(47 53 64 / .55); }
+.sr-only-focusable:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@keyframes timer { from { width: 100% } to { width: 0% } }
 button { cursor: pointer; }
 button:disabled { cursor: not-allowed; }
 
@@ -31,7 +36,7 @@ button:disabled { cursor: not-allowed; }
 @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-6px) } }
 @keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-6px) } 75% { transform: translateX(6px) } }
 @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .9 } }
-@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgb(18 183 106 / .45) } 100% { box-shadow: 0 0 0 18px rgb(18 183 106 / 0) } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgb(10 133 73 / .45) } 100% { box-shadow: 0 0 0 18px rgb(10 133 73 / 0) } }
 .anim-pop { animation: pop .35s cubic-bezier(.2,.9,.3,1.3) both; }
 .anim-rise { animation: rise .22s ease-out both; }
 .anim-bob { animation: bob 2.4s ease-in-out infinite; }

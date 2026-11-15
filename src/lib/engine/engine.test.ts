@@ -94,6 +94,7 @@ describe("learner model", () => {
 });
 
 import { scriptedReply, parseModelJson } from "../tutor/engine";
+import { SCENARIOS } from "../tutor/scenarios";
 describe("scripted tutor", () => {
   const base = { scenario: "restaurant", target: "es" as const, targetName: "Spanish", nativeName: "English", level: "beginner" };
   it("opens, coaches once on a miss, then advances and finishes", () => {
@@ -101,10 +102,109 @@ describe("scripted tutor", () => {
     const miss = scriptedReply({ ...base, history: [{ role: "learner", text: "xyz" }], step: 0, retry: false })!; expect(miss).toMatchObject({ step: 0, retry: true }); expect(miss.tip).toContain("mesa");
     const hit = scriptedReply({ ...base, history: [{ role: "learner", text: "Sí, por favor" }], step: 0, retry: false })!; expect(hit.step).toBe(1);
     expect(scriptedReply({ ...base, history: [{ role: "learner", text: "la cuenta" }], step: 3, retry: false })!.done).toBe(true);
-    expect(scriptedReply({ ...base, scenario: "airport", history: [], step: 0, retry: false })).toBeNull();
+    expect(scriptedReply({ ...base, target: "hi", history: [], step: 0, retry: false })).toBeNull();
+    for (const sc of SCENARIOS) for (const lang of ["es", "fr", "en"] as const) expect(scriptedReply({ ...base, scenario: sc.id, target: lang, history: [], step: 0, retry: false }), `${sc.id}/${lang}`).not.toBeNull();
+    expect(scriptedReply({ ...base, target: "en", nativeName: "Hindi", history: [], step: 0, retry: false })!.translation).not.toContain(" / ");
   });
   it("parses model JSON defensively", () => { expect(parseModelJson('ok {"reply":"Hola","vocab":[{"t":"hola","n":"hello"},3]}')).toMatchObject({ reply: "Hola", vocab: [{ t: "hola", n: "hello" }] }); expect(parseModelJson("nope")).toBeNull(); expect(parseModelJson('{"reply":""}')).toBeNull(); });
 });
 
 import { lintCourse } from "../content/lint";
 describe("content", () => { for (const c of COURSES) it(`${c.id} passes automated content checks`, () => expect(lintCourse(c)).toEqual([])); });
+
+import { collectKeys } from "../../../scripts/i18n-keys";
+import { es as esDict } from "../i18n/es";
+import { hi as hiDict } from "../i18n/hi";
+import { translate } from "../i18n/translate";
+describe("interface translations", () => {
+  const keys = collectKeys("src");
+  it("every interface string has a Spanish and a Hindi translation", () => {
+    expect(keys.filter((k) => !esDict[k])).toEqual([]);
+    expect(keys.filter((k) => !hiDict[k])).toEqual([]);
+  });
+  it("translations keep every {placeholder}", () => {
+    const vars = (s: string) => (s.match(/\{\w+\}/g) ?? []).sort().join();
+    for (const k of keys) { expect(vars(esDict[k]), k).toBe(vars(k)); expect(vars(hiDict[k]), k).toBe(vars(k)); }
+  });
+  it("fills placeholders and falls back to English", () => {
+    expect(translate("es", "Unit {n}", { n: 2 })).toBe("Unidad 2"); expect(translate("hi", "Unit {n}", { n: 2 })).toBe("इकाई 2"); expect(translate("es", "not a key")).toBe("not a key");
+  });
+});
+
+import { buildSession, placementUnit, PLACEMENT_SEED, type SessionPlan } from "./plan";
+import { gradeAttempts, GradeError, type Attempt } from "./grade";
+import { withDayOffset } from "./gamification";
+import { assessSpeech } from "./text";
+import { buildDelta } from "../state/delta";
+import { sanitizeGuest } from "../server/progress";
+import type { Exercise } from "./exercises";
+
+const rightAnswer = (e: Exercise): Attempt => ({ id: e.id, answer:
+  e.type === "choose" || e.type === "fill" ? { type: e.type, index: e.answer } : e.type === "match" ? { type: "match", mistakes: 0 }
+  : e.type === "speak" ? { type: "speak", transcript: e.text } : { type: e.type, text: e.accepted[0] } });
+
+describe("server-side grading", () => {
+  const c = getCourse("es-en");
+  const plan: SessionPlan = { type: "lesson", courseId: "es-en", lessonId: "es1.1", seed: 99, speech: true, reviewWordIds: [] };
+  it("rebuilds identical exercises from a plan, so the server grades what the learner saw", () => {
+    expect(buildSession(c, plan)).toEqual(buildSession(c, plan));
+    expect(buildSession(c, { ...plan, seed: 100 })!.exercises).not.toEqual(buildSession(c, plan)!.exercises);
+    expect(buildSession(c, plan)!.exercises.some((e) => e.type === "dictation")).toBe(true);
+    expect(buildSession(c, { ...plan, lessonId: "nope" })).toBeNull();
+    expect(buildSession(c, { type: "testout", courseId: "es-en", unit: 9, seed: 1 })).toBeNull();
+    expect(buildSession(getCourse("fr-en"), { type: "placement", courseId: "fr-en", seed: PLACEMENT_SEED })).toBeNull();
+  });
+  it("grades first attempts and reports words, misses and accuracy", () => {
+    const built = buildSession(c, plan)!;
+    const all = built.exercises.map(rightAnswer);
+    const perfect = gradeAttempts(c, built, all, 120);
+    expect(perfect).toMatchObject({ kind: "lesson", lessonId: "es1.1", total: built.exercises.length, correctFirstTry: built.exercises.length, missedSentences: [] });
+    const wrong = all.map((a, i) => (i === 0 ? { id: a.id, answer: { type: "choose" as const, index: -1 } } : a));
+    expect(gradeAttempts(c, built, wrong, 120).correctFirstTry).toBe(built.exercises.length - 1);
+  });
+  it("rejects incomplete or illegitimately skipped sessions", () => {
+    const built = buildSession(c, plan)!; const all = built.exercises.map(rightAnswer);
+    expect(() => gradeAttempts(c, built, all.slice(1), 60)).toThrow(GradeError);
+    expect(() => gradeAttempts(c, built, all.map((a, i) => (i === 0 ? { id: a.id, skipped: true } : a)), 60)).toThrow(/cannot be skipped/);
+    const skipSpeech = all.map((a) => (["speak", "listen", "dictation"].includes(built.exercises.find((e) => e.id === a.id)!.type) ? { id: a.id, skipped: true } : a));
+    expect(gradeAttempts(c, built, skipSpeech, 60).total).toBe(built.exercises.length - 3);
+  });
+  it("places learners from the placement score and grades stories as questions", () => {
+    expect([placementUnit(c, 1), placementUnit(c, 0.6), placementUnit(c, 0.2)]).toEqual([2, 1, 0]);
+    const p = buildSession(c, { type: "placement", courseId: "es-en", seed: 7 })!;
+    expect(gradeAttempts(c, p, p.exercises.map(rightAnswer), 90).unlockUnit).toBe(2);
+    const story = buildSession(c, { type: "story", courseId: "es-en", storyId: "es1-story", seed: 1 })!;
+    expect(gradeAttempts(c, story, story.exercises.map((e, i) => (i === 0 ? { id: e.id, answer: { type: "choose" as const, index: -1 } } : rightAnswer(e))), 30)).toMatchObject({ kind: "story", storyId: "es1-story", total: 3, correctFirstTry: 2 });
+  });
+  it("builds every practice mode, including timed matching and writing", () => {
+    const words = c.units[0].lessons.flatMap((l) => l.words.map((w) => w.id)), sentences = c.units[0].lessons.flatMap((l) => l.sentences.map((s) => s.id));
+    for (const mode of ["review", "mistakes", "listen", "speak", "write", "match"] as const) expect(buildSession(c, { type: "practice", courseId: "es-en", mode, seed: 5, speech: true, wordIds: words, sentenceIds: sentences })!.exercises.length, mode).toBeGreaterThan(2);
+    expect(buildSession(c, { type: "practice", courseId: "es-en", mode: "review", seed: 5, speech: true, wordIds: [], sentenceIds: [] })).toBeNull();
+  });
+});
+
+describe("server authority helpers", () => {
+  it("uses the learner's clock for day boundaries", () => {
+    const t = Date.UTC(2026, 10, 14, 23, 30);
+    expect(withDayOffset(0, () => dayKey(t))).toBe("2026-11-14"); expect(withDayOffset(330, () => dayKey(t))).toBe("2026-11-15"); expect(withDayOffset(-480, () => dayKey(t))).toBe("2026-11-14");
+  });
+  it("turns a state change into a delta with only what changed", () => {
+    const a = initialState(T0); const { state: b } = completeSession(a, { kind: "lesson", courseId: "es-en", lessonId: "es1.1", total: 10, correctFirstTry: 9, seconds: 100, words: [{ wordId: "es1.1.w1", correct: true }], missedSentences: ["es1.1.s1"], fixedSentences: [] }, T0);
+    const d = buildDelta(a, b);
+    expect(d).toMatchObject({ xp: 15, profile: { xp: 15, streak_count: 1 }, completions: [{ course_id: "es-en", lesson_id: "es1.1", count: 1 }], review: [{ word_key: "es-en:es1.1.w1" }], mistakes_add: [{ sentence_id: "es1.1.s1" }], mistakes_remove: [] });
+    expect(d.xp_events).toHaveLength(1); expect(buildDelta(b, b)).toMatchObject({ xp: 0, completions: [], review: [], xp_events: [], achievements: [] });
+  });
+  it("refuses to import fabricated guest progress", () => {
+    const fake = { ...initialState(T0), xp: 999999, gems: 999999, streak: { count: 400, lastDay: "2026-11-14", freezes: 9, longest: 999 },
+      completed: { "es-en:es1.1": { count: 1, bestAccuracy: 1, at: T0 }, "es-en:es3.4": { count: 1, bestAccuracy: 1, at: T0 }, "es-en:made.up": { count: 1, bestAccuracy: 1, at: T0 } },
+      review: { "es-en:es1.1.w1": { reps: 2, interval: 3, ease: 2.4, due: T0, lapses: 0, seen: 2, last: T0 }, "es-en:fake.w9": { reps: 9, interval: 99, ease: 9, due: T0, lapses: 0, seen: 9, last: T0 } } };
+    const s = sanitizeGuest(fake, T0 + 1000);
+    expect(Object.keys(s.completed)).toEqual(["es-en:es1.1"]);                       // locked and invented lessons are dropped
+    expect(Object.keys(s.review)).toEqual(["es-en:es1.1.w1"]);
+    expect(s.xp).toBeLessThanOrEqual(45); expect(s.gems).toBeLessThanOrEqual(20); expect(s.streak.count).toBeLessThanOrEqual(1); expect(s.streak.freezes).toBeLessThanOrEqual(2);
+    expect(s.xpEvents.reduce((n, e) => n + e.amount, 0)).toBeLessThanOrEqual(50);
+  });
+  it("gives word-level speaking feedback", () => {
+    const r = assessSpeech("hola buenas dias", "Hola, buenos días."); expect(r.words.map((w) => w.heard)).toEqual([true, false, true]); expect(r.score).toBeCloseTo(2 / 3);
+  });
+});

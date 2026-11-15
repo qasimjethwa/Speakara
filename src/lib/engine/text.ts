@@ -53,3 +53,10 @@ export function speechScore(transcript: string, expected: string): number {
   if (!want.length) return 0;
   return want.filter((w) => got.has(w)).length / want.length;
 }
+
+/** Word-level speaking feedback: which expected words the recogniser heard (in order-insensitive, accent-insensitive form). */
+export function assessSpeech(transcript: string, expected: string): { words: { word: string; heard: boolean }[]; score: number } {
+  const got = new Set(stripAccents(normalize(transcript)).split(" "));
+  const words = tokens(expected).map((word) => ({ word, heard: got.has(stripAccents(normalize(word))) }));
+  return { words, score: words.length ? words.filter((w) => w.heard).length / words.length : 0 };
+}

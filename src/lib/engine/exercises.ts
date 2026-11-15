@@ -2,20 +2,21 @@ import type { Course, Lesson, Sentence, Word } from "../content/types";
 import { allLessons, allSentences, allWords } from "../content";
 import { compareText, speechScore, tokens, type Verdict } from "./text";
 
-export type ExerciseType = "choose" | "wordbank" | "translate" | "listen" | "speak" | "match" | "fill";
-interface Base { id: string; type: ExerciseType; wordIds: string[]; sentenceId?: string; difficulty: 1 | 2 | 3; instruction: string; explanation?: string }
+export type ExerciseType = "choose" | "wordbank" | "translate" | "listen" | "dictation" | "speak" | "match" | "fill";
+interface Base { id: string; type: ExerciseType; wordIds: string[]; sentenceId?: string; difficulty: 1 | 2 | 3; instruction: string; vars?: Record<string, string> }
 export interface ChooseEx extends Base { type: "choose"; prompt: string; promptIsTarget: boolean; options: string[]; answer: number }
 export interface WordBankEx extends Base { type: "wordbank"; prompt: string; promptIsTarget: boolean; tiles: string[]; accepted: string[] }
 export interface TranslateEx extends Base { type: "translate"; prompt: string; promptIsTarget: boolean; accepted: string[] }
 export interface ListenEx extends Base { type: "listen"; audio: string; tiles: string[]; accepted: string[]; translation: string }
+export interface DictationEx extends Base { type: "dictation"; audio: string; accepted: string[]; translation: string }
 export interface SpeakEx extends Base { type: "speak"; text: string; translation: string }
 export interface MatchEx extends Base { type: "match"; pairs: { id: string; t: string; n: string }[] }
 export interface FillEx extends Base { type: "fill"; before: string; after: string; options: string[]; answer: number; translation: string; full: string }
-export type Exercise = ChooseEx | WordBankEx | TranslateEx | ListenEx | SpeakEx | MatchEx | FillEx;
+export type Exercise = ChooseEx | WordBankEx | TranslateEx | ListenEx | DictationEx | SpeakEx | MatchEx | FillEx;
 
 export type Answer =
   | { type: "choose" | "fill"; index: number }
-  | { type: "wordbank" | "translate" | "listen"; text: string }
+  | { type: "wordbank" | "translate" | "listen" | "dictation"; text: string }
   | { type: "speak"; transcript: string }
   | { type: "match"; mistakes: number };
 
@@ -29,7 +30,7 @@ export function evaluate(ex: Exercise, a: Answer): Verdict {
       const expected = ex.type === "fill" ? ex.full : ex.options[ex.answer];
       return { correct: a.type === ex.type && a.index === ex.answer, expected };
     }
-    case "wordbank": case "translate": case "listen":
+    case "wordbank": case "translate": case "listen": case "dictation":
       return compareText(a.type === ex.type ? a.text : "", ex.accepted);
     case "speak":
       return { correct: a.type === "speak" && speechScore(a.transcript, ex.text) >= SPEAK_PASS, expected: ex.text };
@@ -58,7 +59,7 @@ function choose(c: Course, w: Word, toNative: boolean, rng: Rng, n: number): Cho
   const pool = uniq(allWords(c).map((x) => (toNative ? x.n : x.t)).filter((x) => x !== correct));
   const options = shuffle([correct, ...pick(pool, 2, rng)], rng);
   return { id: `choose-${w.id}-${n}`, type: "choose", wordIds: [w.id], difficulty: 1, prompt: toNative ? w.t : w.n, promptIsTarget: toNative,
-    instruction: toNative ? "What does this mean?" : `How do you say this in ${c.targetName}?`, options, answer: options.indexOf(correct) };
+    instruction: toNative ? "What does this mean?" : "How do you say this in {lang}?", vars: { lang: c.targetName }, options, answer: options.indexOf(correct) };
 }
 function wordsIn(c: Course, s: Sentence): string[] {
   const lesson = allLessons(c).find((x) => x.lesson.sentences.some((y) => y.id === s.id))?.lesson;
@@ -78,12 +79,15 @@ function wordbank(c: Course, s: Sentence, toNative: boolean, rng: Rng): WordBank
 }
 function translate(c: Course, s: Sentence, toNative: boolean): TranslateEx {
   return { id: `translate-${s.id}-${toNative ? "n" : "t"}`, type: "translate", sentenceId: s.id, wordIds: wordsIn(c, s), difficulty: 3,
-    instruction: toNative ? `Write this in ${c.nativeName}` : `Write this in ${c.targetName}`, prompt: toNative ? s.t : s.n, promptIsTarget: toNative,
+    instruction: "Write this in {lang}", vars: { lang: toNative ? c.nativeName : c.targetName }, prompt: toNative ? s.t : s.n, promptIsTarget: toNative,
     accepted: toNative ? [s.n, ...(s.alt ?? [])] : [s.t] };
 }
 function listen(c: Course, s: Sentence, rng: Rng): ListenEx {
   return { id: `listen-${s.id}`, type: "listen", sentenceId: s.id, wordIds: wordsIn(c, s), difficulty: 2, instruction: "Tap what you hear",
     audio: s.t, tiles: tilesFor(c, s, true, rng), accepted: [s.t], translation: s.n };
+}
+function dictation(c: Course, s: Sentence): DictationEx {
+  return { id: `dictation-${s.id}`, type: "dictation", sentenceId: s.id, wordIds: wordsIn(c, s), difficulty: 3, instruction: "Type what you hear", audio: s.t, accepted: [s.t], translation: s.n };
 }
 function speak(c: Course, s: Sentence): SpeakEx {
   return { id: `speak-${s.id}`, type: "speak", sentenceId: s.id, wordIds: wordsIn(c, s), difficulty: 2, instruction: "Speak this sentence", text: s.t, translation: s.n };
@@ -119,7 +123,7 @@ export function generateLesson(c: Course, lesson: Lesson, o: SessionOptions): Ex
     match(pick(lesson.words, Math.min(5, lesson.words.length), rng), 0),
     choose(c, at(w, 2), false, rng, 2),
     listen(c, at(s, 1), rng),
-    wordbank(c, at(s, 2), true, rng),
+    dictation(c, at(s, 2)),
     fill(c, at(s, 3), rng),
     wordbank(c, at(s, 1), false, rng),
     o.speech ? speak(c, at(s, 0)) : choose(c, at(w, 3), false, rng, 3),
@@ -130,12 +134,16 @@ export function generateLesson(c: Course, lesson: Lesson, o: SessionOptions): Ex
   return out.filter((x): x is Exercise => !!x);
 }
 
-export type PracticeMode = "review" | "mistakes" | "listen" | "speak";
+export type PracticeMode = "review" | "mistakes" | "listen" | "speak" | "write" | "match";
+export const PRACTICE_MODES: PracticeMode[] = ["review", "mistakes", "listen", "speak", "write", "match"];
 /** Practice sessions draw from material the learner has already met. */
 export function generatePractice(c: Course, mode: PracticeMode, material: { words: Word[]; sentences: Sentence[] }, o: SessionOptions): Exercise[] {
   const { rng } = o;
   const s = pick(material.sentences, 6, rng), w = pick(material.words, 8, rng);
-  if (mode === "listen") return s.map((x) => listen(c, x, rng));
+  if (!s.length || !w.length) return [];
+  if (mode === "listen") return s.map((x, i): Exercise => (i % 2 ? dictation(c, x) : listen(c, x, rng)));
+  if (mode === "write") return s.map((x, i): Exercise => (i % 3 === 2 ? dictation(c, x) : translate(c, x, i % 3 === 0)));
+  if (mode === "match") { const pool = shuffle(material.words, rng); const rounds: Exercise[] = []; for (let i = 0; i + 4 <= pool.length && rounds.length < 4; i += 4) rounds.push(match(pool.slice(i, i + 5 > pool.length ? pool.length : i + 4), i)); return rounds.length ? rounds : [match(pool.slice(0, Math.max(2, pool.length)), 0)]; }
   if (mode === "speak") return s.map((x) => speak(c, x));
   if (mode === "mistakes") return s.flatMap((x, i) => (i % 2 ? [wordbank(c, x, false, rng)] : [wordbank(c, x, true, rng)]));
   const out: Exercise[] = w.slice(0, 5).map((x, i) => choose(c, x, i % 2 === 0, rng, i));

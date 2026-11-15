@@ -3,6 +3,7 @@ import type { SrsItem } from "../engine/srs";
 export interface Profile {
   name: string; username: string; nativeLang: string; courseId: string; goal: string; level: "new" | "some";
   dailyGoalXp: number; onboarded: boolean; sound: boolean; speech: boolean; motion: boolean; createdAt: number;
+  uiLang: "en" | "es" | "hi"; isPublic: boolean; role: "learner" | "editor" | "admin"; slowAudio: boolean; savedPhrases: { t: string; n: string; courseId: string }[];
 }
 export interface Completion { count: number; bestAccuracy: number; at: number }
 export interface XpEvent { id: string; at: number; amount: number; source: string }
@@ -31,7 +32,7 @@ export interface LearnerState {
 
 export const initialState = (now: number): LearnerState => ({
   version: 1,
-  profile: { name: "", username: "", nativeLang: "en", courseId: "es-en", goal: "", level: "new", dailyGoalXp: 20, onboarded: false, sound: true, speech: true, motion: true, createdAt: now },
+  profile: { name: "", username: "", nativeLang: "en", courseId: "es-en", goal: "", level: "new", dailyGoalXp: 20, onboarded: false, sound: true, speech: true, motion: true, createdAt: now, uiLang: "en", isPublic: true, role: "learner", slowAudio: false, savedPhrases: [] },
   xp: 0, gems: 0, streak: { count: 0, lastDay: null, freezes: 0, longest: 0 },
   completed: {}, unlockedUnits: {}, stories: {}, review: {}, mistakes: [], xpEvents: [],
   quests: { day: "", items: [] }, achievements: {}, conversations: [],

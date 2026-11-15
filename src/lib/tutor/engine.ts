@@ -6,9 +6,11 @@ export interface TutorTurn { role: "tutor" | "learner"; text: string }
 export interface TutorRequest { scenario: string; target: LangCode; targetName: string; nativeName: string; level: string; history: TutorTurn[]; step: number; retry: boolean }
 export interface TutorReply { reply: string; translation?: string; correction?: string; tip?: string; vocab?: { t: string; n: string }[]; step: number; retry: boolean; done: boolean; provider: string }
 
+/** English-course scripts carry "Spanish / Hindi" glosses; show only the learner's language. */
+const gloss = (n: string, nativeName: string) => { const parts = n.split(" / "); return parts.length === 2 ? (nativeName === "Hindi" ? parts[1] : parts[0]) : n; };
 /** Deterministic tutor: follows the scenario script, checks for expected phrases and models a good answer. Costs nothing. */
 export function scriptedReply(req: TutorRequest): TutorReply | null {
-  const steps = getScenario(req.scenario).script?.[req.target];
+  const steps = getScenario(req.scenario).script?.[req.target]?.map((st) => ({ ...st, say: [st.say[0], gloss(st.say[1], req.nativeName)] as [string, string], sample: [st.sample[0], gloss(st.sample[1], req.nativeName)] as [string, string] }));
   if (!steps?.length) return null;
   const last = [...req.history].reverse().find((t) => t.role === "learner");
   if (!last) return { reply: steps[0].say[0], translation: steps[0].say[1], step: 0, retry: false, done: false, provider: "scripted" };
@@ -46,4 +48,13 @@ export function parseModelJson(text: string): Partial<TutorReply> | null {
     const vocab = Array.isArray(j.vocab) ? j.vocab.filter((v): v is { t: string; n: string } => !!v && typeof (v as { t: unknown }).t === "string" && typeof (v as { n: unknown }).n === "string").slice(0, 5) : undefined;
     return { reply: j.reply.trim().slice(0, 600), translation: str(j.translation), correction: str(j.correction), tip: str(j.tip), vocab };
   } catch { return null; }
+}
+
+export interface ExplainRequest { target: LangCode; targetName: string; nativeName: string; prompt: string; expected: string; given: string }
+export function explainPrompt(r: ExplainRequest): string {
+  return [
+    `You are Kiko, a friendly ${r.targetName} tutor for a beginner who speaks ${r.nativeName}.`,
+    `The exercise asked: "${r.prompt}". The correct answer is "${r.expected}". The learner answered "${r.given || "(nothing)"}".`,
+    `In ${r.nativeName}, in at most three short sentences: say what was wrong, name the grammar or vocabulary point, and give one tip to remember it. Do not scold. Plain text only.`,
+  ].join("\n");
 }
