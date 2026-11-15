@@ -73,13 +73,15 @@ ok(replay.status === 200 && replay.body.duplicate, "replaying the same request a
 ok((await A.db.from("profiles").select("xp").eq("id", A.id).single()).data!.xp === after1.xp, "XP unchanged after replay");
 const fast = await progress(A.token, { op: "session", operationId: opId(), tzOffsetMin: 0, plan: lessonPlan("es1.2", 7), attempts: answers(lessonPlan("es1.2", 7)), seconds: 60 });
 ok(fast.status === 429, `back-to-back sessions are throttled (${fast.status})`);
-const locked = await progress(A.token, { op: "session", operationId: opId(), tzOffsetMin: 0, plan: lessonPlan("es3.4", 7), attempts: answers(lessonPlan("es3.4", 7)), seconds: 60 });
+// A lesson the account has not reached. Account B is new on every run, so the last Spanish lesson is always locked for it.
+const lockedPlan = lessonPlan("es3.4", 7);
+const locked = await progress(B.token, { op: "session", operationId: opId(), tzOffsetMin: 0, plan: lockedPlan, attempts: answers(lockedPlan), seconds: 60 });
 ok(locked.status === 403, `a locked lesson cannot be completed (${locked.status})`);
 const partial = await progress(A.token, { op: "session", operationId: opId(), tzOffsetMin: 0, plan: p1, attempts: answers(p1).slice(0, 3), seconds: 60 });
 ok(partial.status === 400, `an incomplete answer sheet is rejected (${partial.status})`);
 const wrongSeed = lessonPlan("es1.2", 1); const mismatched = await progress(A.token, { op: "session", operationId: opId(), tzOffsetMin: 0, plan: wrongSeed, attempts: answers(lessonPlan("es1.2", 999)), seconds: 60 });
 ok(mismatched.status === 400 || (mismatched.status === 429), `answers for a different session do not grade (${mismatched.status})`);
-const noGems = await progress(A.token, { op: "freeze", operationId: opId() });
+const noGems = await progress(B.token, { op: "freeze", operationId: opId() });   // B is new and has no gems
 ok(noGems.status === 409, `a streak freeze cannot be bought without 50 gems (${noGems.status})`);
 ok((await progress(A.token, { op: "import", operationId: opId(), tzOffsetMin: 0, guest: { ...initialState(Date.now()), xp: 5000 } })).status === 409, "import is refused once an account has progress");
 
