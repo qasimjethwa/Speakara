@@ -1,7 +1,11 @@
 # Database schema
 
-Implemented in `supabase/migrations/20261114000000_learner_core.sql`. Verified by `supabase/tests/run-local.sh` on
-Postgres 16 with a stub `auth` schema (all assertions pass). **Not yet applied to a live Supabase project.**
+Implemented in two migrations under `supabase/migrations/`: `…000000_learner_core.sql` (tables) and
+`…010000_server_authority.sql` (server-only writes, roles, privacy, admin, content suggestions). Both are **applied to
+the live Supabase project** (14 tables, row-level security on all of them, 19 policies) and verified twice: by
+`supabase/tests/run-local.sh` on plain Postgres 16 and by `e2e/cloud.mts` against the live project.
+
+> The write rules below were tightened by the second migration. See [SERVER-AUTHORITY.md](SERVER-AUTHORITY.md).
 
 ## Implemented tables
 
@@ -36,26 +40,48 @@ erDiagram
 
 All child tables cascade on profile deletion; profiles cascade on `auth.users` deletion (tested).
 
-## Row-level security
+## Tables added by the second migration
 
-| Table | Policy | Rule |
+| Table | Primary key | Purpose |
 |---|---|---|
-| `profiles` | select, update own | `auth.uid() = id`. No client insert/delete — rows are created by the `handle_new_user` trigger |
-| progress tables (8) | `own rows` for all commands | `auth.uid() = user_id` in both `using` and `with check` |
-| `xp_events` | select / insert / update own | plus immutability trigger; no delete policy |
-| `follows` | select if follower or followee; insert/delete as follower | |
+| `applied_operations` | `(user_id, operation_id)` | Idempotency ledger and activity log: one row per applied server operation |
+| `friend_quest_claims` | `(user_id, friend_id, week)` | One friends-quest reward per friend per week |
+| `content_suggestions` | `id` | Corrections proposed by learners; decided by editors/admins |
+| `private.app_secrets` | `name` | Signing secret. The `private` schema is not exposed through the API |
 
-`anon` has no policy on any table. Tested: reading or writing another learner's rows fails, anonymous reads return
-nothing, XP over the cap is rejected.
+`profiles` gained `ui_lang`, `is_public`, `role` (`learner`/`editor`/`admin`), `version` (optimistic lock) and `imported`.
 
-## Functions (SECURITY DEFINER, `search_path = ''`, execute granted to `authenticated` only)
+## Row-level security and privileges
 
-| Function | Returns | Exposes |
+| Table | Learner can | Notes |
 |---|---|---|
-| `weekly_leaderboard(max_rows)` | top learners by XP since Monday 00:00 UTC | id, display name, weekly XP |
-| `find_profiles(q)` | up to 10 username prefix matches, excluding self | username, display name, XP, streak, following flag |
-| `my_friends()` | followees | same projection |
-| `handle_new_user()` | trigger | creates profile; falls back to `learner_<id suffix>` for taken/invalid usernames |
+| `profiles` | read own row; update only `display_name, username, native_lang, course_id, goal, level, daily_goal_xp, onboarded, settings, ui_lang, is_public` | Column-level grant. XP, gems, streak, stats, role and version are not writable by clients |
+| progress and reward tables (`lesson_completions`, `course_unlocks`, `story_completions`, `review_items`, `mistakes`, `quest_days`, `user_achievements`, `xp_events`, `tutor_conversations`, `applied_operations`, `friend_quest_claims`) | read own rows | Insert/update/delete revoked. Written only by `apply_progress()` |
+| `follows` | read if follower or followee; insert/delete as follower | |
+| `content_suggestions` | insert own (status `open`), read own | Editors/admins read all and update status |
+
+`anon` can read nothing and call nothing.
+
+## Functions (all `SECURITY DEFINER`, `search_path = ''`, execute granted to `authenticated` only)
+
+| Function | Purpose | Guard |
+|---|---|---|
+| `apply_progress(payload, signature)` | Applies a signed progress delta atomically | HMAC, owner, freshness, version, idempotency, throttle |
+| `weekly_leaderboard(max_rows)` | XP since Monday 00:00 UTC | Exposes id, display name (or “Private learner”), weekly XP |
+| `find_profiles(q)` / `suggested_learners()` / `my_friends()` | Discovery and friends | Public profiles only; never email |
+| `friend_quests()` | Combined weekly XP with each mutual follow, target 200 | Caller's own pairs only |
+| `delete_my_account()` | Erases the caller's account and all rows (cascade) | `auth.uid()` |
+| `is_staff(min_role)` | Role check used by policies | — |
+| `admin_overview()` / `admin_users(q, n)` / `admin_set_role(id, role)` | Analytics and user management | `role = 'admin'`; an admin cannot change their own role |
+| `handle_new_user()` | Trigger: creates the profile on sign-up | Not callable |
+
+The Supabase security advisor reports only that these definer functions are callable by signed-in users, which is
+intended: each one checks the caller.
+
+## Data retention
+Learners can delete their account from Settings (`delete_my_account`), which cascades to every table. Tutor
+transcripts are capped at the 20 most recent per learner in the app and 64 KB each in the database. No speech
+recordings are stored: recordings stay in the browser.
 
 ## Planned tables (designed, not migrated)
 
@@ -73,7 +99,7 @@ Content moves from Git to the database when the admin editors are built:
 | `stories` / `story_lines` / `story_questions` | |
 | `audio_assets` | storage path, voice, checksum, licence |
 | `content_versions` | entity ref, `version`, `status` (draft/in_review/published), author, reviewer, diff |
-| `lesson_sessions` / `answers` | per-attempt log for analytics and server-side scoring |
+| `lesson_sessions` / `answers` | per-attempt log for analytics |
 | `speaking_recordings` | opt-in only; storage path, score, retention date |
 | `league_cohorts` / `league_memberships` | weekly cohorts of 30 with tier |
 | `friend_challenges` | pair, goal, period, progress |

@@ -59,8 +59,8 @@ function Session() {
   if (pending) return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 p-6 text-center">
       <Mascot mood={error ? "oops" : "think"} size={140} className={saving ? "anim-bob" : ""} />
-      {saving ? <Loading text={t("Saving your progress…")} /> : <><h1 className="text-xl">{t("We couldn’t save that session")}</h1><Notice tone="error">{t(error ?? "")}</Notice>
-        <Button onClick={() => submit(pending.attempts, pending.seconds)} className="w-full">{t("Try again")}</Button><LinkButton href={back} variant="ghost">{t("Leave without saving")}</LinkButton></>}
+      {saving ? <Loading text={t("Saving your progress…")} /> : <><h1 className="text-xl" data-save-error>{t("We couldn’t save that session")}</h1><Notice tone="error">{t(error ?? "")}</Notice>
+        <Button data-retry onClick={() => submit(pending.attempts, pending.seconds)} className="w-full">{t("Try again")}</Button><LinkButton href={back} variant="ghost">{t("Leave without saving")}</LinkButton></>}
     </main>
   );
   const lesson = lessonId ? findLesson(course, lessonId) : null;
@@ -74,7 +74,7 @@ function Session() {
       <ul className="divide-y-2 divide-line rounded-2xl border-2 border-line">{lesson.lesson.words.map((w) => (
         <li key={w.id} className="flex items-center gap-3 p-3"><button aria-label={t("Hear {word}", { word: w.t })} onClick={() => void say(w.t, course.ttsLang, state.profile.slowAudio ? 0.75 : 1)} className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-sky-soft text-sky-dark"><Volume2 size={20} /></button><span className="flex-1 text-lg font-extrabold" lang={course.ttsLang}>{w.t}</span><span className="text-sub">{w.n}</span></li>
       ))}</ul>
-      <div className="mt-8 space-y-3"><Button autoFocus className="w-full" onClick={() => setStarted(true)}>{t("Start lesson")}</Button><LinkButton href={`/guidebook?unit=${lesson.unit.id}`} variant="secondary" className="w-full">{t("Read the guidebook first")}</LinkButton><LinkButton href="/learn" variant="ghost" className="w-full">{t("Back to the path")}</LinkButton></div>
+      <div className="mt-8 space-y-3"><Button autoFocus data-start className="w-full" onClick={() => setStarted(true)}>{t("Start lesson")}</Button><LinkButton href={`/guidebook?unit=${lesson.unit.id}`} variant="secondary" className="w-full">{t("Read the guidebook first")}</LinkButton><LinkButton href="/learn" variant="ghost" className="w-full">{t("Back to the path")}</LinkButton></div>
     </main>
   );
   return <LessonPlayer course={course} exercises={built.exercises} sound={state.profile.sound} slow={state.profile.slowAudio} exitHref={back} aiExplain={ai} timeLimit={plan.plan?.type === "practice" && plan.plan.mode === "match" ? 90 : undefined} onFinish={submit} />;

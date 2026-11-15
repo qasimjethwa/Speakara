@@ -18,7 +18,9 @@
 | `fr-en` unit 1 | Written from scratch | AI-assisted draft | None yet | 2026-11-14 | Native review pending |
 | `en-es` unit 1 | Written from scratch | AI-assisted draft | None yet | 2026-11-14 | Native review pending |
 | `en-hi` unit 1 | Written from scratch | AI-assisted draft | None yet | 2026-11-14 | **Needs native Hindi review before promotion** |
-| Tutor scenario scripts | Written from scratch | AI-assisted draft | None yet | 2026-11-14 | Review with course content |
+| Tutor scenario scripts (9 scenarios × es / fr / en) | Written from scratch | AI-assisted draft | None yet | 2026-11-15 | Review with course content |
+| Interface translations — Spanish (472 strings, `src/lib/i18n/translations.json`) | Translated for Speakara | AI-assisted draft | None yet | 2026-11-15 | Native review pending |
+| Interface translations — Hindi (472 strings) | Translated for Speakara | AI-assisted draft | None yet | 2026-11-15 | **Needs native Hindi review**; automated checks cover completeness and placeholders only |
 
 Be clear with learners and funders: as of this date **no content has been reviewed by a second human**. The content is
 basic A1 material and was checked carefully, but independent native review is the first content task on the roadmap.

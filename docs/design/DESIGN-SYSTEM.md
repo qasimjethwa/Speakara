@@ -8,36 +8,34 @@ character. **Kiko** the chameleon is the brand's voice.
 
 ## 2. Colour tokens
 
-| Token | HEX | Edge (dark) | Soft (tint) | Use |
+Fills carry white text at ≥ 4.5:1. The `-dark` shade is the key edge and the text colour on white and on the `-soft` tint.
+
+| Token | Fill | Dark (edge / text) | Soft (tint) | Use |
 |---|---|---|---|---|
-| `brand` | `#12B76A` | `#0B8F52` | `#DCF7E9` | Primary actions, correct state, progress |
-| `sky` | `#2E9BFF` | `#1B78D6` | `#DCEEFF` | Selection, audio, links, secondary actions |
-| `sun` | `#FFB224` | `#D98E04` | `#FFF2D1` | Completed nodes, streak, goals, celebration |
-| `coral` | `#FF5D5D` | `#D93F3F` | `#FFE3E3` | Incorrect state, destructive actions, recording |
-| `grape` | `#9163F2` | `#6F42D4` | `#ECE4FF` | XP, third unit colour, achievements |
+| `brand` | `#0A8549` | `#0A6E3F` | `#DCF7E9` | Primary actions, correct state, progress. `brand-bright` `#12B76A` is decorative only (confetti, mascot) |
+| `sky` | `#1A73D1` | `#125AA8` | `#DCEEFF` | Selection, audio, links, secondary actions |
+| `sun` | `#FFB224` | `#8A5A00` (text) · `#D98E04` (`sun-edge`) | `#FFF2D1` | Completed nodes, streak, goals. Always carries **ink** text, never white |
+| `coral` | `#D43838` | `#B02A2A` | `#FFE3E3` | Incorrect state, destructive actions, recording |
+| `grape` | `#7A4FE0` | `#5B33B8` | `#ECE4FF` | XP, third unit colour, achievements |
 | `ink` | `#2F3540` | — | — | Primary text |
-| `sub` | `#6A7282` | — | — | Secondary text |
-| `line` / `line-dark` | `#E3E6EB` / `#C9CED6` | — | — | Borders, disabled fills, key edges |
+| `sub` | `#566070` | — | — | Secondary text |
+| `line` / `line-dark` | `#E3E6EB` / `#868E9C` | — | — | Dividers / control borders (3.3:1 against white) |
 | `paper` / `mist` | `#FFFFFF` / `#F6F7F9` | — | — | Surfaces |
 
 Contrast ratios (WCAG 2 formula, computed from the HEX values above):
 
-| Pair | Ratio | Verdict |
-|---|---|---|
-| `ink` on `paper` | 12.3:1 | Passes AA/AAA |
-| `sub` on `paper` / on `mist` | 4.8:1 / 4.5:1 | Passes AA |
-| `ink` on `sun` | 6.8:1 | Passes AA |
-| `grape-dark` on `paper` | 6.2:1 | Passes AA |
-| white on `sky-dark` / `brand-dark` | 4.5:1 / 4.2:1 | Large text only |
-| `sub` on `line` (disabled buttons) | 3.9:1 | Exempt (disabled), still legible |
-| `brand-dark` on `brand-soft`, `sky-dark` on `sky-soft`, `coral-dark` on `coral-soft` | 3.7–3.8:1 | **Fails AA for body text**; passes for large bold text only |
-| white on `coral` / `sky` / `brand` (button labels) | 3.0 / 2.9 / 2.6:1 | **Fails AA** |
-| `sun-dark` on `paper` / `sun-soft` | 2.7 / 2.4:1 | **Fails AA** |
+| Pair | Ratio |
+|---|---|
+| `ink` on `paper` | 12.3:1 |
+| `sub` on `paper` / `mist` / `line` / `sky-soft` | 6.4 / 5.9 / 5.1 / 5.4:1 |
+| white on `brand` / `sky` / `coral` / `grape` | 4.7 / 4.8 / 4.7 / 5.2:1 |
+| `ink` on `sun` | 6.8:1 |
+| `brand-dark` on `brand-soft` · `sky-dark` on `sky-soft` · `coral-dark` on `coral-soft` | 5.6 · 5.8 · 5.4:1 |
+| `grape-dark` on `grape-soft` · `sun-dark` on `sun-soft` | 6.6 · 5.3:1 |
+| `sky-dark` / `brand-dark` / `sun-dark` text on `paper` | 6.9 / 6.3 / 5.9:1 |
 
-The failing pairs are a known defect, tracked in `docs/quality/ACCESSIBILITY.md` with the proposed fix (darker button
-fills and darker text shades on tints).
-
-These differ from the reference palette in the brief (`#58CC02` etc.) on purpose: same energy, distinct identity.
+Every text pair meets AA for normal text. The earlier palette (`#12B76A` buttons with white text at 2.6:1) was replaced
+for this reason. Automated axe checks run against 18 screens in `e2e/smoke.mjs`.
 
 ## 3. Typography
 Nunito Variable (SIL OFL), self-hosted via `@fontsource-variable/nunito`. Body weight 600; headings 800; button labels

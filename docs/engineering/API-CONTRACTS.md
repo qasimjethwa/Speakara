@@ -1,6 +1,26 @@
 # API contracts
 
-Speakara has one custom HTTP endpoint; everything else is Supabase (PostgREST tables under RLS, and three RPCs).
+Speakara has three custom HTTP endpoints; everything else is Supabase (tables under RLS and the RPCs listed in
+`DATABASE-SCHEMA.md`).
+
+## `POST /api/progress`
+The only way a signed-in learner's rewards or progress change. Header `Authorization: Bearer <Supabase access token>`.
+
+| `op` | Body | Effect |
+|---|---|---|
+| `session` | `operationId`, `tzOffsetMin`, `plan` (`SessionPlan`), `attempts` (`{id, answer \| skipped}[]`), `seconds` | Server rebuilds and grades the session, applies XP, streak, quests, achievements, review schedule |
+| `freeze` | `operationId` | Spends 50 gems on a streak freeze (max 2) |
+| `conversation` | `operationId`, `conversation` | Stores a tutor transcript |
+| `friend_claim` | `operationId`, `friendId` | Pays 20 gems for a completed friends quest |
+| `import` | `operationId`, `tzOffsetMin`, `guest` (device learner state) | One-time validated import into an empty account |
+
+Response `200`: `{ state, version, summary?, duplicate? }`. Errors `{ error, code }`: `400 bad_request/incomplete`,
+`401 unauthenticated`, `403 locked`, `409 stale/not_allowed/already_imported`, `429 too_fast`, `503 not_configured`.
+`operationId` makes every call idempotent. Details: [SERVER-AUTHORITY.md](SERVER-AUTHORITY.md).
+
+## `GET /api/tts?lang=&text=`
+Optional server text-to-speech proxy (OpenAI-compatible `/audio/speech`). `404` unless `TTS_*` variables are set.
+Responses are cached for a year (`immutable`). Not exercised against a live provider.
 
 ## `GET /api/tutor`
 Reports which tutor backend is active. Response `200`: `{ "provider": "scripted" | "anthropic" | "openai-compatible" }`.
@@ -29,8 +49,11 @@ Response `200` (`TutorReply`):
 | `step`, `retry`, `done` | | Cursor and end-of-scene flag |
 | `provider` | string | Which backend answered |
 
+Explain mode: `{ "mode": "explain", target, targetName, nativeName, prompt, expected, given }` → `{ explanation }`
+(needs an AI provider; cached per distinct mistake). Opening lines of AI scenes are cached for six hours.
+
 Errors (JSON `{ "error": string }`, written to be shown to the learner): `400` invalid body/scenario/language;
-`429` more than 40 requests per 10 minutes from one client; `503` scenario needs an AI provider and none is available.
+`429` more than 40 requests per 10 minutes from one client; `503` no scripted scene exists for that course and no provider is available.
 If a configured provider fails or returns unparseable output, the route silently falls back to the scripted scene.
 
 ## Supabase RPCs
@@ -41,14 +64,12 @@ If a configured provider fails or returns unparseable output, the route silently
 | `rpc("my_friends")` | — | `{ id, username, display_name, xp, streak_count }` |
 
 ## Supabase table access used by the client
-Reads: one `select *` per learner table on sign-in (`loadCloud`). Writes: `update` on `profiles`; `upsert` on
-`lesson_completions`, `course_unlocks`, `story_completions`, `review_items`, `user_achievements`, `xp_events`,
-`quest_days`, `tutor_conversations`, `mistakes`; `delete` on `mistakes` and `follows`; `insert` on `follows`.
-Column names are documented in `DATABASE-SCHEMA.md`.
+Reads: one `select` per learner table on sign-in (`loadCloud`). Writes: `update` of the allow-listed `profiles`
+columns, `insert`/`delete` on `follows`, `insert` on `content_suggestions` (and `update` for staff). Nothing else.
 
 ## Internal TypeScript contracts
 `Exercise`, `Answer`, `Verdict` (`src/lib/engine`), `SessionResult`, `SessionSummary` (`src/lib/state/actions.ts`) and
 `LearnerState` (`src/lib/state/types.ts`) are the contracts a future server-side session service must keep.
 
 ## Planned
-`POST /api/sessions/complete` (server-authoritative XP), `POST /api/speech/assess`, content CRUD for editors.
+`POST /api/speech/assess` (phoneme-level scoring), content CRUD for editors.

@@ -7,7 +7,8 @@ import { useStore } from "@/lib/state/store";
 import { COURSES } from "@/lib/content";
 import { LanguagePicker, useT } from "@/lib/i18n";
 
-export default function SettingsPage() {
+/** Rendered inside AppShell, so it mounts only once the learner state has loaded and form fields start correct. */
+function SettingsBody() {
   const router = useRouter(); const { state, setProfile, mode, signOut, resetProgress, cloudConfigured, deleteAccount } = useStore(); const { t } = useT(); const p = state.profile;
   const [name, setName] = useState(p.name); const [confirm, setConfirm] = useState<"reset" | "delete" | null>(null); const [err, setErr] = useState<string | null>(null);
   const toggle = (key: "sound" | "speech" | "motion" | "slowAudio" | "isPublic", label: string, hint: string) => (
@@ -15,7 +16,7 @@ export default function SettingsPage() {
       <input type="checkbox" role="switch" checked={p[key]} onChange={(e) => setProfile({ [key]: e.target.checked })} className="peer sr-only" /><span aria-hidden="true" className={`relative h-8 w-14 shrink-0 rounded-full transition-colors peer-focus-visible:outline peer-focus-visible:outline-[3px] peer-focus-visible:outline-offset-2 peer-focus-visible:outline-sky-dark ${p[key] ? "bg-brand" : "bg-line-dark"}`}><span className={`absolute top-1 h-6 w-6 rounded-full bg-white transition-all ${p[key] ? "left-7" : "left-1"}`} /></span></label>
   );
   return (
-    <AppShell rail={false}>
+    <>
       <PageTitle title={t("Settings")} />
       <Card className="mb-5"><h2 className="mb-3 text-lg">{t("Profile")}</h2>
         <form onSubmit={(e) => { e.preventDefault(); if (name.trim()) setProfile({ name: name.trim() }); }} className="flex items-end gap-2"><div className="flex-1"><Field label={t("Display name")} value={name} onChange={(e) => setName(e.target.value)} maxLength={30} /></div><Button type="submit" variant="sky" disabled={!name.trim() || name.trim() === p.name}>{t("Save")}</Button></form></Card>
@@ -47,6 +48,7 @@ export default function SettingsPage() {
           <Button autoFocus variant="secondary" className="w-full" onClick={() => setConfirm(null)}>{t("Cancel")}</Button>
         </div>
       </Dialog>
-    </AppShell>
+    </>
   );
 }
+export default function SettingsPage() { return <AppShell rail={false}><SettingsBody /></AppShell>; }

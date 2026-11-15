@@ -13,7 +13,8 @@ import { Button, LinkButton, Loading, Notice, ProgressBar } from "@/components/u
 
 function Reader() {
   const { state, ready, finishSession } = useStore(); const { t } = useT(); const course = getCourse(state.profile.courseId);
-  const story = course.units.map((u) => u.story).find((s) => s?.id === useSearchParams().get("id"));
+  const wanted = useSearchParams().get("id");
+  const story = course.units.map((u) => u.story).find((s) => s?.id === wanted);
   const [shown, setShown] = useState(1); const [picked, setPicked] = useState<Record<number, number>>({}); const first = useRef<Record<number, number>>({});
   const [reveal, setReveal] = useState<Set<number>>(new Set()); const [summary, setSummary] = useState<SessionSummary | null>(null);
   const [saving, setSaving] = useState(false); const [error, setError] = useState<string | null>(null);

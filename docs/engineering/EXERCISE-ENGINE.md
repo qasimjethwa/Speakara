@@ -9,7 +9,7 @@ Every exercise extends:
 | Field | Meaning |
 |---|---|
 | `id` | Stable within a session: `<type>-<content id>-<variant>` |
-| `type` | `choose` · `wordbank` · `translate` · `listen` · `speak` · `match` · `fill` |
+| `type` | `choose` · `wordbank` · `translate` · `listen` · `dictation` · `speak` · `match` · `fill` |
 | `wordIds` | Vocabulary practised — feeds spaced repetition |
 | `sentenceId` | Source sentence — feeds the mistakes list |
 | `difficulty` | 1 recognition · 2 guided production · 3 free production |
@@ -24,13 +24,14 @@ per-exercise scoring weights are **not** modelled yet (every exercise counts equ
 `generateLesson(course, lesson, { rng, speech, reviewWords })` builds 12 exercises from a lesson's 5–6 words and 4
 sentences, ordered recognition → production:
 
-`choose ×2 → wordbank (to native) → match → choose (to target) → listen → wordbank → fill → wordbank (to target) → speak → translate (to native) → translate (to target)`
+`choose ×2 → wordbank (to native) → match → choose (to target) → listen → dictation → fill → wordbank (to target) → speak → translate (to native) → translate (to target)`
 
 Up to two due review words are inserted as extra `choose` items. With speaking turned off the `speak` slot becomes a
 `choose`. Distractors come from the same course; word-bank tiles include 2–4 distractor words. A seeded PRNG
 (`mulberry32`) makes sessions reproducible in tests.
 
-Other generators: `generatePractice` (review, mistakes, listen-only, speak-only) and `generateUnitTest` (placement and
+Other generators: `generatePractice` (review, mistakes, listening + dictation, speaking, writing, 90-second match
+rush) and `generateUnitTest` (placement and
 jump-ahead: 6 items per unit).
 
 ## Evaluation
@@ -39,8 +40,8 @@ jump-ahead: 6 items per unit).
 | Type | Rule |
 |---|---|
 | `choose`, `fill` | Selected index equals the answer index |
-| `wordbank`, `translate`, `listen` | Normalise (case, punctuation, apostrophes, common English contractions) then: exact match with any accepted answer → correct; match ignoring Latin accents → correct with note `accent`; within 1 edit (answers ≥ 6 chars) or 2 edits (≥ 16 chars) → correct with note `typo`; else incorrect |
-| `speak` | ≥ 60% of the expected words appear in the recogniser's transcript |
+| `wordbank`, `translate`, `listen`, `dictation` | Normalise (case, punctuation, apostrophes, common English contractions) then: exact match with any accepted answer → correct; match ignoring Latin accents → correct with note `accent`; within 1 edit (answers ≥ 6 chars) or 2 edits (≥ 16 chars) → correct with note `typo`; else incorrect |
+| `speak` | ≥ 60% of the expected words appear in the recogniser's transcript; the learner sees which words were heard. Where recognition is unavailable the learner records, listens back and self-assesses |
 | `match` | Completed with ≤ 2 wrong pairings |
 
 Devanagari vowel signs are preserved during normalisation (tested).
@@ -66,6 +67,11 @@ Gems: +5 per session, +10–15 per quest.
 1. Add an interface to the `Exercise` union and a builder. 2. Add a case to `evaluate`. 3. Add a view and a case in
 `ExerciseView`. 4. Extend the generator and the tests. TypeScript's exhaustive `switch` flags any step you miss.
 
+## Session plans and server grading
+A session is described by a `SessionPlan` and rebuilt deterministically on both sides; signed-in learners are graded by
+the server (`plan.ts`, `grade.ts`, [SERVER-AUTHORITY.md](SERVER-AUTHORITY.md)). A lesson opens with an introduction
+screen listing its new words.
+
 ## Not built
-Typed dictation, error correction, free writing, timed challenges, per-exercise hints beyond the glossary, difficulty-
-adaptive selection within a lesson.
+Error correction, free writing with feedback, phoneme-level pronunciation scoring, difficulty-adaptive selection
+within a lesson.

@@ -13,7 +13,7 @@ export function SessionSummaryView({ s, title, nextHref, gated = false }: { s: S
     <div className={`anim-pop flex-1 rounded-2xl border-2 p-1 ${cls}`}><p className="py-1 text-center text-xs font-extrabold uppercase">{label}</p><p className="flex items-center justify-center gap-1.5 rounded-xl bg-paper py-3 text-xl font-extrabold text-ink"><Icon size={22} aria-hidden="true" />{value}</p></div>
   );
   return (
-    <main className="mx-auto flex min-h-dvh max-w-[560px] flex-col items-center justify-center px-5 py-10 text-center">
+    <main data-summary data-xp={s.xp} data-passed={String(!failed)} className="mx-auto flex min-h-dvh max-w-[560px] flex-col items-center justify-center px-5 py-10 text-center">
       {!failed && <Confetti />}
       <Mascot mood={failed ? "think" : s.perfect ? "cheer" : "happy"} size={170} className="anim-bob" />
       <h1 className="mt-4 text-3xl text-sun-dark">{failed ? t("Not yet — and that’s useful to know") : s.perfect ? t("Perfect session!") : t("Session complete!")}</h1>

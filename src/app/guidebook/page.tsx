@@ -11,7 +11,8 @@ import { useT } from "@/lib/i18n";
 
 function Guide() {
   const { state } = useStore(); const { t: tr } = useT(); const course = getCourse(state.profile.courseId);
-  const unit = course.units.find((u) => u.id === useSearchParams().get("unit")) ?? course.units[0];
+  const wanted = useSearchParams().get("unit");
+  const unit = course.units.find((u) => u.id === wanted) ?? course.units[0];
   const Row = ({ t, n }: { t: string; n: string }) => (
     <li className="flex items-center gap-3 p-3"><button aria-label={tr("Hear {word}", { word: t })} onClick={() => void say(t, course.ttsLang, state.profile.slowAudio ? 0.75 : 1)} className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-sky-soft text-sky-dark"><Volume2 size={18} /></button><span><span className="block font-extrabold" lang={course.ttsLang}>{t}</span><span className="block text-sm text-sub">{n}</span></span></li>
   );

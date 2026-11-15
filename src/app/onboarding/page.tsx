@@ -58,7 +58,7 @@ export default function Onboarding() {
         <button type="button" aria-label={t("Back")} disabled={idx === 0} onClick={() => go(STEPS[Math.max(0, idx - (step === "target" ? 2 : 1))])} className="rounded-lg p-1 text-sub disabled:opacity-40"><ArrowLeft size={26} /></button>
         <ProgressBar value={(idx + 1) / STEPS.length} label={t("Setup progress")} />
       </header>
-      <main className="flex-1 pb-32">
+      <main data-step={step} className="flex-1 pb-32">
         <div className="mb-6 flex items-end gap-3"><Mascot mood={say[step][0]} size={110} /><h1 className="mb-6 rounded-2xl border-2 border-line-dark px-4 py-3 text-lg font-bold">{t(say[step][1], { lang: t(course.targetName) })}</h1></div>
         {error && <div className="mb-4"><Notice tone="error">{t(error)}</Notice></div>}
         {step === "welcome" && (
