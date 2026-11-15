@@ -5,12 +5,17 @@ const CONTRACTIONS: Record<string, string> = {
 };
 
 export function normalize(s: string): string {
-  let out = s.normalize("NFC").toLowerCase().replace(/[’‘`]/g, "'").replace(/[¿?¡!.,;:"“”।()\-–—]/g, " ");
+  // ё and е are the same letter for answer-checking purposes (Russian texts often omit the dots).
+  let out = s.normalize("NFC").toLowerCase().replace(/ё/g, "е").replace(/[’‘`]/g, "'").replace(/[¿?¡!.,;:"“”।()\-–—]/g, " ");
   out = out.replace(/\s+/g, " ").trim();
   return out.split(" ").map((w) => CONTRACTIONS[w] ?? w).join(" ");
 }
-/** Removes Latin diacritics only; Devanagari vowel signs must survive. */
-export const stripAccents = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").normalize("NFC");
+/**
+ * Accent tolerance for Latin letters with French/Italian/Spanish-style marks only (grave, acute, circumflex, cedilla).
+ * Meaningful marks are kept: ñ (año ≠ ano), umlauts (Mütter ≠ Mutter), diaeresis, breve, and every non-Latin script
+ * (Devanagari vowel signs, Cyrillic й, Hangul jamo).
+ */
+export const stripAccents = (s: string) => s.normalize("NFD").replace(/([A-Za-z])[\u0300-\u0302\u0327]/g, "$1").normalize("NFC");
 
 export function levenshtein(a: string, b: string): number {
   if (a === b) return 0;
@@ -20,6 +25,22 @@ export function levenshtein(a: string, b: string): number {
     for (let j = 1; j <= b.length; j++) {
       const tmp = prev[j];
       prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + (a[i - 1] === b[j - 1] ? 0 : 1));
+      diag = tmp;
+    }
+  }
+  return prev[b.length];
+}
+
+const baseLetter = (c: string) => c.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+/** Edit distance where swapping a letter for the same letter with a different mark costs two edits. */
+export function weightedLevenshtein(a: string, b: string): number {
+  const cost = (x: string, y: string) => (x === y ? 0 : baseLetter(x) === baseLetter(y) ? 2 : 1);
+  const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+  for (let i = 1; i <= a.length; i++) {
+    let diag = prev[0]; prev[0] = i;
+    for (let j = 1; j <= b.length; j++) {
+      const tmp = prev[j];
+      prev[j] = Math.min(prev[j] + 1, prev[j - 1] + 1, diag + cost(a[i - 1], b[j - 1]));
       diag = tmp;
     }
   }
@@ -39,7 +60,8 @@ export function compareText(given: string, accepted: string[]): Verdict {
   if (norm.some((a) => stripAccents(a) === gA)) return { correct: true, note: "accent", expected };
   for (const a of norm) {
     const budget = a.length >= 16 ? 2 : a.length >= 6 ? 1 : 0;
-    if (budget && levenshtein(gA, stripAccents(a)) <= budget) return { correct: true, note: "typo", expected };
+    // A diacritic-only difference (Mütter vs Mutter, año vs ano) is a different word, not a typo: it costs two edits.
+    if (budget && weightedLevenshtein(g, a) <= budget) return { correct: true, note: "typo", expected };
   }
   return { correct: false, expected };
 }

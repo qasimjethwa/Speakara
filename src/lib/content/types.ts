@@ -1,5 +1,5 @@
 /** Content contracts. Course content is authored as reviewable data, never as hardcoded pages. */
-export type LangCode = "es" | "en" | "fr" | "hi";
+export type LangCode = "es" | "en" | "fr" | "hi" | "de" | "ko" | "it" | "ru";
 
 export interface Word { id: string; t: string; n: string }
 /** t = target-language text, n = native-language text, alt = other accepted native translations */
@@ -16,7 +16,7 @@ export interface Unit {
 export type UnitColor = "brand" | "sky" | "grape" | "sun" | "coral";
 export interface Course {
   id: string; target: LangCode; native: LangCode; title: string; targetName: string; nativeName: string;
-  flag: string; ttsLang: string; sttLang: string; status: "complete-unit-set" | "starter"; license: string;
+  flag: string; ttsLang: string; sttLang: string; status: "complete-unit-set" | "beginner-set" | "starter"; license: string;
   review: string; units: Unit[];
 }
 

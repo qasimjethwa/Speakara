@@ -17,8 +17,9 @@ With no configuration the app runs in guest mode (progress saved in the browser)
 Requires Node.js 20+ (built and tested on 22).
 
 ## What's inside
-- **Courses**: Spanish for English speakers (A1: 3 units, 12 lessons, 3 stories) plus starter units for French,
-  English for Spanish speakers and English for Hindi speakers.
+- **Six target languages**, each taught to English speakers: Spanish, French, German, Korean, Italian and Russian.
+  Each has two A1 units of three lessons, with stories, guidebook tips and native-review status shown in the app.
+  Reverse courses (English for Spanish and Hindi speakers) are also included. See `src/lib/content/languages.ts`.
 - **Exercise engine**: eight exercise types (multiple choice, word bank, translation, listening, dictation, speaking,
   matching, fill-in-the-blank) generated from course words and sentences; deterministic grading with typo and accent
   tolerance; missed items come back until you get them.
@@ -41,11 +42,12 @@ Requires Node.js 20+ (built and tested on 22).
 | Command | Purpose |
 |---|---|
 | `npm run dev` / `npm run build` / `npm start` | Develop, build, serve |
-| `npm test` | Unit tests (39) |
+| `npm test` | Unit tests (54) |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript, strict |
 | `npm run content:check` | Lint course content |
 | `bash supabase/tests/run-local.sh` | Apply the migrations to a throwaway local Postgres and test access rules |
+| `node e2e/languages.mjs [url]` | Journey through each of the six target languages: onboarding, a full lesson, reload, course switch and back |
 | `npx tsx e2e/cloud.mts [url]` | Integration checks against the live backend (needs the test accounts and `E2E_PASSWORD`) |
 | `NODE_PATH=$(npm root -g) node e2e/smoke.mjs [url] [screenshot-dir]` | Browser journeys on desktop, tablet and phone with accessibility scans (needs Playwright; set `E2E_PASSWORD` to include the account journeys) |
 

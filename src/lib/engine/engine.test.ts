@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { COURSES, getCourse, allLessons, allSentences } from "../content";
+import { TARGET_LANGUAGES, targetLanguageSummaries } from "../content/languages";
 import { compareText, normalize, speechScore, tokens } from "./text";
 import { evaluate, generateLesson, generatePractice, generateUnitTest, mulberry32 } from "./exercises";
 import { review, strength, DAY } from "./srs";
@@ -152,7 +153,7 @@ describe("server-side grading", () => {
     expect(buildSession(c, plan)!.exercises.some((e) => e.type === "dictation")).toBe(true);
     expect(buildSession(c, { ...plan, lessonId: "nope" })).toBeNull();
     expect(buildSession(c, { type: "testout", courseId: "es-en", unit: 9, seed: 1 })).toBeNull();
-    expect(buildSession(getCourse("fr-en"), { type: "placement", courseId: "fr-en", seed: PLACEMENT_SEED })).toBeNull();
+    expect(buildSession(getCourse("en-es"), { type: "placement", courseId: "en-es", seed: PLACEMENT_SEED })).toBeNull();
   });
   it("grades first attempts and reports words, misses and accuracy", () => {
     const built = buildSession(c, plan)!;
@@ -220,5 +221,46 @@ describe("srs bounds", () => {
     expect(it.interval).toBe(MAX_INTERVAL);
     expect(it.due - t).toBe(MAX_INTERVAL * DAY);
     expect(Number.isFinite(new Date(it.due).getTime())).toBe(true);
+  });
+});
+
+describe("six target languages", () => {
+  it("offers exactly Spanish, French, German, Korean, Italian and Russian, and no Chinese or Japanese", () => {
+    expect(TARGET_LANGUAGES.map((l) => l.name).sort()).toEqual(["French", "German", "Italian", "Korean", "Russian", "Spanish"]);
+    expect(JSON.stringify(TARGET_LANGUAGES)).not.toMatch(/Chinese|Japanese|Mandarin/i);
+  });
+  it("every target language has a unique course, a matching locale and a real course behind it", () => {
+    const ids = TARGET_LANGUAGES.map((l) => l.courseId);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const l of targetLanguageSummaries()) {
+      expect(l.available, `${l.name} has content`).toBe(true);
+      expect(l.units).toBeGreaterThanOrEqual(2);
+      expect(l.lessons).toBeGreaterThanOrEqual(6);
+      expect(l.tts).toBe(l.stt);
+      expect(getCourse(l.courseId).ttsLang).toBe(l.tts);
+    }
+  });
+  it("every lesson of every target course generates solvable exercises", () => {
+    for (const l of TARGET_LANGUAGES.filter((x) => x.code !== "es")) for (const { lesson, unit } of allLessons(getCourse(l.courseId))) {
+      expect(lesson.words.length, `${unit.id}/${lesson.id} words`).toBeGreaterThanOrEqual(6);
+      expect(lesson.sentences.length, `${unit.id}/${lesson.id} sentences`).toBeGreaterThanOrEqual(4);
+    }
+  });
+  it("Korean answers match whether the syllables are composed or decomposed (Unicode NFC)", () => {
+    const composed = "안녕하세요";
+    const decomposed = composed.normalize("NFD");
+    expect(decomposed).not.toBe(composed);
+    expect(compareText(decomposed, [composed]).correct).toBe(true);
+  });
+  it("Russian ё and е are interchangeable, but й and и are not", () => {
+    expect(compareText("всё", ["всё"]).correct).toBe(true);
+    expect(compareText("все", ["всё"]).correct).toBe(true);
+    expect(compareText("мои", ["мой"]).correct).toBe(false);
+  });
+  it("meaningful marks are kept: ñ and umlauts are not ignored, French accents still are", () => {
+    expect(compareText("ano", ["año"]).correct).toBe(false);
+    expect(compareText("Mutter", ["Mütter"]).correct).toBe(false);
+    expect(compareText("cafe", ["café"]).correct).toBe(true);
+    expect(compareText("cafe", ["café"]).note).toBe("accent");
   });
 });
