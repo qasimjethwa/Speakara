@@ -44,12 +44,12 @@ function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => 
 
   return (
     <div className="flex min-h-[calc(100dvh-160px)] flex-col">
-      <div className="mb-4 flex items-center gap-3"><button onClick={onBack} aria-label={t("Back to scenarios")} className="rounded-lg p-1 text-sub"><ArrowLeft /></button><h1 className="text-xl">{scenario.emoji} {t(scenario.title)}</h1></div>
+      <div className="mb-4 flex items-center gap-3"><button onClick={onBack} aria-label={t("Back to scenarios")} className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sub"><ArrowLeft /></button><h1 className="text-xl">{scenario.emoji} {t(scenario.title)}</h1></div>
       <div className="flex-1 space-y-4 pb-36">
         <div role="log" aria-live="polite" aria-label={t("Conversation")} className="space-y-4">
           {messages.map((m, i) => m.role === "tutor" ? (
             <div key={i} className="flex items-end gap-2"><Mascot size={54} mood={m.tip ? "think" : "happy"} className="shrink-0" />
-              <div className="max-w-[85%] rounded-2xl rounded-bl-md border-2 border-line-dark px-4 py-3"><p className="flex items-start gap-2 text-lg" lang={course.ttsLang}><button aria-label={t("Hear this message")} onClick={() => void say(m.text, course.ttsLang, rate)} className="mt-1 shrink-0 text-sky-dark"><Volume2 size={18} /></button>{m.text}</p>
+              <div className="max-w-[85%] rounded-2xl rounded-bl-md border-2 border-line-dark px-4 py-3"><p className="flex items-start gap-2 text-lg" lang={course.ttsLang}><button aria-label={t("Hear this message")} onClick={() => void say(m.text, course.ttsLang, rate)} className="-ml-2 -mt-1.5 grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sky-dark"><Volume2 size={18} /></button>{m.text}</p>
                 {m.translation && <p className="mt-1 text-sm text-sub">{m.translation}</p>}{m.tip && <p className="mt-2 rounded-xl bg-sun-soft p-2 text-sm text-sun-dark">💡 {m.tip}</p>}</div></div>
           ) : (
             <div key={i} className="flex flex-col items-end"><p className="max-w-[85%] rounded-2xl rounded-br-md bg-sky px-4 py-3 text-lg text-white" lang={course.ttsLang}>{m.text}</p>

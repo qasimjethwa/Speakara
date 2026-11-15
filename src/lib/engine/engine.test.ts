@@ -264,3 +264,42 @@ describe("six target languages", () => {
     expect(compareText("cafe", ["café"]).note).toBe("accent");
   });
 });
+
+describe("tutor in the new languages", () => {
+  const base = { targetName: "x", nativeName: "English", level: "beginner" };
+  const good: Record<string, string> = { de: "Ich heiße Sam.", it: "Mi chiamo Sam.", ko: "저는 샘이에요.", ru: "Меня зовут Сэм." };
+  for (const target of ["de", "it", "ko", "ru"] as const) it(`${target}: meeting and café scenes are scripted and advance on a good reply`, () => {
+    for (const scenario of ["meet", "restaurant"]) expect(scriptedReply({ ...base, scenario, target, history: [], step: 0, retry: false })).not.toBeNull();
+    const r = scriptedReply({ ...base, scenario: "meet", target, history: [{ role: "tutor", text: "…" }, { role: "learner", text: good[target] }], step: 0, retry: false })!;
+    expect(r.step).toBe(1); expect(r.retry).toBe(false);
+    const bad = scriptedReply({ ...base, scenario: "meet", target, history: [{ role: "tutor", text: "…" }, { role: "learner", text: "zzz" }], step: 0, retry: false })!;
+    expect(bad.retry).toBe(true);
+  });
+  it("conversation matching stays lenient about accents (mañana typed as manana)", async () => {
+    const { foldMarks } = await import("./text");
+    expect(foldMarks("mañana")).toBe("manana"); expect(foldMarks("tschüss")).toBe("tschuss"); expect(foldMarks("счёт")).toBe("счёт");
+  });
+});
+
+describe("unambiguous exercises", () => {
+  it("no course generates a choice with two right answers, duplicate options or an indistinguishable matching pair", () => {
+    for (const c of COURSES) for (const { lesson } of allLessons(c)) for (const seed of [1, 2, 3]) {
+      for (const ex of generateLesson(c, lesson, { rng: mulberry32(seed), speech: true })) {
+        if (ex.type === "choose" || ex.type === "fill") expect(new Set(ex.options.map((o) => o.toLowerCase())).size, `${ex.id} options`).toBe(ex.options.length);
+        if (ex.type === "match") {
+          expect(new Set(ex.pairs.map((p) => p.t.toLowerCase())).size).toBe(ex.pairs.length);
+          expect(new Set(ex.pairs.map((p) => p.n.toLowerCase())).size).toBe(ex.pairs.length);
+          for (const p of ex.pairs) if (ex.pairs.length > 2) expect(p.t.toLowerCase(), `${ex.id} identical pair`).not.toBe(p.n.toLowerCase());
+        }
+      }
+    }
+  });
+});
+
+describe("Russian stress marks", () => {
+  it("are optional when typing, while й stays distinct", () => {
+    expect(compareText("привет", ["приве́т"]).correct).toBe(true);
+    expect(compareText("Спасибо", ["спаси́бо"]).note).toBeUndefined();
+    expect(compareText("приве́т", ["привет"]).correct).toBe(true);
+  });
+});

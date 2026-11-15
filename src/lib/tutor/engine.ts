@@ -1,5 +1,5 @@
 import type { LangCode } from "../content/types";
-import { normalize, stripAccents } from "../engine/text";
+import { normalize, stripAccents, foldMarks } from "../engine/text";
 import { getScenario } from "./scenarios";
 
 export interface TutorTurn { role: "tutor" | "learner"; text: string }
@@ -15,8 +15,8 @@ export function scriptedReply(req: TutorRequest): TutorReply | null {
   const last = [...req.history].reverse().find((t) => t.role === "learner");
   if (!last) return { reply: steps[0].say[0], translation: steps[0].say[1], step: 0, retry: false, done: false, provider: "scripted" };
   const cur = steps[Math.min(req.step, steps.length - 1)];
-  const heard = ` ${stripAccents(normalize(last.text))} `;
-  const ok = cur.expect.some((k) => heard.includes(stripAccents(normalize(k))));
+  const heard = ` ${foldMarks(normalize(last.text))} `;
+  const ok = cur.expect.some((k) => heard.includes(foldMarks(normalize(k))));
   if (!ok && !req.retry) {
     return { reply: cur.say[0], translation: cur.say[1], tip: `Try answering with something like: “${cur.sample[0]}” (${cur.sample[1]})`, step: req.step, retry: true, done: false, provider: "scripted" };
   }

@@ -56,7 +56,9 @@ const uniq = <T,>(arr: T[]) => [...new Set(arr)];
 /* ---------- exercise builders ---------- */
 function choose(c: Course, w: Word, toNative: boolean, rng: Rng, n: number): ChooseEx {
   const correct = toNative ? w.n : w.t;
-  const pool = uniq(allWords(c).map((x) => (toNative ? x.n : x.t)).filter((x) => x !== correct));
+  // A distractor must not be another right answer: skip words that share this word's prompt side (soy / estoy → "I am").
+  const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase();
+  const pool = uniq(allWords(c).filter((x) => !(toNative ? same(x.t, w.t) : same(x.n, w.n))).map((x) => (toNative ? x.n : x.t)).filter((x) => !same(x, correct)));
   const options = shuffle([correct, ...pick(pool, 2, rng)], rng);
   return { id: `choose-${w.id}-${n}`, type: "choose", wordIds: [w.id], difficulty: 1, prompt: toNative ? w.t : w.n, promptIsTarget: toNative,
     instruction: toNative ? "What does this mean?" : "How do you say this in {lang}?", vars: { lang: c.targetName }, options, answer: options.indexOf(correct) };
@@ -92,9 +94,15 @@ function dictation(c: Course, s: Sentence): DictationEx {
 function speak(c: Course, s: Sentence): SpeakEx {
   return { id: `speak-${s.id}`, type: "speak", sentenceId: s.id, wordIds: wordsIn(c, s), difficulty: 2, instruction: "Speak this sentence", text: s.t, translation: s.n };
 }
+/** Drops pairs a learner cannot tell apart: identical on both sides (no = no) or sharing a side with an earlier pair. */
+function clearPairs(words: Word[]): Word[] {
+  const ts = new Set<string>(), ns = new Set<string>(); const out: Word[] = [];
+  for (const w of words) { const t = w.t.toLowerCase(), n = w.n.toLowerCase(); if (t === n || ts.has(t) || ns.has(n) || ts.has(n) || ns.has(t)) continue; ts.add(t); ns.add(n); out.push(w); }
+  return out.length >= 2 ? out : words;
+}
 function match(words: Word[], n: number): MatchEx {
   return { id: `match-${words[0].id}-${n}`, type: "match", wordIds: words.map((w) => w.id), difficulty: 1, instruction: "Tap the matching pairs",
-    pairs: words.map((w) => ({ id: w.id, t: w.t, n: w.n })) };
+    pairs: clearPairs(words).map((w) => ({ id: w.id, t: w.t, n: w.n })) };
 }
 function fill(c: Course, s: Sentence, rng: Rng): FillEx | null {
   const toks = s.t.split(/\s+/);

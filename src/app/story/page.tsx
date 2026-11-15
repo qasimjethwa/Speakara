@@ -40,7 +40,7 @@ function Reader() {
   };
   return (
     <div className="mx-auto flex min-h-dvh max-w-[640px] flex-col">
-      <header className="sticky top-0 z-10 flex items-center gap-4 bg-paper px-4 pb-2 pt-5"><Link href="/stories" aria-label={t("Close story")} className="rounded-lg p-1 text-sub"><X size={28} /></Link><ProgressBar value={shown / story.lines.length} color="bg-sun" label={t("Story progress")} /></header>
+      <header className="sticky top-0 z-10 flex items-center gap-4 bg-paper px-4 pb-2 pt-5"><Link href="/stories" aria-label={t("Close story")} className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sub"><X size={28} /></Link><ProgressBar value={shown / story.lines.length} color="bg-sun" label={t("Story progress")} /></header>
       <main className="flex-1 space-y-4 px-4 pb-40 pt-4">
         <h1 className="text-2xl" lang={course.ttsLang}>{story.title}</h1>
         {story.lines.slice(0, shown).map((l, i) => (

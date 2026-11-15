@@ -1,30 +1,57 @@
 # Final product audit — six-language release
 
-Scope of this pass: the six target languages (Spanish, French, German, Korean, Italian, Russian), answer checking,
-speech locales and the course registry. Everything listed under "Verified" was run; everything under "Not verified"
-was not run in this pass.
+Everything under "Verified" was run on the final build. Tools: `e2e/languages.mjs` (audit mode and language
+journeys), `e2e/smoke.mjs`, `e2e/cloud.mts`, unit tests. Screenshots: `docs/quality/audit-screenshots/`.
 
-## Verified
-| Area | Evidence |
+## Responsive audit
+`E2E_AUDIT=1 node e2e/languages.mjs` walks home, log-in, sign-up, onboarding, the path, a whole lesson (all eight
+exercise types), summary, practice, vocabulary, stories, tutor (list and chat), profile, settings, quests, leaderboard
+and guidebook at twelve sizes: 1280×800, 1366×768, 1440×900, 1920×1080, 768×1024, 820×1180, 1024×768, 320×720,
+360×800, 375×812, 390×844, 430×932. On each screen it measures horizontal overflow, elements past the right edge,
+touch targets under 40 px (touch sizes), console errors, and whether the fixed footer covers any control once the
+page is scrolled to its end.
+
+| | Before | After |
+|---|---|---|
+| Findings across all sizes | ~130 on phones and tablets, 0 on desktop | **0 at all twelve sizes** |
+
+### Fixed
+| Problem | Where | Fix |
+|---|---|---|
+| Horizontal scrolling on every phone width (up to +141 px) | Home header: the language picker was meant to be hidden on phones but was not, and logo + buttons did not fit | Picker display fixed; icon-only logo below 400 px; buttons no longer wrap |
+| Horizontal scrolling at 320 px | Leaderboard league tiers | Tiers wrap and use smaller type on narrow phones |
+| Touch targets of 18–36 px | Quit/Back/Close icons, tutor "hear this message" and back, profile links, home header and footer links, language select, one-letter word tiles | All at least 44 px |
+| Lesson footer | Checked on every exercise type at every size | No control is covered; no change needed |
+
+## Sound and speech
+| Check | Result |
 |---|---|
-| Course content | `npm run content:check`: all eight courses pass the linter (≥2 units, ≥3 lessons per unit in the new courses, ≥6 words and ≥4 sentences per lesson, unique IDs). |
-| Unit tests | 54 passing (`npm test`), including the six-language registry, solvability of every generated exercise, Korean NFC, Russian ё/е, diacritic handling and the existing grading tests. |
-| Browser journey per language | `node e2e/languages.mjs` (desktop, guest): onboarding → first lesson with every exercise type and one deliberate miss re-asked → 15 XP → completion survives a reload → switch course and back → progress unchanged. Passed for de-en, ko-en, it-en, ru-en, fr-en and es-en. |
-| Answer checking | Accent tolerance limited to French/Italian-style marks; ñ, umlauts and non-Latin marks kept; diacritic-only differences are not counted as typos. |
-| Existing progress | Stable lesson, unit and course IDs; French lessons 1.1–1.2 and unit 1 unchanged, new lesson and unit appended. No database migration was needed (course IDs are unrestricted text). |
+| Tap, correct, wrong and finish effects fire during a lesson; exactly one finish, last | Verified per language in the browser run (effect log) |
+| Double playback on the last matching pair (pair chime + answer chime) | Fixed; duplicate triggers within 120 ms are also dropped |
+| Overlapping effects | A new effect fades out the previous one; speech stops when an answer is checked |
+| Safari / mobile suspended audio | Shared context (with `webkitAudioContext`) resumed on every gesture and when the tab returns |
+| Sound switched off in Settings | Verified: a whole lesson produces no effect |
+| Text-to-speech locales | es-ES, fr-FR, de-DE, ko-KR, it-IT, ru-RU requested correctly (verified per language) |
+| No matching voice | Verified: a warning is shown, nothing is read in another language's voice, listening is skipped and reported as skipped, the lesson still completes |
+| Speech that never reports finishing | Guard timer so replay never gets stuck |
+| Microphone: granted, blocked, recording with no recogniser (manual self-check) | Verified in `e2e/smoke.mjs` with Chromium's fake capture device |
 
-## Changed in this pass
-- Added German, Korean, Italian and Russian courses, and expanded French to two units.
-- Added a language registry with TTS and speech-recognition locales (`es-ES`, `fr-FR`, `de-DE`, `ko-KR`, `it-IT`, `ru-RU`).
-- Voice selection already refuses unrelated voices (it only matches the same base language), so a missing voice shows the existing warning.
-- Spaced-repetition gaps are capped at one year (fix shipped earlier in `67ab08f`).
+Not verifiable here: how real voices sound, and real speech recognition, on real phones — headless Chromium has
+neither, so stand-ins record what is requested. Whether a device has a Korean, Russian, German or Italian voice
+depends on the device.
 
-## Not verified in this pass
-- **Responsive audit** at the eleven viewports in the brief (320 px to 1920 px), with before/after screenshots. Not done.
-- **Mobile lesson footer** overlap checks. Not done.
-- **Browser speech for the four new languages.** The headless browser has no voices or recogniser; the journey stubs them. Real voice quality, and whether each platform has a Korean, Russian, German or Italian voice, must be checked on real devices.
-- **Tutor scripts** exist only for the original languages. The tutor scenarios for the four new languages are therefore disabled with a reason, as the product already does for untranslated scenarios.
-- **Native-speaker review** of all new content. Every new course is labelled "Author-written; native-speaker review pending".
-- **Interface translations** for the new course screens are limited to the language names. Other new text is English.
-- **Language cards** with flags, native names, writing system and availability are not redesigned; the existing course lists show the new courses.
-- **Course size.** Each new course is a small beginner set (two units, six lessons). It is not a complete CEFR course.
+## Languages and exercises
+- Six target languages with a registry (`src/lib/content/languages.ts`); language cards in onboarding and Settings.
+- Each of the six journeys passes: onboarding → lesson with all eight exercise types and one re-asked miss → XP →
+  reload → switch course → return → progress intact.
+- Answer checking keeps ñ, umlauts and non-Latin marks; diacritic-only differences are not typos; ё = е; Korean in NFC.
+- Multiple-choice distractors can no longer be a second correct answer; matching no longer shows identical or
+  duplicate pairs (for example no = no).
+- Tutor: "Meeting new people" and "Restaurant" are scripted for German, Korean, Italian and Russian; the other seven
+  scenes are shown as unavailable in those courses.
+
+## Remaining limitations
+- All new course content, and the Spanish/Hindi interface text, is author-written and awaits native-speaker review.
+- Each new course is a small beginner set (two units, six lessons), not a complete CEFR level.
+- Russian stress marks are shown on vocabulary; typed answers are accepted without them.
+- Tested in Chromium only. Safari and Firefox behaviour follows from code paths, not from test runs.

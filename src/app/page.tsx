@@ -2,7 +2,7 @@
 import { Mascot } from "@/components/Mascot";
 import { Feature, MarketingShell } from "@/components/Marketing";
 import { LinkButton } from "@/components/ui";
-import { COURSES } from "@/lib/content";
+import { TARGET_LANGUAGES } from "@/lib/content/languages";
 import { useT } from "@/lib/i18n";
 
 export default function Landing() {
@@ -25,7 +25,7 @@ export default function Landing() {
       </section>
       <section aria-label={t("Course")} className="border-y-2 border-line bg-mist">
         <ul className="mx-auto flex max-w-[1080px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-5 font-bold text-sub">
-          {COURSES.map((c) => <li key={c.id} className="flex items-center gap-2"><span className="text-2xl" aria-hidden="true">{c.flag}</span>{t(c.targetName)} <span className="font-semibold">· {t("Taught in {lang}", { lang: t(c.nativeName) })}</span></li>)}
+          {TARGET_LANGUAGES.map((l) => <li key={l.code} className="flex items-center gap-2"><span className="text-2xl" aria-hidden="true">{l.flag}</span>{t(l.name)} <span className="font-semibold" lang={l.tts}>· {l.native}</span></li>)}
         </ul>
       </section>
       <section className="mx-auto max-w-[1080px] px-5 py-16">

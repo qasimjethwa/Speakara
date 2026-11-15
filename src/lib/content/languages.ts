@@ -27,3 +27,14 @@ export function targetLanguageSummaries() {
     return { ...l, available: !!course && lessons > 0, units: course?.units.length ?? 0, lessons };
   });
 }
+
+/** Card metadata for any course, including the reverse English courses. */
+export function courseCard(courseId: string) {
+  const c = COURSES.find((x) => x.id === courseId)!;
+  const lang = TARGET_LANGUAGES.find((l) => l.courseId === courseId);
+  return {
+    id: c.id, flag: c.flag, name: c.targetName, native: lang?.native ?? "English", script: lang?.script ?? "Latin", taughtIn: c.nativeName,
+    units: c.units.length, lessons: c.units.reduce((n, u) => n + u.lessons.length, 0), level: c.units[0]?.cefr ?? "A1",
+    reviewPending: /pending|needs/i.test(c.review), target: c.ttsLang,
+  };
+}

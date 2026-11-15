@@ -28,7 +28,7 @@ export default function Leaderboard() {
   return (
     <AppShell>
       <PageTitle title={t("{league} League", { league: t(league) })} sub={t("Weekly XP, reset every Monday. Leagues are for fun — nothing is ever locked behind them.")} />
-      <ol className="mb-5 flex justify-between" aria-label={t("League tiers")}>{LEAGUES.map((l) => <li key={l} aria-current={l === league ? "true" : undefined} className={`rounded-xl px-2 py-1 text-xs font-extrabold uppercase sm:text-sm ${l === league ? "bg-sun text-ink" : "text-sub"}`}>{t(l)}</li>)}</ol>
+      <ol className="mb-5 flex flex-wrap justify-between gap-1" aria-label={t("League tiers")}>{LEAGUES.map((l) => <li key={l} aria-current={l === league ? "true" : undefined} className={`rounded-xl px-1.5 py-1 text-[11px] font-extrabold uppercase min-[380px]:px-2 min-[380px]:text-xs sm:text-sm ${l === league ? "bg-sun text-ink" : "text-sub"}`}>{t(l)}</li>)}</ol>
       {mode === "guest" && <div className="mb-4"><Notice tone="warn">{t("You’re in guest mode, so this board shows practice bots, not real learners. Log in to join real weekly leagues.")}</Notice></div>}
       {err && <div className="mb-4"><Notice tone="error">{t("Couldn’t load the leaderboard.")} {err}</Notice></div>}
       <ol className="divide-y-2 divide-line rounded-2xl border-2 border-line">

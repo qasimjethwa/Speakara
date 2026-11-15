@@ -18,6 +18,26 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Enchanté ! Ça va ?", "Nice to meet you! How are you?"], expect: ["ca va", "bien", "oui", "merci"], sample: ["Ça va bien, merci.", "I am fine, thank you."] },
         { say: ["Super. Au revoir !", "Great. Goodbye!"], expect: ["au revoir", "salut", "bientot"], sample: ["Au revoir !", "Goodbye!"] },
       ],
+      de: [
+        { say: ["Hallo! Wie heißt du?", "Hello! What is your name?"], expect: ["ich heiße", "ich heisse", "ich bin", "mein name"], sample: ["Ich heiße Sam.", "My name is Sam."] },
+        { say: ["Freut mich! Wie geht es dir?", "Nice to meet you! How are you?"], expect: ["gut", "danke", "mir geht", "schlecht"], sample: ["Mir geht es gut, danke.", "I am well, thanks."] },
+        { say: ["Schön! Auf Wiedersehen!", "Lovely! Goodbye!"], expect: ["auf wiedersehen", "tschüss", "tschuss", "bis bald"], sample: ["Auf Wiedersehen!", "Goodbye!"] },
+      ],
+      it: [
+        { say: ["Ciao! Come ti chiami?", "Hi! What is your name?"], expect: ["mi chiamo", "sono"], sample: ["Mi chiamo Sam.", "My name is Sam."] },
+        { say: ["Piacere! Come stai?", "Nice to meet you! How are you?"], expect: ["sto", "bene", "grazie", "male"], sample: ["Sto bene, grazie.", "I am well, thanks."] },
+        { say: ["Benissimo. Arrivederci!", "Very good. Goodbye!"], expect: ["arrivederci", "ciao", "a presto"], sample: ["Arrivederci!", "Goodbye!"] },
+      ],
+      ko: [
+        { say: ["안녕하세요! 이름이 뭐예요?", "Hello! What is your name?"], expect: ["저는", "제 이름", "예요", "이에요", "입니다"], sample: ["저는 샘이에요.", "I am Sam."] },
+        { say: ["만나서 반갑습니다. 어떻게 지내세요?", "Nice to meet you. How are you doing?"], expect: ["잘 지내", "좋아요", "괜찮아요", "감사합니다"], sample: ["잘 지내요, 감사합니다.", "I am doing well, thank you."] },
+        { say: ["좋아요! 안녕히 가세요.", "Good! Goodbye."], expect: ["안녕히", "감사합니다", "또 만나요"], sample: ["안녕히 계세요.", "Goodbye."] },
+      ],
+      ru: [
+        { say: ["Привет! Как тебя зовут?", "Hi! What is your name?"], expect: ["меня зовут", "я "], sample: ["Меня зовут Сэм.", "My name is Sam."] },
+        { say: ["Очень приятно! Как дела?", "Nice to meet you! How are you?"], expect: ["хорошо", "нормально", "спасибо", "плохо"], sample: ["Хорошо, спасибо.", "Good, thanks."] },
+        { say: ["Отлично. До свидания!", "Great. Goodbye!"], expect: ["до свидания", "пока"], sample: ["До свидания!", "Goodbye!"] },
+      ],
       en: [
         { say: ["Hello! What is your name?", "¡Hola! ¿Cómo te llamas? / नमस्ते! आपका नाम क्या है?"], expect: ["my name is", "i am", "i'm"], sample: ["My name is Sam.", "Me llamo Sam. / मेरा नाम सैम है।"] },
         { say: ["Nice to meet you. How are you?", "Mucho gusto. ¿Cómo estás? / आप कैसे हैं?"], expect: ["fine", "good", "well", "i am"], sample: ["I am fine, thank you.", "Estoy bien, gracias. / मैं ठीक हूँ, धन्यवाद।"] },
@@ -35,6 +55,26 @@ export const SCENARIOS: Scenario[] = [
       fr: [
         { say: ["Bonsoir ! Vous désirez ?", "Good evening! What would you like?"], expect: ["cafe", "s'il vous plait", "je voudrais", "un"], sample: ["Un café, s'il vous plaît.", "A coffee, please."] },
         { say: ["Voilà. Autre chose ?", "Here you are. Anything else?"], expect: ["non", "merci", "oui"], sample: ["Non, merci.", "No, thank you."] },
+      ],
+      de: [
+        { say: ["Guten Tag! Was möchten Sie trinken?", "Good afternoon! What would you like to drink?"], expect: ["ich möchte", "ich mochte", "kaffee", "tee", "wasser", "bitte"], sample: ["Ich möchte einen Kaffee, bitte.", "I would like a coffee, please."] },
+        { say: ["Gerne. Möchten Sie etwas essen?", "Gladly. Would you like something to eat?"], expect: ["suppe", "brot", "käse", "kase", "nein", "ja"], sample: ["Ja, die Suppe, bitte.", "Yes, the soup, please."] },
+        { say: ["Bitte schön. Noch etwas?", "Here you are. Anything else?"], expect: ["rechnung", "zahlen", "nein", "danke"], sample: ["Die Rechnung, bitte.", "The bill, please."] },
+      ],
+      it: [
+        { say: ["Buongiorno! Cosa desidera da bere?", "Good morning! What would you like to drink?"], expect: ["vorrei", "caffè", "caffe", "tè", "acqua", "per favore"], sample: ["Vorrei un caffè, per favore.", "I would like a coffee, please."] },
+        { say: ["Certo. Vuole mangiare qualcosa?", "Of course. Do you want something to eat?"], expect: ["zuppa", "pane", "formaggio", "no", "sì", "si"], sample: ["Sì, la zuppa, per favore.", "Yes, the soup, please."] },
+        { say: ["Ecco. Altro?", "Here you are. Anything else?"], expect: ["conto", "pagare", "no", "grazie"], sample: ["Il conto, per favore.", "The bill, please."] },
+      ],
+      ko: [
+        { say: ["어서 오세요! 뭐 드릴까요?", "Welcome! What can I get you?"], expect: ["주세요", "커피", "차", "물"], sample: ["커피 주세요.", "A coffee, please."] },
+        { say: ["네. 음식도 드릴까요?", "Yes. Would you like some food too?"], expect: ["수프", "빵", "치즈", "네", "아니요", "괜찮아요"], sample: ["네, 빵 주세요.", "Yes, bread, please."] },
+        { say: ["여기 있어요. 더 필요하세요?", "Here you are. Do you need anything else?"], expect: ["계산", "아니요", "감사합니다", "얼마"], sample: ["계산해 주세요.", "The bill, please."] },
+      ],
+      ru: [
+        { say: ["Здравствуйте! Что вы хотите пить?", "Hello! What would you like to drink?"], expect: ["хочу", "чай", "кофе", "вод", "пожалуйста"], sample: ["Я хочу чай, пожалуйста.", "I would like tea, please."] },
+        { say: ["Хорошо. Хотите есть?", "Good. Would you like to eat?"], expect: ["суп", "хлеб", "сыр", "да", "нет"], sample: ["Да, суп, пожалуйста.", "Yes, soup, please."] },
+        { say: ["Вот, пожалуйста. Что-нибудь ещё?", "Here you are. Anything else?"], expect: ["счёт", "счет", "нет", "спасибо", "платить"], sample: ["Счёт, пожалуйста.", "The bill, please."] },
       ],
       en: [
         { say: ["Good evening. A table for two?", "Buenas noches. ¿Una mesa para dos? / दो लोगों के लिए टेबल?"], expect: ["yes", "please", "table"], sample: ["Yes, please.", "Sí, por favor. / हाँ, कृपया।"] },

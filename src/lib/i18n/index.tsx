@@ -31,12 +31,12 @@ export function useT() {
   const date = useCallback((ms: number, opts?: Intl.DateTimeFormatOptions) => new Date(ms).toLocaleDateString(localeOf(lang), opts), [lang]);
   return { t, num, date, lang };
 }
-export function LanguagePicker({ className = "" }: { className?: string }) {
+export function LanguagePicker({ className = "inline-flex" }: { className?: string }) {
   const [lang, set] = useUiLang();
   return (
-    <label className={`inline-flex items-center gap-2 text-sm font-bold text-sub ${className}`}>
+    <label className={`items-center gap-2 text-sm font-bold text-sub ${className}`}>
       <span className="sr-only">Interface language / Idioma / भाषा</span><span aria-hidden="true">🌐</span>
-      <select value={lang} onChange={(e) => set(e.target.value as UiLang)} className="rounded-xl border-2 border-line-dark bg-paper px-2 py-1.5 font-bold text-ink">
+      <select value={lang} onChange={(e) => set(e.target.value as UiLang)} className="min-h-11 max-w-full rounded-xl border-2 border-line-dark bg-paper px-2 py-1.5 font-bold text-ink">
         {UI_LANGS.map((l) => <option key={l.code} value={l.code} lang={l.locale}>{l.label}</option>)}
       </select>
     </label>

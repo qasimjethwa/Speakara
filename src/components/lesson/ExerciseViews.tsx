@@ -23,7 +23,7 @@ function useSpeech(lang: string, slow: boolean) {
 function AudioProblem({ voice, status, lang }: { voice: string; status: string; lang: string }) {
   const { t } = useT();
   if (voice === "unsupported") return <Notice tone="warn">{t("This browser can’t play speech. Use “Can’t listen now” to skip listening exercises.")}</Notice>;
-  if (voice === "no-voice") return <Notice tone="warn">{t("Your device has no {lang} voice installed, so audio may sound wrong or stay silent. You can skip listening exercises.", { lang: t(lang) })}</Notice>;
+  if (voice === "no-voice") return <Notice tone="warn">{t("Your device has no {lang} voice installed, so Speakara won’t read {lang} aloud here (it never substitutes another language’s voice). Use “Can’t listen now” to skip listening, or install a {lang} voice in your device settings.", { lang: t(lang) })}</Notice>;
   if (status === "failed") return <Notice tone="warn">{t("The audio didn’t play. Tap the speaker to try again, or skip listening for now.")}</Notice>;
   return null;
 }
@@ -74,7 +74,7 @@ function Tiles({ tiles, locked, sound, lang, onText }: { tiles: string[]; locked
   const { t } = useT();
   const [picked, setPicked] = useState<number[]>([]);
   const set = (next: number[]) => { setPicked(next); onText(next.map((i) => tiles[i]).join(" ")); };
-  const tile = "key rounded-xl border-2 border-b-4 border-line-dark bg-paper px-3 py-2 text-[17px] font-bold";
+  const tile = "key rounded-xl border-2 border-b-4 border-line-dark bg-paper min-w-11 min-h-11 px-3 py-2 text-[17px] font-bold";
   return (
     <div>
       <p className="sr-only" aria-live="polite">{picked.length ? t("Your answer so far: {answer}", { answer: picked.map((i) => tiles[i]).join(" ") }) : t("Your answer is empty.")}</p>
@@ -204,7 +204,7 @@ function Match({ ex, locked, sound, onAutoSubmit }: ViewProps<MatchEx>) {
   const [bad, setBad] = useState<[string, string] | null>(null); const [said, setSaid] = useState(""); const mistakes = useRef(0);
   useEffect(() => {
     if (!l || !r) return;
-    if (l === r) { const next = [...done, l]; const p = ex.pairs.find((x) => x.id === l)!; setSaid(t("Matched: {a} and {b}", { a: p.n, b: p.t })); setDone(next); setL(null); setR(null); if (sound) sfx.correct(); if (next.length === ex.pairs.length) onAutoSubmit({ type: "match", mistakes: mistakes.current }); }
+    if (l === r) { const next = [...done, l]; const p = ex.pairs.find((x) => x.id === l)!; setSaid(t("Matched: {a} and {b}", { a: p.n, b: p.t })); setDone(next); setL(null); setR(null); if (next.length === ex.pairs.length) onAutoSubmit({ type: "match", mistakes: mistakes.current }); else if (sound) sfx.correct(); }
     else { mistakes.current++; setSaid(t("Not a match. Try again.")); setBad([l, r]); if (sound) sfx.wrong(); const id = setTimeout(() => { setBad(null); setL(null); setR(null); }, 380); return () => clearTimeout(id); }
   }, [l, r]); // eslint-disable-line react-hooks/exhaustive-deps
   const cls = (id: string, sel: string | null, side: 0 | 1) => `key min-h-14 w-full rounded-2xl border-2 border-b-4 px-3 py-2 text-[17px] font-bold ${done.includes(id) ? "border-brand bg-brand-soft text-brand-dark" : bad?.[side] === id ? "anim-shake border-coral bg-coral-soft text-coral-dark" : sel === id ? "border-sky-dark bg-sky-soft text-sky-dark" : "border-line-dark bg-paper"}`;

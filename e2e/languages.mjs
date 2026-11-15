@@ -24,7 +24,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /** Replaces speech APIs with stubs that record what was spoken and "hear" the sentence shown on screen. */
 const speechStubs = () => {
   window.__spoken = [];
-  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }], cancel() {}, addEventListener() {}, removeEventListener() {},
+  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }, ...(window.__noVoices ?? []).length ? [] : ["de-DE", "ko-KR", "it-IT", "ru-RU"].map((lang) => ({ lang, name: "Stub " + lang, localService: true }))], cancel() {}, resume() {}, addEventListener() {}, removeEventListener() {},
     speak(u) { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 5); } };
   Object.defineProperty(window, "speechSynthesis", { value: synth, configurable: true });
   window.SpeechSynthesisUtterance = function (text) { this.text = text; };
@@ -50,6 +50,7 @@ async function clickTiles(page, answer) {
 }
 /** Solves whatever exercise is on screen using selectors that do not depend on the interface language. */
 async function solve(page, st) {
+  if (globalThis.AUDIT) await globalThis.AUDIT(page);
   const h1 = page.locator("main h1[data-ex-type]"); await h1.waitFor();
   const type = await h1.getAttribute("data-ex-type"); const instruction = await h1.getAttribute("data-instruction");
   st.types[type] = (st.types[type] ?? 0) + 1;
@@ -111,6 +112,65 @@ function watch(page, label) {
 }
 const nextBtn = (page) => page.locator("footer button").click();
 
+// ---------------------------------------------------------------- responsive audit (E2E_AUDIT=1)
+//   E2E_AUDIT=1 node e2e/languages.mjs [baseUrl] [screenshotDir]
+// Twelve viewports. On every screen: horizontal overflow, elements past the right edge, small touch targets on touch
+// sizes, console errors; in lessons, whether the fixed footer covers any control once scrolled to the end.
+if (process.env.E2E_AUDIT) {
+  const VIEWPORTS = [[1280, 800], [1366, 768], [1440, 900], [1920, 1080], [768, 1024], [820, 1180], [1024, 768], [320, 720], [360, 800], [375, 812], [390, 844], [430, 932]];
+  const only = process.env.E2E_VIEWPORT; const findings = [];
+  const browser = await chromium.launch();
+  for (const [w, h] of VIEWPORTS.filter(([vw]) => !only || String(vw) === only)) {
+    const tag = `${w}x${h}`; const touch = w < 1024; const before = findings.length;
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: touch, isMobile: w < 768 });
+    await ctx.addInitScript(speechStubs);
+    const page = await ctx.newPage(); const errs = [];
+    page.on("pageerror", (e) => errs.push(e.message)); page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errs.push(m.text().slice(0, 160)); });
+    const inspect = async (name, opts = {}) => {
+      await page.waitForTimeout(350);
+      const r = await page.evaluate(({ touch, lesson }) => {
+        const vw = document.documentElement.clientWidth; const out = { overflow: document.documentElement.scrollWidth - vw, past: [], small: [], covered: [] };
+        const vis = (e) => { const r = e.getBoundingClientRect(); const cs = getComputedStyle(e); return r.width > 0 && r.height > 0 && cs.visibility !== "hidden" && cs.display !== "none"; };
+        const desc = (e) => `${e.tagName.toLowerCase()}${e.className && typeof e.className === "string" ? "." + e.className.split(" ").slice(0, 2).join(".") : ""} “${(e.innerText || e.getAttribute("aria-label") || "").slice(0, 28).replace(/\n/g, " ")}”`;
+        for (const e of document.querySelectorAll("body *")) { if (!vis(e)) continue; const r = e.getBoundingClientRect(); if (r.right > vw + 1 && r.left < vw && !e.closest(".sr-only") && getComputedStyle(e).position !== "fixed") { if (![...out.past].some((x) => x === desc(e))) out.past.push(desc(e)); } }
+        if (touch) for (const e of document.querySelectorAll("a, button, input, textarea, [role=radio], [role=switch]")) { if (!vis(e) || e.closest(".sr-only") || e.classList.contains("sr-only-focusable")) continue; const r = e.getBoundingClientRect(); if (r.height < 40 || r.width < 40) { const inline = e.tagName === "A" && getComputedStyle(e).display === "inline"; if (!inline) out.small.push(`${desc(e)} ${Math.round(r.width)}×${Math.round(r.height)}`); } }
+        if (lesson) { const f = document.querySelector("footer"); if (f) { window.scrollTo(0, document.documentElement.scrollHeight); const fr = f.getBoundingClientRect(); for (const e of document.querySelectorAll("main button, main input, main textarea, main [data-prompt], main h1, main audio")) { if (!vis(e)) continue; const r = e.getBoundingClientRect(); if (r.bottom > fr.top + 1 && r.top < fr.bottom) out.covered.push(desc(e)); } window.scrollTo(0, 0); } }
+        return out;
+      }, { touch, lesson: !!opts.lesson });
+      if (r.overflow > 1) findings.push(`${tag} ${name}: horizontal scroll +${r.overflow}px — ${r.past.slice(0, 3).join("; ")}`);
+      else if (r.past.length) findings.push(`${tag} ${name}: clipped past right edge — ${r.past.slice(0, 3).join("; ")}`);
+      if (r.small.length) findings.push(`${tag} ${name}: small touch targets — ${[...new Set(r.small)].slice(0, 4).join("; ")}`);
+      if (r.covered.length) findings.push(`${tag} ${name}: footer covers — ${[...new Set(r.covered)].slice(0, 4).join("; ")}`);
+      if (SHOTS && opts.shot !== false) await page.screenshot({ path: `${SHOTS}/${tag}-${name}.png` });
+    };
+    const seen = new Set();
+    globalThis.AUDIT = async (pg) => { const type = await pg.locator("main h1[data-ex-type]").getAttribute("data-ex-type"); await inspect(`lesson-${type}`, { lesson: true, shot: !seen.has(type) }); seen.add(type); };
+    try {
+      await page.goto(BASE); await page.locator("h1").waitFor(); await inspect("home");
+      for (const r of ["login", "signup"]) { await page.goto(`${BASE}/${r}`); await page.locator("h1").first().waitFor(); await inspect(r); }
+      await page.goto(`${BASE}/onboarding`); await page.getByRole("textbox").fill("Tess"); await inspect("onboarding-welcome"); await nextBtn(page);
+      await inspect("onboarding-language"); await page.getByRole("radio").nth(0).click(); await nextBtn(page);
+      await page.locator('[data-course="es-en"]').click(); await inspect("onboarding-course", { lesson: true }); await nextBtn(page);
+      await page.getByRole("radio").first().click(); await inspect("onboarding-goal", { lesson: true }); await nextBtn(page);
+      await nextBtn(page); await nextBtn(page); await nextBtn(page); await page.waitForURL(/learn/, { timeout: 20000 });
+      await page.locator('[data-state="current"]').waitFor(); await inspect("path");
+      content = DUMP["es-en"]; const st = newState(true);
+      await page.locator('[data-state="current"]').click(); await page.locator("[data-start]").waitFor(); await inspect("lesson-intro", { lesson: true });
+      await runSession(page, st); await inspect("lesson-summary");
+      for (const r of ["learn", "practice", "vocabulary", "stories", "tutor", "profile", "settings", "quests", "leaderboard", "guidebook?unit=es1"]) {
+        await page.goto(`${BASE}/${r}`); await page.locator("main h1, main h2").first().waitFor({ timeout: 15000 }); await inspect(r.split("?")[0]);
+      }
+      await page.goto(`${BASE}/tutor`); await page.locator("main .grid button:not([disabled])").first().click(); await page.locator("input").waitFor(); await inspect("tutor-chat", { lesson: true });
+    } catch (e) { findings.push(`${tag}: journey stopped — ${String(e.message).split("\n")[0].slice(0, 160)}`); if (SHOTS) await page.screenshot({ path: `${SHOTS}/${tag}-STOPPED.png` }).catch(() => {}); }
+    for (const e of new Set(errs)) findings.push(`${tag}: console — ${e}`);
+    log(`${tag}: ${findings.length - before} finding(s); exercise types seen: ${[...seen].join(", ")}`);
+    await ctx.close();
+  }
+  await browser.close();
+  console.log(findings.length ? "FINDINGS\n" + findings.join("\n") : "No findings at any viewport");
+  process.exit(findings.length ? 1 : 0);
+}
+
 // ---------------------------------------------------------------- every target language, end to end (guest, desktop)
 // Each language: onboarding → first lesson (every exercise type, one deliberate miss) → summary → reload → switch to
 // another course and back → the first course's progress must be unchanged. Listening and speaking use the browser's
@@ -129,7 +189,7 @@ for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_
   await page.goto(`${BASE}/onboarding`);
   await page.getByRole("textbox").fill("Tess"); await nextBtn(page);                               // welcome
   await page.getByRole("radio").nth(0).click(); await nextBtn(page);                               // interface: English
-  await page.getByRole("radio").filter({ hasText: flag }).click(); await nextBtn(page);            // course
+  await page.locator(`[data-course="${courseId}"]`).click(); await nextBtn(page);                  // course
   await page.getByRole("radio").first().click(); await nextBtn(page);                              // goal
   await nextBtn(page); await nextBtn(page); await nextBtn(page);                                   // level, plan, start
   await page.waitForURL(/learn/, { timeout: 20000 });
@@ -141,16 +201,42 @@ for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_
   const xp = Number(await page.locator("[data-summary]").getAttribute("data-xp"));
   expect(xp > 0 && st.wrong === 1, `${courseId}: lesson completed with XP ${xp} and one miss re-asked`);
   expect(Object.keys(st.types).length >= 4, `${courseId}: exercise types answered ${JSON.stringify(st.types)}`);
+  expect(st.listened >= 2 && st.spoke >= 1 && st.skipped === 0, `${courseId}: listening and speaking answered with the ${courseId.slice(0, 2)} voice and recogniser (not skipped)`);
+  const spoken = await page.evaluate(() => window.__spoken); const locale = { de: "de-DE", ko: "ko-KR", it: "it-IT", ru: "ru-RU", fr: "fr-FR", es: "es-ES" }[courseId.slice(0, 2)];
+  expect(spoken.length >= 3 && spoken.every((x) => x.lang === locale), `${courseId}: text-to-speech requested ${spoken.length} times, always as ${locale}`);
+  const fx = await page.evaluate(() => [...window.__sfx]);
+  expect(fx.includes("tap") && fx.includes("correct") && fx.filter((x) => x === "wrong").length >= 1 && fx.filter((x) => x === "finish").length === 1 && fx.at(-1) === "finish", `${courseId}: sound effects fired — tap, correct, wrong, and one finish at the end (${fx.length} in total)`);
   await page.goto(`${BASE}/learn`); await page.locator('[data-state="done"]').first().waitFor({ timeout: 15000 });
   await page.reload(); await page.locator('[data-state="done"]').first().waitFor({ timeout: 15000 });
   expect(await page.locator('[data-state="done"]').count() === 1, `${courseId}: completion survives a reload`);
   // switch to another course and back
-  const other = courseId === "de-en" ? "🇰🇷" : "🇩🇪";
-  await page.goto(`${BASE}/settings`); await page.locator('[role=radio]').filter({ hasText: other }).first().click();
+  const otherId = courseId === "de-en" ? "ko-en" : "de-en";
+  await page.goto(`${BASE}/settings`); await page.locator(`[data-course="${otherId}"]`).click();
   await page.goto(`${BASE}/learn`); await sleep(500);
-  await page.goto(`${BASE}/settings`); await page.locator('[role=radio]').filter({ hasText: flag }).first().click();
+  await page.goto(`${BASE}/settings`); await page.locator(`[data-course="${courseId}"]`).click();
   await page.goto(`${BASE}/learn`); await page.locator('[data-state="current"], [data-state="done"]').first().waitFor();
   expect(await page.locator('[data-state="done"]').count() === 1, `${courseId}: returning to the course keeps its progress`);
+  await ctx.close();
+}
+if (!ONLY_LANG || ONLY_LANG === "novoice") {
+  log("=== sound off, and a device with no German voice ===");
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await ctx.addInitScript(() => { window.__noVoices = [1]; }); await ctx.addInitScript(speechStubs);
+  const page = await ctx.newPage(); watch(page, "no-voice"); content = DUMP["de-en"];
+  await page.goto(`${BASE}/onboarding`); await page.getByRole("textbox").fill("Tess"); await nextBtn(page);
+  await page.getByRole("radio").nth(0).click(); await nextBtn(page); await page.locator('[data-course="de-en"]').click(); await nextBtn(page);
+  await page.getByRole("radio").first().click(); await nextBtn(page); await nextBtn(page); await nextBtn(page); await nextBtn(page); await page.waitForURL(/learn/);
+  await page.goto(`${BASE}/settings`); const soundSwitch = page.getByRole("switch").first(); await soundSwitch.waitFor();
+  await soundSwitch.uncheck({ force: true }); await sleep(300);
+  expect(!(await soundSwitch.isChecked()), "sound effects switched off in Settings");
+  await page.goto(`${BASE}/learn`); await page.locator('[data-state="current"]').click(); await page.locator("[data-start]").click();
+  let sawWarning = false; const st = newState();
+  globalThis.AUDIT = async (pg) => { if (await pg.getByText(/has no German voice installed/).count()) sawWarning = true; };
+  await runSession(page, st); globalThis.AUDIT = null;
+  expect(sawWarning, "a missing German voice is explained on listening exercises");
+  expect((await page.evaluate(() => window.__spoken.length)) === 0, "nothing is read aloud in an unrelated voice when the language has none");
+  expect(st.skipped >= 1 && (await page.locator("[data-summary]").count()) === 1, `the lesson still completes; ${st.skipped} listening exercise(s) were skipped and reported as skipped`);
+  expect((await page.evaluate(() => window.__sfx.length)) === 0, "with sound off, no sound effect plays during a whole lesson");
   await ctx.close();
 }
 await browser.close();

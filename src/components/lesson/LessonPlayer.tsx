@@ -7,7 +7,7 @@ import { allWords } from "@/lib/content";
 import { evaluate, type Answer, type Exercise } from "@/lib/engine/exercises";
 import { SKIPPABLE, type Attempt } from "@/lib/engine/grade";
 import type { Verdict } from "@/lib/engine/text";
-import { sfx } from "@/lib/audio";
+import { sfx, stopSpeaking } from "@/lib/audio";
 import { useT } from "@/lib/i18n";
 import { Button, Dialog, ProgressBar } from "../ui";
 import { ExerciseView } from "./ExerciseViews";
@@ -52,6 +52,7 @@ export function LessonPlayer({ course, exercises, sound, slow, exitHref, timeLim
     const v = evaluate(ex, a); given.current = a;
     if (!first.current.has(ex.id)) first.current.set(ex.id, { id: ex.id, answer: a });
     if (v.correct) solved.current.add(ex.id); else setQueue((q) => [...q, ex]);
+    stopSpeaking();
     if (sound) (v.correct ? sfx.correct : sfx.wrong)();
     setVerdict(v);
   }, [ex, verdict, sound]);
@@ -85,7 +86,7 @@ export function LessonPlayer({ course, exercises, sound, slow, exitHref, timeLim
   return (
     <div className="mx-auto flex min-h-dvh max-w-[720px] flex-col">
       <header className="flex items-center gap-4 px-4 pb-2 pt-5">
-        <button type="button" aria-label={t("Quit session")} onClick={() => setConfirmQuit(true)} className="rounded-lg p-1 text-sub hover:bg-mist"><X size={28} strokeWidth={2.6} /></button>
+        <button type="button" aria-label={t("Quit session")} onClick={() => setConfirmQuit(true)} className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sub hover:bg-mist"><X size={28} strokeWidth={2.6} /></button>
         <ProgressBar value={solved.current.size / Math.max(1, total - skippedCount())} label={t("Lesson progress")} />
         {!!timeLimit && <span className={`flex items-center gap-1 font-extrabold tabular-nums ${left <= 10 ? "text-coral-dark" : "text-sub"}`} role="timer" aria-label={t("{n} seconds left", { n: left })}><Timer size={20} />{left}</span>}
       </header>

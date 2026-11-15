@@ -19,7 +19,7 @@ import { Button, LinkButton, Loading, Notice } from "@/components/ui";
 function Session() {
   const q = useSearchParams(); const { state, ready, finishSession } = useStore(); const { t } = useT();
   const [seed] = useState(() => Date.now() % 2_000_000_000); const [summary, setSummary] = useState<SessionSummary | null>(null);
-  const [started, setStarted] = useState(false); const [pending, setPending] = useState<{ attempts: Attempt[]; seconds: number } | null>(null);
+  const [started, setStarted] = useState(false); const [pending, setPending] = useState<{ attempts: Attempt[]; seconds: number; plan: SessionPlan; title: string; gated: boolean } | null>(null);
   const [saving, setSaving] = useState(false); const [error, setError] = useState<string | null>(null); const [ai, setAi] = useState(false);
   const lessonId = q.get("lesson"), modeParam = q.get("mode"), testout = q.get("testout");
   const mode = PRACTICE_MODES.includes(modeParam as PracticeMode) ? (modeParam as PracticeMode) : "review";
@@ -46,23 +46,25 @@ function Session() {
   }, [ready, lessonId, mode, testout, seed, course.id]);
   const built = useMemo(() => (plan?.plan ? buildSession(course, plan.plan) : null), [plan, course]);
 
-  const submit = async (attempts: Attempt[], seconds: number) => {
-    if (!plan?.plan) return;
-    setPending({ attempts, seconds }); setSaving(true); setError(null);
-    try { setSummary(await finishSession(plan.plan, attempts, seconds)); } catch (e) { setError((e as Error).message); } finally { setSaving(false); }
+  // The session being saved is kept with its own plan: if the account session expires while saving, the learner is
+  // signed out and the course on screen changes, but the finished answers must still be shown and retried as they were.
+  const submit = async (attempts: Attempt[], seconds: number, p = plan?.plan, title = plan?.title ?? "", gated = built?.kind === "testout") => {
+    if (!p) return;
+    setPending({ attempts, seconds, plan: p, title, gated }); setSaving(true); setError(null);
+    try { setSummary(await finishSession(p, attempts, seconds)); } catch (e) { setError((e as Error).message); } finally { setSaving(false); }
   };
 
   if (!plan) return <Loading text={t("Loading…")} />;
-  const back = plan.plan?.type === "practice" ? "/practice" : "/learn";
-  if (plan.empty || !built) return <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 p-6 text-center"><Mascot mood="think" size={140} /><h1 className="text-lg">{t(plan.empty ?? "That session does not exist.")}</h1><LinkButton href="/learn">{t("Back to learning")}</LinkButton></main>;
-  if (summary) return <SessionSummaryView s={summary} title={plan.plan?.type === "lesson" ? plan.title : t(plan.title)} nextHref={back} gated={built.kind === "testout"} />;
+  const back = (pending?.plan ?? plan.plan)?.type === "practice" ? "/practice" : "/learn";
+  if (summary && pending) return <SessionSummaryView s={summary} title={pending.plan.type === "lesson" ? pending.title : t(pending.title)} nextHref={back} gated={pending.gated} />;
   if (pending) return (
     <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 p-6 text-center">
       <Mascot mood={error ? "oops" : "think"} size={140} className={saving ? "anim-bob" : ""} />
       {saving ? <Loading text={t("Saving your progress…")} /> : <><h1 className="text-xl" data-save-error>{t("We couldn’t save that session")}</h1><Notice tone="error">{t(error ?? "")}</Notice>
-        <Button data-retry onClick={() => submit(pending.attempts, pending.seconds)} className="w-full">{t("Try again")}</Button><LinkButton href={back} variant="ghost">{t("Leave without saving")}</LinkButton></>}
+        <Button data-retry onClick={() => submit(pending.attempts, pending.seconds, pending.plan, pending.title, pending.gated)} className="w-full">{t("Try again")}</Button><LinkButton href={back} variant="ghost">{t("Leave without saving")}</LinkButton></>}
     </main>
   );
+  if (plan.empty || !built) return <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-4 p-6 text-center"><Mascot mood="think" size={140} /><h1 className="text-lg">{t(plan.empty ?? "That session does not exist.")}</h1><LinkButton href="/learn">{t("Back to learning")}</LinkButton></main>;
   const lesson = lessonId ? findLesson(course, lessonId) : null;
   if (lesson && !started) return (
     <main className="mx-auto flex min-h-dvh max-w-[560px] flex-col px-5 py-8">

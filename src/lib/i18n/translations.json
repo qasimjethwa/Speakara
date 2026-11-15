@@ -1,1906 +1,1938 @@
 {
-  "A few minutes is all it takes.": [
-    "Unos minutos son suficientes.",
-    "बस कुछ मिनट काफ़ी हैं।"
-  ],
-  "A streak freeze covered the days you missed.": [
-    "Un protector de racha cubrió los días que faltaste.",
-    "स्ट्रीक फ़्रीज़ ने आपके छूटे हुए दिन संभाल लिए।"
-  ],
-  "A transparent spaced-repetition schedule brings words back just before they slip away.": [
-    "Un sistema transparente de repetición espaciada te devuelve las palabras justo antes de que las olvides.",
-    "एक पारदर्शी स्पेस्ड-रिपिटिशन व्यवस्था शब्दों को भूलने से ठीक पहले वापस लाती है।"
-  ],
-  "A tutor who never gets tired": [
-    "Un tutor que nunca se cansa",
-    "एक ट्यूटर जो कभी नहीं थकता"
-  ],
-  "AI tutor connected: open-ended conversation with corrections is on for every scenario.": [
-    "Tutor de IA conectado: conversación libre con correcciones en todos los escenarios.",
-    "AI ट्यूटर जुड़ा है: हर परिदृश्य में सुधारों के साथ खुली बातचीत चालू है।"
-  ],
-  "About": [
-    "Acerca de",
-    "परिचय"
-  ],
-  "Account": [
-    "Cuenta",
-    "खाता"
-  ],
-  "Accuracy": [
-    "Precisión",
-    "सटीकता"
-  ],
-  "Achievement unlocked:": [
-    "Logro desbloqueado:",
-    "उपलब्धि मिली:"
-  ],
-  "Achievements": [
-    "Logros",
-    "उपलब्धियाँ"
-  ],
-  "Airport": [
-    "Aeropuerto",
-    "हवाई अड्डा"
-  ],
-  "All of it.": [
-    "Completo.",
-    "पूरी की पूरी।"
-  ],
-  "All stories": [
-    "Todas las historias",
-    "सभी कहानियाँ"
-  ],
-  "Already learning with us?": [
-    "¿Ya aprendes con nosotros?",
-    "क्या आप पहले से हमारे साथ सीख रहे हैं?"
-  ],
-  "An independent, free language-learning project.": [
-    "Un proyecto independiente y gratuito para aprender idiomas.",
-    "भाषा सीखने की एक स्वतंत्र और मुफ़्त परियोजना।"
-  ],
-  "Answer choices": [
-    "Opciones de respuesta",
-    "उत्तर के विकल्प"
-  ],
-  "Answer to continue": [
-    "Responde para continuar",
-    "आगे बढ़ने के लिए उत्तर दें"
-  ],
-  "Ask Kiko why": [
-    "Pregúntale a Kiko por qué",
-    "किको से पूछें क्यों"
-  ],
-  "Ask for directions and buy tickets.": [
-    "Pide indicaciones y compra billetes.",
-    "रास्ता पूछें और टिकट खरीदें।"
-  ],
-  "Ask for prices, sizes and colours.": [
-    "Pregunta precios, tallas y colores.",
-    "दाम, नाप और रंग पूछें।"
-  ],
-  "Back": [
-    "Atrás",
-    "वापस"
-  ],
-  "Back to learning": [
-    "Volver a aprender",
-    "सीखने पर वापस जाएँ"
-  ],
-  "Back to log in": [
-    "Volver a iniciar sesión",
-    "लॉग इन पर वापस जाएँ"
-  ],
-  "Back to scenarios": [
-    "Volver a los escenarios",
-    "परिदृश्यों पर वापस जाएँ"
-  ],
-  "Back to the path": [
-    "Volver a la ruta",
-    "पथ पर वापस जाएँ"
-  ],
-  "Best-attempt accuracy": [
-    "Precisión de tu mejor intento",
-    "सर्वश्रेष्ठ प्रयास की सटीकता"
-  ],
-  "Better:": [
-    "Mejor:",
-    "बेहतर:"
-  ],
-  "Bite-sized lessons, stories, speaking practice and a patient tutor. No lives that run out, no locked lessons, no subscription — ever.": [
-    "Lecciones breves, historias, práctica oral y un tutor paciente. Sin vidas que se agotan, sin lecciones bloqueadas, sin suscripción. Nunca.",
-    "छोटे-छोटे पाठ, कहानियाँ, बोलने का अभ्यास और एक धैर्यवान ट्यूटर। न खत्म होने वाली लाइफ़, न बंद पाठ, न कोई सब्सक्रिप्शन — कभी नहीं।"
-  ],
-  "Bloom": [
-    "Flor",
-    "फूल"
-  ],
-  "Bookworm": [
-    "Ratón de biblioteca",
-    "किताबी कीड़ा"
-  ],
-  "Cancel": [
-    "Cancelar",
-    "रद्द करें"
-  ],
-  "Canopy": [
-    "Bosque",
-    "वन"
-  ],
-  "Can’t listen now": [
-    "No puedo escuchar ahora",
-    "अभी सुन नहीं सकता"
-  ],
-  "Can’t speak now": [
-    "No puedo hablar ahora",
-    "अभी बोल नहीं सकता"
-  ],
-  "Century": [
-    "Centena",
-    "शतक"
-  ],
-  "Check": [
-    "Comprobar",
-    "जाँचें"
-  ],
-  "Check in, ask about breakfast and fix a problem.": [
-    "Regístrate, pregunta por el desayuno y resuelve un problema.",
-    "चेक-इन करें, नाश्ते के बारे में पूछें और समस्या सुलझाएँ।"
-  ],
-  "Check in, find your gate and handle delays.": [
-    "Factura, encuentra tu puerta y gestiona retrasos.",
-    "चेक-इन करें, अपना गेट खोजें और देरी संभालें।"
-  ],
-  "Claim 20 gems": [
-    "Reclamar 20 gemas",
-    "20 रत्न लें"
-  ],
-  "Close story": [
-    "Cerrar historia",
-    "कहानी बंद करें"
-  ],
-  "Complete 5 practice sessions": [
-    "Completa 5 sesiones de práctica",
-    "5 अभ्यास सत्र पूरे करें"
-  ],
-  "Complete your first lesson": [
-    "Completa tu primera lección",
-    "अपना पहला पाठ पूरा करें"
-  ],
-  "Complete {n} lessons": [
-    "Completa {n} lecciones",
-    "{n} पाठ पूरे करें"
-  ],
-  "Content review": [
-    "Revisión de contenido",
-    "सामग्री समीक्षा"
-  ],
-  "Continue": [
-    "Continuar",
-    "जारी रखें"
-  ],
-  "Continue learning": [
-    "Seguir aprendiendo",
-    "सीखना जारी रखें"
-  ],
-  "Conversation": [
-    "Conversación",
-    "बातचीत"
-  ],
-  "Conversation history": [
-    "Historial de conversaciones",
-    "बातचीत का इतिहास"
-  ],
-  "Correct answer:": [
-    "Respuesta correcta:",
-    "सही उत्तर:"
-  ],
-  "Couldn’t load the leaderboard.": [
-    "No se pudo cargar la clasificación.",
-    "लीडरबोर्ड लोड नहीं हो सका।"
-  ],
-  "Couldn’t sync with the server:": [
-    "No se pudo sincronizar con el servidor:",
-    "सर्वर से सिंक नहीं हो सका:"
-  ],
-  "Course": [
-    "Curso",
-    "कोर्स"
-  ],
-  "Course: {course}. Change course": [
-    "Curso: {course}. Cambiar de curso",
-    "कोर्स: {course}। कोर्स बदलें"
-  ],
-  "Create a free account": [
-    "Crea una cuenta gratis",
-    "मुफ़्त खाता बनाएँ"
-  ],
-  "Create a free account to keep your streak on every device.": [
-    "Crea una cuenta gratis para conservar tu racha en todos tus dispositivos.",
-    "हर डिवाइस पर अपनी स्ट्रीक बनाए रखने के लिए मुफ़्त खाता बनाएँ।"
-  ],
-  "Create account": [
-    "Crear cuenta",
-    "खाता बनाएँ"
-  ],
-  "Daily goal": [
-    "Meta diaria",
-    "दैनिक लक्ष्य"
-  ],
-  "Daily quests": [
-    "Misiones diarias",
-    "दैनिक मिशन"
-  ],
-  "Daily target": [
-    "Objetivo diario",
-    "दैनिक लक्ष्य"
-  ],
-  "Day streak": [
-    "Días de racha",
-    "दिनों की स्ट्रीक"
-  ],
-  "Delete account": [
-    "Eliminar cuenta",
-    "खाता हटाएँ"
-  ],
-  "Delete your account?": [
-    "¿Eliminar tu cuenta?",
-    "क्या आप अपना खाता हटाना चाहते हैं?"
-  ],
-  "Display name": [
-    "Nombre visible",
-    "दिखने वाला नाम"
-  ],
-  "Do one practice session": [
-    "Haz una sesión de práctica",
-    "एक अभ्यास सत्र करें"
-  ],
-  "Done": [
-    "Hecho",
-    "पूरा"
-  ],
-  "Earn 100 XP": [
-    "Gana 100 XP",
-    "100 XP कमाएँ"
-  ],
-  "Earn 500 XP": [
-    "Gana 500 XP",
-    "500 XP कमाएँ"
-  ],
-  "Earn {n} XP": [
-    "Gana {n} XP",
-    "{n} XP कमाएँ"
-  ],
-  "Earn {n} XP together with {name} this week": [
-    "Gana {n} XP junto con {name} esta semana",
-    "इस हफ़्ते {name} के साथ मिलकर {n} XP कमाएँ"
-  ],
-  "Education shouldn’t have a checkout page.": [
-    "La educación no debería tener caja de pago.",
-    "शिक्षा के लिए भुगतान पेज नहीं होना चाहिए।"
-  ],
-  "Eight exercise types — tap, type, listen, speak, match — mixed into five-minute sessions.": [
-    "Ocho tipos de ejercicios —tocar, escribir, escuchar, hablar, emparejar— combinados en sesiones de cinco minutos.",
-    "आठ तरह के अभ्यास — टैप करना, लिखना, सुनना, बोलना, मिलान करना — पाँच मिनट के सत्रों में।"
-  ],
-  "Email": [
-    "Correo electrónico",
-    "ईमेल"
-  ],
-  "End session": [
-    "Terminar sesión",
-    "सत्र समाप्त करें"
-  ],
-  "English": [
-    "Inglés",
-    "अंग्रेज़ी"
-  ],
-  "Erase your progress?": [
-    "¿Borrar tu progreso?",
-    "क्या आप अपनी प्रगति मिटाना चाहते हैं?"
-  ],
-  "Every practice mode is free and unlimited.": [
-    "Todos los modos de práctica son gratis e ilimitados.",
-    "हर अभ्यास मोड मुफ़्त और असीमित है।"
-  ],
-  "Every word you’ve met, with strength": [
-    "Todas las palabras que has visto, con su nivel",
-    "आपके सीखे हर शब्द, उनकी मज़बूती के साथ"
-  ],
-  "Everyday conversation": [
-    "Conversación cotidiana",
-    "रोज़मर्रा की बातचीत"
-  ],
-  "Everything you need to actually speak": [
-    "Todo lo que necesitas para hablar de verdad",
-    "सच में बोल पाने के लिए ज़रूरी सब कुछ"
-  ],
-  "Explain": [
-    "Explicar",
-    "समझाएँ"
-  ],
-  "Features": [
-    "Funciones",
-    "सुविधाएँ"
-  ],
-  "Filter words": [
-    "Filtrar palabras",
-    "शब्द छाँटें"
-  ],
-  "Find by username": [
-    "Buscar por nombre de usuario",
-    "यूज़रनेम से खोजें"
-  ],
-  "Finish 5 lessons with no mistakes": [
-    "Termina 5 lecciones sin errores",
-    "बिना गलती के 5 पाठ पूरे करें"
-  ],
-  "Finish Unit {n} to open": [
-    "Termina la unidad {n} para abrirla",
-    "खोलने के लिए इकाई {n} पूरी करें"
-  ],
-  "Finish a lesson to earn your first badge.": [
-    "Termina una lección para ganar tu primera insignia.",
-    "अपना पहला बैज पाने के लिए एक पाठ पूरा करें।"
-  ],
-  "Finish a lesson with no mistakes": [
-    "Termina una lección sin errores",
-    "बिना गलती के एक पाठ पूरा करें"
-  ],
-  "Finish story": [
-    "Terminar historia",
-    "कहानी पूरी करें"
-  ],
-  "First steps": [
-    "Primeros pasos",
-    "पहले कदम"
-  ],
-  "Flawless": [
-    "Impecable",
-    "बेदाग़"
-  ],
-  "Follow a friend to see their XP and streak here. When you follow each other you get a weekly friends quest.": [
-    "Sigue a un amigo para ver aquí sus XP y su racha. Si os seguís mutuamente, tendréis una misión de amigos semanal.",
-    "किसी दोस्त को फ़ॉलो करें और यहाँ उनका XP और स्ट्रीक देखें। जब आप दोनों एक-दूसरे को फ़ॉलो करते हैं तो आपको साप्ताहिक मित्र मिशन मिलता है।"
-  ],
-  "Follow {name}": [
-    "Seguir a {name}",
-    "{name} को फ़ॉलो करें"
-  ],
-  "Following": [
-    "Siguiendo",
-    "फ़ॉलो कर रहे हैं"
-  ],
-  "Footer": [
-    "Pie de página",
-    "फ़ुटर"
-  ],
-  "Forgot your password?": [
-    "¿Olvidaste tu contraseña?",
-    "पासवर्ड भूल गए?"
-  ],
-  "Free forever: unlimited mistakes, all features": [
-    "Gratis para siempre: errores ilimitados y todas las funciones",
-    "हमेशा मुफ़्त: असीमित गलतियाँ, सारी सुविधाएँ"
-  ],
-  "French": [
-    "Francés",
-    "फ़्रेंच"
-  ],
-  "Friends": [
-    "Amigos",
-    "दोस्त"
-  ],
-  "Friends need an account, and this site isn’t connected to an account server.": [
-    "Los amigos requieren una cuenta, y este sitio no está conectado a un servidor de cuentas.",
-    "दोस्तों के लिए खाता ज़रूरी है, और यह साइट किसी खाता सर्वर से जुड़ी नहीं है।"
-  ],
-  "Friends quests": [
-    "Misiones de amigos",
-    "मित्र मिशन"
-  ],
-  "Gems": [
-    "Gemas",
-    "रत्न"
-  ],
-  "Get": [
-    "Obtener",
-    "लें"
-  ],
-  "Get a table, order food and ask for the check.": [
-    "Consigue una mesa, pide comida y pide la cuenta.",
-    "टेबल लें, खाना ऑर्डर करें और बिल माँगें।"
-  ],
-  "Get started": [
-    "Empezar",
-    "शुरू करें"
-  ],
-  "Goal reached — anything more is a bonus! 🎉": [
-    "¡Meta alcanzada! Todo lo demás es un extra. 🎉",
-    "लक्ष्य पूरा — अब जो भी करें वह बोनस है! 🎉"
-  ],
-  "Green bars are days you reached your daily goal.": [
-    "Las barras verdes son los días en que alcanzaste tu meta diaria.",
-    "हरी पट्टियाँ वे दिन हैं जब आपने अपना दैनिक लक्ष्य पूरा किया।"
-  ],
-  "Grove": [
-    "Arboleda",
-    "उपवन"
-  ],
-  "Guest mode": [
-    "Modo invitado",
-    "अतिथि मोड"
-  ],
-  "Guest · saved on this device": [
-    "Invitado · guardado en este dispositivo",
-    "अतिथि · इस डिवाइस पर सहेजा गया"
-  ],
-  "Guidebook": [
-    "Guía",
-    "मार्गदर्शिका"
-  ],
-  "Habit formed": [
-    "Hábito creado",
-    "आदत बन गई"
-  ],
-  "Have a conversation with the tutor": [
-    "Mantén una conversación con el tutor",
-    "ट्यूटर के साथ बातचीत करें"
-  ],
-  "Hear the sentence": [
-    "Escuchar la frase",
-    "वाक्य सुनें"
-  ],
-  "Hear this line": [
-    "Escuchar esta línea",
-    "यह पंक्ति सुनें"
-  ],
-  "Hear this message": [
-    "Escuchar este mensaje",
-    "यह संदेश सुनें"
-  ],
-  "Hear {word}": [
-    "Escuchar {word}",
-    "{word} सुनें"
-  ],
-  "Here’s what you’ll learn in this lesson.": [
-    "Esto es lo que aprenderás en esta lección.",
-    "इस पाठ में आप यह सीखेंगे।"
-  ],
-  "Hide explanation": [
-    "Ocultar explicación",
-    "व्याख्या छिपाएँ"
-  ],
-  "Hindi": [
-    "Hindi",
-    "हिन्दी"
-  ],
-  "Hotel": [
-    "Hotel",
-    "होटल"
-  ],
-  "I already have an account": [
-    "Ya tengo una cuenta",
-    "मेरे पास पहले से खाता है"
-  ],
-  "I didn’t catch that — tap the microphone and try again.": [
-    "No te he oído bien. Toca el micrófono e inténtalo de nuevo.",
-    "मैं सुन नहीं पाया — माइक्रोफ़ोन दबाकर फिर कोशिश करें।"
-  ],
-  "I heard:": [
-    "He oído:",
-    "मैंने सुना:"
-  ],
-  "I know some already": [
-    "Ya sé un poco",
-    "मुझे थोड़ा आता है"
-  ],
-  "I need more practice": [
-    "Necesito practicar más",
-    "मुझे और अभ्यास चाहिए"
-  ],
-  "I said it well": [
-    "Lo dije bien",
-    "मैंने ठीक बोला"
-  ],
-  "Ice breaker": [
-    "Rompehielos",
-    "पहली बातचीत"
-  ],
-  "Interface language": [
-    "Idioma de la interfaz",
-    "इंटरफ़ेस की भाषा"
-  ],
-  "Introduce yourself and ask simple questions.": [
-    "Preséntate y haz preguntas sencillas.",
-    "अपना परिचय दें और सरल सवाल पूछें।"
-  ],
-  "I’m new to {lang}": [
-    "Soy principiante en {lang}",
-    "मैं {lang} में नया हूँ"
-  ],
-  "Job interview": [
-    "Entrevista de trabajo",
-    "नौकरी का इंटरव्यू"
-  ],
-  "Joined {date}": [
-    "Se unió en {date}",
-    "{date} में शामिल हुए"
-  ],
-  "Keep learning": [
-    "Seguir aprendiendo",
-    "सीखते रहें"
-  ],
-  "Key phrases": [
-    "Frases clave",
-    "मुख्य वाक्यांश"
-  ],
-  "Kiko is running scripted scenes with instant feedback. Open-ended AI conversation switches on when this site is connected to an AI provider.": [
-    "Kiko usa escenas guiadas con corrección inmediata. La conversación libre con IA se activa cuando este sitio se conecta a un proveedor de IA.",
-    "किको तुरंत फ़ीडबैक वाले तैयार दृश्य चला रहा है। जब यह साइट किसी AI प्रदाता से जुड़ेगी तब खुली AI बातचीत चालू होगी।"
-  ],
-  "Kiko is thinking…": [
-    "Kiko está pensando…",
-    "किको सोच रहा है…"
-  ],
-  "Kiko is typing…": [
-    "Kiko está escribiendo…",
-    "किको लिख रहा है…"
-  ],
-  "Know this already? Jump here": [
-    "¿Ya lo sabes? Salta aquí",
-    "यह पहले से आता है? यहाँ से शुरू करें"
-  ],
-  "League": [
-    "Liga",
-    "लीग"
-  ],
-  "League tiers": [
-    "Niveles de liga",
-    "लीग के स्तर"
-  ],
-  "Learn a language for free.": [
-    "Aprende un idioma gratis.",
-    "मुफ़्त में भाषा सीखें।"
-  ],
-  "Learner": [
-    "Estudiante",
-    "शिक्षार्थी"
-  ],
-  "Learners you could follow": [
-    "Estudiantes a los que podrías seguir",
-    "जिन्हें आप फ़ॉलो कर सकते हैं"
-  ],
-  "Learning goal": [
-    "Objetivo de aprendizaje",
-    "सीखने का उद्देश्य"
-  ],
-  "Leave this session?": [
-    "¿Salir de esta sesión?",
-    "क्या यह सत्र छोड़ना चाहते हैं?"
-  ],
-  "Leave without saving": [
-    "Salir sin guardar",
-    "बिना सहेजे छोड़ें"
-  ],
-  "Lesson experience": [
-    "Experiencia de lección",
-    "पाठ का अनुभव"
-  ],
-  "Lesson progress": [
-    "Progreso de la lección",
-    "पाठ की प्रगति"
-  ],
-  "Lessons completed": [
-    "Lecciones completadas",
-    "पूरे किए गए पाठ"
-  ],
-  "Lessons that fit in a coffee break": [
-    "Lecciones que caben en una pausa para el café",
-    "चाय के ब्रेक जितने छोटे पाठ"
-  ],
-  "Let’s try again": [
-    "Intentémoslo otra vez",
-    "फिर से कोशिश करें"
-  ],
-  "Listen to yourself, compare with the model, then tell us how it went.": [
-    "Escúchate, compárate con el modelo y dinos cómo te fue.",
-    "खुद को सुनें, नमूने से तुलना करें, फिर बताएँ कैसा रहा।"
-  ],
-  "Listening…": [
-    "Escuchando…",
-    "सुन रहा हूँ…"
-  ],
-  "Loading…": [
-    "Cargando…",
-    "लोड हो रहा है…"
-  ],
-  "Log in": [
-    "Iniciar sesión",
-    "लॉग इन"
-  ],
-  "Log in to follow friends and compare progress.": [
-    "Inicia sesión para seguir a tus amigos y comparar vuestro progreso.",
-    "दोस्तों को फ़ॉलो करने और प्रगति की तुलना करने के लिए लॉग इन करें।"
-  ],
-  "Log out": [
-    "Cerrar sesión",
-    "लॉग आउट"
-  ],
-  "Longest: {n} days · Any session keeps it alive.": [
-    "Más larga: {n} días · Cualquier sesión la mantiene viva.",
-    "सबसे लंबी: {n} दिन · कोई भी सत्र इसे बनाए रखता है।"
-  ],
-  "Main": [
-    "Principal",
-    "मुख्य"
-  ],
-  "Match as many pairs as you can in 90 seconds": [
-    "Empareja todos los pares que puedas en 90 segundos",
-    "90 सेकंड में जितने हो सकें उतने जोड़े मिलाएँ"
-  ],
-  "Matched: {a} and {b}": [
-    "Emparejado: {a} y {b}",
-    "मिलान हुआ: {a} और {b}"
-  ],
-  "Meanings": [
-    "Significados",
-    "अर्थ"
-  ],
-  "Meet 25 words": [
-    "Conoce 25 palabras",
-    "25 शब्द सीखें"
-  ],
-  "Meet 50 words": [
-    "Conoce 50 palabras",
-    "50 शब्द सीखें"
-  ],
-  "Meet classmates and talk about your studies.": [
-    "Conoce a tus compañeros y habla de tus estudios.",
-    "सहपाठियों से मिलें और अपनी पढ़ाई के बारे में बात करें।"
-  ],
-  "Meeting new people": [
-    "Conocer gente nueva",
-    "नए लोगों से मिलना"
-  ],
-  "Microphone access is blocked. Allow the microphone for this site in your browser’s address bar, then try again.": [
-    "El acceso al micrófono está bloqueado. Permite el micrófono para este sitio en la barra de direcciones del navegador e inténtalo de nuevo.",
-    "माइक्रोफ़ोन की अनुमति बंद है। ब्राउज़र के एड्रेस बार में इस साइट के लिए माइक्रोफ़ोन की अनुमति दें, फिर दोबारा कोशिश करें।"
-  ],
-  "Mind the accents:": [
-    "Cuidado con las tildes:",
-    "मात्राओं/एक्सेंट का ध्यान रखें:"
-  ],
-  "More ways to learn": [
-    "Más formas de aprender",
-    "सीखने के और तरीके"
-  ],
-  "Motivation without pressure": [
-    "Motivación sin presión",
-    "बिना दबाव के प्रेरणा"
-  ],
-  "Name": [
-    "Nombre",
-    "नाम"
-  ],
-  "New here?": [
-    "¿Eres nuevo?",
-    "यहाँ नए हैं?"
-  ],
-  "New password": [
-    "Nueva contraseña",
-    "नया पासवर्ड"
-  ],
-  "New quests every day. Rewards are earned by learning — nothing here is for sale.": [
-    "Misiones nuevas cada día. Las recompensas se ganan aprendiendo: aquí no se vende nada.",
-    "हर दिन नए मिशन। इनाम सीखकर मिलते हैं — यहाँ कुछ भी बिकता नहीं।"
-  ],
-  "New words": [
-    "Palabras nuevas",
-    "नए शब्द"
-  ],
-  "No learner with that username.": [
-    "No hay ningún estudiante con ese nombre de usuario.",
-    "इस यूज़रनेम वाला कोई शिक्षार्थी नहीं मिला।"
-  ],
-  "No microphone was found on this device.": [
-    "No se encontró ningún micrófono en este dispositivo.",
-    "इस डिवाइस पर कोई माइक्रोफ़ोन नहीं मिला।"
-  ],
-  "No one else has earned XP this week yet. You’re first!": [
-    "Nadie más ha ganado XP esta semana. ¡Vas en primer lugar!",
-    "इस हफ़्ते अभी तक किसी और ने XP नहीं कमाया। आप सबसे आगे हैं!"
-  ],
-  "Not a match. Try again.": [
-    "No coinciden. Inténtalo de nuevo.",
-    "मिलान नहीं हुआ। फिर कोशिश करें।"
-  ],
-  "Not quite — here’s the answer": [
-    "Casi. Esta es la respuesta",
-    "लगभग सही — यह रहा उत्तर"
-  ],
-  "Not yet — and that’s useful to know": [
-    "Todavía no, y es útil saberlo",
-    "अभी नहीं — और यह जानना भी काम का है"
-  ],
-  "Nothing here right now.": [
-    "No hay nada aquí por ahora.",
-    "अभी यहाँ कुछ नहीं है।"
-  ],
-  "Nothing to fix right now": [
-    "Nada que corregir por ahora",
-    "अभी सुधारने को कुछ नहीं"
-  ],
-  "One moment…": [
-    "Un momento…",
-    "एक क्षण…"
-  ],
-  "One whole week": [
-    "Una semana entera",
-    "पूरा एक हफ़्ता"
-  ],
-  "Password": [
-    "Contraseña",
-    "पासवर्ड"
-  ],
-  "Perfect session!": [
-    "¡Sesión perfecta!",
-    "शानदार सत्र!"
-  ],
-  "Placement done — you start at Unit {n}.": [
-    "Prueba de nivel completada: empiezas en la unidad {n}.",
-    "स्तर जाँच पूरी — आप इकाई {n} से शुरू करेंगे।"
-  ],
-  "Play audio": [
-    "Reproducir audio",
-    "ऑडियो चलाएँ"
-  ],
-  "Play slowly": [
-    "Reproducir despacio",
-    "धीरे चलाएँ"
-  ],
-  "Play the sentence": [
-    "Reproducir la frase",
-    "वाक्य चलाएँ"
-  ],
-  "Powerhouse": [
-    "Imparable",
-    "ऊर्जा का भंडार"
-  ],
-  "Practice hub": [
-    "Centro de práctica",
-    "अभ्यास केंद्र"
-  ],
-  "Practise real conversations. Free, with no message cap for normal use.": [
-    "Practica conversaciones reales. Gratis y sin límite de mensajes para un uso normal.",
-    "असली बातचीत का अभ्यास करें। मुफ़्त, सामान्य उपयोग के लिए संदेशों की कोई सीमा नहीं।"
-  ],
-  "Practise these words": [
-    "Practicar estas palabras",
-    "इन शब्दों का अभ्यास करें"
-  ],
-  "Practise {n} words": [
-    "Practica {n} palabras",
-    "{n} शब्दों का अभ्यास करें"
-  ],
-  "Prior knowledge": [
-    "Conocimientos previos",
-    "पहले की जानकारी"
-  ],
-  "Privacy": [
-    "Privacidad",
-    "गोपनीयता"
-  ],
-  "Profile": [
-    "Perfil",
-    "प्रोफ़ाइल"
-  ],
-  "Progress is kept separately for every course. XP, gems and your streak are shared.": [
-    "El progreso se guarda por separado en cada curso. Los XP, las gemas y la racha son compartidos.",
-    "हर कोर्स की प्रगति अलग रखी जाती है। XP, रत्न और स्ट्रीक साझा रहते हैं।"
-  ],
-  "Progress is saved on this device.": [
-    "El progreso se guarda en este dispositivo.",
-    "प्रगति इस डिवाइस पर सहेजी जाती है।"
-  ],
-  "Pronunciation check": [
-    "Comprobación de pronunciación",
-    "उच्चारण जाँच"
-  ],
-  "Protects your streak for one missed day. Costs {cost} gems; you have {have}.": [
-    "Protege tu racha un día que faltes. Cuesta {cost} gemas; tienes {have}.",
-    "एक छूटे दिन के लिए आपकी स्ट्रीक बचाता है। कीमत {cost} रत्न; आपके पास {have} हैं।"
-  ],
-  "Quest complete:": [
-    "Misión completada:",
-    "मिशन पूरा:"
-  ],
-  "Quests & rewards": [
-    "Misiones y recompensas",
-    "मिशन और इनाम"
-  ],
-  "Quit session": [
-    "Salir de la sesión",
-    "सत्र छोड़ें"
-  ],
-  "Reach a 3-day streak": [
-    "Alcanza una racha de 3 días",
-    "3 दिन की स्ट्रीक बनाएँ"
-  ],
-  "Reach a 30-day streak": [
-    "Alcanza una racha de 30 días",
-    "30 दिन की स्ट्रीक बनाएँ"
-  ],
-  "Reach a 7-day streak": [
-    "Alcanza una racha de 7 días",
-    "7 दिन की स्ट्रीक बनाएँ"
-  ],
-  "Read a story": [
-    "Lee una historia",
-    "एक कहानी पढ़ें"
-  ],
-  "Read again": [
-    "Leer de nuevo",
-    "फिर पढ़ें"
-  ],
-  "Read short dialogues": [
-    "Lee diálogos cortos",
-    "छोटे संवाद पढ़ें"
-  ],
-  "Read the guidebook first": [
-    "Leer primero la guía",
-    "पहले मार्गदर्शिका पढ़ें"
-  ],
-  "Read your first story": [
-    "Lee tu primera historia",
-    "अपनी पहली कहानी पढ़ें"
-  ],
-  "Record yourself instead and compare with the model.": [
-    "Grábate y compárate con el modelo.",
-    "इसके बजाय खुद को रिकॉर्ड करें और नमूने से तुलना करें।"
-  ],
-  "Recording… tap to stop": [
-    "Grabando… toca para parar",
-    "रिकॉर्ड हो रहा है… रोकने के लिए टैप करें"
-  ],
-  "Remove {word}": [
-    "Quitar {word}",
-    "{word} हटाएँ"
-  ],
-  "Reset progress": [
-    "Restablecer progreso",
-    "प्रगति रीसेट करें"
-  ],
-  "Restaurant": [
-    "Restaurante",
-    "रेस्तराँ"
-  ],
-  "Retry the sentences you missed": [
-    "Repite las frases que fallaste",
-    "जो वाक्य गलत हुए उन्हें दोबारा करें"
-  ],
-  "Review in {n} days": [
-    "Repaso en {n} días",
-    "{n} दिन में दोहराएँ"
-  ],
-  "Review now": [
-    "Repasar ahora",
-    "अभी दोहराएँ"
-  ],
-  "Review that knows what you forget": [
-    "Un repaso que sabe lo que olvidas",
-    "ऐसा रिवीज़न जो जानता है आप क्या भूलते हैं"
-  ],
-  "Review tomorrow": [
-    "Repasar mañana",
-    "कल दोहराएँ"
-  ],
-  "Reward claimed": [
-    "Recompensa reclamada",
-    "इनाम ले लिया गया"
-  ],
-  "Role-play a restaurant, an airport or a first hello. Kiko corrects gently and explains why.": [
-    "Practica en un restaurante, un aeropuerto o un primer saludo. Kiko corrige con tacto y explica por qué.",
-    "रेस्तराँ, हवाई अड्डे या पहली मुलाक़ात का अभ्यास करें। किको प्यार से सुधारता है और कारण समझाता है।"
-  ],
-  "Save": [
-    "Guardar",
-    "सहेजें"
-  ],
-  "Save useful phrases from tutor chats and they’ll appear here.": [
-    "Guarda frases útiles de tus chats con el tutor y aparecerán aquí.",
-    "ट्यूटर चैट से काम के वाक्यांश सहेजें, वे यहाँ दिखेंगे।"
-  ],
-  "Save your progress": [
-    "Guarda tu progreso",
-    "अपनी प्रगति सहेजें"
-  ],
-  "Saved": [
-    "Guardado",
-    "सहेजा गया"
-  ],
-  "Saving your progress…": [
-    "Guardando tu progreso…",
-    "आपकी प्रगति सहेजी जा रही है…"
-  ],
-  "Say sentences aloud and get word-by-word feedback": [
-    "Di frases en voz alta y recibe corrección palabra por palabra",
-    "वाक्य ज़ोर से बोलें और शब्द-दर-शब्द फ़ीडबैक पाएँ"
-  ],
-  "Say sentences aloud and get word-by-word feedback, right in your browser.": [
-    "Di frases en voz alta y recibe corrección palabra por palabra, en tu navegador.",
-    "वाक्य ज़ोर से बोलें और सीधे ब्राउज़र में शब्द-दर-शब्द फ़ीडबैक पाएँ।"
-  ],
-  "Scene finished": [
-    "Escena terminada",
-    "दृश्य समाप्त"
-  ],
-  "Search": [
-    "Buscar",
-    "खोजें"
-  ],
-  "Section {n}": [
-    "Sección {n}",
-    "खंड {n}"
-  ],
-  "See the leaderboard": [
-    "Ver la clasificación",
-    "लीडरबोर्ड देखें"
-  ],
-  "Seedling": [
-    "Semilla",
-    "बीज"
-  ],
-  "Send": [
-    "Enviar",
-    "भेजें"
-  ],
-  "Send reset link": [
-    "Enviar enlace de restablecimiento",
-    "रीसेट लिंक भेजें"
-  ],
-  "Session complete!": [
-    "¡Sesión completada!",
-    "सत्र पूरा!"
-  ],
-  "Settings": [
-    "Ajustes",
-    "सेटिंग्स"
-  ],
-  "Setup progress": [
-    "Progreso de la configuración",
-    "सेटअप की प्रगति"
-  ],
-  "Sharpening the saw": [
-    "Afilando la sierra",
-    "धार तेज़ करना"
-  ],
-  "Sharpshooter": [
-    "Puntería perfecta",
-    "अचूक निशानेबाज़"
-  ],
-  "Shopping": [
-    "Compras",
-    "खरीदारी"
-  ],
-  "Short dialogues that use what you’ve learned. Finish a unit to open its story.": [
-    "Diálogos cortos con lo que has aprendido. Termina una unidad para abrir su historia.",
-    "छोटे संवाद जो आपके सीखे हुए का उपयोग करते हैं। कहानी खोलने के लिए इकाई पूरी करें।"
-  ],
-  "Short dialogues with comprehension checks turn vocabulary into understanding.": [
-    "Los diálogos cortos con preguntas de comprensión convierten el vocabulario en entendimiento.",
-    "समझ जाँचने वाले छोटे संवाद शब्दावली को समझ में बदलते हैं।"
-  ],
-  "Site": [
-    "Sitio",
-    "साइट"
-  ],
-  "Skip to content": [
-    "Saltar al contenido",
-    "मुख्य सामग्री पर जाएँ"
-  ],
-  "Small talk about your day, family and food.": [
-    "Charla sobre tu día, tu familia y la comida.",
-    "अपने दिन, परिवार और खाने के बारे में हल्की-फुल्की बातचीत।"
-  ],
-  "Spanish": [
-    "Español",
-    "स्पेनिश"
-  ],
-  "Speak from day one": [
-    "Habla desde el primer día",
-    "पहले दिन से बोलें"
-  ],
-  "Speak your reply": [
-    "Di tu respuesta",
-    "अपना उत्तर बोलें"
-  ],
-  "Speakara is free — every lesson, story and tutor chat. No lives to run out, nothing to buy.": [
-    "Speakara es gratis: todas las lecciones, historias y chats con el tutor. Sin vidas que se agoten y sin nada que comprar.",
-    "Speakara मुफ़्त है — हर पाठ, कहानी और ट्यूटर चैट। न लाइफ़ खत्म होती है, न कुछ खरीदना पड़ता है।"
-  ],
-  "Speakara’s learning features are free for everyone. Gems are earned by learning and can’t be bought.": [
-    "Las funciones de aprendizaje de Speakara son gratis para todos. Las gemas se ganan aprendiendo y no se pueden comprar.",
-    "Speakara की सीखने की सुविधाएँ सबके लिए मुफ़्त हैं। रत्न सीखकर कमाए जाते हैं, खरीदे नहीं जा सकते।"
-  ],
-  "Speech recognition isn’t available right now.": [
-    "El reconocimiento de voz no está disponible ahora.",
-    "अभी स्पीच रिकग्निशन उपलब्ध नहीं है।"
-  ],
-  "Sprout": [
-    "Brote",
-    "अंकुर"
-  ],
-  "Start": [
-    "Empezar",
-    "शुरू"
-  ],
-  "Start a lesson": [
-    "Empezar una lección",
-    "पाठ शुरू करें"
-  ],
-  "Start as a guest": [
-    "Empezar como invitado",
-    "अतिथि के रूप में शुरू करें"
-  ],
-  "Start from the very first lesson": [
-    "Empieza desde la primera lección",
-    "सबसे पहले पाठ से शुरू करें"
-  ],
-  "Start learning": [
-    "Empezar a aprender",
-    "सीखना शुरू करें"
-  ],
-  "Start lesson": [
-    "Empezar lección",
-    "पाठ शुरू करें"
-  ],
-  "Start now": [
-    "Empieza ahora",
-    "अभी शुरू करें"
-  ],
-  "Start recording": [
-    "Empezar a grabar",
-    "रिकॉर्डिंग शुरू करें"
-  ],
-  "Statistics": [
-    "Estadísticas",
-    "आँकड़े"
-  ],
-  "Stop recording": [
-    "Detener la grabación",
-    "रिकॉर्डिंग रोकें"
-  ],
-  "Stories": [
-    "Historias",
-    "कहानियाँ"
-  ],
-  "Story": [
-    "Historia",
-    "कहानी"
-  ],
-  "Story progress": [
-    "Progreso de la historia",
-    "कहानी की प्रगति"
-  ],
-  "Streak freeze": [
-    "Protector de racha",
-    "स्ट्रीक फ़्रीज़"
-  ],
-  "Streaks, quests, leagues and achievements — and mistakes never lock you out.": [
-    "Rachas, misiones, ligas y logros; y los errores nunca te dejan fuera.",
-    "स्ट्रीक, मिशन, लीग और उपलब्धियाँ — और गलतियाँ आपको कभी नहीं रोकतीं।"
-  ],
-  "Strength {n} of 4": [
-    "Nivel {n} de 4",
-    "मज़बूती 4 में से {n}"
-  ],
-  "Strengthen what you’ve learned": [
-    "Refuerza lo que has aprendido",
-    "जो सीखा है उसे मज़बूत करें"
-  ],
-  "Take a 2-minute placement test to skip ahead": [
-    "Haz una prueba de nivel de 2 minutos para avanzar",
-    "आगे बढ़ने के लिए 2 मिनट की स्तर जाँच दें"
-  ],
-  "Take the placement test": [
-    "Hacer la prueba de nivel",
-    "स्तर जाँच दें"
-  ],
-  "Talk about your experience and strengths.": [
-    "Habla de tu experiencia y tus puntos fuertes.",
-    "अपने अनुभव और खूबियों के बारे में बात करें।"
-  ],
-  "Tap any line to see its translation.": [
-    "Toca cualquier línea para ver su traducción.",
-    "अनुवाद देखने के लिए किसी भी पंक्ति पर टैप करें।"
-  ],
-  "Tap the microphone and say the sentence": [
-    "Toca el micrófono y di la frase",
-    "माइक्रोफ़ोन दबाएँ और वाक्य बोलें"
-  ],
-  "Tap the microphone, say the sentence, then tap again to stop.": [
-    "Toca el micrófono, di la frase y toca otra vez para parar.",
-    "माइक्रोफ़ोन दबाएँ, वाक्य बोलें, फिर रोकने के लिए दोबारा दबाएँ।"
-  ],
-  "Taught in {lang}": [
-    "Se enseña en {lang}",
-    "{lang} में सिखाया जाता है"
-  ],
-  "That story isn’t part of this course.": [
-    "Esa historia no forma parte de este curso.",
-    "वह कहानी इस कोर्स का हिस्सा नहीं है।"
-  ],
-  "The audio didn’t play. Tap the speaker to try again, or skip listening for now.": [
-    "El audio no se reprodujo. Toca el altavoz para intentarlo de nuevo o salta la escucha por ahora.",
-    "ऑडियो नहीं चला। दोबारा कोशिश के लिए स्पीकर दबाएँ, या अभी सुनना छोड़ दें।"
-  ],
-  "The tutor couldn’t answer. Please try again.": [
-    "El tutor no pudo responder. Inténtalo de nuevo.",
-    "ट्यूटर उत्तर नहीं दे सका। कृपया फिर कोशिश करें।"
-  ],
-  "This browser can’t play speech. Use “Can’t listen now” to skip listening exercises.": [
-    "Este navegador no puede reproducir voz. Usa «No puedo escuchar ahora» para saltar los ejercicios de escucha.",
-    "यह ब्राउज़र आवाज़ नहीं चला सकता। सुनने के अभ्यास छोड़ने के लिए “अभी सुन नहीं सकता” चुनें।"
-  ],
-  "This browser can’t record or recognise speech. Tap “Can’t speak now” to continue — Chrome, Edge and Safari support speaking exercises.": [
-    "Este navegador no puede grabar ni reconocer la voz. Toca «No puedo hablar ahora» para continuar. Chrome, Edge y Safari admiten ejercicios de habla.",
-    "यह ब्राउज़र आवाज़ रिकॉर्ड या पहचान नहीं सकता। जारी रखने के लिए “अभी बोल नहीं सकता” दबाएँ — Chrome, Edge और Safari में बोलने के अभ्यास चलते हैं।"
-  ],
-  "This changes menus and instructions. You can learn any course in any interface language.": [
-    "Esto cambia los menús y las instrucciones. Puedes aprender cualquier curso con cualquier idioma de interfaz.",
-    "इससे मेन्यू और निर्देश बदलते हैं। आप किसी भी इंटरफ़ेस भाषा में कोई भी कोर्स सीख सकते हैं।"
-  ],
-  "This clears all learning progress stored on this device. It cannot be undone.": [
-    "Esto borra todo el progreso guardado en este dispositivo. No se puede deshacer.",
-    "इससे इस डिवाइस पर सहेजी सारी प्रगति मिट जाएगी। इसे वापस नहीं किया जा सकता।"
-  ],
-  "This is a starter course with one unit. More units are added as they pass content review.": [
-    "Este es un curso inicial con una unidad. Se añadirán más unidades cuando superen la revisión de contenido.",
-    "यह एक इकाई वाला शुरुआती कोर्स है। सामग्री समीक्षा के बाद और इकाइयाँ जोड़ी जाएँगी।"
-  ],
-  "This permanently deletes your account and all your learning data. It cannot be undone.": [
-    "Esto elimina de forma permanente tu cuenta y todos tus datos de aprendizaje. No se puede deshacer.",
-    "इससे आपका खाता और सीखने का सारा डेटा हमेशा के लिए हट जाएगा। इसे वापस नहीं किया जा सकता।"
-  ],
-  "This reset link has expired or was already used. Request a new one.": [
-    "Este enlace ha caducado o ya se usó. Solicita uno nuevo.",
-    "यह रीसेट लिंक समाप्त हो चुका है या पहले इस्तेमाल हो चुका है। नया लिंक माँगें।"
-  ],
-  "This scene isn’t available in this course yet.": [
-    "Esta escena aún no está disponible en este curso.",
-    "यह दृश्य इस कोर्स में अभी उपलब्ध नहीं है।"
-  ],
-  "This site isn’t connected to an account server, so Speakara runs in guest mode: everything works and your progress is saved on this device.": [
-    "Este sitio no está conectado a un servidor de cuentas, así que Speakara funciona en modo invitado: todo funciona y tu progreso se guarda en este dispositivo.",
-    "यह साइट किसी खाता सर्वर से जुड़ी नहीं है, इसलिए Speakara अतिथि मोड में चलता है: सब कुछ काम करता है और आपकी प्रगति इस डिवाइस पर सहेजी जाती है।"
-  ],
-  "This starter course doesn’t have stories yet. They’re added as each unit passes content review.": [
-    "Este curso inicial aún no tiene historias. Se añaden cuando cada unidad supera la revisión de contenido.",
-    "इस शुरुआती कोर्स में अभी कहानियाँ नहीं हैं। हर इकाई की सामग्री समीक्षा के बाद वे जोड़ी जाती हैं।"
-  ],
-  "This starter course has one unit, so everyone begins at lesson one": [
-    "Este curso inicial tiene una unidad, así que todos empiezan en la lección uno",
-    "इस शुरुआती कोर्स में एक इकाई है, इसलिए सब पहले पाठ से शुरू करते हैं"
-  ],
-  "Time learning": [
-    "Tiempo de aprendizaje",
-    "सीखने का समय"
-  ],
-  "Tips": [
-    "Consejos",
-    "सुझाव"
-  ],
-  "Today’s goals and your badges": [
-    "Las metas de hoy y tus insignias",
-    "आज के लक्ष्य और आपके बैज"
-  ],
-  "Today’s quests": [
-    "Misiones de hoy",
-    "आज के मिशन"
-  ],
-  "Total XP": [
-    "XP totales",
-    "कुल XP"
-  ],
-  "Train your ear: tap or type what you hear": [
-    "Entrena el oído: toca o escribe lo que oyes",
-    "कान को अभ्यास दें: जो सुनें उसे टैप करें या लिखें"
-  ],
-  "Transcript": [
-    "Transcripción",
-    "प्रतिलिपि"
-  ],
-  "Travel": [
-    "Viajes",
-    "यात्रा"
-  ],
-  "Try again": [
-    "Intentar de nuevo",
-    "फिर कोशिश करें"
-  ],
-  "Try it first without an account": [
-    "Pruébalo primero sin cuenta",
-    "पहले बिना खाते के आज़माएँ"
-  ],
-  "Tutor & role-play": [
-    "Tutor y juegos de rol",
-    "ट्यूटर और रोल-प्ले"
-  ],
-  "Type full sentences in both directions": [
-    "Escribe frases completas en ambos sentidos",
-    "दोनों दिशाओं में पूरे वाक्य लिखें"
-  ],
-  "Type in {lang}": [
-    "Escribe en {lang}",
-    "{lang} में लिखें"
-  ],
-  "Type what you hear": [
-    "Escribe lo que oyes",
-    "जो सुनें वह लिखें"
-  ],
-  "Unfollow {name}": [
-    "Dejar de seguir a {name}",
-    "{name} को अनफ़ॉलो करें"
-  ],
-  "Unit {n}": [
-    "Unidad {n}",
-    "इकाई {n}"
-  ],
-  "University": [
-    "Universidad",
-    "विश्वविद्यालय"
-  ],
-  "Useful phrases from this chat": [
-    "Frases útiles de este chat",
-    "इस चैट के काम के वाक्यांश"
-  ],
-  "Username": [
-    "Nombre de usuario",
-    "यूज़रनेम"
-  ],
-  "View all": [
-    "Ver todo",
-    "सभी देखें"
-  ],
-  "Vocabulary notebook": [
-    "Cuaderno de vocabulario",
-    "शब्दावली नोटबुक"
-  ],
-  "Walking dictionary": [
-    "Diccionario andante",
-    "चलता-फिरता शब्दकोश"
-  ],
-  "Warming up": [
-    "Calentando",
-    "शुरुआत हो गई"
-  ],
-  "We couldn’t save that session": [
-    "No pudimos guardar esa sesión",
-    "हम वह सत्र सहेज नहीं पाए"
-  ],
-  "Weekly XP, reset every Monday. Leagues are for fun — nothing is ever locked behind them.": [
-    "XP semanales, se reinician cada lunes. Las ligas son por diversión: nunca bloquean nada.",
-    "साप्ताहिक XP, हर सोमवार रीसेट। लीग केवल मज़े के लिए हैं — इनके पीछे कुछ भी बंद नहीं है।"
-  ],
-  "What should I call you?": [
-    "¿Cómo te llamo?",
-    "मैं आपको क्या कहकर बुलाऊँ?"
-  ],
-  "Word bank": [
-    "Banco de palabras",
-    "शब्द भंडार"
-  ],
-  "Word collector": [
-    "Coleccionista de palabras",
-    "शब्द संग्राहक"
-  ],
-  "Word strength": [
-    "Dominio de palabras",
-    "शब्दों की मज़बूती"
-  ],
-  "Words": [
-    "Palabras",
-    "शब्द"
-  ],
-  "Words to fill the blank": [
-    "Palabras para rellenar el hueco",
-    "खाली जगह भरने के शब्द"
-  ],
-  "Words you miss come back for review automatically": [
-    "Las palabras que falles volverán para repasarlas automáticamente",
-    "जो शब्द छूटते हैं वे अपने आप दोहराने के लिए लौट आते हैं"
-  ],
-  "XP this week": [
-    "XP de esta semana",
-    "इस हफ़्ते के XP"
-  ],
-  "Yes, delete everything": [
-    "Sí, eliminar todo",
-    "हाँ, सब कुछ हटा दें"
-  ],
-  "Yes, erase my progress": [
-    "Sí, borrar mi progreso",
-    "हाँ, मेरी प्रगति मिटा दें"
-  ],
-  "You can come back any time — there’s no penalty, but this session’s progress won’t be saved.": [
-    "Puedes volver cuando quieras. No hay penalización, pero el progreso de esta sesión no se guardará.",
-    "आप कभी भी लौट सकते हैं — कोई दंड नहीं, पर इस सत्र की प्रगति सहेजी नहीं जाएगी।"
-  ],
-  "You have a small typo:": [
-    "Tienes un pequeño error de escritura:",
-    "एक छोटी टाइपिंग गलती है:"
-  ],
-  "You need 80% to jump ahead. The lessons before this point will get you there quickly.": [
-    "Necesitas un 80 % para saltar. Las lecciones anteriores te llevarán hasta ahí rápidamente.",
-    "आगे बढ़ने के लिए 80% चाहिए। इससे पहले के पाठ आपको जल्दी वहाँ पहुँचा देंगे।"
-  ],
-  "You seem to be offline. Check your connection and try again.": [
-    "Parece que no tienes conexión. Compruébala e inténtalo de nuevo.",
-    "लगता है आप ऑफ़लाइन हैं। अपना कनेक्शन जाँचें और फिर कोशिश करें।"
-  ],
-  "Your answer is empty.": [
-    "Tu respuesta está vacía.",
-    "आपका उत्तर खाली है।"
-  ],
-  "Your answer so far: {answer}": [
-    "Tu respuesta hasta ahora: {answer}",
-    "अब तक आपका उत्तर: {answer}"
-  ],
-  "Your answer — tap a word to remove it": [
-    "Tu respuesta: toca una palabra para quitarla",
-    "आपका उत्तर — हटाने के लिए शब्द पर टैप करें"
-  ],
-  "Your device has no {lang} voice installed, so audio may sound wrong or stay silent. You can skip listening exercises.": [
-    "Tu dispositivo no tiene una voz de {lang} instalada, así que el audio puede sonar mal o no oírse. Puedes saltar los ejercicios de escucha.",
-    "आपके डिवाइस में {lang} की आवाज़ नहीं है, इसलिए ऑडियो गलत सुनाई दे सकता है या चुप रह सकता है। आप सुनने के अभ्यास छोड़ सकते हैं।"
-  ],
-  "Your name": [
-    "Tu nombre",
-    "आपका नाम"
-  ],
-  "Your notebook fills up as you learn.": [
-    "Tu cuaderno se llena a medida que aprendes.",
-    "जैसे-जैसे आप सीखते हैं, आपकी नोटबुक भरती जाती है।"
-  ],
-  "Your progress": [
-    "Tu progreso",
-    "आपकी प्रगति"
-  ],
-  "Your progress syncs to your account.": [
-    "Tu progreso se sincroniza con tu cuenta.",
-    "आपकी प्रगति आपके खाते से सिंक होती है।"
-  ],
-  "Your recording": [
-    "Tu grabación",
-    "आपकी रिकॉर्डिंग"
-  ],
-  "Your reply": [
-    "Tu respuesta",
-    "आपका उत्तर"
-  ],
-  "Your translation": [
-    "Tu traducción",
-    "आपका अनुवाद"
-  ],
-  "You’re in guest mode, so this board shows practice bots, not real learners. Log in to join real weekly leagues.": [
-    "Estás en modo invitado, así que esta tabla muestra bots de práctica, no estudiantes reales. Inicia sesión para unirte a ligas semanales reales.",
-    "आप अतिथि मोड में हैं, इसलिए यह बोर्ड असली शिक्षार्थी नहीं, अभ्यास बॉट दिखाता है। असली साप्ताहिक लीग में शामिल होने के लिए लॉग इन करें।"
-  ],
-  "You’re learning as a guest. Create an account to sync across devices.": [
-    "Estás aprendiendo como invitado. Crea una cuenta para sincronizar entre dispositivos.",
-    "आप अतिथि के रूप में सीख रहे हैं। सभी डिवाइस पर सिंक के लिए खाता बनाएँ।"
-  ],
-  "a day": [
-    "al día",
-    "प्रतिदिन"
-  ],
-  "about {n} min a day": [
-    "unos {n} min al día",
-    "रोज़ लगभग {n} मिनट"
-  ],
-  "blank": [
-    "hueco",
-    "खाली जगह"
-  ],
-  "completed — practise again": [
-    "completada: practicar de nuevo",
-    "पूरा हुआ — फिर अभ्यास करें"
-  ],
-  "heard": [
-    "oída",
-    "सुना गया"
-  ],
-  "locked": [
-    "bloqueada",
-    "बंद"
-  ],
-  "not heard": [
-    "no oída",
-    "नहीं सुना गया"
-  ],
-  "practice bot": [
-    "bot de práctica",
-    "अभ्यास बॉट"
-  ],
-  "start": [
-    "empezar",
-    "शुरू करें"
-  ],
-  "starter course": [
-    "curso inicial",
-    "शुरुआती कोर्स"
-  ],
-  "starting at Unit {n}": [
-    "empezando en la unidad {n}",
-    "इकाई {n} से शुरुआत"
-  ],
-  "try another": [
-    "prueba otra",
-    "दूसरा आज़माएँ"
-  ],
-  "try the highlighted words again.": [
-    "intenta de nuevo las palabras resaltadas.",
-    "हाइलाइट किए गए शब्द फिर से बोलें।"
-  ],
-  "waiting": [
-    "pendientes",
-    "बाकी"
-  ],
-  "you": [
-    "tú",
-    "आप"
-  ],
-  "{league} League": [
-    "Liga {league}",
-    "{league} लीग"
-  ],
-  "{met} of {total} words met": [
-    "{met} de {total} palabras conocidas",
-    "{total} में से {met} शब्द सीखे"
-  ],
-  "{n} XP this week": [
-    "{n} XP esta semana",
-    "इस हफ़्ते {n} XP"
-  ],
-  "{n} exercises · about {m} minutes": [
-    "{n} ejercicios · unos {m} minutos",
-    "{n} अभ्यास · लगभग {m} मिनट"
-  ],
-  "{n} gems": [
-    "{n} gemas",
-    "{n} रत्न"
-  ],
-  "{n} lessons": [
-    "{n} lecciones",
-    "{n} पाठ"
-  ],
-  "{n} min": [
-    "{n} min",
-    "{n} मिनट"
-  ],
-  "{n} replies": [
-    "{n} respuestas",
-    "{n} उत्तर"
-  ],
-  "{n} seconds left": [
-    "Quedan {n} segundos",
-    "{n} सेकंड बाकी"
-  ],
-  "{n} total XP": [
-    "{n} XP en total",
-    "कुल {n} XP"
-  ],
-  "{n} words are due for review": [
-    "{n} palabras para repasar",
-    "{n} शब्द दोहराने हैं"
-  ],
-  "{n}-day streak": [
-    "Racha de {n} días",
-    "{n} दिन की स्ट्रीक"
-  ],
-  "{n}-day streak!": [
-    "¡Racha de {n} días!",
-    "{n} दिन की स्ट्रीक!"
-  ],
-  "Learn": [
-    "Aprender",
-    "सीखें"
-  ],
-  "Practice": [
-    "Práctica",
-    "अभ्यास"
-  ],
-  "Tutor": [
-    "Tutor",
-    "ट्यूटर"
-  ],
-  "Leagues": [
-    "Ligas",
-    "लीग"
-  ],
-  "Quests": [
-    "Misiones",
-    "मिशन"
-  ],
-  "Admin": [
-    "Administración",
-    "प्रशासन"
-  ],
-  "Connect with people": [
-    "Conectar con personas",
-    "लोगों से जुड़ना"
-  ],
-  "Boost my career": [
-    "Impulsar mi carrera",
-    "करियर आगे बढ़ाना"
-  ],
-  "Support my studies": [
-    "Apoyar mis estudios",
-    "पढ़ाई में मदद"
-  ],
-  "Keep my mind sharp": [
-    "Mantener la mente activa",
-    "दिमाग़ तेज़ रखना"
-  ],
-  "Just for fun": [
-    "Solo por diversión",
-    "बस मज़े के लिए"
-  ],
-  "Casual": [
-    "Relajado",
-    "हल्का"
-  ],
-  "Regular": [
-    "Regular",
-    "नियमित"
-  ],
-  "Serious": [
-    "Serio",
-    "गंभीर"
-  ],
-  "Intense": [
-    "Intenso",
-    "गहन"
-  ],
-  "Hi, I’m Kiko! I change colour when you learn something new.": [
-    "¡Hola, soy Kiko! Cambio de color cuando aprendes algo nuevo.",
-    "नमस्ते, मैं किको हूँ! जब आप कुछ नया सीखते हैं तो मैं रंग बदलता हूँ।"
-  ],
-  "Which language should I speak to you in?": [
-    "¿En qué idioma quieres que te hable?",
-    "मैं आपसे किस भाषा में बात करूँ?"
-  ],
-  "What would you like to learn?": [
-    "¿Qué te gustaría aprender?",
-    "आप क्या सीखना चाहेंगे?"
-  ],
-  "Why are you learning? I’ll keep it in mind.": [
-    "¿Por qué estás aprendiendo? Lo tendré en cuenta.",
-    "आप क्यों सीख रहे हैं? मैं इसे ध्यान में रखूँगा।"
-  ],
-  "How much {lang} do you know?": [
-    "¿Cuánto {lang} sabes?",
-    "आपको {lang} कितनी आती है?"
-  ],
-  "Pick a daily target. Small and steady wins.": [
-    "Elige un objetivo diario. Poco a poco se llega lejos.",
-    "एक दैनिक लक्ष्य चुनें। थोड़ा-थोड़ा, लगातार — यही जीत है।"
-  ],
-  "Your plan is ready!": [
-    "¡Tu plan está listo!",
-    "आपकी योजना तैयार है!"
-  ],
-  "What does this mean?": [
-    "¿Qué significa esto?",
-    "इसका क्या मतलब है?"
-  ],
-  "How do you say this in {lang}?": [
-    "¿Cómo se dice esto en {lang}?",
-    "इसे {lang} में कैसे कहते हैं?"
-  ],
-  "Translate this sentence": [
-    "Traduce esta frase",
-    "इस वाक्य का अनुवाद करें"
-  ],
-  "Write this in {lang}": [
-    "Escribe esto en {lang}",
-    "इसे {lang} में लिखें"
-  ],
-  "Tap what you hear": [
-    "Toca lo que oyes",
-    "जो सुनें उस पर टैप करें"
-  ],
-  "Speak this sentence": [
-    "Di esta frase",
-    "यह वाक्य बोलें"
-  ],
-  "Tap the matching pairs": [
-    "Toca los pares que coinciden",
-    "मिलते-जुलते जोड़ों पर टैप करें"
-  ],
-  "Fill in the blank": [
-    "Rellena el hueco",
-    "खाली जगह भरें"
-  ],
-  "Nice!": [
-    "¡Bien!",
-    "बढ़िया!"
-  ],
-  "Great job!": [
-    "¡Buen trabajo!",
-    "बहुत अच्छे!"
-  ],
-  "Exactly!": [
-    "¡Exacto!",
-    "बिल्कुल सही!"
-  ],
-  "You got it!": [
-    "¡Lo tienes!",
-    "आपने कर दिखाया!"
-  ],
-  "Well done!": [
-    "¡Bien hecho!",
-    "शाबाश!"
-  ],
-  "Smart review": [
-    "Repaso inteligente",
-    "स्मार्ट रिवीज़न"
-  ],
-  "Fix my mistakes": [
-    "Corregir mis errores",
-    "मेरी गलतियाँ सुधारें"
-  ],
-  "Listening & dictation": [
-    "Escucha y dictado",
-    "सुनना और श्रुतलेख"
-  ],
-  "Speaking & pronunciation": [
-    "Habla y pronunciación",
-    "बोलना और उच्चारण"
-  ],
-  "Writing": [
-    "Escritura",
-    "लेखन"
-  ],
-  "Match rush": [
-    "Parejas contrarreloj",
-    "मिलान दौड़"
-  ],
-  "All": [
-    "Todas",
-    "सभी"
-  ],
-  "Due": [
-    "Pendientes",
-    "बाकी"
-  ],
-  "Weak": [
-    "Débiles",
-    "कमज़ोर"
-  ],
-  "Saved phrases": [
-    "Frases guardadas",
-    "सहेजे गए वाक्यांश"
-  ],
-  "Mastered": [
-    "Dominadas",
-    "पूरी तरह सीखे"
-  ],
-  "Strong": [
-    "Fuertes",
-    "मज़बूत"
-  ],
-  "Growing": [
-    "En progreso",
-    "बढ़ते हुए"
-  ],
-  "New": [
-    "Nuevas",
-    "नए"
-  ],
-  "Needs review": [
-    "Necesitan repaso",
-    "दोहराना ज़रूरी"
-  ],
-  "Sound effects & auto-play audio": [
-    "Efectos de sonido y audio automático",
-    "ध्वनि प्रभाव और अपने-आप चलने वाला ऑडियो"
-  ],
-  "Chimes for answers and automatic sentence audio": [
-    "Sonidos al responder y audio automático de las frases",
-    "उत्तर पर ध्वनि और वाक्यों का अपने-आप ऑडियो"
-  ],
-  "Slower audio": [
-    "Audio más lento",
-    "धीमा ऑडियो"
-  ],
-  "Play sentences at three-quarter speed": [
-    "Reproduce las frases a tres cuartos de velocidad",
-    "वाक्य तीन-चौथाई गति से चलाएँ"
-  ],
-  "Speaking exercises": [
-    "Ejercicios de habla",
-    "बोलने के अभ्यास"
-  ],
-  "Turn off if you can’t use a microphone": [
-    "Desactívalos si no puedes usar un micrófono",
-    "अगर माइक्रोफ़ोन इस्तेमाल नहीं कर सकते तो बंद करें"
-  ],
-  "Animations": [
-    "Animaciones",
-    "एनिमेशन"
-  ],
-  "Celebrations and movement. Your device’s reduced-motion setting is always respected": [
-    "Celebraciones y movimiento. Siempre se respeta el ajuste de movimiento reducido de tu dispositivo",
-    "जश्न और हलचल। आपके डिवाइस की कम-गति सेटिंग का हमेशा पालन होता है"
-  ],
-  "Public profile": [
-    "Perfil público",
-    "सार्वजनिक प्रोफ़ाइल"
-  ],
-  "Let other learners find you by username and see your name on leaderboards": [
-    "Permite que otros estudiantes te encuentren por tu nombre de usuario y vean tu nombre en las clasificaciones",
-    "दूसरे शिक्षार्थियों को यूज़रनेम से आपको खोजने और लीडरबोर्ड पर आपका नाम देखने दें"
-  ],
-  "Create your free profile": [
-    "Crea tu perfil gratis",
-    "अपनी मुफ़्त प्रोफ़ाइल बनाएँ"
-  ],
-  "Welcome back": [
-    "Bienvenido de nuevo",
-    "वापसी पर स्वागत है"
-  ],
-  "Reset your password": [
-    "Restablece tu contraseña",
-    "अपना पासवर्ड रीसेट करें"
-  ],
-  "Choose a new password": [
-    "Elige una nueva contraseña",
-    "नया पासवर्ड चुनें"
-  ],
-  "Save new password": [
-    "Guardar nueva contraseña",
-    "नया पासवर्ड सहेजें"
-  ],
-  "That email and password don’t match. Check them and try again.": [
-    "Ese correo y esa contraseña no coinciden. Revísalos e inténtalo de nuevo.",
-    "यह ईमेल और पासवर्ड मेल नहीं खाते। जाँचकर फिर कोशिश करें।"
-  ],
-  "An account with that email already exists. Log in instead.": [
-    "Ya existe una cuenta con ese correo. Inicia sesión.",
-    "इस ईमेल से खाता पहले से मौजूद है। लॉग इन करें।"
-  ],
-  "Please confirm your email first — check your inbox for our message.": [
-    "Primero confirma tu correo: busca nuestro mensaje en tu bandeja de entrada.",
-    "पहले अपना ईमेल पुष्टि करें — इनबॉक्स में हमारा संदेश देखें।"
-  ],
-  "Too many attempts. Please wait a few minutes and try again.": [
-    "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
-    "बहुत ज़्यादा प्रयास हुए। कुछ मिनट रुककर फिर कोशिश करें।"
-  ],
-  "Enter a valid email address.": [
-    "Introduce un correo electrónico válido.",
-    "मान्य ईमेल पता लिखें।"
-  ],
-  "Use a password of at least 8 characters.": [
-    "Usa una contraseña de al menos 8 caracteres.",
-    "कम से कम 8 अक्षरों का पासवर्ड रखें।"
-  ],
-  "Choose a password you haven’t used before.": [
-    "Elige una contraseña que no hayas usado antes.",
-    "ऐसा पासवर्ड चुनें जो पहले इस्तेमाल न किया हो।"
-  ],
-  "Usernames are 3–20 characters: lowercase letters, numbers or underscores.": [
-    "Los nombres de usuario tienen entre 3 y 20 caracteres: minúsculas, números o guiones bajos.",
-    "यूज़रनेम 3–20 अक्षरों का हो: छोटे अंग्रेज़ी अक्षर, अंक या अंडरस्कोर।"
-  ],
-  "Almost there! We’ve sent a confirmation link to your email. Open it, then log in.": [
-    "¡Casi listo! Te hemos enviado un enlace de confirmación por correo. Ábrelo y luego inicia sesión.",
-    "बस थोड़ा और! हमने आपके ईमेल पर पुष्टि लिंक भेजा है। उसे खोलें, फिर लॉग इन करें।"
-  ],
-  "If an account exists for that email, a reset link is on its way. Check your inbox.": [
-    "Si existe una cuenta con ese correo, te llegará un enlace para restablecer la contraseña. Revisa tu bandeja de entrada.",
-    "अगर इस ईमेल का खाता है, तो रीसेट लिंक भेजा जा रहा है। अपना इनबॉक्स देखें।"
-  ],
-  "Your password has been changed.": [
-    "Tu contraseña se ha cambiado.",
-    "आपका पासवर्ड बदल दिया गया है।"
-  ],
-  "That lesson doesn’t exist in this course.": [
-    "Esa lección no existe en este curso.",
-    "यह पाठ इस कोर्स में नहीं है।"
-  ],
-  "That session does not exist.": [
-    "Esa sesión no existe.",
-    "वह सत्र मौजूद नहीं है।"
-  ],
-  "No mistakes waiting — you’ve cleared them all!": [
-    "No hay errores pendientes: ¡los has resuelto todos!",
-    "कोई गलती बाकी नहीं — आपने सब सुधार लीं!"
-  ],
-  "Finish your first lesson and practice will be ready for you.": [
-    "Termina tu primera lección y la práctica estará lista.",
-    "अपना पहला पाठ पूरा करें, फिर अभ्यास तैयार होगा।"
-  ],
-  "You jumped ahead!": [
-    "¡Has avanzado!",
-    "आप आगे बढ़ गए!"
-  ],
-  "Practice makes it stick.": [
-    "La práctica lo afianza.",
-    "अभ्यास से ही याद पक्का होता है।"
-  ],
-  "Your session has expired. Please log in again.": [
-    "Tu sesión ha caducado. Inicia sesión de nuevo.",
-    "आपका सत्र समाप्त हो गया है। कृपया फिर से लॉग इन करें।"
-  ],
-  "You seem to be offline. Your answers are safe on this screen — check your connection and try again.": [
-    "Parece que no tienes conexión. Tus respuestas están a salvo en esta pantalla: comprueba la conexión e inténtalo de nuevo.",
-    "लगता है आप ऑफ़लाइन हैं। आपके उत्तर इस स्क्रीन पर सुरक्षित हैं — कनेक्शन जाँचें और फिर कोशिश करें।"
-  ],
-  "Something went wrong saving your progress. Please try again.": [
-    "Algo salió mal al guardar tu progreso. Inténtalo de nuevo.",
-    "प्रगति सहेजने में कुछ गड़बड़ हुई। कृपया फिर कोशिश करें।"
-  ],
-  "That was quick! Give it a few seconds and try again.": [
-    "¡Qué rápido! Espera unos segundos e inténtalo de nuevo.",
-    "यह बहुत जल्दी था! कुछ सेकंड रुककर फिर कोशिश करें।"
-  ],
-  "Your progress changed on another device. Please try again.": [
-    "Tu progreso cambió en otro dispositivo. Inténtalo de nuevo.",
-    "आपकी प्रगति दूसरे डिवाइस पर बदली है। कृपया फिर कोशिश करें।"
-  ],
-  "That lesson is still locked.": [
-    "Esa lección sigue bloqueada.",
-    "वह पाठ अभी बंद है।"
-  ],
-  "Finish the unit to open its story.": [
-    "Termina la unidad para abrir su historia.",
-    "कहानी खोलने के लिए इकाई पूरी करें।"
-  ],
-  "You need 50 gems and a free freeze slot.": [
-    "Necesitas 50 gemas y un hueco libre para el protector.",
-    "आपको 50 रत्न और एक खाली फ़्रीज़ स्लॉट चाहिए।"
-  ],
-  "This session was already saved.": [
-    "Esta sesión ya estaba guardada.",
-    "यह सत्र पहले ही सहेजा जा चुका है।"
-  ],
-  "Accounts are not configured on this deployment.": [
-    "Las cuentas no están configuradas en este sitio.",
-    "इस साइट पर खाते सेट नहीं किए गए हैं।"
-  ],
-  "Progress saving is not configured on this deployment.": [
-    "El guardado de progreso no está configurado en este sitio.",
-    "इस साइट पर प्रगति सहेजना सेट नहीं है।"
-  ],
-  "Your profile could not be found. Please contact support.": [
-    "No se encontró tu perfil. Ponte en contacto con soporte.",
-    "आपकी प्रोफ़ाइल नहीं मिली। कृपया सहायता से संपर्क करें।"
-  ],
-  "I couldn’t hear you. You can type instead.": [
-    "No pude oírte. Puedes escribir en su lugar.",
-    "मैं आपको सुन नहीं पाया। आप लिख भी सकते हैं।"
-  ],
-  "You’re practising fast! Take a short breather and try again in a few minutes.": [
-    "¡Practicas muy rápido! Tómate un respiro e inténtalo de nuevo en unos minutos.",
-    "आप बहुत तेज़ अभ्यास कर रहे हैं! थोड़ा रुकें और कुछ मिनट बाद फिर कोशिश करें।"
-  ],
-  "German": [
-    "alemán",
-    "जर्मन"
-  ],
-  "Korean": [
-    "coreano",
-    "कोरियाई"
-  ],
-  "Italian": [
-    "italiano",
-    "इतालवी"
-  ],
-  "Russian": [
-    "ruso",
-    "रूसी"
-  ]
+ "A few minutes is all it takes.": [
+  "Unos minutos son suficientes.",
+  "बस कुछ मिनट काफ़ी हैं।"
+ ],
+ "A streak freeze covered the days you missed.": [
+  "Un protector de racha cubrió los días que faltaste.",
+  "स्ट्रीक फ़्रीज़ ने आपके छूटे हुए दिन संभाल लिए।"
+ ],
+ "A transparent spaced-repetition schedule brings words back just before they slip away.": [
+  "Un sistema transparente de repetición espaciada te devuelve las palabras justo antes de que las olvides.",
+  "एक पारदर्शी स्पेस्ड-रिपिटिशन व्यवस्था शब्दों को भूलने से ठीक पहले वापस लाती है।"
+ ],
+ "A tutor who never gets tired": [
+  "Un tutor que nunca se cansa",
+  "एक ट्यूटर जो कभी नहीं थकता"
+ ],
+ "AI tutor connected: open-ended conversation with corrections is on for every scenario.": [
+  "Tutor de IA conectado: conversación libre con correcciones en todos los escenarios.",
+  "AI ट्यूटर जुड़ा है: हर परिदृश्य में सुधारों के साथ खुली बातचीत चालू है।"
+ ],
+ "About": [
+  "Acerca de",
+  "परिचय"
+ ],
+ "Account": [
+  "Cuenta",
+  "खाता"
+ ],
+ "Accuracy": [
+  "Precisión",
+  "सटीकता"
+ ],
+ "Achievement unlocked:": [
+  "Logro desbloqueado:",
+  "उपलब्धि मिली:"
+ ],
+ "Achievements": [
+  "Logros",
+  "उपलब्धियाँ"
+ ],
+ "Airport": [
+  "Aeropuerto",
+  "हवाई अड्डा"
+ ],
+ "All of it.": [
+  "Completo.",
+  "पूरी की पूरी।"
+ ],
+ "All stories": [
+  "Todas las historias",
+  "सभी कहानियाँ"
+ ],
+ "Already learning with us?": [
+  "¿Ya aprendes con nosotros?",
+  "क्या आप पहले से हमारे साथ सीख रहे हैं?"
+ ],
+ "An independent, free language-learning project.": [
+  "Un proyecto independiente y gratuito para aprender idiomas.",
+  "भाषा सीखने की एक स्वतंत्र और मुफ़्त परियोजना।"
+ ],
+ "Answer choices": [
+  "Opciones de respuesta",
+  "उत्तर के विकल्प"
+ ],
+ "Answer to continue": [
+  "Responde para continuar",
+  "आगे बढ़ने के लिए उत्तर दें"
+ ],
+ "Ask Kiko why": [
+  "Pregúntale a Kiko por qué",
+  "किको से पूछें क्यों"
+ ],
+ "Ask for directions and buy tickets.": [
+  "Pide indicaciones y compra billetes.",
+  "रास्ता पूछें और टिकट खरीदें।"
+ ],
+ "Ask for prices, sizes and colours.": [
+  "Pregunta precios, tallas y colores.",
+  "दाम, नाप और रंग पूछें।"
+ ],
+ "Back": [
+  "Atrás",
+  "वापस"
+ ],
+ "Back to learning": [
+  "Volver a aprender",
+  "सीखने पर वापस जाएँ"
+ ],
+ "Back to log in": [
+  "Volver a iniciar sesión",
+  "लॉग इन पर वापस जाएँ"
+ ],
+ "Back to scenarios": [
+  "Volver a los escenarios",
+  "परिदृश्यों पर वापस जाएँ"
+ ],
+ "Back to the path": [
+  "Volver a la ruta",
+  "पथ पर वापस जाएँ"
+ ],
+ "Best-attempt accuracy": [
+  "Precisión de tu mejor intento",
+  "सर्वश्रेष्ठ प्रयास की सटीकता"
+ ],
+ "Better:": [
+  "Mejor:",
+  "बेहतर:"
+ ],
+ "Bite-sized lessons, stories, speaking practice and a patient tutor. No lives that run out, no locked lessons, no subscription — ever.": [
+  "Lecciones breves, historias, práctica oral y un tutor paciente. Sin vidas que se agotan, sin lecciones bloqueadas, sin suscripción. Nunca.",
+  "छोटे-छोटे पाठ, कहानियाँ, बोलने का अभ्यास और एक धैर्यवान ट्यूटर। न खत्म होने वाली लाइफ़, न बंद पाठ, न कोई सब्सक्रिप्शन — कभी नहीं।"
+ ],
+ "Bloom": [
+  "Flor",
+  "फूल"
+ ],
+ "Bookworm": [
+  "Ratón de biblioteca",
+  "किताबी कीड़ा"
+ ],
+ "Cancel": [
+  "Cancelar",
+  "रद्द करें"
+ ],
+ "Canopy": [
+  "Bosque",
+  "वन"
+ ],
+ "Can’t listen now": [
+  "No puedo escuchar ahora",
+  "अभी सुन नहीं सकता"
+ ],
+ "Can’t speak now": [
+  "No puedo hablar ahora",
+  "अभी बोल नहीं सकता"
+ ],
+ "Century": [
+  "Centena",
+  "शतक"
+ ],
+ "Check": [
+  "Comprobar",
+  "जाँचें"
+ ],
+ "Check in, ask about breakfast and fix a problem.": [
+  "Regístrate, pregunta por el desayuno y resuelve un problema.",
+  "चेक-इन करें, नाश्ते के बारे में पूछें और समस्या सुलझाएँ।"
+ ],
+ "Check in, find your gate and handle delays.": [
+  "Factura, encuentra tu puerta y gestiona retrasos.",
+  "चेक-इन करें, अपना गेट खोजें और देरी संभालें।"
+ ],
+ "Claim 20 gems": [
+  "Reclamar 20 gemas",
+  "20 रत्न लें"
+ ],
+ "Close story": [
+  "Cerrar historia",
+  "कहानी बंद करें"
+ ],
+ "Complete 5 practice sessions": [
+  "Completa 5 sesiones de práctica",
+  "5 अभ्यास सत्र पूरे करें"
+ ],
+ "Complete your first lesson": [
+  "Completa tu primera lección",
+  "अपना पहला पाठ पूरा करें"
+ ],
+ "Complete {n} lessons": [
+  "Completa {n} lecciones",
+  "{n} पाठ पूरे करें"
+ ],
+ "Content review": [
+  "Revisión de contenido",
+  "सामग्री समीक्षा"
+ ],
+ "Continue": [
+  "Continuar",
+  "जारी रखें"
+ ],
+ "Continue learning": [
+  "Seguir aprendiendo",
+  "सीखना जारी रखें"
+ ],
+ "Conversation": [
+  "Conversación",
+  "बातचीत"
+ ],
+ "Conversation history": [
+  "Historial de conversaciones",
+  "बातचीत का इतिहास"
+ ],
+ "Correct answer:": [
+  "Respuesta correcta:",
+  "सही उत्तर:"
+ ],
+ "Couldn’t load the leaderboard.": [
+  "No se pudo cargar la clasificación.",
+  "लीडरबोर्ड लोड नहीं हो सका।"
+ ],
+ "Couldn’t sync with the server:": [
+  "No se pudo sincronizar con el servidor:",
+  "सर्वर से सिंक नहीं हो सका:"
+ ],
+ "Course": [
+  "Curso",
+  "कोर्स"
+ ],
+ "Course: {course}. Change course": [
+  "Curso: {course}. Cambiar de curso",
+  "कोर्स: {course}। कोर्स बदलें"
+ ],
+ "Create a free account": [
+  "Crea una cuenta gratis",
+  "मुफ़्त खाता बनाएँ"
+ ],
+ "Create a free account to keep your streak on every device.": [
+  "Crea una cuenta gratis para conservar tu racha en todos tus dispositivos.",
+  "हर डिवाइस पर अपनी स्ट्रीक बनाए रखने के लिए मुफ़्त खाता बनाएँ।"
+ ],
+ "Create account": [
+  "Crear cuenta",
+  "खाता बनाएँ"
+ ],
+ "Daily goal": [
+  "Meta diaria",
+  "दैनिक लक्ष्य"
+ ],
+ "Daily quests": [
+  "Misiones diarias",
+  "दैनिक मिशन"
+ ],
+ "Daily target": [
+  "Objetivo diario",
+  "दैनिक लक्ष्य"
+ ],
+ "Day streak": [
+  "Días de racha",
+  "दिनों की स्ट्रीक"
+ ],
+ "Delete account": [
+  "Eliminar cuenta",
+  "खाता हटाएँ"
+ ],
+ "Delete your account?": [
+  "¿Eliminar tu cuenta?",
+  "क्या आप अपना खाता हटाना चाहते हैं?"
+ ],
+ "Display name": [
+  "Nombre visible",
+  "दिखने वाला नाम"
+ ],
+ "Do one practice session": [
+  "Haz una sesión de práctica",
+  "एक अभ्यास सत्र करें"
+ ],
+ "Done": [
+  "Hecho",
+  "पूरा"
+ ],
+ "Earn 100 XP": [
+  "Gana 100 XP",
+  "100 XP कमाएँ"
+ ],
+ "Earn 500 XP": [
+  "Gana 500 XP",
+  "500 XP कमाएँ"
+ ],
+ "Earn {n} XP": [
+  "Gana {n} XP",
+  "{n} XP कमाएँ"
+ ],
+ "Earn {n} XP together with {name} this week": [
+  "Gana {n} XP junto con {name} esta semana",
+  "इस हफ़्ते {name} के साथ मिलकर {n} XP कमाएँ"
+ ],
+ "Education shouldn’t have a checkout page.": [
+  "La educación no debería tener caja de pago.",
+  "शिक्षा के लिए भुगतान पेज नहीं होना चाहिए।"
+ ],
+ "Eight exercise types — tap, type, listen, speak, match — mixed into five-minute sessions.": [
+  "Ocho tipos de ejercicios —tocar, escribir, escuchar, hablar, emparejar— combinados en sesiones de cinco minutos.",
+  "आठ तरह के अभ्यास — टैप करना, लिखना, सुनना, बोलना, मिलान करना — पाँच मिनट के सत्रों में।"
+ ],
+ "Email": [
+  "Correo electrónico",
+  "ईमेल"
+ ],
+ "End session": [
+  "Terminar sesión",
+  "सत्र समाप्त करें"
+ ],
+ "English": [
+  "Inglés",
+  "अंग्रेज़ी"
+ ],
+ "Erase your progress?": [
+  "¿Borrar tu progreso?",
+  "क्या आप अपनी प्रगति मिटाना चाहते हैं?"
+ ],
+ "Every practice mode is free and unlimited.": [
+  "Todos los modos de práctica son gratis e ilimitados.",
+  "हर अभ्यास मोड मुफ़्त और असीमित है।"
+ ],
+ "Every word you’ve met, with strength": [
+  "Todas las palabras que has visto, con su nivel",
+  "आपके सीखे हर शब्द, उनकी मज़बूती के साथ"
+ ],
+ "Everyday conversation": [
+  "Conversación cotidiana",
+  "रोज़मर्रा की बातचीत"
+ ],
+ "Everything you need to actually speak": [
+  "Todo lo que necesitas para hablar de verdad",
+  "सच में बोल पाने के लिए ज़रूरी सब कुछ"
+ ],
+ "Explain": [
+  "Explicar",
+  "समझाएँ"
+ ],
+ "Features": [
+  "Funciones",
+  "सुविधाएँ"
+ ],
+ "Filter words": [
+  "Filtrar palabras",
+  "शब्द छाँटें"
+ ],
+ "Find by username": [
+  "Buscar por nombre de usuario",
+  "यूज़रनेम से खोजें"
+ ],
+ "Finish 5 lessons with no mistakes": [
+  "Termina 5 lecciones sin errores",
+  "बिना गलती के 5 पाठ पूरे करें"
+ ],
+ "Finish Unit {n} to open": [
+  "Termina la unidad {n} para abrirla",
+  "खोलने के लिए इकाई {n} पूरी करें"
+ ],
+ "Finish a lesson to earn your first badge.": [
+  "Termina una lección para ganar tu primera insignia.",
+  "अपना पहला बैज पाने के लिए एक पाठ पूरा करें।"
+ ],
+ "Finish a lesson with no mistakes": [
+  "Termina una lección sin errores",
+  "बिना गलती के एक पाठ पूरा करें"
+ ],
+ "Finish story": [
+  "Terminar historia",
+  "कहानी पूरी करें"
+ ],
+ "First steps": [
+  "Primeros pasos",
+  "पहले कदम"
+ ],
+ "Flawless": [
+  "Impecable",
+  "बेदाग़"
+ ],
+ "Follow a friend to see their XP and streak here. When you follow each other you get a weekly friends quest.": [
+  "Sigue a un amigo para ver aquí sus XP y su racha. Si os seguís mutuamente, tendréis una misión de amigos semanal.",
+  "किसी दोस्त को फ़ॉलो करें और यहाँ उनका XP और स्ट्रीक देखें। जब आप दोनों एक-दूसरे को फ़ॉलो करते हैं तो आपको साप्ताहिक मित्र मिशन मिलता है।"
+ ],
+ "Follow {name}": [
+  "Seguir a {name}",
+  "{name} को फ़ॉलो करें"
+ ],
+ "Following": [
+  "Siguiendo",
+  "फ़ॉलो कर रहे हैं"
+ ],
+ "Footer": [
+  "Pie de página",
+  "फ़ुटर"
+ ],
+ "Forgot your password?": [
+  "¿Olvidaste tu contraseña?",
+  "पासवर्ड भूल गए?"
+ ],
+ "Free forever: unlimited mistakes, all features": [
+  "Gratis para siempre: errores ilimitados y todas las funciones",
+  "हमेशा मुफ़्त: असीमित गलतियाँ, सारी सुविधाएँ"
+ ],
+ "French": [
+  "Francés",
+  "फ़्रेंच"
+ ],
+ "Friends": [
+  "Amigos",
+  "दोस्त"
+ ],
+ "Friends need an account, and this site isn’t connected to an account server.": [
+  "Los amigos requieren una cuenta, y este sitio no está conectado a un servidor de cuentas.",
+  "दोस्तों के लिए खाता ज़रूरी है, और यह साइट किसी खाता सर्वर से जुड़ी नहीं है।"
+ ],
+ "Friends quests": [
+  "Misiones de amigos",
+  "मित्र मिशन"
+ ],
+ "Gems": [
+  "Gemas",
+  "रत्न"
+ ],
+ "Get": [
+  "Obtener",
+  "लें"
+ ],
+ "Get a table, order food and ask for the check.": [
+  "Consigue una mesa, pide comida y pide la cuenta.",
+  "टेबल लें, खाना ऑर्डर करें और बिल माँगें।"
+ ],
+ "Get started": [
+  "Empezar",
+  "शुरू करें"
+ ],
+ "Goal reached — anything more is a bonus! 🎉": [
+  "¡Meta alcanzada! Todo lo demás es un extra. 🎉",
+  "लक्ष्य पूरा — अब जो भी करें वह बोनस है! 🎉"
+ ],
+ "Green bars are days you reached your daily goal.": [
+  "Las barras verdes son los días en que alcanzaste tu meta diaria.",
+  "हरी पट्टियाँ वे दिन हैं जब आपने अपना दैनिक लक्ष्य पूरा किया।"
+ ],
+ "Grove": [
+  "Arboleda",
+  "उपवन"
+ ],
+ "Guest mode": [
+  "Modo invitado",
+  "अतिथि मोड"
+ ],
+ "Guest · saved on this device": [
+  "Invitado · guardado en este dispositivo",
+  "अतिथि · इस डिवाइस पर सहेजा गया"
+ ],
+ "Guidebook": [
+  "Guía",
+  "मार्गदर्शिका"
+ ],
+ "Habit formed": [
+  "Hábito creado",
+  "आदत बन गई"
+ ],
+ "Have a conversation with the tutor": [
+  "Mantén una conversación con el tutor",
+  "ट्यूटर के साथ बातचीत करें"
+ ],
+ "Hear the sentence": [
+  "Escuchar la frase",
+  "वाक्य सुनें"
+ ],
+ "Hear this line": [
+  "Escuchar esta línea",
+  "यह पंक्ति सुनें"
+ ],
+ "Hear this message": [
+  "Escuchar este mensaje",
+  "यह संदेश सुनें"
+ ],
+ "Hear {word}": [
+  "Escuchar {word}",
+  "{word} सुनें"
+ ],
+ "Here’s what you’ll learn in this lesson.": [
+  "Esto es lo que aprenderás en esta lección.",
+  "इस पाठ में आप यह सीखेंगे।"
+ ],
+ "Hide explanation": [
+  "Ocultar explicación",
+  "व्याख्या छिपाएँ"
+ ],
+ "Hindi": [
+  "Hindi",
+  "हिन्दी"
+ ],
+ "Hotel": [
+  "Hotel",
+  "होटल"
+ ],
+ "I already have an account": [
+  "Ya tengo una cuenta",
+  "मेरे पास पहले से खाता है"
+ ],
+ "I didn’t catch that — tap the microphone and try again.": [
+  "No te he oído bien. Toca el micrófono e inténtalo de nuevo.",
+  "मैं सुन नहीं पाया — माइक्रोफ़ोन दबाकर फिर कोशिश करें।"
+ ],
+ "I heard:": [
+  "He oído:",
+  "मैंने सुना:"
+ ],
+ "I know some already": [
+  "Ya sé un poco",
+  "मुझे थोड़ा आता है"
+ ],
+ "I need more practice": [
+  "Necesito practicar más",
+  "मुझे और अभ्यास चाहिए"
+ ],
+ "I said it well": [
+  "Lo dije bien",
+  "मैंने ठीक बोला"
+ ],
+ "Ice breaker": [
+  "Rompehielos",
+  "पहली बातचीत"
+ ],
+ "Interface language": [
+  "Idioma de la interfaz",
+  "इंटरफ़ेस की भाषा"
+ ],
+ "Introduce yourself and ask simple questions.": [
+  "Preséntate y haz preguntas sencillas.",
+  "अपना परिचय दें और सरल सवाल पूछें।"
+ ],
+ "I’m new to {lang}": [
+  "Soy principiante en {lang}",
+  "मैं {lang} में नया हूँ"
+ ],
+ "Job interview": [
+  "Entrevista de trabajo",
+  "नौकरी का इंटरव्यू"
+ ],
+ "Joined {date}": [
+  "Se unió en {date}",
+  "{date} में शामिल हुए"
+ ],
+ "Keep learning": [
+  "Seguir aprendiendo",
+  "सीखते रहें"
+ ],
+ "Key phrases": [
+  "Frases clave",
+  "मुख्य वाक्यांश"
+ ],
+ "Kiko is running scripted scenes with instant feedback. Open-ended AI conversation switches on when this site is connected to an AI provider.": [
+  "Kiko usa escenas guiadas con corrección inmediata. La conversación libre con IA se activa cuando este sitio se conecta a un proveedor de IA.",
+  "किको तुरंत फ़ीडबैक वाले तैयार दृश्य चला रहा है। जब यह साइट किसी AI प्रदाता से जुड़ेगी तब खुली AI बातचीत चालू होगी।"
+ ],
+ "Kiko is thinking…": [
+  "Kiko está pensando…",
+  "किको सोच रहा है…"
+ ],
+ "Kiko is typing…": [
+  "Kiko está escribiendo…",
+  "किको लिख रहा है…"
+ ],
+ "Know this already? Jump here": [
+  "¿Ya lo sabes? Salta aquí",
+  "यह पहले से आता है? यहाँ से शुरू करें"
+ ],
+ "League": [
+  "Liga",
+  "लीग"
+ ],
+ "League tiers": [
+  "Niveles de liga",
+  "लीग के स्तर"
+ ],
+ "Learn a language for free.": [
+  "Aprende un idioma gratis.",
+  "मुफ़्त में भाषा सीखें।"
+ ],
+ "Learner": [
+  "Estudiante",
+  "शिक्षार्थी"
+ ],
+ "Learners you could follow": [
+  "Estudiantes a los que podrías seguir",
+  "जिन्हें आप फ़ॉलो कर सकते हैं"
+ ],
+ "Learning goal": [
+  "Objetivo de aprendizaje",
+  "सीखने का उद्देश्य"
+ ],
+ "Leave this session?": [
+  "¿Salir de esta sesión?",
+  "क्या यह सत्र छोड़ना चाहते हैं?"
+ ],
+ "Leave without saving": [
+  "Salir sin guardar",
+  "बिना सहेजे छोड़ें"
+ ],
+ "Lesson experience": [
+  "Experiencia de lección",
+  "पाठ का अनुभव"
+ ],
+ "Lesson progress": [
+  "Progreso de la lección",
+  "पाठ की प्रगति"
+ ],
+ "Lessons completed": [
+  "Lecciones completadas",
+  "पूरे किए गए पाठ"
+ ],
+ "Lessons that fit in a coffee break": [
+  "Lecciones que caben en una pausa para el café",
+  "चाय के ब्रेक जितने छोटे पाठ"
+ ],
+ "Let’s try again": [
+  "Intentémoslo otra vez",
+  "फिर से कोशिश करें"
+ ],
+ "Listen to yourself, compare with the model, then tell us how it went.": [
+  "Escúchate, compárate con el modelo y dinos cómo te fue.",
+  "खुद को सुनें, नमूने से तुलना करें, फिर बताएँ कैसा रहा।"
+ ],
+ "Listening…": [
+  "Escuchando…",
+  "सुन रहा हूँ…"
+ ],
+ "Loading…": [
+  "Cargando…",
+  "लोड हो रहा है…"
+ ],
+ "Log in": [
+  "Iniciar sesión",
+  "लॉग इन"
+ ],
+ "Log in to follow friends and compare progress.": [
+  "Inicia sesión para seguir a tus amigos y comparar vuestro progreso.",
+  "दोस्तों को फ़ॉलो करने और प्रगति की तुलना करने के लिए लॉग इन करें।"
+ ],
+ "Log out": [
+  "Cerrar sesión",
+  "लॉग आउट"
+ ],
+ "Longest: {n} days · Any session keeps it alive.": [
+  "Más larga: {n} días · Cualquier sesión la mantiene viva.",
+  "सबसे लंबी: {n} दिन · कोई भी सत्र इसे बनाए रखता है।"
+ ],
+ "Main": [
+  "Principal",
+  "मुख्य"
+ ],
+ "Match as many pairs as you can in 90 seconds": [
+  "Empareja todos los pares que puedas en 90 segundos",
+  "90 सेकंड में जितने हो सकें उतने जोड़े मिलाएँ"
+ ],
+ "Matched: {a} and {b}": [
+  "Emparejado: {a} y {b}",
+  "मिलान हुआ: {a} और {b}"
+ ],
+ "Meanings": [
+  "Significados",
+  "अर्थ"
+ ],
+ "Meet 25 words": [
+  "Conoce 25 palabras",
+  "25 शब्द सीखें"
+ ],
+ "Meet 50 words": [
+  "Conoce 50 palabras",
+  "50 शब्द सीखें"
+ ],
+ "Meet classmates and talk about your studies.": [
+  "Conoce a tus compañeros y habla de tus estudios.",
+  "सहपाठियों से मिलें और अपनी पढ़ाई के बारे में बात करें।"
+ ],
+ "Meeting new people": [
+  "Conocer gente nueva",
+  "नए लोगों से मिलना"
+ ],
+ "Microphone access is blocked. Allow the microphone for this site in your browser’s address bar, then try again.": [
+  "El acceso al micrófono está bloqueado. Permite el micrófono para este sitio en la barra de direcciones del navegador e inténtalo de nuevo.",
+  "माइक्रोफ़ोन की अनुमति बंद है। ब्राउज़र के एड्रेस बार में इस साइट के लिए माइक्रोफ़ोन की अनुमति दें, फिर दोबारा कोशिश करें।"
+ ],
+ "Mind the accents:": [
+  "Cuidado con las tildes:",
+  "मात्राओं/एक्सेंट का ध्यान रखें:"
+ ],
+ "More ways to learn": [
+  "Más formas de aprender",
+  "सीखने के और तरीके"
+ ],
+ "Motivation without pressure": [
+  "Motivación sin presión",
+  "बिना दबाव के प्रेरणा"
+ ],
+ "Name": [
+  "Nombre",
+  "नाम"
+ ],
+ "New here?": [
+  "¿Eres nuevo?",
+  "यहाँ नए हैं?"
+ ],
+ "New password": [
+  "Nueva contraseña",
+  "नया पासवर्ड"
+ ],
+ "New quests every day. Rewards are earned by learning — nothing here is for sale.": [
+  "Misiones nuevas cada día. Las recompensas se ganan aprendiendo: aquí no se vende nada.",
+  "हर दिन नए मिशन। इनाम सीखकर मिलते हैं — यहाँ कुछ भी बिकता नहीं।"
+ ],
+ "New words": [
+  "Palabras nuevas",
+  "नए शब्द"
+ ],
+ "No learner with that username.": [
+  "No hay ningún estudiante con ese nombre de usuario.",
+  "इस यूज़रनेम वाला कोई शिक्षार्थी नहीं मिला।"
+ ],
+ "No microphone was found on this device.": [
+  "No se encontró ningún micrófono en este dispositivo.",
+  "इस डिवाइस पर कोई माइक्रोफ़ोन नहीं मिला।"
+ ],
+ "No one else has earned XP this week yet. You’re first!": [
+  "Nadie más ha ganado XP esta semana. ¡Vas en primer lugar!",
+  "इस हफ़्ते अभी तक किसी और ने XP नहीं कमाया। आप सबसे आगे हैं!"
+ ],
+ "Not a match. Try again.": [
+  "No coinciden. Inténtalo de nuevo.",
+  "मिलान नहीं हुआ। फिर कोशिश करें।"
+ ],
+ "Not quite — here’s the answer": [
+  "Casi. Esta es la respuesta",
+  "लगभग सही — यह रहा उत्तर"
+ ],
+ "Not yet — and that’s useful to know": [
+  "Todavía no, y es útil saberlo",
+  "अभी नहीं — और यह जानना भी काम का है"
+ ],
+ "Nothing here right now.": [
+  "No hay nada aquí por ahora.",
+  "अभी यहाँ कुछ नहीं है।"
+ ],
+ "Nothing to fix right now": [
+  "Nada que corregir por ahora",
+  "अभी सुधारने को कुछ नहीं"
+ ],
+ "One moment…": [
+  "Un momento…",
+  "एक क्षण…"
+ ],
+ "One whole week": [
+  "Una semana entera",
+  "पूरा एक हफ़्ता"
+ ],
+ "Password": [
+  "Contraseña",
+  "पासवर्ड"
+ ],
+ "Perfect session!": [
+  "¡Sesión perfecta!",
+  "शानदार सत्र!"
+ ],
+ "Placement done — you start at Unit {n}.": [
+  "Prueba de nivel completada: empiezas en la unidad {n}.",
+  "स्तर जाँच पूरी — आप इकाई {n} से शुरू करेंगे।"
+ ],
+ "Play audio": [
+  "Reproducir audio",
+  "ऑडियो चलाएँ"
+ ],
+ "Play slowly": [
+  "Reproducir despacio",
+  "धीरे चलाएँ"
+ ],
+ "Play the sentence": [
+  "Reproducir la frase",
+  "वाक्य चलाएँ"
+ ],
+ "Powerhouse": [
+  "Imparable",
+  "ऊर्जा का भंडार"
+ ],
+ "Practice hub": [
+  "Centro de práctica",
+  "अभ्यास केंद्र"
+ ],
+ "Practise real conversations. Free, with no message cap for normal use.": [
+  "Practica conversaciones reales. Gratis y sin límite de mensajes para un uso normal.",
+  "असली बातचीत का अभ्यास करें। मुफ़्त, सामान्य उपयोग के लिए संदेशों की कोई सीमा नहीं।"
+ ],
+ "Practise these words": [
+  "Practicar estas palabras",
+  "इन शब्दों का अभ्यास करें"
+ ],
+ "Practise {n} words": [
+  "Practica {n} palabras",
+  "{n} शब्दों का अभ्यास करें"
+ ],
+ "Prior knowledge": [
+  "Conocimientos previos",
+  "पहले की जानकारी"
+ ],
+ "Privacy": [
+  "Privacidad",
+  "गोपनीयता"
+ ],
+ "Profile": [
+  "Perfil",
+  "प्रोफ़ाइल"
+ ],
+ "Progress is kept separately for every course. XP, gems and your streak are shared.": [
+  "El progreso se guarda por separado en cada curso. Los XP, las gemas y la racha son compartidos.",
+  "हर कोर्स की प्रगति अलग रखी जाती है। XP, रत्न और स्ट्रीक साझा रहते हैं।"
+ ],
+ "Progress is saved on this device.": [
+  "El progreso se guarda en este dispositivo.",
+  "प्रगति इस डिवाइस पर सहेजी जाती है।"
+ ],
+ "Pronunciation check": [
+  "Comprobación de pronunciación",
+  "उच्चारण जाँच"
+ ],
+ "Protects your streak for one missed day. Costs {cost} gems; you have {have}.": [
+  "Protege tu racha un día que faltes. Cuesta {cost} gemas; tienes {have}.",
+  "एक छूटे दिन के लिए आपकी स्ट्रीक बचाता है। कीमत {cost} रत्न; आपके पास {have} हैं।"
+ ],
+ "Quest complete:": [
+  "Misión completada:",
+  "मिशन पूरा:"
+ ],
+ "Quests & rewards": [
+  "Misiones y recompensas",
+  "मिशन और इनाम"
+ ],
+ "Quit session": [
+  "Salir de la sesión",
+  "सत्र छोड़ें"
+ ],
+ "Reach a 3-day streak": [
+  "Alcanza una racha de 3 días",
+  "3 दिन की स्ट्रीक बनाएँ"
+ ],
+ "Reach a 30-day streak": [
+  "Alcanza una racha de 30 días",
+  "30 दिन की स्ट्रीक बनाएँ"
+ ],
+ "Reach a 7-day streak": [
+  "Alcanza una racha de 7 días",
+  "7 दिन की स्ट्रीक बनाएँ"
+ ],
+ "Read a story": [
+  "Lee una historia",
+  "एक कहानी पढ़ें"
+ ],
+ "Read again": [
+  "Leer de nuevo",
+  "फिर पढ़ें"
+ ],
+ "Read short dialogues": [
+  "Lee diálogos cortos",
+  "छोटे संवाद पढ़ें"
+ ],
+ "Read the guidebook first": [
+  "Leer primero la guía",
+  "पहले मार्गदर्शिका पढ़ें"
+ ],
+ "Read your first story": [
+  "Lee tu primera historia",
+  "अपनी पहली कहानी पढ़ें"
+ ],
+ "Record yourself instead and compare with the model.": [
+  "Grábate y compárate con el modelo.",
+  "इसके बजाय खुद को रिकॉर्ड करें और नमूने से तुलना करें।"
+ ],
+ "Recording… tap to stop": [
+  "Grabando… toca para parar",
+  "रिकॉर्ड हो रहा है… रोकने के लिए टैप करें"
+ ],
+ "Remove {word}": [
+  "Quitar {word}",
+  "{word} हटाएँ"
+ ],
+ "Reset progress": [
+  "Restablecer progreso",
+  "प्रगति रीसेट करें"
+ ],
+ "Restaurant": [
+  "Restaurante",
+  "रेस्तराँ"
+ ],
+ "Retry the sentences you missed": [
+  "Repite las frases que fallaste",
+  "जो वाक्य गलत हुए उन्हें दोबारा करें"
+ ],
+ "Review in {n} days": [
+  "Repaso en {n} días",
+  "{n} दिन में दोहराएँ"
+ ],
+ "Review now": [
+  "Repasar ahora",
+  "अभी दोहराएँ"
+ ],
+ "Review that knows what you forget": [
+  "Un repaso que sabe lo que olvidas",
+  "ऐसा रिवीज़न जो जानता है आप क्या भूलते हैं"
+ ],
+ "Review tomorrow": [
+  "Repasar mañana",
+  "कल दोहराएँ"
+ ],
+ "Reward claimed": [
+  "Recompensa reclamada",
+  "इनाम ले लिया गया"
+ ],
+ "Role-play a restaurant, an airport or a first hello. Kiko corrects gently and explains why.": [
+  "Practica en un restaurante, un aeropuerto o un primer saludo. Kiko corrige con tacto y explica por qué.",
+  "रेस्तराँ, हवाई अड्डे या पहली मुलाक़ात का अभ्यास करें। किको प्यार से सुधारता है और कारण समझाता है।"
+ ],
+ "Save": [
+  "Guardar",
+  "सहेजें"
+ ],
+ "Save useful phrases from tutor chats and they’ll appear here.": [
+  "Guarda frases útiles de tus chats con el tutor y aparecerán aquí.",
+  "ट्यूटर चैट से काम के वाक्यांश सहेजें, वे यहाँ दिखेंगे।"
+ ],
+ "Save your progress": [
+  "Guarda tu progreso",
+  "अपनी प्रगति सहेजें"
+ ],
+ "Saved": [
+  "Guardado",
+  "सहेजा गया"
+ ],
+ "Saving your progress…": [
+  "Guardando tu progreso…",
+  "आपकी प्रगति सहेजी जा रही है…"
+ ],
+ "Say sentences aloud and get word-by-word feedback": [
+  "Di frases en voz alta y recibe corrección palabra por palabra",
+  "वाक्य ज़ोर से बोलें और शब्द-दर-शब्द फ़ीडबैक पाएँ"
+ ],
+ "Say sentences aloud and get word-by-word feedback, right in your browser.": [
+  "Di frases en voz alta y recibe corrección palabra por palabra, en tu navegador.",
+  "वाक्य ज़ोर से बोलें और सीधे ब्राउज़र में शब्द-दर-शब्द फ़ीडबैक पाएँ।"
+ ],
+ "Scene finished": [
+  "Escena terminada",
+  "दृश्य समाप्त"
+ ],
+ "Search": [
+  "Buscar",
+  "खोजें"
+ ],
+ "Section {n}": [
+  "Sección {n}",
+  "खंड {n}"
+ ],
+ "See the leaderboard": [
+  "Ver la clasificación",
+  "लीडरबोर्ड देखें"
+ ],
+ "Seedling": [
+  "Semilla",
+  "बीज"
+ ],
+ "Send": [
+  "Enviar",
+  "भेजें"
+ ],
+ "Send reset link": [
+  "Enviar enlace de restablecimiento",
+  "रीसेट लिंक भेजें"
+ ],
+ "Session complete!": [
+  "¡Sesión completada!",
+  "सत्र पूरा!"
+ ],
+ "Settings": [
+  "Ajustes",
+  "सेटिंग्स"
+ ],
+ "Setup progress": [
+  "Progreso de la configuración",
+  "सेटअप की प्रगति"
+ ],
+ "Sharpening the saw": [
+  "Afilando la sierra",
+  "धार तेज़ करना"
+ ],
+ "Sharpshooter": [
+  "Puntería perfecta",
+  "अचूक निशानेबाज़"
+ ],
+ "Shopping": [
+  "Compras",
+  "खरीदारी"
+ ],
+ "Short dialogues that use what you’ve learned. Finish a unit to open its story.": [
+  "Diálogos cortos con lo que has aprendido. Termina una unidad para abrir su historia.",
+  "छोटे संवाद जो आपके सीखे हुए का उपयोग करते हैं। कहानी खोलने के लिए इकाई पूरी करें।"
+ ],
+ "Short dialogues with comprehension checks turn vocabulary into understanding.": [
+  "Los diálogos cortos con preguntas de comprensión convierten el vocabulario en entendimiento.",
+  "समझ जाँचने वाले छोटे संवाद शब्दावली को समझ में बदलते हैं।"
+ ],
+ "Site": [
+  "Sitio",
+  "साइट"
+ ],
+ "Skip to content": [
+  "Saltar al contenido",
+  "मुख्य सामग्री पर जाएँ"
+ ],
+ "Small talk about your day, family and food.": [
+  "Charla sobre tu día, tu familia y la comida.",
+  "अपने दिन, परिवार और खाने के बारे में हल्की-फुल्की बातचीत।"
+ ],
+ "Spanish": [
+  "Español",
+  "स्पेनिश"
+ ],
+ "Speak from day one": [
+  "Habla desde el primer día",
+  "पहले दिन से बोलें"
+ ],
+ "Speak your reply": [
+  "Di tu respuesta",
+  "अपना उत्तर बोलें"
+ ],
+ "Speakara is free — every lesson, story and tutor chat. No lives to run out, nothing to buy.": [
+  "Speakara es gratis: todas las lecciones, historias y chats con el tutor. Sin vidas que se agoten y sin nada que comprar.",
+  "Speakara मुफ़्त है — हर पाठ, कहानी और ट्यूटर चैट। न लाइफ़ खत्म होती है, न कुछ खरीदना पड़ता है।"
+ ],
+ "Speakara’s learning features are free for everyone. Gems are earned by learning and can’t be bought.": [
+  "Las funciones de aprendizaje de Speakara son gratis para todos. Las gemas se ganan aprendiendo y no se pueden comprar.",
+  "Speakara की सीखने की सुविधाएँ सबके लिए मुफ़्त हैं। रत्न सीखकर कमाए जाते हैं, खरीदे नहीं जा सकते।"
+ ],
+ "Speech recognition isn’t available right now.": [
+  "El reconocimiento de voz no está disponible ahora.",
+  "अभी स्पीच रिकग्निशन उपलब्ध नहीं है।"
+ ],
+ "Sprout": [
+  "Brote",
+  "अंकुर"
+ ],
+ "Start": [
+  "Empezar",
+  "शुरू"
+ ],
+ "Start a lesson": [
+  "Empezar una lección",
+  "पाठ शुरू करें"
+ ],
+ "Start as a guest": [
+  "Empezar como invitado",
+  "अतिथि के रूप में शुरू करें"
+ ],
+ "Start from the very first lesson": [
+  "Empieza desde la primera lección",
+  "सबसे पहले पाठ से शुरू करें"
+ ],
+ "Start learning": [
+  "Empezar a aprender",
+  "सीखना शुरू करें"
+ ],
+ "Start lesson": [
+  "Empezar lección",
+  "पाठ शुरू करें"
+ ],
+ "Start now": [
+  "Empieza ahora",
+  "अभी शुरू करें"
+ ],
+ "Start recording": [
+  "Empezar a grabar",
+  "रिकॉर्डिंग शुरू करें"
+ ],
+ "Statistics": [
+  "Estadísticas",
+  "आँकड़े"
+ ],
+ "Stop recording": [
+  "Detener la grabación",
+  "रिकॉर्डिंग रोकें"
+ ],
+ "Stories": [
+  "Historias",
+  "कहानियाँ"
+ ],
+ "Story": [
+  "Historia",
+  "कहानी"
+ ],
+ "Story progress": [
+  "Progreso de la historia",
+  "कहानी की प्रगति"
+ ],
+ "Streak freeze": [
+  "Protector de racha",
+  "स्ट्रीक फ़्रीज़"
+ ],
+ "Streaks, quests, leagues and achievements — and mistakes never lock you out.": [
+  "Rachas, misiones, ligas y logros; y los errores nunca te dejan fuera.",
+  "स्ट्रीक, मिशन, लीग और उपलब्धियाँ — और गलतियाँ आपको कभी नहीं रोकतीं।"
+ ],
+ "Strength {n} of 4": [
+  "Nivel {n} de 4",
+  "मज़बूती 4 में से {n}"
+ ],
+ "Strengthen what you’ve learned": [
+  "Refuerza lo que has aprendido",
+  "जो सीखा है उसे मज़बूत करें"
+ ],
+ "Take a 2-minute placement test to skip ahead": [
+  "Haz una prueba de nivel de 2 minutos para avanzar",
+  "आगे बढ़ने के लिए 2 मिनट की स्तर जाँच दें"
+ ],
+ "Take the placement test": [
+  "Hacer la prueba de nivel",
+  "स्तर जाँच दें"
+ ],
+ "Talk about your experience and strengths.": [
+  "Habla de tu experiencia y tus puntos fuertes.",
+  "अपने अनुभव और खूबियों के बारे में बात करें।"
+ ],
+ "Tap any line to see its translation.": [
+  "Toca cualquier línea para ver su traducción.",
+  "अनुवाद देखने के लिए किसी भी पंक्ति पर टैप करें।"
+ ],
+ "Tap the microphone and say the sentence": [
+  "Toca el micrófono y di la frase",
+  "माइक्रोफ़ोन दबाएँ और वाक्य बोलें"
+ ],
+ "Tap the microphone, say the sentence, then tap again to stop.": [
+  "Toca el micrófono, di la frase y toca otra vez para parar.",
+  "माइक्रोफ़ोन दबाएँ, वाक्य बोलें, फिर रोकने के लिए दोबारा दबाएँ।"
+ ],
+ "Taught in {lang}": [
+  "Se enseña en {lang}",
+  "{lang} में सिखाया जाता है"
+ ],
+ "That story isn’t part of this course.": [
+  "Esa historia no forma parte de este curso.",
+  "वह कहानी इस कोर्स का हिस्सा नहीं है।"
+ ],
+ "The audio didn’t play. Tap the speaker to try again, or skip listening for now.": [
+  "El audio no se reprodujo. Toca el altavoz para intentarlo de nuevo o salta la escucha por ahora.",
+  "ऑडियो नहीं चला। दोबारा कोशिश के लिए स्पीकर दबाएँ, या अभी सुनना छोड़ दें।"
+ ],
+ "The tutor couldn’t answer. Please try again.": [
+  "El tutor no pudo responder. Inténtalo de nuevo.",
+  "ट्यूटर उत्तर नहीं दे सका। कृपया फिर कोशिश करें।"
+ ],
+ "This browser can’t play speech. Use “Can’t listen now” to skip listening exercises.": [
+  "Este navegador no puede reproducir voz. Usa «No puedo escuchar ahora» para saltar los ejercicios de escucha.",
+  "यह ब्राउज़र आवाज़ नहीं चला सकता। सुनने के अभ्यास छोड़ने के लिए “अभी सुन नहीं सकता” चुनें।"
+ ],
+ "This browser can’t record or recognise speech. Tap “Can’t speak now” to continue — Chrome, Edge and Safari support speaking exercises.": [
+  "Este navegador no puede grabar ni reconocer la voz. Toca «No puedo hablar ahora» para continuar. Chrome, Edge y Safari admiten ejercicios de habla.",
+  "यह ब्राउज़र आवाज़ रिकॉर्ड या पहचान नहीं सकता। जारी रखने के लिए “अभी बोल नहीं सकता” दबाएँ — Chrome, Edge और Safari में बोलने के अभ्यास चलते हैं।"
+ ],
+ "This changes menus and instructions. You can learn any course in any interface language.": [
+  "Esto cambia los menús y las instrucciones. Puedes aprender cualquier curso con cualquier idioma de interfaz.",
+  "इससे मेन्यू और निर्देश बदलते हैं। आप किसी भी इंटरफ़ेस भाषा में कोई भी कोर्स सीख सकते हैं।"
+ ],
+ "This clears all learning progress stored on this device. It cannot be undone.": [
+  "Esto borra todo el progreso guardado en este dispositivo. No se puede deshacer.",
+  "इससे इस डिवाइस पर सहेजी सारी प्रगति मिट जाएगी। इसे वापस नहीं किया जा सकता।"
+ ],
+ "This is a starter course with one unit. More units are added as they pass content review.": [
+  "Este es un curso inicial con una unidad. Se añadirán más unidades cuando superen la revisión de contenido.",
+  "यह एक इकाई वाला शुरुआती कोर्स है। सामग्री समीक्षा के बाद और इकाइयाँ जोड़ी जाएँगी।"
+ ],
+ "This permanently deletes your account and all your learning data. It cannot be undone.": [
+  "Esto elimina de forma permanente tu cuenta y todos tus datos de aprendizaje. No se puede deshacer.",
+  "इससे आपका खाता और सीखने का सारा डेटा हमेशा के लिए हट जाएगा। इसे वापस नहीं किया जा सकता।"
+ ],
+ "This reset link has expired or was already used. Request a new one.": [
+  "Este enlace ha caducado o ya se usó. Solicita uno nuevo.",
+  "यह रीसेट लिंक समाप्त हो चुका है या पहले इस्तेमाल हो चुका है। नया लिंक माँगें।"
+ ],
+ "This scene isn’t available in this course yet.": [
+  "Esta escena aún no está disponible en este curso.",
+  "यह दृश्य इस कोर्स में अभी उपलब्ध नहीं है।"
+ ],
+ "This site isn’t connected to an account server, so Speakara runs in guest mode: everything works and your progress is saved on this device.": [
+  "Este sitio no está conectado a un servidor de cuentas, así que Speakara funciona en modo invitado: todo funciona y tu progreso se guarda en este dispositivo.",
+  "यह साइट किसी खाता सर्वर से जुड़ी नहीं है, इसलिए Speakara अतिथि मोड में चलता है: सब कुछ काम करता है और आपकी प्रगति इस डिवाइस पर सहेजी जाती है।"
+ ],
+ "This starter course doesn’t have stories yet. They’re added as each unit passes content review.": [
+  "Este curso inicial aún no tiene historias. Se añaden cuando cada unidad supera la revisión de contenido.",
+  "इस शुरुआती कोर्स में अभी कहानियाँ नहीं हैं। हर इकाई की सामग्री समीक्षा के बाद वे जोड़ी जाती हैं।"
+ ],
+ "This starter course has one unit, so everyone begins at lesson one": [
+  "Este curso inicial tiene una unidad, así que todos empiezan en la lección uno",
+  "इस शुरुआती कोर्स में एक इकाई है, इसलिए सब पहले पाठ से शुरू करते हैं"
+ ],
+ "Time learning": [
+  "Tiempo de aprendizaje",
+  "सीखने का समय"
+ ],
+ "Tips": [
+  "Consejos",
+  "सुझाव"
+ ],
+ "Today’s goals and your badges": [
+  "Las metas de hoy y tus insignias",
+  "आज के लक्ष्य और आपके बैज"
+ ],
+ "Today’s quests": [
+  "Misiones de hoy",
+  "आज के मिशन"
+ ],
+ "Total XP": [
+  "XP totales",
+  "कुल XP"
+ ],
+ "Train your ear: tap or type what you hear": [
+  "Entrena el oído: toca o escribe lo que oyes",
+  "कान को अभ्यास दें: जो सुनें उसे टैप करें या लिखें"
+ ],
+ "Transcript": [
+  "Transcripción",
+  "प्रतिलिपि"
+ ],
+ "Travel": [
+  "Viajes",
+  "यात्रा"
+ ],
+ "Try again": [
+  "Intentar de nuevo",
+  "फिर कोशिश करें"
+ ],
+ "Try it first without an account": [
+  "Pruébalo primero sin cuenta",
+  "पहले बिना खाते के आज़माएँ"
+ ],
+ "Tutor & role-play": [
+  "Tutor y juegos de rol",
+  "ट्यूटर और रोल-प्ले"
+ ],
+ "Type full sentences in both directions": [
+  "Escribe frases completas en ambos sentidos",
+  "दोनों दिशाओं में पूरे वाक्य लिखें"
+ ],
+ "Type in {lang}": [
+  "Escribe en {lang}",
+  "{lang} में लिखें"
+ ],
+ "Type what you hear": [
+  "Escribe lo que oyes",
+  "जो सुनें वह लिखें"
+ ],
+ "Unfollow {name}": [
+  "Dejar de seguir a {name}",
+  "{name} को अनफ़ॉलो करें"
+ ],
+ "Unit {n}": [
+  "Unidad {n}",
+  "इकाई {n}"
+ ],
+ "University": [
+  "Universidad",
+  "विश्वविद्यालय"
+ ],
+ "Useful phrases from this chat": [
+  "Frases útiles de este chat",
+  "इस चैट के काम के वाक्यांश"
+ ],
+ "Username": [
+  "Nombre de usuario",
+  "यूज़रनेम"
+ ],
+ "View all": [
+  "Ver todo",
+  "सभी देखें"
+ ],
+ "Vocabulary notebook": [
+  "Cuaderno de vocabulario",
+  "शब्दावली नोटबुक"
+ ],
+ "Walking dictionary": [
+  "Diccionario andante",
+  "चलता-फिरता शब्दकोश"
+ ],
+ "Warming up": [
+  "Calentando",
+  "शुरुआत हो गई"
+ ],
+ "We couldn’t save that session": [
+  "No pudimos guardar esa sesión",
+  "हम वह सत्र सहेज नहीं पाए"
+ ],
+ "Weekly XP, reset every Monday. Leagues are for fun — nothing is ever locked behind them.": [
+  "XP semanales, se reinician cada lunes. Las ligas son por diversión: nunca bloquean nada.",
+  "साप्ताहिक XP, हर सोमवार रीसेट। लीग केवल मज़े के लिए हैं — इनके पीछे कुछ भी बंद नहीं है।"
+ ],
+ "What should I call you?": [
+  "¿Cómo te llamo?",
+  "मैं आपको क्या कहकर बुलाऊँ?"
+ ],
+ "Word bank": [
+  "Banco de palabras",
+  "शब्द भंडार"
+ ],
+ "Word collector": [
+  "Coleccionista de palabras",
+  "शब्द संग्राहक"
+ ],
+ "Word strength": [
+  "Dominio de palabras",
+  "शब्दों की मज़बूती"
+ ],
+ "Words": [
+  "Palabras",
+  "शब्द"
+ ],
+ "Words to fill the blank": [
+  "Palabras para rellenar el hueco",
+  "खाली जगह भरने के शब्द"
+ ],
+ "Words you miss come back for review automatically": [
+  "Las palabras que falles volverán para repasarlas automáticamente",
+  "जो शब्द छूटते हैं वे अपने आप दोहराने के लिए लौट आते हैं"
+ ],
+ "XP this week": [
+  "XP de esta semana",
+  "इस हफ़्ते के XP"
+ ],
+ "Yes, delete everything": [
+  "Sí, eliminar todo",
+  "हाँ, सब कुछ हटा दें"
+ ],
+ "Yes, erase my progress": [
+  "Sí, borrar mi progreso",
+  "हाँ, मेरी प्रगति मिटा दें"
+ ],
+ "You can come back any time — there’s no penalty, but this session’s progress won’t be saved.": [
+  "Puedes volver cuando quieras. No hay penalización, pero el progreso de esta sesión no se guardará.",
+  "आप कभी भी लौट सकते हैं — कोई दंड नहीं, पर इस सत्र की प्रगति सहेजी नहीं जाएगी।"
+ ],
+ "You have a small typo:": [
+  "Tienes un pequeño error de escritura:",
+  "एक छोटी टाइपिंग गलती है:"
+ ],
+ "You need 80% to jump ahead. The lessons before this point will get you there quickly.": [
+  "Necesitas un 80 % para saltar. Las lecciones anteriores te llevarán hasta ahí rápidamente.",
+  "आगे बढ़ने के लिए 80% चाहिए। इससे पहले के पाठ आपको जल्दी वहाँ पहुँचा देंगे।"
+ ],
+ "You seem to be offline. Check your connection and try again.": [
+  "Parece que no tienes conexión. Compruébala e inténtalo de nuevo.",
+  "लगता है आप ऑफ़लाइन हैं। अपना कनेक्शन जाँचें और फिर कोशिश करें।"
+ ],
+ "Your answer is empty.": [
+  "Tu respuesta está vacía.",
+  "आपका उत्तर खाली है।"
+ ],
+ "Your answer so far: {answer}": [
+  "Tu respuesta hasta ahora: {answer}",
+  "अब तक आपका उत्तर: {answer}"
+ ],
+ "Your answer — tap a word to remove it": [
+  "Tu respuesta: toca una palabra para quitarla",
+  "आपका उत्तर — हटाने के लिए शब्द पर टैप करें"
+ ],
+ "Your device has no {lang} voice installed, so Speakara won’t read {lang} aloud here (it never substitutes another language’s voice). Use “Can’t listen now” to skip listening, or install a {lang} voice in your device settings.": [
+  "Tu dispositivo no tiene una voz de {lang} instalada, así que Speakara no leerá {lang} en voz alta aquí (nunca usa la voz de otro idioma). Usa «Ahora no puedo escuchar» para saltar la escucha, o instala una voz de {lang} en los ajustes del dispositivo.",
+  "आपके डिवाइस में {lang} की आवाज़ नहीं है, इसलिए Speakara यहाँ {lang} बोलकर नहीं सुनाएगा (यह कभी किसी दूसरी भाषा की आवाज़ इस्तेमाल नहीं करता)। सुनने के अभ्यास छोड़ने के लिए “अभी सुन नहीं सकता” चुनें, या डिवाइस सेटिंग में {lang} की आवाज़ इंस्टॉल करें।"
+ ],
+ "Your name": [
+  "Tu nombre",
+  "आपका नाम"
+ ],
+ "Your notebook fills up as you learn.": [
+  "Tu cuaderno se llena a medida que aprendes.",
+  "जैसे-जैसे आप सीखते हैं, आपकी नोटबुक भरती जाती है।"
+ ],
+ "Your progress": [
+  "Tu progreso",
+  "आपकी प्रगति"
+ ],
+ "Your progress syncs to your account.": [
+  "Tu progreso se sincroniza con tu cuenta.",
+  "आपकी प्रगति आपके खाते से सिंक होती है।"
+ ],
+ "Your recording": [
+  "Tu grabación",
+  "आपकी रिकॉर्डिंग"
+ ],
+ "Your reply": [
+  "Tu respuesta",
+  "आपका उत्तर"
+ ],
+ "Your translation": [
+  "Tu traducción",
+  "आपका अनुवाद"
+ ],
+ "You’re in guest mode, so this board shows practice bots, not real learners. Log in to join real weekly leagues.": [
+  "Estás en modo invitado, así que esta tabla muestra bots de práctica, no estudiantes reales. Inicia sesión para unirte a ligas semanales reales.",
+  "आप अतिथि मोड में हैं, इसलिए यह बोर्ड असली शिक्षार्थी नहीं, अभ्यास बॉट दिखाता है। असली साप्ताहिक लीग में शामिल होने के लिए लॉग इन करें।"
+ ],
+ "You’re learning as a guest. Create an account to sync across devices.": [
+  "Estás aprendiendo como invitado. Crea una cuenta para sincronizar entre dispositivos.",
+  "आप अतिथि के रूप में सीख रहे हैं। सभी डिवाइस पर सिंक के लिए खाता बनाएँ।"
+ ],
+ "a day": [
+  "al día",
+  "प्रतिदिन"
+ ],
+ "about {n} min a day": [
+  "unos {n} min al día",
+  "रोज़ लगभग {n} मिनट"
+ ],
+ "blank": [
+  "hueco",
+  "खाली जगह"
+ ],
+ "completed — practise again": [
+  "completada: practicar de nuevo",
+  "पूरा हुआ — फिर अभ्यास करें"
+ ],
+ "heard": [
+  "oída",
+  "सुना गया"
+ ],
+ "locked": [
+  "bloqueada",
+  "बंद"
+ ],
+ "not heard": [
+  "no oída",
+  "नहीं सुना गया"
+ ],
+ "practice bot": [
+  "bot de práctica",
+  "अभ्यास बॉट"
+ ],
+ "start": [
+  "empezar",
+  "शुरू करें"
+ ],
+ "starter course": [
+  "curso inicial",
+  "शुरुआती कोर्स"
+ ],
+ "starting at Unit {n}": [
+  "empezando en la unidad {n}",
+  "इकाई {n} से शुरुआत"
+ ],
+ "try another": [
+  "prueba otra",
+  "दूसरा आज़माएँ"
+ ],
+ "try the highlighted words again.": [
+  "intenta de nuevo las palabras resaltadas.",
+  "हाइलाइट किए गए शब्द फिर से बोलें।"
+ ],
+ "waiting": [
+  "pendientes",
+  "बाकी"
+ ],
+ "you": [
+  "tú",
+  "आप"
+ ],
+ "{league} League": [
+  "Liga {league}",
+  "{league} लीग"
+ ],
+ "{met} of {total} words met": [
+  "{met} de {total} palabras conocidas",
+  "{total} में से {met} शब्द सीखे"
+ ],
+ "{n} XP this week": [
+  "{n} XP esta semana",
+  "इस हफ़्ते {n} XP"
+ ],
+ "{n} exercises · about {m} minutes": [
+  "{n} ejercicios · unos {m} minutos",
+  "{n} अभ्यास · लगभग {m} मिनट"
+ ],
+ "{n} gems": [
+  "{n} gemas",
+  "{n} रत्न"
+ ],
+ "{n} lessons": [
+  "{n} lecciones",
+  "{n} पाठ"
+ ],
+ "{n} min": [
+  "{n} min",
+  "{n} मिनट"
+ ],
+ "{n} replies": [
+  "{n} respuestas",
+  "{n} उत्तर"
+ ],
+ "{n} seconds left": [
+  "Quedan {n} segundos",
+  "{n} सेकंड बाकी"
+ ],
+ "{n} total XP": [
+  "{n} XP en total",
+  "कुल {n} XP"
+ ],
+ "{n} words are due for review": [
+  "{n} palabras para repasar",
+  "{n} शब्द दोहराने हैं"
+ ],
+ "{n}-day streak": [
+  "Racha de {n} días",
+  "{n} दिन की स्ट्रीक"
+ ],
+ "{n}-day streak!": [
+  "¡Racha de {n} días!",
+  "{n} दिन की स्ट्रीक!"
+ ],
+ "Learn": [
+  "Aprender",
+  "सीखें"
+ ],
+ "Practice": [
+  "Práctica",
+  "अभ्यास"
+ ],
+ "Tutor": [
+  "Tutor",
+  "ट्यूटर"
+ ],
+ "Leagues": [
+  "Ligas",
+  "लीग"
+ ],
+ "Quests": [
+  "Misiones",
+  "मिशन"
+ ],
+ "Admin": [
+  "Administración",
+  "प्रशासन"
+ ],
+ "Connect with people": [
+  "Conectar con personas",
+  "लोगों से जुड़ना"
+ ],
+ "Boost my career": [
+  "Impulsar mi carrera",
+  "करियर आगे बढ़ाना"
+ ],
+ "Support my studies": [
+  "Apoyar mis estudios",
+  "पढ़ाई में मदद"
+ ],
+ "Keep my mind sharp": [
+  "Mantener la mente activa",
+  "दिमाग़ तेज़ रखना"
+ ],
+ "Just for fun": [
+  "Solo por diversión",
+  "बस मज़े के लिए"
+ ],
+ "Casual": [
+  "Relajado",
+  "हल्का"
+ ],
+ "Regular": [
+  "Regular",
+  "नियमित"
+ ],
+ "Serious": [
+  "Serio",
+  "गंभीर"
+ ],
+ "Intense": [
+  "Intenso",
+  "गहन"
+ ],
+ "Hi, I’m Kiko! I change colour when you learn something new.": [
+  "¡Hola, soy Kiko! Cambio de color cuando aprendes algo nuevo.",
+  "नमस्ते, मैं किको हूँ! जब आप कुछ नया सीखते हैं तो मैं रंग बदलता हूँ।"
+ ],
+ "Which language should I speak to you in?": [
+  "¿En qué idioma quieres que te hable?",
+  "मैं आपसे किस भाषा में बात करूँ?"
+ ],
+ "What would you like to learn?": [
+  "¿Qué te gustaría aprender?",
+  "आप क्या सीखना चाहेंगे?"
+ ],
+ "Why are you learning? I’ll keep it in mind.": [
+  "¿Por qué estás aprendiendo? Lo tendré en cuenta.",
+  "आप क्यों सीख रहे हैं? मैं इसे ध्यान में रखूँगा।"
+ ],
+ "How much {lang} do you know?": [
+  "¿Cuánto {lang} sabes?",
+  "आपको {lang} कितनी आती है?"
+ ],
+ "Pick a daily target. Small and steady wins.": [
+  "Elige un objetivo diario. Poco a poco se llega lejos.",
+  "एक दैनिक लक्ष्य चुनें। थोड़ा-थोड़ा, लगातार — यही जीत है।"
+ ],
+ "Your plan is ready!": [
+  "¡Tu plan está listo!",
+  "आपकी योजना तैयार है!"
+ ],
+ "What does this mean?": [
+  "¿Qué significa esto?",
+  "इसका क्या मतलब है?"
+ ],
+ "How do you say this in {lang}?": [
+  "¿Cómo se dice esto en {lang}?",
+  "इसे {lang} में कैसे कहते हैं?"
+ ],
+ "Translate this sentence": [
+  "Traduce esta frase",
+  "इस वाक्य का अनुवाद करें"
+ ],
+ "Write this in {lang}": [
+  "Escribe esto en {lang}",
+  "इसे {lang} में लिखें"
+ ],
+ "Tap what you hear": [
+  "Toca lo que oyes",
+  "जो सुनें उस पर टैप करें"
+ ],
+ "Speak this sentence": [
+  "Di esta frase",
+  "यह वाक्य बोलें"
+ ],
+ "Tap the matching pairs": [
+  "Toca los pares que coinciden",
+  "मिलते-जुलते जोड़ों पर टैप करें"
+ ],
+ "Fill in the blank": [
+  "Rellena el hueco",
+  "खाली जगह भरें"
+ ],
+ "Nice!": [
+  "¡Bien!",
+  "बढ़िया!"
+ ],
+ "Great job!": [
+  "¡Buen trabajo!",
+  "बहुत अच्छे!"
+ ],
+ "Exactly!": [
+  "¡Exacto!",
+  "बिल्कुल सही!"
+ ],
+ "You got it!": [
+  "¡Lo tienes!",
+  "आपने कर दिखाया!"
+ ],
+ "Well done!": [
+  "¡Bien hecho!",
+  "शाबाश!"
+ ],
+ "Smart review": [
+  "Repaso inteligente",
+  "स्मार्ट रिवीज़न"
+ ],
+ "Fix my mistakes": [
+  "Corregir mis errores",
+  "मेरी गलतियाँ सुधारें"
+ ],
+ "Listening & dictation": [
+  "Escucha y dictado",
+  "सुनना और श्रुतलेख"
+ ],
+ "Speaking & pronunciation": [
+  "Habla y pronunciación",
+  "बोलना और उच्चारण"
+ ],
+ "Writing": [
+  "Escritura",
+  "लेखन"
+ ],
+ "Match rush": [
+  "Parejas contrarreloj",
+  "मिलान दौड़"
+ ],
+ "All": [
+  "Todas",
+  "सभी"
+ ],
+ "Due": [
+  "Pendientes",
+  "बाकी"
+ ],
+ "Weak": [
+  "Débiles",
+  "कमज़ोर"
+ ],
+ "Saved phrases": [
+  "Frases guardadas",
+  "सहेजे गए वाक्यांश"
+ ],
+ "Mastered": [
+  "Dominadas",
+  "पूरी तरह सीखे"
+ ],
+ "Strong": [
+  "Fuertes",
+  "मज़बूत"
+ ],
+ "Growing": [
+  "En progreso",
+  "बढ़ते हुए"
+ ],
+ "New": [
+  "Nuevas",
+  "नए"
+ ],
+ "Needs review": [
+  "Necesitan repaso",
+  "दोहराना ज़रूरी"
+ ],
+ "Sound effects & auto-play audio": [
+  "Efectos de sonido y audio automático",
+  "ध्वनि प्रभाव और अपने-आप चलने वाला ऑडियो"
+ ],
+ "Chimes for answers and automatic sentence audio": [
+  "Sonidos al responder y audio automático de las frases",
+  "उत्तर पर ध्वनि और वाक्यों का अपने-आप ऑडियो"
+ ],
+ "Slower audio": [
+  "Audio más lento",
+  "धीमा ऑडियो"
+ ],
+ "Play sentences at three-quarter speed": [
+  "Reproduce las frases a tres cuartos de velocidad",
+  "वाक्य तीन-चौथाई गति से चलाएँ"
+ ],
+ "Speaking exercises": [
+  "Ejercicios de habla",
+  "बोलने के अभ्यास"
+ ],
+ "Turn off if you can’t use a microphone": [
+  "Desactívalos si no puedes usar un micrófono",
+  "अगर माइक्रोफ़ोन इस्तेमाल नहीं कर सकते तो बंद करें"
+ ],
+ "Animations": [
+  "Animaciones",
+  "एनिमेशन"
+ ],
+ "Celebrations and movement. Your device’s reduced-motion setting is always respected": [
+  "Celebraciones y movimiento. Siempre se respeta el ajuste de movimiento reducido de tu dispositivo",
+  "जश्न और हलचल। आपके डिवाइस की कम-गति सेटिंग का हमेशा पालन होता है"
+ ],
+ "Public profile": [
+  "Perfil público",
+  "सार्वजनिक प्रोफ़ाइल"
+ ],
+ "Let other learners find you by username and see your name on leaderboards": [
+  "Permite que otros estudiantes te encuentren por tu nombre de usuario y vean tu nombre en las clasificaciones",
+  "दूसरे शिक्षार्थियों को यूज़रनेम से आपको खोजने और लीडरबोर्ड पर आपका नाम देखने दें"
+ ],
+ "Create your free profile": [
+  "Crea tu perfil gratis",
+  "अपनी मुफ़्त प्रोफ़ाइल बनाएँ"
+ ],
+ "Welcome back": [
+  "Bienvenido de nuevo",
+  "वापसी पर स्वागत है"
+ ],
+ "Reset your password": [
+  "Restablece tu contraseña",
+  "अपना पासवर्ड रीसेट करें"
+ ],
+ "Choose a new password": [
+  "Elige una nueva contraseña",
+  "नया पासवर्ड चुनें"
+ ],
+ "Save new password": [
+  "Guardar nueva contraseña",
+  "नया पासवर्ड सहेजें"
+ ],
+ "That email and password don’t match. Check them and try again.": [
+  "Ese correo y esa contraseña no coinciden. Revísalos e inténtalo de nuevo.",
+  "यह ईमेल और पासवर्ड मेल नहीं खाते। जाँचकर फिर कोशिश करें।"
+ ],
+ "An account with that email already exists. Log in instead.": [
+  "Ya existe una cuenta con ese correo. Inicia sesión.",
+  "इस ईमेल से खाता पहले से मौजूद है। लॉग इन करें।"
+ ],
+ "Please confirm your email first — check your inbox for our message.": [
+  "Primero confirma tu correo: busca nuestro mensaje en tu bandeja de entrada.",
+  "पहले अपना ईमेल पुष्टि करें — इनबॉक्स में हमारा संदेश देखें।"
+ ],
+ "Too many attempts. Please wait a few minutes and try again.": [
+  "Demasiados intentos. Espera unos minutos e inténtalo de nuevo.",
+  "बहुत ज़्यादा प्रयास हुए। कुछ मिनट रुककर फिर कोशिश करें।"
+ ],
+ "Enter a valid email address.": [
+  "Introduce un correo electrónico válido.",
+  "मान्य ईमेल पता लिखें।"
+ ],
+ "Use a password of at least 8 characters.": [
+  "Usa una contraseña de al menos 8 caracteres.",
+  "कम से कम 8 अक्षरों का पासवर्ड रखें।"
+ ],
+ "Choose a password you haven’t used before.": [
+  "Elige una contraseña que no hayas usado antes.",
+  "ऐसा पासवर्ड चुनें जो पहले इस्तेमाल न किया हो।"
+ ],
+ "Usernames are 3–20 characters: lowercase letters, numbers or underscores.": [
+  "Los nombres de usuario tienen entre 3 y 20 caracteres: minúsculas, números o guiones bajos.",
+  "यूज़रनेम 3–20 अक्षरों का हो: छोटे अंग्रेज़ी अक्षर, अंक या अंडरस्कोर।"
+ ],
+ "Almost there! We’ve sent a confirmation link to your email. Open it, then log in.": [
+  "¡Casi listo! Te hemos enviado un enlace de confirmación por correo. Ábrelo y luego inicia sesión.",
+  "बस थोड़ा और! हमने आपके ईमेल पर पुष्टि लिंक भेजा है। उसे खोलें, फिर लॉग इन करें।"
+ ],
+ "If an account exists for that email, a reset link is on its way. Check your inbox.": [
+  "Si existe una cuenta con ese correo, te llegará un enlace para restablecer la contraseña. Revisa tu bandeja de entrada.",
+  "अगर इस ईमेल का खाता है, तो रीसेट लिंक भेजा जा रहा है। अपना इनबॉक्स देखें।"
+ ],
+ "Your password has been changed.": [
+  "Tu contraseña se ha cambiado.",
+  "आपका पासवर्ड बदल दिया गया है।"
+ ],
+ "That lesson doesn’t exist in this course.": [
+  "Esa lección no existe en este curso.",
+  "यह पाठ इस कोर्स में नहीं है।"
+ ],
+ "That session does not exist.": [
+  "Esa sesión no existe.",
+  "वह सत्र मौजूद नहीं है।"
+ ],
+ "No mistakes waiting — you’ve cleared them all!": [
+  "No hay errores pendientes: ¡los has resuelto todos!",
+  "कोई गलती बाकी नहीं — आपने सब सुधार लीं!"
+ ],
+ "Finish your first lesson and practice will be ready for you.": [
+  "Termina tu primera lección y la práctica estará lista.",
+  "अपना पहला पाठ पूरा करें, फिर अभ्यास तैयार होगा।"
+ ],
+ "You jumped ahead!": [
+  "¡Has avanzado!",
+  "आप आगे बढ़ गए!"
+ ],
+ "Practice makes it stick.": [
+  "La práctica lo afianza.",
+  "अभ्यास से ही याद पक्का होता है।"
+ ],
+ "Your session has expired. Please log in again.": [
+  "Tu sesión ha caducado. Inicia sesión de nuevo.",
+  "आपका सत्र समाप्त हो गया है। कृपया फिर से लॉग इन करें।"
+ ],
+ "You seem to be offline. Your answers are safe on this screen — check your connection and try again.": [
+  "Parece que no tienes conexión. Tus respuestas están a salvo en esta pantalla: comprueba la conexión e inténtalo de nuevo.",
+  "लगता है आप ऑफ़लाइन हैं। आपके उत्तर इस स्क्रीन पर सुरक्षित हैं — कनेक्शन जाँचें और फिर कोशिश करें।"
+ ],
+ "Something went wrong saving your progress. Please try again.": [
+  "Algo salió mal al guardar tu progreso. Inténtalo de nuevo.",
+  "प्रगति सहेजने में कुछ गड़बड़ हुई। कृपया फिर कोशिश करें।"
+ ],
+ "That was quick! Give it a few seconds and try again.": [
+  "¡Qué rápido! Espera unos segundos e inténtalo de nuevo.",
+  "यह बहुत जल्दी था! कुछ सेकंड रुककर फिर कोशिश करें।"
+ ],
+ "Your progress changed on another device. Please try again.": [
+  "Tu progreso cambió en otro dispositivo. Inténtalo de nuevo.",
+  "आपकी प्रगति दूसरे डिवाइस पर बदली है। कृपया फिर कोशिश करें।"
+ ],
+ "That lesson is still locked.": [
+  "Esa lección sigue bloqueada.",
+  "वह पाठ अभी बंद है।"
+ ],
+ "Finish the unit to open its story.": [
+  "Termina la unidad para abrir su historia.",
+  "कहानी खोलने के लिए इकाई पूरी करें।"
+ ],
+ "You need 50 gems and a free freeze slot.": [
+  "Necesitas 50 gemas y un hueco libre para el protector.",
+  "आपको 50 रत्न और एक खाली फ़्रीज़ स्लॉट चाहिए।"
+ ],
+ "This session was already saved.": [
+  "Esta sesión ya estaba guardada.",
+  "यह सत्र पहले ही सहेजा जा चुका है।"
+ ],
+ "Accounts are not configured on this deployment.": [
+  "Las cuentas no están configuradas en este sitio.",
+  "इस साइट पर खाते सेट नहीं किए गए हैं।"
+ ],
+ "Progress saving is not configured on this deployment.": [
+  "El guardado de progreso no está configurado en este sitio.",
+  "इस साइट पर प्रगति सहेजना सेट नहीं है।"
+ ],
+ "Your profile could not be found. Please contact support.": [
+  "No se encontró tu perfil. Ponte en contacto con soporte.",
+  "आपकी प्रोफ़ाइल नहीं मिली। कृपया सहायता से संपर्क करें।"
+ ],
+ "I couldn’t hear you. You can type instead.": [
+  "No pude oírte. Puedes escribir en su lugar.",
+  "मैं आपको सुन नहीं पाया। आप लिख भी सकते हैं।"
+ ],
+ "You’re practising fast! Take a short breather and try again in a few minutes.": [
+  "¡Practicas muy rápido! Tómate un respiro e inténtalo de nuevo en unos minutos.",
+  "आप बहुत तेज़ अभ्यास कर रहे हैं! थोड़ा रुकें और कुछ मिनट बाद फिर कोशिश करें।"
+ ],
+ "German": [
+  "alemán",
+  "जर्मन"
+ ],
+ "Korean": [
+  "coreano",
+  "कोरियाई"
+ ],
+ "Italian": [
+  "italiano",
+  "इतालवी"
+ ],
+ "Russian": [
+  "ruso",
+  "रूसी"
+ ],
+ "Selected": [
+  "Seleccionado",
+  "चुना गया"
+ ],
+ "Level {level}": [
+  "Nivel {level}",
+  "स्तर {level}"
+ ],
+ "{n} units": [
+  "{n} unidades",
+  "{n} इकाइयाँ"
+ ],
+ "Latin alphabet": [
+  "Alfabeto latino",
+  "लैटिन वर्णमाला"
+ ],
+ "Cyrillic alphabet": [
+  "Alfabeto cirílico",
+  "सिरिलिक वर्णमाला"
+ ],
+ "Hangul": [
+  "Hangul",
+  "हंगुल"
+ ],
+ "native review pending": [
+  "revisión nativa pendiente",
+  "मूल वक्ता की समीक्षा बाकी"
+ ],
+ "1 unit": [
+  "1 unidad",
+  "1 इकाई"
+ ]
 }

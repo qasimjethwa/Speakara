@@ -15,7 +15,8 @@ const axeSource = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 const BASE = process.argv[2] ?? "http://localhost:3000";
 const SHOTS = process.argv[3]; if (SHOTS) mkdirSync(SHOTS, { recursive: true });
 const PASSWORD = process.env.E2E_PASSWORD;
-const content = JSON.parse(execSync("npx tsx e2e/dump-content.ts", { encoding: "utf8" }))["es-en"];
+const DUMP = JSON.parse(execSync("npx tsx e2e/dump-content.ts", { encoding: "utf8" }));
+let content = DUMP["es-en"];
 const toks = (s) => s.replace(/[¿?¡!.,;:"“”।]/g, " ").split(/\s+/).filter(Boolean);
 const norm = (s) => toks(s).join(" ").toLowerCase();
 const log = (...a) => console.log("•", ...a);
@@ -27,7 +28,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /** Replaces speech APIs with stubs that record what was spoken and "hear" the sentence shown on screen. */
 const speechStubs = () => {
   window.__spoken = [];
-  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }], cancel() {}, addEventListener() {}, removeEventListener() {},
+  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }, ...(window.__noVoices ?? []).length ? [] : ["de-DE", "ko-KR", "it-IT", "ru-RU"].map((lang) => ({ lang, name: "Stub " + lang, localService: true }))], cancel() {}, resume() {}, addEventListener() {}, removeEventListener() {},
     speak(u) { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 5); } };
   Object.defineProperty(window, "speechSynthesis", { value: synth, configurable: true });
   window.SpeechSynthesisUtterance = function (text) { this.text = text; };
@@ -105,7 +106,7 @@ async function runSession(page, st, until = "[data-summary]") {
     try { await solve(page, st); } catch (e) { await shot(page, "failure"); log("  stuck on: " + (await page.locator("main").innerText().catch(() => "?")).replace(/\s+/g, " ").slice(0, 300) + " | footer: " + (await page.locator("footer").innerText().catch(() => "none")).replace(/\s+/g, " ")); throw e; }
     await page.waitForTimeout(100);
   }
-  throw new Error("session did not finish");
+  log("  not finished at: " + page.url() + " — " + (await page.locator("body").innerText().catch(() => "?")).replace(/\s+/g, " ").slice(0, 200)); throw new Error("session did not finish");
 }
 const newState = (sabotage = false) => ({ types: {}, skipped: 0, wrong: 0, listened: 0, spoke: 0, sabotage });
 const nextBtn = (page) => page.locator("footer button").click();
@@ -131,7 +132,7 @@ if (ONLY !== "accounts") for (const [label, ctxOpts, uiLang] of [["desktop", { v
   await page.getByRole("textbox").fill("Tess"); if (label === "desktop") await axe(page, "onboarding");
   await nextBtn(page);                                                     // welcome → language
   await page.getByRole("radio").nth(uiLang).click(); await nextBtn(page);  // language → course
-  await page.getByRole("radio").filter({ hasText: /🇪🇸/ }).click(); await nextBtn(page);   // Spanish course, whatever the interface language
+  await page.locator('[data-course="es-en"]').click(); await nextBtn(page);   // Spanish course, whatever the interface language
   await page.getByRole("radio").first().click(); await nextBtn(page);      // goal → level
   if (label === "desktop") {
     await page.getByRole("radio").nth(1).click(); await nextBtn(page);     // "I know some" → placement test
@@ -261,10 +262,22 @@ if (cloud && PASSWORD) {
   await page.getByLabel("Name", { exact: true }).fill("X"); await page.getByLabel("Username").fill("ab"); await page.getByLabel("Email").fill("x@speakara.test"); await page.getByLabel("Password").fill("longenough1"); await page.locator("form button[type=submit]").click();
   expect(await page.getByText(/Usernames are 3–20 characters/).count() === 1, "sign-up validates the username before contacting the server");
 
-  await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/, { timeout: 20000 }); await page.locator('[data-state="current"]').waitFor();
+  await login(page, "e2e-ana@speakara.test"); await page.waitForURL(/learn/, { timeout: 20000 }); await page.locator("[data-state]").first().waitFor();
+  // The shared test account finishes lessons on every run; when a course is exhausted, move it to the next course.
+  const FLAGS = [["🇪🇸", "es-en"], ["🇫🇷", "fr-en"], ["🇩🇪", "de-en"], ["🇮🇹", "it-en"], ["🇰🇷", "ko-en"], ["🇷🇺", "ru-en"]];
+  const ensureCurrent = async () => {
+    await page.goto(`${BASE}/learn`); await page.locator("[data-state]").first().waitFor();
+    for (const [, id] of FLAGS) {
+      if (await page.locator('[data-state="current"]').count() && await page.locator('[data-state="locked"]').count()) break;   // at least two lessons left
+      await page.goto(`${BASE}/settings`); await page.locator(`[data-course="${id}"]`).click(); await sleep(1200);
+      await page.goto(`${BASE}/learn`); await page.locator("[data-state]").first().waitFor();
+    }
+    const head = await page.locator("main").innerText(); const hit = FLAGS.find(([f]) => head.includes(f)); if (hit) content = DUMP[hit[1]];
+  };
+  await ensureCurrent();
   const doneBefore = await page.locator('[data-state="done"]').count();
-  expect(doneBefore >= 2, `log-in restores cloud progress (${doneBefore} lessons complete)`);
   const xpBefore = Number((await page.locator('a[href="/profile"][aria-label$="XP"]').first().getAttribute("aria-label")).replace(/\D/g, ""));
+  expect(xpBefore > 0, `log-in restores cloud progress (${xpBefore} XP; ${doneBefore} lessons complete in the current course)`);
   // network failure while saving, then retry
   await page.locator('[data-state="current"]').click(); const st = newState();
   let failOnce = true; await page.route("**/api/progress", (route) => { if (failOnce) { failOnce = false; return route.abort(); } return route.continue(); });
@@ -274,7 +287,7 @@ if (cloud && PASSWORD) {
   const earned = Number(await page.locator("[data-summary]").getAttribute("data-xp"));
   expect(earned >= 15, `retry succeeds and the server awards XP (+${earned})`);
   await page.unroute("**/api/progress");
-  await page.locator("[data-summary] a").click(); await page.waitForURL(/learn/); await page.locator('[data-state="current"]').waitFor();
+  await page.locator("[data-summary] a").click(); await page.waitForURL(/learn/); await page.locator('[data-state="done"]').first().waitFor();
   expect(await page.locator('[data-state="done"]').count() === doneBefore + 1, "path shows the lesson the server recorded");
   await page.goto(`${BASE}/leaderboard`); await page.locator("ol li", { hasText: "(you)" }).waitFor();
   expect(!(await page.getByText(/practice bot/).count()), "signed-in leaderboard shows stored scores, no bots");
@@ -284,7 +297,7 @@ if (cloud && PASSWORD) {
   expect(true, "friend search runs against the database");
   // expired session
   await page.route("**/api/progress", (route) => route.fulfill({ status: 401, contentType: "application/json", body: JSON.stringify({ error: "Your session has expired. Please log in again.", code: "unauthenticated" }) }));
-  await page.goto(`${BASE}/lesson?mode=match`); await runSession(page, newState());
+  await ensureCurrent(); await page.locator('[data-state="current"]').click(); await runSession(page, newState());
   await page.locator("[data-save-error]").waitFor({ timeout: 20000 });
   expect(await page.getByText(/session has expired/).count() >= 1, "an expired session is reported instead of silently losing work");
   await page.unroute("**/api/progress");
@@ -309,6 +322,7 @@ if (cloud && PASSWORD) {
   await ctx.close();
 
   // guest → account: progress made before logging in is imported once, after server validation
+  content = DUMP["es-en"];
   const g = await browser.newContext({ viewport: { width: 1280, height: 900 } }); await g.addInitScript(speechStubs); const gp = await g.newPage(); watch(gp, "guest-to-account");
   await gp.goto(`${BASE}/onboarding`); await gp.getByRole("textbox").fill("Cara"); for (let i = 0; i < 3; i++) await nextBtn(gp); await gp.getByRole("radio").first().click(); for (let i = 0; i < 4; i++) await nextBtn(gp);
   await gp.waitForURL(/learn/); await gp.locator('[data-state="current"]').click(); await runSession(gp, newState());

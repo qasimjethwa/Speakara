@@ -24,7 +24,7 @@ function Friends() {
     setFriends((a.data ?? []) as Person[]); setSuggested((b.data ?? []) as Person[]); setQuests((c.data ?? []) as FriendQuest[]);
   };
   useEffect(() => { if (mode === "cloud") void load(); }, [mode]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (mode !== "cloud" || !db) return <Card><h2 className="text-lg">{t("Friends")}</h2><p className="mt-1 text-sm text-sub">{cloudConfigured ? t("Log in to follow friends and compare progress.") : t("Friends need an account, and this site isn’t connected to an account server.")}</p>{cloudConfigured && <Link href="/signup" className="mt-2 block text-sm font-extrabold uppercase text-sky-dark">{t("Create a free account")}</Link>}</Card>;
+  if (mode !== "cloud" || !db) return <Card><h2 className="text-lg">{t("Friends")}</h2><p className="mt-1 text-sm text-sub">{cloudConfigured ? t("Log in to follow friends and compare progress.") : t("Friends need an account, and this site isn’t connected to an account server.")}</p>{cloudConfigured && <Link href="/signup" className="mt-1 flex min-h-11 items-center text-sm font-extrabold uppercase text-sky-dark">{t("Create a free account")}</Link>}</Card>;
   const search = async (e: React.FormEvent) => { e.preventDefault(); setErr(null); const { data, error } = await db.rpc("find_profiles", { q: q.trim().toLowerCase() }); if (error) setErr(error.message); else setFound((data ?? []) as Person[]); };
   const follow = async (p: Person, on: boolean) => {
     const { data: u } = await db.auth.getUser(); if (!u.user) return;
@@ -85,7 +85,7 @@ export default function Profile() {
         {words.length === 0 ? <p className="text-sm text-sub">{t("Your notebook fills up as you learn.")}</p> : <ul className="space-y-2">{[[4, "Mastered"], [3, "Strong"], [2, "Growing"], [1, "New"], [0, "Needs review"]].map(([lvl, label]) => { const n = words.filter((w) => w === lvl).length; return (
           <li key={lvl} className="flex items-center gap-3 text-sm"><span className="w-28 shrink-0 font-bold">{t(label as string)}</span><ProgressBar value={n / words.length} color={lvl === 0 ? "bg-coral" : "bg-brand"} className="!h-3" label={t(label as string)} /><span className="w-8 text-right text-sub">{n}</span></li>); })}</ul>}
       </Card>
-      <Card className="mb-5"><div className="flex items-center justify-between"><h2 className="text-lg">{t("Achievements")}</h2><Link href="/quests" className="text-sm font-extrabold uppercase text-sky-dark">{t("View all")}</Link></div>
+      <Card className="mb-5"><div className="flex items-center justify-between"><h2 className="text-lg">{t("Achievements")}</h2><Link href="/quests" className="inline-flex min-h-11 items-center text-sm font-extrabold uppercase text-sky-dark">{t("View all")}</Link></div>
         <ul className="mt-3 flex flex-wrap gap-2">{ACHIEVEMENTS.filter((a) => state.achievements[a.id]).map((a) => <li key={a.id} className="rounded-xl bg-sun-soft px-3 py-2 text-sm font-extrabold text-sun-dark">{a.icon} {t(a.title)}</li>)}{Object.keys(state.achievements).length === 0 && <li className="text-sm text-sub">{t("Finish a lesson to earn your first badge.")}</li>}</ul></Card>
       <Friends />
     </AppShell>

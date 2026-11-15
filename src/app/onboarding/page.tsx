@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { useStore } from "@/lib/state/store";
 import { COURSES, getCourse } from "@/lib/content";
+import { CourseCards } from "@/components/CourseCards";
 import { buildSession, PLACEMENT_SEED, type SessionPlan } from "@/lib/engine/plan";
 import { UI_LANGS, useT, useUiLang } from "@/lib/i18n";
 import { LessonPlayer } from "@/components/lesson/LessonPlayer";
@@ -55,7 +56,7 @@ export default function Onboarding() {
   return (
     <div className="mx-auto flex min-h-dvh max-w-[640px] flex-col px-5">
       <header className="flex items-center gap-4 py-5">
-        <button type="button" aria-label={t("Back")} disabled={idx === 0} onClick={() => go(STEPS[Math.max(0, idx - (step === "target" ? 2 : 1))])} className="rounded-lg p-1 text-sub disabled:opacity-40"><ArrowLeft size={26} /></button>
+        <button type="button" aria-label={t("Back")} disabled={idx === 0} onClick={() => go(STEPS[Math.max(0, idx - (step === "target" ? 2 : 1))])} className="grid h-11 w-11 shrink-0 place-items-center rounded-lg text-sub disabled:opacity-40"><ArrowLeft size={26} /></button>
         <ProgressBar value={(idx + 1) / STEPS.length} label={t("Setup progress")} />
       </header>
       <main data-step={step} className="flex-1 pb-32">
@@ -67,9 +68,7 @@ export default function Onboarding() {
         )}
         {step === "language" && <div role="radiogroup" aria-label={t("Interface language")} className="space-y-3">{UI_LANGS.map((l) => <button key={l.code} role="radio" aria-checked={uiLang === l.code} onClick={() => setUiLang(l.code)} className={choice(uiLang === l.code)} lang={l.locale}><span className="text-2xl" aria-hidden="true">🌐</span>{l.label}</button>)}
           <p className="pt-2 text-sm text-sub">{t("This changes menus and instructions. You can learn any course in any interface language.")}</p></div>}
-        {step === "course" && <div role="radiogroup" aria-label={t("Course")} className="space-y-3">{courses.map((c) => (
-          <button key={c.id} role="radio" aria-checked={course.id === c.id} onClick={() => setCourseId(c.id)} className={choice(course.id === c.id)}><span className="text-3xl" aria-hidden="true">{c.flag}</span><span><span className="block">{t(c.targetName)}</span><span className="block text-sm font-semibold text-sub">{t("Taught in {lang}", { lang: t(c.nativeName) })} · {t("{n} lessons", { n: c.units.reduce((n, u) => n + u.lessons.length, 0) })}{c.status === "starter" ? ` · ${t("starter course")}` : ""}</span></span></button>
-        ))}</div>}
+        {step === "course" && <CourseCards ids={courses.map((c) => c.id)} value={course.id} onChange={setCourseId} label={t("Course")} />}
         {step === "goal" && <div role="radiogroup" aria-label={t("Learning goal")} className="grid gap-3 sm:grid-cols-2">{GOALS.map(([id, icon, label]) => <button key={id} role="radio" aria-checked={goal === id} onClick={() => setGoal(id)} className={choice(goal === id)}><span className="text-2xl" aria-hidden="true">{icon}</span>{t(label)}</button>)}</div>}
         {step === "level" && <div role="radiogroup" aria-label={t("Prior knowledge")} className="space-y-3">
           <button role="radio" aria-checked={level === "new"} onClick={() => setLevel("new")} className={choice(level === "new")}><span className="text-2xl" aria-hidden="true">🌱</span><span>{t("I’m new to {lang}", { lang: t(course.targetName) })}<span className="block text-sm font-semibold text-sub">{t("Start from the very first lesson")}</span></span></button>

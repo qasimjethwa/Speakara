@@ -37,31 +37,69 @@ export function say(text: string, lang: string, rate = 1): Promise<boolean> {
   }
   return sayLocal(text, lang, rate);
 }
-function sayLocal(text: string, lang: string, rate: number): Promise<boolean> {
-  if (!canSpeakAloud()) return Promise.resolve(false);
+let speakToken = 0;
+async function sayLocal(text: string, lang: string, rate: number): Promise<boolean> {
+  if (!canSpeakAloud()) return false;
+  await voicesReady();
+  const voice = pickVoice(lang);
+  // Voices are known and none speaks this language: say nothing rather than read it in an unrelated voice.
+  if (!voice && window.speechSynthesis.getVoices().length) return false;
+  const mine = ++speakToken;
   return new Promise((resolve) => {
-    const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = rate;
-    const voice = pickVoice(lang); if (voice) u.voice = voice;
-    u.onend = () => resolve(true); u.onerror = () => resolve(false);
-    window.speechSynthesis.cancel(); window.speechSynthesis.speak(u);
+    const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = rate; if (voice) u.voice = voice;
+    let settled = false; const done = (ok: boolean) => { if (!settled) { settled = true; clearTimeout(guard); resolve(ok); } };
+    // Some browsers never fire onend (Chrome on long text, iOS after backgrounding): never leave the caller waiting.
+    const guard = setTimeout(() => done(mine === speakToken), Math.min(20000, 2500 + text.length * 180 / Math.max(0.4, rate)));
+    u.onend = () => done(true); u.onerror = () => done(false);
+    window.speechSynthesis.cancel(); window.speechSynthesis.resume(); window.speechSynthesis.speak(u);
   });
 }
+export function stopSpeaking() { if (canSpeakAloud()) { speakToken++; window.speechSynthesis.cancel(); } }
 
-let ctx: AudioContext | null = null;
-function tone(freqs: number[], step = 0.09, type: OscillatorType = "sine") {
+/** Sound effects: one shared Web Audio context, one effect at a time, consistent loudness. */
+let ctx: AudioContext | null = null; let master: GainNode | null = null; let lastAt = 0; let lastName = "";
+function audioCtx(): AudioContext | null {
+  if (typeof window === "undefined") return null;
+  const C = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+  if (!C) return null;
+  try { ctx ??= new C(); } catch { return null; }
+  // Safari and mobile browsers start (and re-enter) the context suspended until a user gesture.
+  if (ctx.state !== "running") void ctx.resume().catch(() => {});
+  return ctx;
+}
+/** Call from any user gesture so the first effect is not swallowed on iOS/Safari. */
+export function unlockAudio() { audioCtx(); }
+if (typeof window !== "undefined") {
+  const unlock = () => unlockAudio();
+  window.addEventListener("pointerdown", unlock, { passive: true }); window.addEventListener("keydown", unlock, { passive: true });
+  document.addEventListener("visibilitychange", () => { if (!document.hidden && ctx) void ctx.resume().catch(() => {}); });
+}
+export const sfxLog: string[] = [];
+function play(name: string, freqs: number[], step: number, type: OscillatorType, peak: number) {
+  const c = audioCtx(); if (!c) return;
+  const now = performance.now();
+  if (name === lastName && now - lastAt < 120) return;   // the same effect fired twice by one action
+  lastAt = now; lastName = name; sfxLog.push(name); if (sfxLog.length > 50) sfxLog.shift();
   try {
-    ctx ??= new AudioContext();
+    // Fade out whatever is still ringing so effects never pile up.
+    if (master) { const old = master; old.gain.cancelScheduledValues(c.currentTime); old.gain.setTargetAtTime(0.0001, c.currentTime, 0.01); setTimeout(() => old.disconnect(), 150); }
+    const bus = (master = c.createGain()); bus.gain.value = 1; bus.connect(c.destination);
+    const t0 = c.currentTime + 0.01;
     freqs.forEach((f, i) => {
-      const o = ctx!.createOscillator(), g = ctx!.createGain(), t = ctx!.currentTime + i * step;
-      o.type = type; o.frequency.value = f; g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(0.16, t + 0.015); g.gain.exponentialRampToValueAtTime(0.0001, t + step * 1.6);
-      o.connect(g).connect(ctx!.destination); o.start(t); o.stop(t + step * 1.8);
+      const o = c.createOscillator(), g = c.createGain(), t = t0 + i * step;
+      o.type = type; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t + step * 1.7);
+      o.connect(g).connect(bus); o.start(t); o.stop(t + step * 1.9);
     });
   } catch { /* audio unavailable */ }
 }
 export const sfx = {
-  correct: () => tone([587, 880]), wrong: () => tone([233, 185], 0.12, "triangle"), tap: () => tone([440], 0.04),
-  finish: () => tone([523, 659, 784, 1047], 0.11),
+  tap: () => play("tap", [520], 0.045, "sine", 0.07),
+  correct: () => play("correct", [587, 880], 0.1, "sine", 0.16),
+  wrong: () => play("wrong", [220, 174], 0.13, "triangle", 0.18),
+  finish: () => play("finish", [523, 659, 784, 1047], 0.12, "sine", 0.16),
 };
+if (typeof window !== "undefined") (window as unknown as { __sfx?: string[] }).__sfx = sfxLog;
 
 type Rec = { lang: string; interimResults: boolean; maxAlternatives: number; start(): void; stop(): void; onresult: ((e: { results: { 0: { transcript: string } }[] }) => void) | null; onerror: ((e: { error: string }) => void) | null; onend: (() => void) | null };
 export function speechRecognizer(): (new () => Rec) | null {

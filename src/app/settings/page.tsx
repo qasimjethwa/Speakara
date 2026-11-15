@@ -4,7 +4,8 @@ import { useState } from "react";
 import { AppShell, PageTitle } from "@/components/AppShell";
 import { Button, Card, Dialog, Field, Notice } from "@/components/ui";
 import { useStore } from "@/lib/state/store";
-import { COURSES } from "@/lib/content";
+import { COURSES, getCourse } from "@/lib/content";
+import { CourseCards } from "@/components/CourseCards";
 import { LanguagePicker, useT } from "@/lib/i18n";
 
 /** Rendered inside AppShell, so it mounts only once the learner state has loaded and form fields start correct. */
@@ -23,7 +24,7 @@ function SettingsBody() {
       <Card className="mb-5"><h2 className="mb-3 text-lg">{t("Interface language")}</h2><LanguagePicker />
         <p className="mt-2 text-sm text-sub">{t("This changes menus and instructions. You can learn any course in any interface language.")}</p></Card>
       <Card className="mb-5"><h2 className="mb-3 text-lg">{t("Course")}</h2>
-        <div role="radiogroup" aria-label={t("Course")} className="space-y-2">{COURSES.map((c) => <button key={c.id} role="radio" aria-checked={p.courseId === c.id} onClick={() => setProfile({ courseId: c.id, nativeLang: c.native })} className={`key flex w-full items-center gap-3 rounded-2xl border-2 border-b-4 px-4 py-3 text-left font-bold ${p.courseId === c.id ? "border-sky-dark bg-sky-soft text-sky-dark" : "border-line-dark"}`}><span className="text-2xl" aria-hidden="true">{c.flag}</span><span>{t(c.targetName)} <span className="block text-sm font-semibold text-sub">{t("Taught in {lang}", { lang: t(c.nativeName) })}{c.status === "starter" ? ` · ${t("starter course")}` : ""}</span></span></button>)}</div>
+        <CourseCards ids={COURSES.map((c) => c.id)} value={p.courseId} onChange={(id) => setProfile({ courseId: id, nativeLang: getCourse(id).native })} label={t("Course")} />
         <p className="mt-2 text-sm text-sub">{t("Progress is kept separately for every course. XP, gems and your streak are shared.")}</p></Card>
       <Card className="mb-5"><h2 className="mb-3 text-lg">{t("Daily goal")}</h2>
         <div role="radiogroup" aria-label={t("Daily goal")} className="grid grid-cols-4 gap-2">{[10, 20, 30, 50].map((x) => <button key={x} role="radio" aria-checked={p.dailyGoalXp === x} onClick={() => setProfile({ dailyGoalXp: x })} className={`key rounded-2xl border-2 border-b-4 py-3 font-extrabold ${p.dailyGoalXp === x ? "border-sun-edge bg-sun-soft text-sun-dark" : "border-line-dark"}`}>{x} XP</button>)}</div></Card>
