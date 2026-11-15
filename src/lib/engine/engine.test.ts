@@ -208,3 +208,17 @@ describe("server authority helpers", () => {
     const r = assessSpeech("hola buenas dias", "Hola, buenos días."); expect(r.words.map((w) => w.heard)).toEqual([true, false, true]); expect(r.score).toBeCloseTo(2 / 3);
   });
 });
+
+describe("srs bounds", () => {
+  it("repeated correct answers on one day do not stretch the interval, and gaps never exceed a year", async () => {
+    const { review, MAX_INTERVAL, DAY } = await import("./srs");
+    let it = review(undefined, true, 0);
+    for (let i = 0; i < 200; i++) it = review(it, true, 1000 + i);
+    expect(it.interval).toBe(1);
+    let t = 0; it = review(undefined, true, t);
+    for (let i = 0; i < 60; i++) { t = it.due; it = review(it, true, t); }
+    expect(it.interval).toBe(MAX_INTERVAL);
+    expect(it.due - t).toBe(MAX_INTERVAL * DAY);
+    expect(Number.isFinite(new Date(it.due).getTime())).toBe(true);
+  });
+});
