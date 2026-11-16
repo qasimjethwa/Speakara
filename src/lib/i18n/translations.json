@@ -1934,5 +1934,13 @@
  "1 unit": [
   "1 unidad",
   "1 इकाई"
+ ],
+ "This device has no {lang} voice, so it can’t be read aloud. Install a {lang} voice in your device settings to hear it.": [
+  "Este dispositivo no tiene una voz de {lang}, así que no se puede leer en voz alta. Instala una voz de {lang} en los ajustes del dispositivo para oírla.",
+  "इस डिवाइस में {lang} की आवाज़ नहीं है, इसलिए इसे पढ़कर नहीं सुनाया जा सकता। सुनने के लिए डिवाइस सेटिंग में {lang} की आवाज़ इंस्टॉल करें।"
+ ],
+ "OK": [
+  "Vale",
+  "ठीक है"
  ]
 }

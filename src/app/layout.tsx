@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { StoreProvider } from "@/lib/state/store";
+import { VoiceNotice } from "@/components/VoiceNotice";
 
 export const metadata: Metadata = {
   title: { default: "Speakara — learn languages free, forever", template: "%s · Speakara" },
@@ -11,7 +12,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body><StoreProvider>{children}</StoreProvider></body>
+      <body><StoreProvider>{children}<VoiceNotice /></StoreProvider></body>
     </html>
   );
 }

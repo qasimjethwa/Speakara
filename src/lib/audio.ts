@@ -47,7 +47,7 @@ async function sayLocal(text: string, lang: string, rate: number): Promise<boole
   await voicesReady();
   const voice = pickVoice(lang);
   // Voices are known and none speaks this language: say nothing rather than read it in an unrelated voice.
-  if (!voice && window.speechSynthesis.getVoices().length) return false;
+  if (!voice && window.speechSynthesis.getVoices().length) { window.dispatchEvent(new CustomEvent("speakara:no-voice", { detail: lang })); return false; }
   const mine = ++speakToken;
   return new Promise((resolve) => {
     const u = new SpeechSynthesisUtterance(text); u.lang = lang; u.rate = rate; if (voice) u.voice = voice;

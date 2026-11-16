@@ -98,7 +98,8 @@ async function solve(page, st) {
   await page.locator("footer button").last().click();   // Continue
 }
 async function runSession(page, st, until = "[data-summary]") {
-  for (let guard = 0; guard < 80; guard++) {
+  // Time-based, not a step count: slower engines (WebKit under load) take longer between screens.
+  for (const until_ = Date.now() + 90000; Date.now() < until_;) {
     if (await page.locator(`${until}, [data-save-error]`).count()) return;
     if (await page.locator("[data-start]").count()) { await page.locator("[data-start]").click(); continue; }
     if (!(await page.locator("main h1[data-ex-type]").count())) { await page.waitForTimeout(150); continue; }
@@ -109,8 +110,9 @@ async function runSession(page, st, until = "[data-summary]") {
 }
 const newState = (sabotage = false) => ({ types: {}, skipped: 0, wrong: 0, listened: 0, spoke: 0, sabotage });
 function watch(page, label) {
-  page.on("pageerror", (e) => errors.push(`${label}: ${e.message}`));
-  page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|net::ERR_FAILED/i.test(m.text())) errors.push(`${label} console: ${m.text().slice(0, 200)}`); });
+  // WebKit reports Next.js prefetches cancelled by navigation as errors; they are not app failures.
+  page.on("pageerror", (e) => { if (!/_rsc=.* due to access control checks/.test(e.message)) errors.push(`${label}: ${e.message}`); });
+  page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|net::ERR_FAILED|_rsc=.* due to access control checks/i.test(m.text())) errors.push(`${label} console: ${m.text().slice(0, 200)}`); });
 }
 const nextBtn = (page) => page.locator("footer button").click();
 
@@ -127,7 +129,7 @@ if (process.env.E2E_AUDIT) {
     const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: touch, ...(ENGINE === "firefox" ? {} : { isMobile: w < 768 }) });
     await ctx.addInitScript(speechStubs);
     const page = await ctx.newPage(); const errs = [];
-    page.on("pageerror", (e) => errs.push(e.message)); page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errs.push(m.text().slice(0, 160)); });
+    page.on("pageerror", (e) => { if (!/_rsc=.* due to access control checks/.test(e.message)) errs.push(e.message); }); page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|_rsc=.* due to access control checks/.test(m.text())) errs.push(m.text().slice(0, 160)); });
     const inspect = async (name, opts = {}) => {
       await page.waitForTimeout(350);
       const r = await page.evaluate(({ touch, lesson }) => {
@@ -181,7 +183,7 @@ const LANGS = [
   ["de-en", "🇩🇪"], ["ko-en", "🇰🇷"], ["it-en", "🇮🇹"], ["ru-en", "🇷🇺"], ["fr-en", "🇫🇷"], ["es-en", "🇪🇸"],
 ];
 const ONLY_LANG = process.env.E2E_LANG;
-const browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
+let browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
 for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_LANG)) {
   content = DUMP[courseId];
   log(`=== ${courseId} ===`);
@@ -221,6 +223,8 @@ for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_
   await ctx.close();
 }
 if (!ONLY_LANG || ONLY_LANG === "novoice") {
+  // A fresh browser: long WebKit runs occasionally lose the page after many contexts (test-runner resource limit).
+  await browser.close(); browser = await launchBrowser();
   log("=== sound off, and a device with no German voice ===");
   const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
   await ctx.addInitScript(() => { window.__noVoices = [1]; }); await ctx.addInitScript(speechStubs);
@@ -229,7 +233,7 @@ if (!ONLY_LANG || ONLY_LANG === "novoice") {
   await page.getByRole("radio").nth(0).click(); await nextBtn(page); await page.locator('[data-course="de-en"]').click(); await nextBtn(page);
   await page.getByRole("radio").first().click(); await nextBtn(page); await nextBtn(page); await nextBtn(page); await nextBtn(page); await page.waitForURL(/learn/);
   await page.goto(`${BASE}/settings`); const soundSwitch = page.getByRole("switch").first(); await soundSwitch.waitFor();
-  await soundSwitch.uncheck({ force: true }); await sleep(300);
+  await page.getByText("Sound effects & auto-play audio").click(); await sleep(300);
   expect(!(await soundSwitch.isChecked()), "sound effects switched off in Settings");
   await page.goto(`${BASE}/learn`); await page.locator('[data-state="current"]').click(); await page.locator("[data-start]").click();
   let sawWarning = false; const st = newState();

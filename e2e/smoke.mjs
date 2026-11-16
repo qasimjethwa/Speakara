@@ -101,7 +101,8 @@ async function solve(page, st) {
   await page.locator("footer button").last().click();   // Continue
 }
 async function runSession(page, st, until = "[data-summary]") {
-  for (let guard = 0; guard < 80; guard++) {
+  // Time-based, not a step count: slower engines (WebKit under load) take longer between screens.
+  for (const until_ = Date.now() + 90000; Date.now() < until_;) {
     if (await page.locator(`${until}, [data-save-error]`).count()) return;
     if (await page.locator("[data-start]").count()) { await page.locator("[data-start]").click(); continue; }
     if (!(await page.locator("main h1[data-ex-type]").count())) { await page.waitForTimeout(150); continue; }
@@ -113,8 +114,9 @@ async function runSession(page, st, until = "[data-summary]") {
 const newState = (sabotage = false) => ({ types: {}, skipped: 0, wrong: 0, listened: 0, spoke: 0, sabotage });
 const nextBtn = (page) => page.locator("footer button").click();
 function watch(page, label) {
-  page.on("pageerror", (e) => errors.push(`${label}: ${e.message}`));
-  page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|net::ERR_FAILED/i.test(m.text())) errors.push(`${label} console: ${m.text().slice(0, 200)}`); });
+  // WebKit reports Next.js prefetches cancelled by navigation as errors; they are not app failures.
+  page.on("pageerror", (e) => { if (!/_rsc=.* due to access control checks/.test(e.message)) errors.push(`${label}: ${e.message}`); });
+  page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|net::ERR_FAILED|_rsc=.* due to access control checks/i.test(m.text())) errors.push(`${label} console: ${m.text().slice(0, 200)}`); });
 }
 
 const browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
