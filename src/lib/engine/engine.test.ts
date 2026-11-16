@@ -303,3 +303,30 @@ describe("Russian stress marks", () => {
     expect(compareText("приве́т", ["привет"]).correct).toBe(true);
   });
 });
+
+describe("voice language matching", () => {
+  it("matches the primary language subtag exactly (ko-KR never picks Konkani 'kok')", async () => {
+    const { langOf } = await import("../audio");
+    expect(langOf("ko-KR")).toBe("ko"); expect(langOf("kok")).toBe("kok"); expect(langOf("fr_BE")).toBe("fr"); expect(langOf("de")).toBe("de");
+    expect(langOf("ko-KR") === langOf("kok")).toBe(false);
+  });
+});
+
+describe("scripted tutor coverage", () => {
+  const SCRIPT: Record<string, RegExp> = { ko: /[가-힣]/, ru: /[Ѐ-ӿ]/ };
+  for (const target of ["es", "fr", "de", "ko", "it", "ru"] as const) it(`${target}: at least five scenes, each completable with its own model answers`, () => {
+    const scenes = SCENARIOS.filter((s) => s.script?.[target]?.length);
+    expect(scenes.length).toBeGreaterThanOrEqual(5);
+    for (const s of scenes) {
+      const steps = s.script![target]!;
+      let history: { role: "tutor" | "learner"; text: string }[] = [{ role: "tutor", text: steps[0].say[0] }];
+      for (let i = 0; i < steps.length; i++) {
+        if (SCRIPT[target]) expect(SCRIPT[target].test(steps[i].say[0]), `${s.id} step ${i} is in the target script`).toBe(true);
+        history = [...history, { role: "learner", text: steps[i].sample[0] }];
+        const r = scriptedReply({ scenario: s.id, target, targetName: "x", nativeName: "English", level: "beginner", history, step: i, retry: false })!;
+        expect(r.retry, `${s.id} step ${i}: the model answer “${steps[i].sample[0]}” is accepted`).toBe(false);
+        expect(r.tip, `${s.id} step ${i}: no correction for the model answer`).toBeUndefined();
+      }
+    }
+  });
+});

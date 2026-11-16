@@ -144,6 +144,7 @@ function Speak({ ex, course, locked, slow, onDraft }: ViewProps<SpeakEx>) {
   const [phase, setPhase] = useState<"idle" | "listening" | "heard" | "recorded" | "error">("idle");
   const [heard, setHeard] = useState(""); const [err, setErr] = useState(""); const [clip, setClip] = useState<string | null>(null);
   const [fallback, setFallback] = useState(!speechRecognizer());
+  const misses = useRef(0);
   const stop = useRef<() => void>(() => {}); const recorder = useRef<{ stop: () => Promise<string> } | null>(null);
   useEffect(() => () => { stop.current(); void recorder.current?.stop(); }, []);
   const explain = (code: string) => code === "not-allowed" || code === "service-not-allowed" ? t("Microphone access is blocked. Allow the microphone for this site in your browser’s address bar, then try again.")
@@ -152,7 +153,7 @@ function Speak({ ex, course, locked, slow, onDraft }: ViewProps<SpeakEx>) {
     setErr(""); setHeard(""); onDraft(null);
     const s = listenOnce(course.sttLang, () => setPhase("listening")); stop.current = s.stop;
     s.promise.then((text) => { setHeard(text); setPhase("heard"); onDraft({ type: "speak", transcript: text }); },
-      (e: Error) => { if ((e.message === "network" || e.message === "language-not-supported") && canRecord()) { setFallback(true); setPhase("idle"); setErr(t("Speech recognition isn’t available right now.") + " " + t("Record yourself instead and compare with the model.")); } else { setPhase("error"); setErr(explain(e.message)); } });
+      (e: Error) => { if (e.message === "no-speech") misses.current++; if ((["network", "language-not-supported", "service-not-allowed", "timeout"].includes(e.message) || misses.current >= 2) && canRecord()) { setFallback(true); setPhase("idle"); setErr(t("Speech recognition isn’t available right now.") + " " + t("Record yourself instead and compare with the model.")); } else { setPhase("error"); setErr(explain(e.message)); } });
   };
   const record = async () => {
     setErr(""); setClip(null); onDraft(null);

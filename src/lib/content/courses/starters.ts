@@ -8,6 +8,7 @@ export const frEn = buildCourse(
     id: "fr1", title: "Greetings", objective: "Say hello, be polite and introduce yourself", cefr: "A1", color: "brand",
     tips: [
       { title: "Bonjour first", body: "In French it is polite to open any exchange with bonjour (or bonsoir in the evening) before asking for anything.", examples: [{ t: "Bonjour, un café, s'il vous plaît.", n: "Hello, a coffee, please." }] },
+      { title: "Liaison", body: "A silent final consonant is pronounced when the next word starts with a vowel: vous‿êtes sounds like vou-zêtes, les‿amis like lé-zamis.", examples: [{ t: "Vous êtes Paul ?", n: "Are you Paul?" }] },
       { title: "Tu and vous", body: "Use tu with friends and children, vous with strangers and to show respect.", examples: [{ t: "Comment vas-tu ?", n: "How are you? (informal)" }, { t: "Comment allez-vous ?", n: "How are you? (formal)" }] },
     ],
     lessons: [

@@ -5,7 +5,9 @@ import { createRequire } from "node:module";
 import { execSync } from "node:child_process";
 import { mkdirSync, readFileSync } from "node:fs";
 const require = createRequire(import.meta.url);
-const { chromium, devices } = require("playwright");
+// E2E_BROWSER=chromium (default) | firefox | webkit. Firefox/WebKit binaries can live elsewhere: set PLAYWRIGHT_BROWSERS_PATH.
+const pw = require("playwright"); const { devices } = pw; const ENGINE = process.env.E2E_BROWSER ?? "chromium";
+const launchBrowser = (extra = {}) => pw[ENGINE].launch(ENGINE === "chromium" ? { executablePath: process.env.CHROMIUM_PATH, ...extra } : { firefoxUserPrefs: ENGINE === "firefox" ? { "media.navigator.streams.fake": true, "media.navigator.permission.disabled": true } : undefined });
 const axeSource = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 
 const BASE = process.argv[2] ?? "http://localhost:3000";
@@ -119,10 +121,10 @@ const nextBtn = (page) => page.locator("footer button").click();
 if (process.env.E2E_AUDIT) {
   const VIEWPORTS = [[1280, 800], [1366, 768], [1440, 900], [1920, 1080], [768, 1024], [820, 1180], [1024, 768], [320, 720], [360, 800], [375, 812], [390, 844], [430, 932]];
   const only = process.env.E2E_VIEWPORT; const findings = [];
-  const browser = await chromium.launch();
+  const browser = await launchBrowser();
   for (const [w, h] of VIEWPORTS.filter(([vw]) => !only || String(vw) === only)) {
     const tag = `${w}x${h}`; const touch = w < 1024; const before = findings.length;
-    const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: touch, isMobile: w < 768 });
+    const ctx = await browser.newContext({ viewport: { width: w, height: h }, hasTouch: touch, ...(ENGINE === "firefox" ? {} : { isMobile: w < 768 }) });
     await ctx.addInitScript(speechStubs);
     const page = await ctx.newPage(); const errs = [];
     page.on("pageerror", (e) => errs.push(e.message)); page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource/.test(m.text())) errs.push(m.text().slice(0, 160)); });
@@ -179,7 +181,7 @@ const LANGS = [
   ["de-en", "🇩🇪"], ["ko-en", "🇰🇷"], ["it-en", "🇮🇹"], ["ru-en", "🇷🇺"], ["fr-en", "🇫🇷"], ["es-en", "🇪🇸"],
 ];
 const ONLY_LANG = process.env.E2E_LANG;
-const browser = await chromium.launch({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
+const browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
 for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_LANG)) {
   content = DUMP[courseId];
   log(`=== ${courseId} ===`);

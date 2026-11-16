@@ -9,7 +9,9 @@ import { createRequire } from "node:module";
 import { execSync } from "node:child_process";
 import { mkdirSync, readFileSync } from "node:fs";
 const require = createRequire(import.meta.url);
-const { chromium, devices } = require("playwright");
+// E2E_BROWSER=chromium (default) | firefox | webkit. Firefox/WebKit binaries can live elsewhere: set PLAYWRIGHT_BROWSERS_PATH.
+const pw = require("playwright"); const { devices } = pw; const ENGINE = process.env.E2E_BROWSER ?? "chromium";
+const launchBrowser = (extra = {}) => pw[ENGINE].launch(ENGINE === "chromium" ? { executablePath: process.env.CHROMIUM_PATH, ...extra } : { firefoxUserPrefs: ENGINE === "firefox" ? { "media.navigator.streams.fake": true, "media.navigator.permission.disabled": true } : undefined });
 const axeSource = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 
 const BASE = process.argv[2] ?? "http://localhost:3000";
@@ -115,7 +117,7 @@ function watch(page, label) {
   page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|net::ERR_FAILED/i.test(m.text())) errors.push(`${label} console: ${m.text().slice(0, 200)}`); });
 }
 
-const browser = await chromium.launch({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
+const browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
 const cloud = await (async () => { const p = await browser.newPage(); await p.goto(`${BASE}/signup`); const has = (await p.locator("form").count()) > 0; await p.close(); return has; })();
 log(`app is ${cloud ? "connected to an account server" : "running in guest-only mode"}`);
 

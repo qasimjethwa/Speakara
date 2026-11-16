@@ -6,11 +6,15 @@ const remoteTts = process.env.NEXT_PUBLIC_TTS_REMOTE === "1";
 const clips = new Map<string, HTMLAudioElement>();
 
 /** Picks the most natural installed voice for a locale: exact locale first, then enhanced/neural voices. */
+/** Primary language subtag, lower-case: "ko-KR" → "ko", "fr_BE" → "fr". */
+export const langOf = (tag: string) => tag.replace("_", "-").split("-")[0].toLowerCase();
+
 export function pickVoice(lang: string): SpeechSynthesisVoice | null {
   if (!canSpeakAloud()) return null;
   const voices = window.speechSynthesis.getVoices();
-  const base = lang.slice(0, 2).toLowerCase();
-  const pool = voices.filter((v) => v.lang.replace("_", "-").toLowerCase().startsWith(base));
+  // Compare the primary language subtag exactly: "ko" must not match Konkani ("kok"), nor "it" a hypothetical "ita".
+  const base = langOf(lang);
+  const pool = voices.filter((v) => langOf(v.lang) === base);
   const score = (v: SpeechSynthesisVoice) => (v.lang.replace("_", "-").toLowerCase() === lang.toLowerCase() ? 4 : 0) + (/natural|neural|enhanced|premium|google|siri/i.test(v.name) ? 2 : 0) + (v.localService ? 0 : 1);
   return pool.sort((a, b) => score(b) - score(a))[0] ?? null;
 }
@@ -114,10 +118,12 @@ export function listenOnce(lang: string, onStart?: () => void): { promise: Promi
   const rec = new R(); rec.lang = lang; rec.interimResults = false; rec.maxAlternatives = 1;
   const promise = new Promise<string>((resolve, reject) => {
     let got = false;
-    rec.onresult = (e) => { got = true; resolve(e.results[0][0].transcript); };
-    rec.onerror = (e) => reject(new Error(e.error));
-    rec.onend = () => { if (!got) reject(new Error("no-speech")); };
-    try { rec.start(); onStart?.(); } catch (e) { reject(e as Error); }
+    // Some browsers expose the API but never answer (Chromium builds without a speech service): give up after 12 s.
+    const watchdog = setTimeout(() => { if (!got) { try { rec.stop(); } catch { /* ignore */ } reject(new Error("timeout")); } }, 12000);
+    rec.onresult = (e) => { got = true; clearTimeout(watchdog); resolve(e.results[0][0].transcript); };
+    rec.onerror = (e) => { clearTimeout(watchdog); reject(new Error(e.error)); };
+    rec.onend = () => { clearTimeout(watchdog); if (!got) reject(new Error("no-speech")); };
+    try { rec.start(); onStart?.(); } catch (e) { clearTimeout(watchdog); reject(e as Error); }
   });
   return { promise, stop: () => { try { rec.stop(); } catch { /* already stopped */ } } };
 }

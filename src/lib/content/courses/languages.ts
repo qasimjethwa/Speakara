@@ -27,13 +27,14 @@ export const deEn = buildCourse(
     { id: "de2", title: "Im Café", objective: "Order drinks and food and ask for things politely", cefr: "A1", color: "sun",
       tips: [
         { title: "The verb is in second place", body: "In a German main sentence the conjugated verb is always the second idea. Start with another word and the verb still stays second.", examples: [{ t: "Ich trinke Kaffee.", n: "I drink coffee." }, { t: "Heute trinke ich Tee.", n: "Today I am drinking tea." }] },
+        { title: "Hunger and thirst", body: "German says ich habe Hunger (I have hunger) and ich habe Durst. Both are nouns, so they are capitalised.", examples: [{ t: "Ich habe Hunger.", n: "I am hungry." }] },
         { title: "der, die, das", body: "Every noun has a grammatical gender. Learn the article with the noun: der Kaffee (masculine), die Milch (feminine), das Brot (neuter).", examples: [{ t: "Der Kaffee ist heiß.", n: "The coffee is hot." }, { t: "Die Milch ist kalt.", n: "The milk is cold." }] },
       ],
       lessons: [
         { title: "Bestellen", words: [["der Kaffee", "the coffee"], ["der Tee", "the tea"], ["das Wasser", "the water"], ["die Milch", "the milk"], ["das Brot", "the bread"], ["ich möchte", "I would like"]],
           sentences: [["Ich möchte einen Kaffee, bitte.", "I would like a coffee, please."], ["Ein Wasser, bitte.", "One water, please.", ["A water, please."]], ["Der Tee ist heiß.", "The tea is hot."], ["Die Milch ist kalt.", "The milk is cold.", ["The milk is cool."]]] },
-        { title: "Essen", words: [["der Käse", "the cheese"], ["die Suppe", "the soup"], ["lecker", "tasty"], ["hungrig", "hungry"], ["durstig", "thirsty"], ["groß", "big, large"]],
-          sentences: [["Ich bin hungrig.", "I am hungry."], ["Ich bin durstig.", "I am thirsty."], ["Die Suppe ist lecker.", "The soup is tasty.", ["The soup is delicious."]], ["Das Brot ist groß.", "The loaf is big.", ["The bread is big."]]] },
+        { title: "Essen", words: [["der Käse", "the cheese"], ["die Suppe", "the soup"], ["lecker", "tasty"], ["der Hunger", "hunger"], ["der Durst", "thirst"], ["groß", "big, large"]],
+          sentences: [["Ich habe Hunger.", "I am hungry.", ["I'm hungry."]], ["Ich habe Durst.", "I am thirsty.", ["I'm thirsty."]], ["Die Suppe ist lecker.", "The soup is tasty.", ["The soup is delicious."]], ["Das Brot ist groß.", "The loaf is big.", ["The bread is big."]]] },
         { title: "Höflich fragen", words: [["Entschuldigung", "excuse me"], ["wo", "where"], ["die Toilette", "the toilet"], ["die Rechnung", "the bill"], ["zahlen", "to pay"], ["bitte schön", "here you are"]],
           sentences: [["Entschuldigung, wo ist die Toilette?", "Excuse me, where is the toilet?", ["Excuse me, where is the restroom?"]], ["Die Rechnung, bitte.", "The bill, please."], ["Ich möchte zahlen.", "I would like to pay."], ["Bitte schön, hier ist Ihr Kaffee.", "Here is your coffee.", ["Here you are, your coffee."]]] },
       ],
@@ -71,13 +72,14 @@ export const itEn = buildCourse(
     { id: "it2", title: "Al bar", objective: "Order coffee and food and ask where things are", cefr: "A1", color: "sun",
       tips: [
         { title: "il, la, un, una", body: "Italian nouns are masculine or feminine, and the article shows which. Before a vowel, il and la become l'.", examples: [{ t: "Il caffè è buono.", n: "The coffee is good." }, { t: "L'acqua è fresca.", n: "The water is cool." }] },
+        { title: "Adjectives agree", body: "Adjectives change with the noun: il formaggio è buono (masculine), la zuppa è deliziosa (feminine). Ho fame (I am hungry, literally I have hunger) never changes.", examples: [{ t: "La zuppa è deliziosa.", n: "The soup is delicious." }] },
         { title: "Double consonants matter", body: "A double consonant can change the meaning. Say it longer: caro (dear) and carro (cart).", examples: [{ t: "Il caro amico.", n: "The dear friend." }] },
       ],
       lessons: [
         { title: "Ordinare", words: [["un caffè", "a coffee"], ["un tè", "a tea"], ["l'acqua", "the water"], ["il latte", "the milk"], ["il pane", "the bread"], ["vorrei", "I would like"]],
           sentences: [["Vorrei un caffè, per favore.", "I would like a coffee, please."], ["Un'acqua, grazie.", "A water, thanks.", ["A water, please."]], ["Il tè è caldo.", "The tea is hot."], ["Il latte è freddo.", "The milk is cold.", ["The milk is cool."]]] },
-        { title: "Il cibo", words: [["la zuppa", "the soup"], ["il formaggio", "the cheese"], ["buono", "good"], ["delizioso", "delicious"], ["affamato", "hungry"], ["assetato", "thirsty"]],
-          sentences: [["Sono affamato.", "I am hungry (said by a man)."], ["Sono assetata.", "I am thirsty (said by a woman).", ["I am thirsty."]], ["La zuppa è deliziosa.", "The soup is delicious."], ["Il formaggio è buono.", "The cheese is good.", ["The cheese is nice."]]] },
+        { title: "Il cibo", words: [["la zuppa", "the soup"], ["il formaggio", "the cheese"], ["buono", "good"], ["delizioso", "delicious"], ["ho fame", "I am hungry"], ["ho sete", "I am thirsty"]],
+          sentences: [["Ho fame.", "I am hungry.", ["I'm hungry."]], ["Ho sete.", "I am thirsty.", ["I'm thirsty."]], ["La zuppa è deliziosa.", "The soup is delicious."], ["Il formaggio è buono.", "The cheese is good.", ["The cheese is nice."]]] },
         { title: "Chiedere", words: [["dov'è", "where is"], ["il bagno", "the bathroom"], ["il conto", "the bill"], ["pagare", "to pay"], ["scusi", "excuse me (formal)"], ["ecco", "here is"]],
           sentences: [["Scusi, dov'è il bagno?", "Excuse me, where is the bathroom?", ["Excuse me, where's the bathroom?"]], ["Il conto, per favore.", "The bill, please."], ["Vorrei pagare.", "I would like to pay."], ["Ecco il caffè.", "Here is the coffee.", ["Here's the coffee."]]] },
       ],
@@ -102,6 +104,7 @@ export const koEn = buildCourse(
     { id: "ko1", title: "인사", objective: "Greet people, say thank you and introduce yourself", cefr: "A1", color: "brand",
       tips: [
         { title: "Polite speech", body: "Most Korean speech uses the polite -요 endings (안녕하세요). The formal -ㅂ니다 style (감사합니다) is used in service and formal situations.", examples: [{ t: "안녕하세요.", n: "Hello. (polite)" }, { t: "감사합니다.", n: "Thank you. (formal)" }] },
+        { title: "Batchim links to the next vowel", body: "A final consonant (batchim) carries over when the next syllable starts with the silent ㅇ: 이름이 is said i-reu-mi, 학생이에요 is said hak-saeng-i-e-yo.", examples: [{ t: "이름이 뭐예요?", n: "What is your name? (i-reu-mi mwo-ye-yo)" }] },
         { title: "Particles mark the role", body: "은/는 marks the topic and 이/가 marks the subject. Use 은 or 이 after a final consonant (batchim), and 는 or 가 after a vowel.", examples: [{ t: "저는 학생이에요.", n: "I am a student." }, { t: "이름이 뭐예요?", n: "What is your name?" }] },
       ],
       lessons: [
@@ -160,14 +163,15 @@ export const ruEn = buildCourse(
       tips: [
         { title: "Cases change endings", body: "Russian nouns change their endings with their role. After из (from) the noun takes the genitive case: Москва becomes Москвы.", examples: [{ t: "Я из Москвы.", n: "I am from Moscow." }] },
         { title: "Gender in the past tense", body: "Past-tense verbs agree with the speaker: я был (said by a man) and я была (said by a woman).", examples: [{ t: "Я был в кафе.", n: "I was at the café. (said by a man)" }] },
+        { title: "Aspect: платить and заплатить", body: "Most Russian verbs come in pairs. The imperfective (платить) describes a process or habit; the perfective (заплатить) one completed act. Paying the bill once uses the perfective.", examples: [{ t: "Я хочу́ заплати́ть.", n: "I want to pay. (now, once)" }, { t: "Я всегда́ плачу́ ка́ртой.", n: "I always pay by card. (habit)" }] },
       ],
       lessons: [
         { title: "Заказываем", words: [["чай", "tea"], ["кофе", "coffee"], ["вода́", "water"], ["молоко́", "milk"], ["хлеб", "bread"], ["хочу́", "I want"]],
           sentences: [["Я хочу́ чай, пожа́луйста.", "I would like tea, please.", ["I want tea, please."]], ["Кофе, пожа́луйста.", "Coffee, please."], ["Чай горя́чий.", "The tea is hot."], ["Молоко́ холо́дное.", "The milk is cold.", ["The milk is cool."]]] },
-        { title: "Еда", words: [["суп", "soup"], ["сыр", "cheese"], ["вку́сно", "tasty"], ["голоден", "hungry (said by a man)"], ["голодна́", "hungry (said by a woman)"], ["большо́й", "big"]],
-          sentences: [["Я голоден.", "I am hungry (said by a man)."], ["Я голодна́.", "I am hungry (said by a woman).", ["I am hungry."]], ["Суп о́чень вку́сный.", "The soup is very tasty.", ["The soup is delicious."]], ["Сыр большо́й.", "The cheese is big.", ["The cheese is large."]]] },
+        { title: "Еда", words: [["суп", "soup"], ["сыр", "cheese"], ["вку́сно", "tasty"], ["го́лоден", "hungry (said by a man)"], ["голодна́", "hungry (said by a woman)"], ["большо́й", "big"]],
+          sentences: [["Я го́лоден.", "I am hungry (said by a man)."], ["Я голодна́.", "I am hungry (said by a woman).", ["I am hungry."]], ["Суп о́чень вку́сный.", "The soup is very tasty.", ["The soup is delicious."]], ["Сыр большо́й.", "The cheese is big.", ["The cheese is large."]]] },
         { title: "Счёт", words: [["счёт", "the bill"], ["туале́т", "toilet"], ["где", "where"], ["плати́ть", "to pay"], ["извини́те", "excuse me"], ["здесь", "here"]],
-          sentences: [["Извини́те, где туале́т?", "Excuse me, where is the toilet?", ["Excuse me, where is the restroom?"]], ["Счёт, пожа́луйста.", "The bill, please."], ["Я хочу́ плати́ть.", "I want to pay.", ["I would like to pay."]], ["Вот ваш чай.", "Here is your tea.", ["Here's your tea."]]] },
+          sentences: [["Извини́те, где туале́т?", "Excuse me, where is the toilet?", ["Excuse me, where is the restroom?"]], ["Счёт, пожа́луйста.", "The bill, please."], ["Я хочу́ заплати́ть.", "I want to pay.", ["I would like to pay."]], ["Вот ваш чай.", "Here is your tea.", ["Here's your tea."]]] },
       ],
       story: { id: "ru2-story", title: "В кафе", summary: "Anna orders tea and asks for the toilet.",
         lines: [
