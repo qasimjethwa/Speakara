@@ -3,6 +3,7 @@ import "./globals.css";
 import { StoreProvider } from "@/lib/state/store";
 import { VoiceNotice } from "@/components/VoiceNotice";
 import { ServiceWorker } from "@/components/ServiceWorker";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: { default: "Speakara — learn languages free, forever", template: "%s · Speakara" },
@@ -13,7 +14,7 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, them
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body><StoreProvider>{children}<VoiceNotice /><ServiceWorker /></StoreProvider></body>
+      <body><StoreProvider>{children}<VoiceNotice /><ServiceWorker /></StoreProvider><Analytics /></body>
     </html>
   );
 }
