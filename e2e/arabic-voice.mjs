@@ -98,7 +98,22 @@ if (offlineOk) {
 if (realOffline) { spawn("npx", ["next", "start", "-p", "3000"], { detached: true, stdio: "ignore", env: { ...process.env, NODE_USE_ENV_PROXY: "1" } }).unref(); for (let i = 0; i < 60; i++) { if (await fetch(BASE).then((r) => r.ok, () => false)) break; await new Promise((r) => setTimeout(r, 500)); } }
 else await ctx.setOffline(false);
 
-// 7. Low-memory devices get a warning but can still choose.
+// 7. A real GPU whose WebGPU start fails: the voice must recover on WebAssembly and still speak.
+{
+  const g = await browser.newContext();
+  await g.addInitScript(() => {
+    window.__failWebGpu = true;
+    Object.defineProperty(navigator, "gpu", { configurable: true, get: () => ({ requestAdapter: async () => ({ features: new Set(["shader-f16"]), info: { architecture: "test-gpu", vendor: "test" } }) }) });
+  });
+  const gp = await g.newPage(); await gp.addInitScript((s) => { if (!localStorage.getItem("speakara:learner:v1")) localStorage.setItem("speakara:learner:v1", s); }, seed);
+  await share(gp); await gp.goto(`${BASE}/settings`); await gp.getByRole("button", { name: "Download Arabic voice" }).click();
+  await gp.locator('[data-arabic-voice="ready"]').waitFor({ timeout: 300000 });
+  const r = await gp.evaluate(async () => { const a = await window.__arabicVoice.synthArabic("مرحبا", 1); return { n: a.length, st: window.__arabicVoice.getVoiceState(), wasmOnly: localStorage.getItem("speakara:arabic-voice:wasm-only") }; });
+  expect(r.n > 5000 && r.st.device === "wasm" && r.st.dtype === "fp16" && r.wasmOnly === "1", `WebGPU start-up failure falls back to WebAssembly with the downloaded FP16 model and is remembered (${r.st.device}, ${r.st.dtype}, ${r.n} samples)`);
+  await g.close();
+}
+
+// 7b. Low-memory devices get a warning but can still choose.
 const low = await browser.newContext(); await low.addInitScript(() => Object.defineProperty(navigator, "deviceMemory", { get: () => 1 }));
 const lp2 = await low.newPage(); await lp2.addInitScript((s) => localStorage.setItem("speakara:learner:v1", s), seed); await share(lp2); await lp2.goto(`${BASE}/settings`);
 expect(await lp2.getByText(/This device has little memory/).waitFor({ timeout: 15000 }).then(() => true, () => false), "a low-memory device is warned before downloading");

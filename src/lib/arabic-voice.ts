@@ -121,26 +121,47 @@ export function cancelDownload() { abort?.abort(); }
 /** Removes the voice and its cached files from this device. */
 export async function removeVoice() {
   stopArabic(); const t = tts; tts = null; loading = null; await t?.then((x) => x.dispose()).catch(() => {});
-  write(null); await caches?.delete(CACHE).catch(() => false);
+  write(null); try { localStorage.removeItem(WASM_ONLY); } catch { /* ignore */ } await caches?.delete(CACHE).catch(() => false);
   set({ status: "not-downloaded", progress: 0, error: undefined, device: undefined });
 }
 
 let tts: Promise<NabraTTS> | null = null; let loading: Promise<NabraTTS> | null = null;
-/** Starts the engine from the cached files (lazy: the vendored package is a separate chunk). */
+const WASM_ONLY = "speakara:arabic-voice:wasm-only";
+const wasmOnly = () => { try { return localStorage.getItem(WASM_ONLY) === "1"; } catch { return false; } };
+/** Remembers that WebGPU failed on this device, so the voice starts on WebAssembly from now on. */
+function preferWasm() { try { localStorage.setItem(WASM_ONLY, "1"); } catch { /* storage blocked */ } }
+async function startEngine(device: "auto" | "wasm"): Promise<NabraTTS> {
+  const saved = read(); if (!saved) throw new Error("not-downloaded");
+  const { NabraTTS } = await import("@/vendor/nabra-tts/index.js");
+  // Test hook: lets e2e/arabic-voice.mjs simulate a GPU whose WebGPU start-up fails.
+  if (device === "auto" && (window as unknown as { __failWebGpu?: boolean }).__failWebGpu) throw new Error("simulated WebGPU failure");
+  return NabraTTS.load({ repo: REPO, revision: REVISION, dtype: saved.dtype, device, cache: true,
+    modelUrl: FILES[saved.dtype].url, voiceUrl: FILES.voice.url, wasmPaths: `/vendor/ort/${ORT}/`, numThreads: 1 });
+}
+/**
+ * Starts the engine from the cached files (lazy: the vendored package is a separate chunk). WebGPU is tried on a
+ * hardware GPU; if it fails to start, the same downloaded model is started on WebAssembly instead.
+ */
 function engine(): Promise<NabraTTS> {
   if (tts) return tts;
-  const saved = read(); if (!saved) return Promise.reject(new Error("not-downloaded"));
+  if (!read()) return Promise.reject(new Error("not-downloaded"));
   set({ status: "loading" });
   loading = (async () => {
-    const { NabraTTS } = await import("@/vendor/nabra-tts/index.js");
-    const device = realGpu(await gpuAdapter()) ? "auto" : "wasm";
-    const t = await NabraTTS.load({ repo: REPO, revision: REVISION, dtype: saved.dtype, device, cache: true,
-      modelUrl: FILES[saved.dtype].url, voiceUrl: FILES.voice.url, wasmPaths: `/vendor/ort/${ORT}/`, numThreads: 1 });
+    const gpu = !wasmOnly() && realGpu(await gpuAdapter());
+    let t: NabraTTS;
+    try { t = await startEngine(gpu ? "auto" : "wasm"); }
+    catch (e) { if (!gpu) throw e; preferWasm(); t = await startEngine("wasm"); }
     set({ status: "ready", device: t.device, error: undefined });
     return t;
   })();
   tts = loading.catch((e: Error) => { tts = null; set({ status: "error", error: /memory|allocate|OOM/i.test(e.message) ? "This device ran out of memory loading the Arabic voice. Close other tabs and try again." : `The Arabic voice could not start: ${e.message}` }); throw e; });
   return tts;
+}
+/** After a WebGPU failure during generation: restart on WebAssembly (once). Returns false if already on WASM. */
+async function fallBackToWasm(): Promise<boolean> {
+  if (state.device !== "webgpu") return false;
+  preferWasm(); const old = tts; tts = null; await old?.then((x) => x.dispose()).catch(() => {});
+  return true;
 }
 
 /* ---------- playback ---------- */
@@ -166,10 +187,13 @@ export async function speakArabic(text: string, rate = 1): Promise<boolean> {
     let audio = clips.get(key); const cached = !!audio; const t0 = performance.now();
     if (!audio) {
       set({ generating: true });
-      const t = await engine(); if (mine !== token) return false;
       const parts: Float32Array[] = [];
       const timeout = setTimeout(() => { if (mine === token) stopArabic(); }, 25000);
-      try { for await (const ch of t.stream(text, { speed })) { if (mine !== token) break; parts.push(ch.audio); } } finally { clearTimeout(timeout); }
+      const run = async () => { const t = await engine(); for await (const ch of t.stream(text, { speed })) { if (mine !== token) break; parts.push(ch.audio); } };
+      try {
+        try { await run(); }
+        catch (e) { if (mine !== token || !(await fallBackToWasm())) throw e; parts.length = 0; await run(); }   // WebGPU failed mid-way: retry on WASM
+      } finally { clearTimeout(timeout); }
       if (mine !== token) return false;
       set({ generating: false });
       const n = parts.reduce((a, p) => a + p.length, 0); audio = new Float32Array(n); let o = 0; for (const p of parts) { audio.set(p, o); o += p.length; }
@@ -180,7 +204,10 @@ export async function speakArabic(text: string, rate = 1): Promise<boolean> {
     const buf = c.createBuffer(1, audio.length, 24000); buf.copyToChannel(audio as Float32Array<ArrayBuffer>, 0);
     const s = c.createBufferSource(); s.buffer = buf; s.connect(c.destination); src = s;
     return await new Promise<boolean>((resolve) => { s.onended = () => { if (src === s) src = null; resolve(mine === token); }; s.start(); });
-  } catch { if (mine === token) set({ generating: false }); return false; }
+  } catch (e) {
+    if (mine === token) set({ generating: false, ...(state.status === "ready" ? { status: "error" as const, error: `The Arabic voice failed to speak: ${(e as Error).message}` } : {}) });
+    return false;
+  }
 }
 /** Generates audio without playing it (used by the pronunciation tests). Returns 24 kHz mono samples. */
 export async function synthArabic(text: string, speed = 1): Promise<Float32Array> {
