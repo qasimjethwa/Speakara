@@ -23,6 +23,9 @@ await ctx.addInitScript((s) => { if (!localStorage.getItem("speakara:learner:v1"
 const page = await ctx.newPage(); const errs = [];
 page.on("pageerror", (e) => errs.push(e.message)); page.on("console", (m) => { if (m.type() === "error" && !/Failed to load resource|_rsc=/.test(m.text())) errs.push(m.text().slice(0, 200)); });
 
+// Protected Vercel previews: E2E_SHARE=<token> sets the access cookie first.
+const share = async (pg) => { if (process.env.E2E_SHARE) await pg.goto(`${BASE}/?_vercel_share=${process.env.E2E_SHARE}`); };
+await share(page);
 // 1. Settings: first attempt fails (model host blocked), retry succeeds; progress is shown.
 await page.goto(`${BASE}/settings`); await page.locator("[data-arabic-voice]").waitFor();
 const sw = await page.evaluate(async () => { const r = await navigator.serviceWorker?.ready.catch(() => null); return !!r?.active; });
@@ -97,7 +100,7 @@ else await ctx.setOffline(false);
 
 // 7. Low-memory devices get a warning but can still choose.
 const low = await browser.newContext(); await low.addInitScript(() => Object.defineProperty(navigator, "deviceMemory", { get: () => 1 }));
-const lp2 = await low.newPage(); await lp2.addInitScript((s) => localStorage.setItem("speakara:learner:v1", s), seed); await lp2.goto(`${BASE}/settings`);
+const lp2 = await low.newPage(); await lp2.addInitScript((s) => localStorage.setItem("speakara:learner:v1", s), seed); await share(lp2); await lp2.goto(`${BASE}/settings`);
 expect(await lp2.getByText(/This device has little memory/).waitFor({ timeout: 15000 }).then(() => true, () => false), "a low-memory device is warned before downloading");
 await low.close();
 
