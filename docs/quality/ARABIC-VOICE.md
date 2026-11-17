@@ -9,7 +9,7 @@ repository's test environment; everything else is marked NOT VERIFIED.
 | Requirement | Implementation |
 |---|---|
 | In-browser synthesis, no server or paid API | `nabra-tts` (vendored, `src/vendor/nabra-tts`) runs G2P (eSpeak NG WASM) and the ONNX model in a Web Worker. No speech is generated on a server; `/api/tts` is not used for Arabic. |
-| WebGPU with WASM fallback | WebGPU when a **hardware** adapter exists; WebAssembly otherwise. Software adapters (SwiftShader / `isFallbackAdapter`) are skipped: measured 27.6 s on SwiftShader vs 0.55 s on WASM for the same 2.7 s sentence. |
+| WebGPU with WASM fallback | **Default: WebAssembly** (since `e511c32`). A learner reported crackling on a real GPU (WebGPU, FP16), a path that could not be verified here; after switching synthesis to WebAssembly they confirmed the crackle was gone. WebGPU remains behind the opt-in `localStorage["speakara:arabic-voice:webgpu"]="1"`, and if it fails it restarts on WebAssembly and remembers that. Earlier behaviour: WebGPU when a **hardware** adapter exists; WebAssembly otherwise. Software adapters (SwiftShader / `isFallbackAdapter`) are skipped: measured 27.6 s on SwiftShader vs 0.55 s on WASM for the same 2.7 s sentence. |
 | FP16 where supported | FP16 model (16 MB) when the GPU reports `shader-f16`; FP32 (30 MB) otherwise. |
 | Lazy loading | The engine is a separate chunk imported only by `downloadVoice()` or the first Arabic playback after download. Nothing is fetched until the learner opts in. |
 | Settings | "Arabic voice" card: Download, progress bar (`role=progressbar`), Cancel, error + **Retry download**, starting state, Test, Stop, Remove, low-memory warning, licence link. |
@@ -96,3 +96,11 @@ Listening packet: `docs/content/review/ar-voice/` (8 course sentences as written
 the text and phonemes). For each file, the reviewer should rate: correct sounds (especially ض ص ط ظ ق ع ح), short
 vowels and case endings, stress, naturalness for a beginner, and whether a learner could imitate it. Until that is
 done, the Settings card states that the voice has not been reviewed by an Arabic speaker.
+
+## Field report (after release)
+
+- Real device, real GPU: the first build failed to speak (WebGPU path). Fixed in `07b2a09` (automatic WebAssembly
+  fallback, real error messages).
+- Same device: playback crackled. Fixed in `e511c32` (WebAssembly synthesis by default, `latencyHint: "playback"`,
+  invalid-sample guard, peak limit, 10 ms edge fades). The learner confirmed it works.
+- Open: whether WebGPU/FP16 output is usable on real GPUs needs a listening test before it is re-enabled by default.
