@@ -1,0 +1,50 @@
+[
+ {
+  "id": "ar1.1.w1",
+  "text": "مَرْحَبًا",
+  "phonemes": "mˈarħabˌan",
+  "seconds": 0.8
+ },
+ {
+  "id": "ar1.3.s2",
+  "text": "أَنا بِخَيْرٍ، الحَمْدُ لِلَّهِ.",
+  "phonemes": "ʔˈanaː biχˌairˌin ʔalħˈamdu lillhˌi.",
+  "seconds": 2.08
+ },
+ {
+  "id": "ar1.4.s1",
+  "text": "ما اسْمُكَ؟",
+  "phonemes": "mˈaː ˈasmukˌa",
+  "seconds": 0.9
+ },
+ {
+  "id": "ar2.1.s1",
+  "text": "أنا من مصر.",
+  "phonemes": "ˈana mˈin mˈisr.",
+  "seconds": 0.93
+ },
+ {
+  "id": "ar2.5.s2",
+  "text": "أسكن في القاهرة.",
+  "phonemes": "ʔˈaskan fˈiː ʔalqˈaːhirˌa.",
+  "seconds": 1.4
+ },
+ {
+  "id": "ar5.1.s1",
+  "text": "أريد قهوة من فضلك.",
+  "phonemes": "ʔrˈiːd qˈahwa mˈin fˈadlka.",
+  "seconds": 1.73
+ },
+ {
+  "id": "ar7.1.s2",
+  "text": "أين المستشفى من فضلك؟",
+  "phonemes": "ʔˈajna ʔalmˈustaʃfˌaː mˈin fˈadlka",
+  "seconds": 1.93
+ },
+ {
+  "id": "ar10.4.s1",
+  "text": "ذهبت إلى السوق أمس.",
+  "phonemes": "ðhbt ʔˈilaː ʔassˈuːq ʔˈams.",
+  "seconds": 1.63
+ }
+]

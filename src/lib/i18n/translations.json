@@ -1982,5 +1982,73 @@
  "Delete": [
   "Borrar",
   "मिटाएँ"
+ ],
+ "Arabic voice": [
+  "Voz árabe",
+  "अरबी आवाज़"
+ ],
+ "Arabic voice download": [
+  "Descarga de la voz árabe",
+  "अरबी आवाज़ डाउनलोड"
+ ],
+ "Arabic voice ready on this device.": [
+  "La voz árabe está lista en este dispositivo.",
+  "अरबी आवाज़ इस डिवाइस पर तैयार है।"
+ ],
+ "Download Arabic voice": [
+  "Descargar voz árabe",
+  "अरबी आवाज़ डाउनलोड करें"
+ ],
+ "Download a voice that reads Arabic aloud on this device, even offline and on devices without an Arabic voice. About 45 MB, stored on this device. Speech is generated on your device; nothing is sent to a server.": [
+  "Descarga una voz que lee árabe en voz alta en este dispositivo, incluso sin conexión y en dispositivos sin voz árabe. Unos 45 MB, guardados en este dispositivo. La voz se genera en tu dispositivo; no se envía nada a ningún servidor.",
+  "एक आवाज़ डाउनलोड करें जो इस डिवाइस पर अरबी पढ़कर सुनाती है, ऑफ़लाइन भी और उन डिवाइसों पर भी जिनमें अरबी आवाज़ नहीं है। लगभग 45 MB, इसी डिवाइस पर सहेजी जाती है। आवाज़ आपके डिवाइस पर बनती है; कुछ भी सर्वर पर नहीं भेजा जाता।"
+ ],
+ "Downloading Arabic voice…": [
+  "Descargando la voz árabe…",
+  "अरबी आवाज़ डाउनलोड हो रही है…"
+ ],
+ "Open Settings": [
+  "Abrir Ajustes",
+  "सेटिंग्स खोलें"
+ ],
+ "Remove": [
+  "Quitar",
+  "हटाएँ"
+ ],
+ "Retry download": [
+  "Reintentar descarga",
+  "फिर से डाउनलोड करें"
+ ],
+ "Starting the Arabic voice…": [
+  "Iniciando la voz árabe…",
+  "अरबी आवाज़ शुरू हो रही है…"
+ ],
+ "Stop": [
+  "Detener",
+  "रोकें"
+ ],
+ "Test Arabic voice": [
+  "Probar voz árabe",
+  "अरबी आवाज़ आज़माएँ"
+ ],
+ "This browser can’t run the Arabic voice.": [
+  "Este navegador no puede usar la voz árabe.",
+  "यह ब्राउज़र अरबी आवाज़ नहीं चला सकता।"
+ ],
+ "This device has little memory. The Arabic voice may be slow or fail to start; close other tabs if it does.": [
+  "Este dispositivo tiene poca memoria. La voz árabe puede ir lenta o no iniciarse; si pasa, cierra otras pestañas.",
+  "इस डिवाइस में कम मेमोरी है। अरबी आवाज़ धीमी हो सकती है या शुरू न हो; ऐसा हो तो दूसरे टैब बंद करें।"
+ ],
+ "This device has no Arabic voice. Download Speakara’s Arabic voice to hear Arabic on this device, even offline.": [
+  "Este dispositivo no tiene voz árabe. Descarga la voz árabe de Speakara para escuchar árabe en este dispositivo, incluso sin conexión.",
+  "इस डिवाइस में अरबी आवाज़ नहीं है। इस डिवाइस पर अरबी सुनने के लिए Speakara की अरबी आवाज़ डाउनलोड करें, ऑफ़लाइन भी।"
+ ],
+ "Voice: Nabra-7M-Distill (Modern Standard Arabic, one voice, Apache-2.0), with eSpeak NG (GPL-3.0). This voice is being evaluated and has not yet been reviewed by an Arabic speaker.": [
+  "Voz: Nabra-7M-Distill (árabe estándar moderno, una voz, Apache-2.0), con eSpeak NG (GPL-3.0). Esta voz está en evaluación y aún no la ha revisado un hablante de árabe.",
+  "आवाज़: Nabra-7M-Distill (आधुनिक मानक अरबी, एक आवाज़, Apache-2.0), eSpeak NG (GPL-3.0) के साथ। इस आवाज़ का मूल्यांकन चल रहा है और अभी किसी अरबी भाषी ने इसकी समीक्षा नहीं की है।"
+ ],
+ "Licences": [
+  "Licencias",
+  "लाइसेंस"
  ]
 }

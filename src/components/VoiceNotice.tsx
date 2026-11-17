@@ -1,7 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import { COURSES } from "@/lib/content";
+import Link from "next/link";
 import { useT } from "@/lib/i18n";
+import { voiceSupport } from "@/lib/arabic-voice";
 
 /** Explains, once per language and visit, why a "hear" button stayed silent: the device has no voice for it. */
 export function VoiceNotice() {
@@ -16,7 +18,9 @@ export function VoiceNotice() {
   const name = COURSES.find((c) => c.ttsLang === lang)?.targetName ?? lang;
   return (
     <div role="status" className="fixed inset-x-3 bottom-24 z-50 mx-auto max-w-md rounded-2xl border-2 border-sun-edge bg-sun-soft px-4 py-3 text-[15px] font-semibold text-ink shadow-lg">
-      {t("This device has no {lang} voice, so it can’t be read aloud. Install a {lang} voice in your device settings to hear it.", { lang: t(name) })}
+      {lang.startsWith("ar") && voiceSupport().ok
+        ? <>{t("This device has no Arabic voice. Download Speakara’s Arabic voice to hear Arabic on this device, even offline.")} <Link href="/settings" className="inline-flex min-h-11 items-center font-extrabold text-sky-dark underline">{t("Open Settings")}</Link></>
+        : t("This device has no {lang} voice, so it can’t be read aloud. Install a {lang} voice in your device settings to hear it.", { lang: t(name) })}
       <button type="button" onClick={() => setLang(null)} className="ml-2 inline-flex min-h-11 items-center font-extrabold uppercase text-sky-dark">{t("OK")}</button>
     </div>
   );

@@ -3,6 +3,7 @@
 
 export const canSpeakAloud = () => typeof window !== "undefined" && "speechSynthesis" in window;
 const remoteTts = process.env.NEXT_PUBLIC_TTS_REMOTE === "1";
+import { getVoiceState, speakArabic, stopArabic, voiceDownloaded } from "./arabic-voice";
 const clips = new Map<string, HTMLAudioElement>();
 
 /** Picks the most natural installed voice for a locale: exact locale first, then enhanced/neural voices. */
@@ -21,6 +22,7 @@ export function pickVoice(lang: string): SpeechSynthesisVoice | null {
 /** "ok" when a voice for the language exists; "no-voice" when the browser can speak but lacks that language. */
 export function ttsStatus(lang: string): "ok" | "no-voice" | "unsupported" {
   if (remoteTts) return "ok";
+  if (langOf(lang) === "ar" && voiceDownloaded()) return "ok";
   if (!canSpeakAloud()) return "unsupported";
   return window.speechSynthesis.getVoices().length === 0 || pickVoice(lang) ? "ok" : "no-voice";
 }
@@ -31,7 +33,13 @@ export function voicesReady(): Promise<void> {
 }
 
 /** Speaks text. Resolves true when playback finished, false if it could not be played. */
-export function say(text: string, lang: string, rate = 1): Promise<boolean> {
+export async function say(text: string, lang: string, rate = 1): Promise<boolean> {
+  // Arabic uses the downloaded on-device voice when there is one. If that engine fails, fall back to a system voice.
+  if (langOf(lang) === "ar" && voiceDownloaded()) {
+    if (canSpeakAloud()) window.speechSynthesis.cancel();
+    const ok = await speakArabic(text, rate);
+    if (ok || getVoiceState().status !== "error") return ok;
+  }
   if (remoteTts) {
     const key = `${lang}|${text}`;
     let clip = clips.get(key);
@@ -58,7 +66,7 @@ async function sayLocal(text: string, lang: string, rate: number): Promise<boole
     window.speechSynthesis.cancel(); window.speechSynthesis.resume(); window.speechSynthesis.speak(u);
   });
 }
-export function stopSpeaking() { if (canSpeakAloud()) { speakToken++; window.speechSynthesis.cancel(); } }
+export function stopSpeaking() { stopArabic(); if (canSpeakAloud()) { speakToken++; window.speechSynthesis.cancel(); } }
 
 /** Sound effects: one shared Web Audio context, one effect at a time, consistent loudness. */
 let ctx: AudioContext | null = null; let master: GainNode | null = null; let lastAt = 0; let lastName = "";

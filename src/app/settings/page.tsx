@@ -6,6 +6,7 @@ import { Button, Card, Dialog, Field, Notice } from "@/components/ui";
 import { useStore } from "@/lib/state/store";
 import { COURSES, getCourse } from "@/lib/content";
 import { CourseCards } from "@/components/CourseCards";
+import { ArabicVoiceCard } from "@/components/ArabicVoiceCard";
 import { LanguagePicker, useT } from "@/lib/i18n";
 
 /** Rendered inside AppShell, so it mounts only once the learner state has loaded and form fields start correct. */
@@ -33,6 +34,7 @@ function SettingsBody() {
         {toggle("slowAudio", "Slower audio", "Play sentences at three-quarter speed")}
         {toggle("speech", "Speaking exercises", "Turn off if you can’t use a microphone")}
         {toggle("motion", "Animations", "Celebrations and movement. Your device’s reduced-motion setting is always respected")}</Card>
+      <ArabicVoiceCard />
       {mode === "cloud" && <Card className="mb-5"><h2 className="pb-1 text-lg">{t("Privacy")}</h2>{toggle("isPublic", "Public profile", "Let other learners find you by username and see your name on leaderboards")}</Card>}
       <Card><h2 className="mb-3 text-lg">{t("Account")}</h2>
         <p className="mb-3 text-sm text-sub">{mode === "cloud" ? t("Your progress syncs to your account.") : cloudConfigured ? t("You’re learning as a guest. Create an account to sync across devices.") : t("Progress is saved on this device.")}</p>

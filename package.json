@@ -10,7 +10,9 @@
     "test": "vitest run",
     "content:check": "tsx scripts/check-content.ts",
     "lint": "eslint src e2e scripts",
-    "content:audit": "tsx scripts/content-audit.ts"
+    "content:audit": "tsx scripts/content-audit.ts",
+    "prebuild": "node scripts/voice-assets.mjs",
+    "predev": "node scripts/voice-assets.mjs"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-arabic": "^5.3.0",
@@ -20,6 +22,7 @@
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.544.0",
     "next": "^16.0.0",
+    "onnxruntime-web": "1.30.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
