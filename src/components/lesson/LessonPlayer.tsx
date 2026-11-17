@@ -100,7 +100,7 @@ export function LessonPlayer({ course, exercises, sound, slow, exitHref, timeLim
             {verdict && (
               <div className={`mb-3 ${verdict.correct ? "text-brand-dark" : "text-coral-dark"}`}>
                 <p className="flex items-center gap-2 text-xl font-extrabold">{verdict.correct ? <CheckCircle2 aria-hidden="true" /> : <XCircle aria-hidden="true" />}{verdict.correct ? t(PRAISE[i % PRAISE.length]) : t("Not quite — here’s the answer")}</p>
-                {(!verdict.correct || verdict.note) && <p className="mt-1 text-[17px]"><span className="font-extrabold">{verdict.correct ? (verdict.note === "accent" ? t("Mind the accents:") : t("You have a small typo:")) : t("Correct answer:")} </span><span lang={ex.type === "speak" || ex.type === "listen" || ex.type === "dictation" || ex.type === "fill" ? course.ttsLang : undefined}>{verdict.expected}</span></p>}
+                {(!verdict.correct || verdict.note) && <p className="mt-1 text-[17px]"><span className="font-extrabold">{verdict.correct ? (verdict.note === "accent" ? t("Mind the accents:") : t("You have a small typo:")) : t("Correct answer:")} </span><span lang={ex.type === "speak" || ex.type === "listen" || ex.type === "dictation" || ex.type === "fill" || ((ex.type === "translate" || ex.type === "wordbank" || ex.type === "choose") && !ex.promptIsTarget) ? course.ttsLang : undefined}>{verdict.expected}</span></p>}
               </div>
             )}
           </div>

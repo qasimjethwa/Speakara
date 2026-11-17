@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { explainPrompt, scriptedReply, type TutorReply, type TutorRequest } from "@/lib/tutor/engine";
 import { aiReply, configuredProvider } from "@/lib/tutor/providers";
 import { SCENARIOS } from "@/lib/tutor/scenarios";
+import { COURSES } from "@/lib/content";
 
 /** Abuse guard: a generous sliding window per client. Normal practice never reaches it; runaway scripts do. */
 const WINDOW_MS = 10 * 60_000, LIMIT = 40;
@@ -19,7 +20,8 @@ const CACHE_MS = 6 * 3600_000;
 function cached<T>(key: string, now: number): T | null { const c = cache.get(key); return c && now - c.at < CACHE_MS ? (c.value as T) : null; }
 function remember(key: string, value: unknown, now: number) { cache.set(key, { at: now, value }); if (cache.size > 2000) cache.delete(cache.keys().next().value!); }
 
-const LANGS = ["es", "en", "fr", "hi"];
+/** Every course target language, so a new course's tutor scenes are never rejected here. */
+const LANGS: string[] = [...new Set(COURSES.map((c) => c.target as string))];
 const str = (v: unknown, max: number) => String(v ?? "").slice(0, max);
 
 export async function GET() {

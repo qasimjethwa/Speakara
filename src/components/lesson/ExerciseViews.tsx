@@ -9,6 +9,10 @@ import { canRecord, listenOnce, say, sfx, speechRecognizer, startRecording, ttsS
 import { useT } from "@/lib/i18n";
 import { Mascot } from "../Mascot";
 import { Notice } from "../ui";
+import { ArabicKeyboard } from "./ArabicKeyboard";
+
+/** Right-to-left scripts (Arabic) need the row order of tiles and answers reversed, not just the text. */
+const isRtl = (lang?: string) => !!lang && /^(ar|he|fa|ur)\b/i.test(lang);
 
 export interface ViewProps<E extends Exercise = Exercise> { ex: E; course: Course; locked: boolean; sound: boolean; slow: boolean; onDraft: (a: Answer | null) => void; onAutoSubmit: (a: Answer) => void }
 
@@ -62,7 +66,7 @@ function Choose({ ex, course, locked, sound, slow, onDraft }: ViewProps<ChooseEx
       <div role="radiogroup" aria-label={t("Answer choices")} className="space-y-3">
         {ex.options.map((o, i) => (
           <button key={o} type="button" role="radio" aria-checked={sel === i} disabled={locked} onClick={() => { setSel(i); onDraft({ type: "choose", index: i }); if (sound) sfx.tap(); }} className={optionCls(sel === i)}>
-            <span aria-hidden="true" className="mr-3 inline-grid h-7 w-7 place-items-center rounded-lg border-2 border-line-dark text-sm text-sub">{i + 1}</span>{o}
+            <span aria-hidden="true" className="mr-3 inline-grid h-7 w-7 place-items-center rounded-lg border-2 border-line-dark text-sm text-sub">{i + 1}</span><span lang={ex.promptIsTarget ? undefined : course.ttsLang}>{o}</span>
           </button>
         ))}
       </div>
@@ -78,10 +82,10 @@ function Tiles({ tiles, locked, sound, lang, onText }: { tiles: string[]; locked
   return (
     <div>
       <p className="sr-only" aria-live="polite">{picked.length ? t("Your answer so far: {answer}", { answer: picked.map((i) => tiles[i]).join(" ") }) : t("Your answer is empty.")}</p>
-      <div role="group" aria-label={t("Your answer — tap a word to remove it")} className="mb-6 flex min-h-[112px] flex-wrap content-start gap-2 border-y-2 border-line py-3">
+      <div role="group" dir={isRtl(lang) ? "rtl" : undefined} aria-label={t("Your answer — tap a word to remove it")} className="mb-6 flex min-h-[112px] flex-wrap content-start gap-2 border-y-2 border-line py-3">
         {picked.map((i) => <button key={i} type="button" disabled={locked} onClick={() => set(picked.filter((x) => x !== i))} className={tile} lang={lang}>{tiles[i]}</button>)}
       </div>
-      <div role="group" aria-label={t("Word bank")} data-bank className="flex flex-wrap justify-center gap-2">
+      <div role="group" dir={isRtl(lang) ? "rtl" : undefined} aria-label={t("Word bank")} data-bank className="flex flex-wrap justify-center gap-2">
         {tiles.map((w, i) => picked.includes(i)
           ? <span key={i} aria-hidden="true" className="rounded-xl border-2 border-line bg-line px-3 py-2 text-[17px] font-bold text-transparent">{w}</span>
           : <button key={i} type="button" disabled={locked} onClick={() => { set([...picked, i]); if (sound) sfx.tap(); }} className={tile} lang={lang}>{w}</button>)}
@@ -100,8 +104,11 @@ function WordBank({ ex, course, locked, sound, slow, onDraft }: ViewProps<WordBa
   );
 }
 function TextAnswer({ label, placeholder, lang, locked, onText }: { label: string; placeholder: string; lang?: string; locked: boolean; onText: (s: string) => void }) {
-  return <textarea autoFocus disabled={locked} rows={3} aria-label={label} placeholder={placeholder} lang={lang} spellCheck={false} autoCapitalize="off" autoCorrect="off"
+  const ref = useRef<HTMLTextAreaElement>(null); const rtl = isRtl(lang);
+  const box = <textarea ref={ref} autoFocus disabled={locked} rows={3} aria-label={label} placeholder={placeholder} lang={lang} dir={rtl ? "rtl" : undefined} spellCheck={false} autoCapitalize="off" autoCorrect="off"
     onChange={(e) => onText(e.target.value)} className="w-full resize-none rounded-2xl border-2 border-line-dark bg-mist p-4 text-lg font-semibold placeholder:text-sub focus:border-sky-dark focus:bg-paper focus:outline-none" />;
+  if (!rtl || !lang?.startsWith("ar")) return box;
+  return <div className="space-y-3">{box}<ArabicKeyboard target={ref} disabled={locked} onChange={onText} /></div>;
 }
 function Translate({ ex, course, locked, sound, slow, onDraft }: ViewProps<TranslateEx>) {
   const { t } = useT(); const sp = useSpeech(course.ttsLang, slow);
@@ -198,7 +205,7 @@ function Speak({ ex, course, locked, slow, onDraft }: ViewProps<SpeakEx>) {
     </div>
   );
 }
-function Match({ ex, locked, sound, onAutoSubmit }: ViewProps<MatchEx>) {
+function Match({ ex, course, locked, sound, onAutoSubmit }: ViewProps<MatchEx>) {
   const { t } = useT();
   const cols = useMemo(() => { const r = mulberry32(ex.pairs.length * 7919 + ex.id.length); return { left: shuffle(ex.pairs, r), right: shuffle(ex.pairs, r) }; }, [ex]);
   const [done, setDone] = useState<string[]>([]); const [l, setL] = useState<string | null>(null); const [r, setR] = useState<string | null>(null);
@@ -213,7 +220,7 @@ function Match({ ex, locked, sound, onAutoSubmit }: ViewProps<MatchEx>) {
     <div className="grid grid-cols-2 gap-3" data-match>
       <p className="sr-only" aria-live="assertive">{said}</p>
       <div role="group" aria-label={t("Meanings")} className="space-y-3">{cols.left.map((p) => <button key={p.id} type="button" aria-pressed={l === p.id} disabled={locked || done.includes(p.id)} onClick={() => setL(p.id)} className={cls(p.id, l, 0)}>{p.n}</button>)}</div>
-      <div role="group" aria-label={t("Words")} className="space-y-3">{cols.right.map((p) => <button key={p.id} type="button" aria-pressed={r === p.id} disabled={locked || done.includes(p.id)} onClick={() => setR(p.id)} className={cls(p.id, r, 1)}>{p.t}</button>)}</div>
+      <div role="group" aria-label={t("Words")} className="space-y-3">{cols.right.map((p) => <button key={p.id} type="button" aria-pressed={r === p.id} disabled={locked || done.includes(p.id)} onClick={() => setR(p.id)} className={cls(p.id, r, 1)} lang={course.ttsLang}>{p.t}</button>)}</div>
     </div>
   );
 }

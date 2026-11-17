@@ -1942,5 +1942,45 @@
  "OK": [
   "Vale",
   "ठीक है"
+ ],
+ "Arabic": [
+  "árabe",
+  "अरबी"
+ ],
+ "Arabic script": [
+  "Alfabeto árabe",
+  "अरबी लिपि"
+ ],
+ "Hide Arabic keyboard": [
+  "Ocultar teclado árabe",
+  "अरबी कीबोर्ड छिपाएँ"
+ ],
+ "Show Arabic keyboard": [
+  "Mostrar teclado árabe",
+  "अरबी कीबोर्ड दिखाएँ"
+ ],
+ "Letters": [
+  "Letras",
+  "अक्षर"
+ ],
+ "Vowel marks": [
+  "Signos vocálicos",
+  "स्वर चिह्न"
+ ],
+ "Vowel mark": [
+  "Signo vocálico",
+  "स्वर चिह्न"
+ ],
+ "Arabic keyboard": [
+  "Teclado árabe",
+  "अरबी कीबोर्ड"
+ ],
+ "Space": [
+  "Espacio",
+  "स्पेस"
+ ],
+ "Delete": [
+  "Borrar",
+  "मिटाएँ"
  ]
 }

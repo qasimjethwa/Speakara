@@ -6,7 +6,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const pw = require("playwright"); const ENGINE = process.env.E2E_BROWSER ?? "firefox";
 const BASE = process.argv[2] ?? "http://localhost:3000";
-const COURSES = [["es-en", "es1.1", "es-ES"], ["fr-en", "fr1.1", "fr-FR"], ["de-en", "de1.1", "de-DE"], ["ko-en", "ko1.1", "ko-KR"], ["it-en", "it1.1", "it-IT"], ["ru-en", "ru1.1", "ru-RU"]];
+const COURSES = [["es-en", "es1.1", "es-ES"], ["fr-en", "fr1.1", "fr-FR"], ["de-en", "de1.1", "de-DE"], ["ko-en", "ko1.1", "ko-KR"], ["it-en", "it1.1", "it-IT"], ["ru-en", "ru1.1", "ru-RU"], ["ar-en", "ar1.1", "ar-SA"]];
 const base = { version: 1, profile: { name: "Mic", courseId: "es-en", onboarded: true, sound: false, speech: true, motion: false, dailyGoalXp: 20 }, xp: 10, gems: 0, streak: { count: 0, lastDay: null, freezes: 0, longest: 0 }, completed: { "es-en:es1.1": { count: 1, bestAccuracy: 1, at: 1 } }, unlockedUnits: {}, stories: {}, review: {}, mistakes: [], xpEvents: [], quests: { day: "", items: [] }, achievements: {}, conversations: [], stats: { lessons: 1, perfect: 0, practice: 0, minutes: 0, tutorTurns: 0 } };
 const browser = await pw[ENGINE].launch(); let failures = 0; const rows = [];
 for (const [courseId, lessonId, locale] of COURSES) {

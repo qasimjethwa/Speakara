@@ -224,9 +224,9 @@ describe("srs bounds", () => {
   });
 });
 
-describe("six target languages", () => {
-  it("offers exactly Spanish, French, German, Korean, Italian and Russian, and no Chinese or Japanese", () => {
-    expect(TARGET_LANGUAGES.map((l) => l.name).sort()).toEqual(["French", "German", "Italian", "Korean", "Russian", "Spanish"]);
+describe("seven target languages", () => {
+  it("offers exactly Spanish, French, German, Korean, Italian, Russian and Arabic, and no Chinese or Japanese", () => {
+    expect(TARGET_LANGUAGES.map((l) => l.name).sort()).toEqual(["Arabic", "French", "German", "Italian", "Korean", "Russian", "Spanish"]);
     expect(JSON.stringify(TARGET_LANGUAGES)).not.toMatch(/Chinese|Japanese|Mandarin/i);
   });
   it("every target language has a unique course, a matching locale and a real course behind it", () => {
@@ -313,8 +313,8 @@ describe("voice language matching", () => {
 });
 
 describe("scripted tutor coverage", () => {
-  const SCRIPT: Record<string, RegExp> = { ko: /[가-힣]/, ru: /[Ѐ-ӿ]/ };
-  for (const target of ["es", "fr", "de", "ko", "it", "ru"] as const) it(`${target}: at least five scenes, each completable with its own model answers`, () => {
+  const SCRIPT: Record<string, RegExp> = { ko: /[가-힣]/, ru: /[Ѐ-ӿ]/, ar: /[\u0600-\u06ff]/ };
+  for (const target of ["es", "fr", "de", "ko", "it", "ru", "ar"] as const) it(`${target}: at least five scenes, each completable with its own model answers`, () => {
     const scenes = SCENARIOS.filter((s) => s.script?.[target]?.length);
     expect(scenes.length).toBeGreaterThanOrEqual(5);
     for (const s of scenes) {

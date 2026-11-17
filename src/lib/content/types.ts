@@ -1,5 +1,5 @@
 /** Content contracts. Course content is authored as reviewable data, never as hardcoded pages. */
-export type LangCode = "es" | "en" | "fr" | "hi" | "de" | "ko" | "it" | "ru";
+export type LangCode = "es" | "en" | "fr" | "hi" | "de" | "ko" | "it" | "ru" | "ar";
 
 export interface Word { id: string; t: string; n: string }
 /** t = target-language text, n = native-language text, alt = other accepted native translations */

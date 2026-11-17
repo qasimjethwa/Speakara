@@ -38,6 +38,12 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Очень приятно! Как дела?", "Nice to meet you! How are you?"], expect: ["хорошо", "нормально", "спасибо", "плохо"], sample: ["Хорошо, спасибо.", "Good, thanks."] },
         { say: ["Отлично. До свидания!", "Great. Goodbye!"], expect: ["до свидания", "пока"], sample: ["До свидания!", "Goodbye!"] },
       ],
+      ar: [
+        { say: ["مرحبا! ما اسمك؟", "Hello! What is your name?"], expect: ["اسمي", "انا"], sample: ["اسمي سام.", "My name is Sam."] },
+        { say: ["تشرفنا! كيف حالك؟", "Nice to meet you! How are you?"], expect: ["بخير", "الحمد لله", "شكرا", "تعبان"], sample: ["أنا بخير، شكرا.", "I am fine, thanks."] },
+        { say: ["من أين أنت؟", "Where are you from?"], expect: ["من", "انا"], sample: ["أنا من أمريكا.", "I am from America."] },
+        { say: ["جميل! مع السلامة.", "Lovely! Goodbye."], expect: ["مع السلامة", "الى اللقاء", "شكرا", "باي"], sample: ["مع السلامة!", "Goodbye!"] },
+      ],
       en: [
         { say: ["Hello! What is your name?", "¡Hola! ¿Cómo te llamas? / नमस्ते! आपका नाम क्या है?"], expect: ["my name is", "i am", "i'm"], sample: ["My name is Sam.", "Me llamo Sam. / मेरा नाम सैम है।"] },
         { say: ["Nice to meet you. How are you?", "Mucho gusto. ¿Cómo estás? / आप कैसे हैं?"], expect: ["fine", "good", "well", "i am"], sample: ["I am fine, thank you.", "Estoy bien, gracias. / मैं ठीक हूँ, धन्यवाद।"] },
@@ -76,6 +82,12 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Хорошо. Хотите есть?", "Good. Would you like to eat?"], expect: ["суп", "хлеб", "сыр", "да", "нет"], sample: ["Да, суп, пожалуйста.", "Yes, soup, please."] },
         { say: ["Вот, пожалуйста. Что-нибудь ещё?", "Here you are. Anything else?"], expect: ["счёт", "счет", "нет", "спасибо", "платить"], sample: ["Счёт, пожалуйста.", "The bill, please."] },
       ],
+      ar: [
+        { say: ["أهلا وسهلا! كم شخصا؟", "Welcome! How many people?"], expect: ["شخص", "واحد", "اثنان", "لشخصين", "طاولة", "انا"], sample: ["طاولة لشخصين من فضلك.", "A table for two, please."] },
+        { say: ["ماذا تريد أن تأكل؟", "What would you like to eat?"], expect: ["اريد", "دجاج", "سمك", "حمص", "فول", "خبز"], sample: ["أريد الدجاج مع الأرز.", "I want the chicken with rice."] },
+        { say: ["وماذا تشرب؟", "And what will you drink?"], expect: ["ماء", "شاي", "قهوة", "عصير", "اريد"], sample: ["أريد ماء من فضلك.", "I want water, please."] },
+        { say: ["تفضل. هل تريد شيئا آخر؟", "Here you are. Would you like anything else?"], expect: ["الحساب", "لا", "شكرا", "نعم"], sample: ["لا، شكرا. الحساب من فضلك.", "No, thanks. The bill, please."] },
+      ],
       en: [
         { say: ["Good evening. A table for two?", "Buenas noches. ¿Una mesa para dos? / दो लोगों के लिए टेबल?"], expect: ["yes", "please", "table"], sample: ["Yes, please.", "Sí, por favor. / हाँ, कृपया।"] },
         { say: ["What would you like to drink?", "¿Qué quiere beber? / आप क्या पीना चाहेंगे?"], expect: ["water", "coffee", "tea", "please"], sample: ["Water, please.", "Agua, por favor. / पानी, कृपया।"] },
@@ -112,6 +124,13 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Привет! Как дела?", "Hi! How are you?"], expect: ["хорошо", "нормально", "отлично", "плохо"], sample: ["Хорошо, спасибо!", "Good, thanks!"] },
         { say: ["Что ты делаешь сегодня?", "What are you doing today?"], expect: ["сегодня", "работаю", "учу", "читаю"], sample: ["Сегодня я учу русский.", "Today I am studying Russian."] },
         { say: ["Отлично! До встречи!", "Great! See you!"], expect: ["пока", "до встречи", "до свидания"], sample: ["Пока!", "Bye!"] },
+      ],
+      ar: [
+        { say: ["صباح الخير! كيف حالك اليوم؟", "Good morning! How are you today?"], expect: ["بخير", "الحمد لله", "صباح النور", "تعبان", "شكرا"], sample: ["صباح النور! أنا بخير.", "Good morning! I am fine."] },
+        { say: ["ماذا تفعل اليوم؟", "What are you doing today?"], expect: ["اعمل", "ادرس", "اذهب", "اقرا", "اطبخ", "اليوم"], sample: ["اليوم أدرس العربية.", "Today I am studying Arabic."] },
+        { say: ["هل عندك إخوة؟", "Do you have brothers or sisters?"], expect: ["عندي", "اخ", "اخت", "لا", "نعم"], sample: ["نعم، عندي أخت.", "Yes, I have a sister."] },
+        { say: ["ماذا تحب أن تأكل؟", "What do you like to eat?"], expect: ["احب", "اكل", "سمك", "دجاج", "خبز", "حمص", "فول"], sample: ["أحب السمك والأرز.", "I like fish and rice."] },
+        { say: ["رائع! إلى اللقاء.", "Great! See you later."], expect: ["الى اللقاء", "مع السلامة", "شكرا"], sample: ["إلى اللقاء!", "See you later!"] },
       ],
       en: [
         { say: ["Good morning! How are you?", "¡Buenos días! ¿Cómo estás? / सुप्रभात! आप कैसे हैं?"], expect: ["fine", "good", "well"], sample: ["I am fine, thank you.", "Estoy bien, gracias. / मैं ठीक हूँ, धन्यवाद।"] },
@@ -150,6 +169,13 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Какой цвет?", "What colour?"], expect: ["красн", "син", "чёрн", "бел", "зелён"], sample: ["Синий, пожалуйста.", "Blue, please."] },
         { say: ["Это стоит пятьсот рублей.", "That costs five hundred roubles."], expect: ["хорошо", "беру", "спасибо", "да"], sample: ["Хорошо, я беру.", "Good, I'll take it."] },
       ],
+      ar: [
+        { say: ["أهلا! ماذا تريد؟", "Hello! What would you like?"], expect: ["اريد", "قميص", "فستان", "حذاء", "معطف", "بنطال"], sample: ["أريد قميصا أبيض.", "I want a white shirt."] },
+        { say: ["ما مقاسك؟", "What is your size?"], expect: ["مقاس", "كبير", "صغير", "متوسط", "مقاسي"], sample: ["مقاسي كبير.", "My size is large."] },
+        { say: ["أي لون تريد؟", "Which colour would you like?"], expect: ["احمر", "ازرق", "اخضر", "ابيض", "اسود", "لون"], sample: ["أريد اللون الأزرق.", "I want the blue colour."] },
+        { say: ["السعر مئة جنيه.", "The price is a hundred pounds."], expect: ["غال", "رخيص", "خصم", "بكم", "طيب", "ادفع", "شكرا"], sample: ["هل يوجد خصم؟", "Is there a discount?"] },
+        { say: ["طيب، تسعون جنيها. كيف تدفع؟", "Okay, ninety pounds. How will you pay?"], expect: ["نقدا", "بطاقة", "ادفع"], sample: ["أدفع نقدا.", "I pay in cash."] },
+      ],
       en: [
         { say: ["Hello! What would you like?", "¡Hola! ¿Qué quiere? / नमस्ते! आपको क्या चाहिए?"], expect: ["water", "please", "i want", "i would like"], sample: ["Water, please.", "Agua, por favor. / पानी, कृपया।"] },
         { say: ["Here you are. Anything else?", "Aquí tiene. ¿Algo más? / यह लीजिए। और कुछ?"], expect: ["no", "yes", "thank"], sample: ["No, thank you.", "No, gracias. / नहीं, धन्यवाद।"] },
@@ -166,6 +192,12 @@ export const SCENARIOS: Scenario[] = [
       fr: [
         { say: ["Bonjour. Comment vous appelez-vous ?", "Hello. What is your name?"], expect: ["je m'appelle", "je suis"], sample: ["Je m'appelle Sam.", "My name is Sam."] },
         { say: ["Merci. Au revoir !", "Thank you. Goodbye!"], expect: ["merci", "au revoir"], sample: ["Merci, au revoir !", "Thank you, goodbye!"] },
+      ],
+      ar: [
+        { say: ["صباح الخير. جواز سفرك من فضلك.", "Good morning. Your passport, please."], expect: ["تفضل", "تفضلي", "جواز", "نعم", "هذا"], sample: ["تفضل، هذا جواز سفري.", "Here you are, this is my passport."] },
+        { say: ["إلى أين تسافر؟", "Where are you travelling to?"], expect: ["الى", "اسافر"], sample: ["أسافر إلى دبي.", "I am travelling to Dubai."] },
+        { say: ["كم حقيبة عندك؟", "How many bags do you have?"], expect: ["حقيبة", "واحدة", "اثنتان", "حقيبتان", "عندي", "لا"], sample: ["عندي حقيبة واحدة.", "I have one bag."] },
+        { say: ["الرحلة في الساعة الخامسة. رحلة سعيدة!", "The flight is at five o'clock. Have a good trip!"], expect: ["شكرا", "مع السلامة", "الى اللقاء"], sample: ["شكرا جزيلا!", "Thank you very much!"] },
       ],
       en: [
         { say: ["Good morning. What is your name?", "Buenos días. ¿Cómo se llama? / सुप्रभात। आपका नाम क्या है?"], expect: ["my name is", "i am", "i'm"], sample: ["My name is Sam.", "Me llamo Sam. / मेरा नाम सैम है।"] },
@@ -203,6 +235,13 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Добрый вечер! Как вас зовут?", "Good evening! What is your name?"], expect: ["меня зовут"], sample: ["Меня зовут Сэм.", "My name is Sam."] },
         { say: ["Спасибо. Вы хотите завтрак?", "Thank you. Would you like breakfast?"], expect: ["да", "нет", "пожалуйста", "спасибо"], sample: ["Да, пожалуйста.", "Yes, please."] },
         { say: ["Ваша комната номер двенадцать. Спокойной ночи!", "Your room is number twelve. Good night!"], expect: ["спасибо", "спокойной ночи"], sample: ["Спасибо, спокойной ночи!", "Thank you, good night!"] },
+      ],
+      ar: [
+        { say: ["مساء الخير! هل عندك حجز؟", "Good evening! Do you have a reservation?"], expect: ["نعم", "حجز", "عندي", "باسم", "لا"], sample: ["نعم، عندي حجز باسم سام.", "Yes, I have a reservation under the name Sam."] },
+        { say: ["كم ليلة؟", "How many nights?"], expect: ["ليلة", "ليال", "ليلتين", "ثلاث", "واحدة"], sample: ["ثلاث ليال.", "Three nights."] },
+        { say: ["هذا المفتاح. الغرفة في الطابق الثاني.", "Here is the key. The room is on the second floor."], expect: ["شكرا", "اين", "الفطور", "متى"], sample: ["شكرا. متى الفطور؟", "Thank you. When is breakfast?"] },
+        { say: ["الفطور في الساعة السابعة. هل هناك مشكلة؟", "Breakfast is at seven o'clock. Is there a problem?"], expect: ["المكيف", "لا يعمل", "مشكلة", "لا", "الماء", "شكرا"], sample: ["المكيف لا يعمل.", "The air conditioner doesn't work."] },
+        { say: ["آسف! سنصلحه الآن.", "Sorry! We will fix it now."], expect: ["شكرا", "طيب", "لا باس"], sample: ["شكرا جزيلا.", "Thank you very much."] },
       ],
       en: [
         { say: ["Good morning. What is your name?", "Buenos días. ¿Cómo se llama? / सुप्रभात। आपका नाम क्या है?"], expect: ["my name is", "i am", "i'm"], sample: ["My name is Sam.", "Me llamo Sam. / मेरा नाम सैम है।"] },
@@ -274,6 +313,13 @@ export const SCENARIOS: Scenario[] = [
         { say: ["Привет! Куда ты едешь?", "Hi! Where are you going?"], expect: ["еду", "москв", "петербург"], sample: ["Я еду в Москву.", "I am going to Moscow."] },
         { say: ["Здорово! На поезде?", "Great! By train?"], expect: ["да", "нет", "поезд", "автобус"], sample: ["Да, на поезде.", "Yes, by train."] },
         { say: ["Счастливого пути!", "Have a good trip!"], expect: ["спасибо", "пока"], sample: ["Спасибо! Пока!", "Thanks! Bye!"] },
+      ],
+      ar: [
+        { say: ["هل تحتاج مساعدة؟", "Do you need help?"], expect: ["نعم", "اين", "من فضلك", "عفوا"], sample: ["نعم، أين محطة القطار؟", "Yes, where is the train station?"] },
+        { say: ["المحطة قريبة. اذهب مباشرة ثم يسارا.", "The station is near. Go straight ahead, then left."], expect: ["شكرا", "بعيد", "قريب", "مشيا", "كم"], sample: ["شكرا. هل هي بعيدة؟", "Thank you. Is it far?"] },
+        { say: ["لا، خمس دقائق مشيا. إلى أين تسافر؟", "No, five minutes on foot. Where are you travelling to?"], expect: ["الى", "اسافر", "اذهب"], sample: ["أسافر إلى الإسكندرية.", "I am travelling to Alexandria."] },
+        { say: ["التذكرة من الشباك هناك.", "The ticket is from the window over there."], expect: ["تذكرة", "بكم", "شكرا", "اريد"], sample: ["أريد تذكرة واحدة من فضلك.", "I want one ticket, please."] },
+        { say: ["رحلة سعيدة!", "Have a good trip!"], expect: ["شكرا", "مع السلامة", "الى اللقاء"], sample: ["شكرا، مع السلامة!", "Thanks, goodbye!"] },
       ],
       en: [
         { say: ["Hello! How are you?", "¡Hola! ¿Cómo estás? / नमस्ते! आप कैसे हैं?"], expect: ["fine", "good", "well"], sample: ["I am fine, thank you.", "Estoy bien, gracias. / मैं ठीक हूँ, धन्यवाद।"] },

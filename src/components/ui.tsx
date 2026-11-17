@@ -38,8 +38,8 @@ export function Field({ label, ...p }: React.InputHTMLAttributes<HTMLInputElemen
 }
 export function Confetti({ count = 36 }: { count?: number }) {
   const colors = ["#12b76a", "#1a73d1", "#ffb224", "#d43838", "#7a4fe0"];
-  return <div aria-hidden="true">{Array.from({ length: count }, (_, i) => (
-    <span key={i} className="confetti" style={{ left: `${(i * 37) % 100}%`, background: colors[i % 5], animationDuration: `${1.6 + ((i * 13) % 10) / 6}s`, animationDelay: `${(i % 9) / 12}s` }} />
+  return <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-40 overflow-hidden">{Array.from({ length: count }, (_, i) => (
+    <span key={i} className="confetti" style={{ left: `calc((100% - 40px) * ${((i * 37) % 100) / 100})`, background: colors[i % 5], animationDuration: `${1.6 + ((i * 13) % 10) / 6}s`, animationDelay: `${(i % 9) / 12}s` }} />
   ))}</div>;
 }
 export function Loading({ text = "Loading…" }: { text?: string }) {

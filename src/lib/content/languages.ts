@@ -2,12 +2,12 @@ import { COURSES } from "./index";
 import type { LangCode } from "./types";
 
 /**
- * The six target languages Speakara teaches, each to English speakers. Interface languages (English, Spanish, Hindi)
+ * The seven target languages Speakara teaches, each to English speakers. Interface languages (English, Spanish, Hindi)
  * are separate and live in src/lib/i18n. Do not add other target languages without a product decision.
  */
 export interface TargetLanguage {
   code: LangCode; courseId: string; name: string; native: string; flag: string;
-  tts: string; stt: string; script: "Latin" | "Cyrillic" | "Hangul";
+  tts: string; stt: string; script: "Latin" | "Cyrillic" | "Hangul" | "Arabic"; rtl?: boolean;
 }
 
 export const TARGET_LANGUAGES: TargetLanguage[] = [
@@ -17,6 +17,7 @@ export const TARGET_LANGUAGES: TargetLanguage[] = [
   { code: "ko", courseId: "ko-en", name: "Korean", native: "한국어", flag: "🇰🇷", tts: "ko-KR", stt: "ko-KR", script: "Hangul" },
   { code: "it", courseId: "it-en", name: "Italian", native: "Italiano", flag: "🇮🇹", tts: "it-IT", stt: "it-IT", script: "Latin" },
   { code: "ru", courseId: "ru-en", name: "Russian", native: "Русский", flag: "🇷🇺", tts: "ru-RU", stt: "ru-RU", script: "Cyrillic" },
+  { code: "ar", courseId: "ar-en", name: "Arabic", native: "العربية", flag: "🇸🇦", tts: "ar-SA", stt: "ar-SA", script: "Arabic", rtl: true },
 ];
 
 /** Each target language with its course's size, for language cards. Missing courses are reported, never hidden. */
@@ -35,6 +36,6 @@ export function courseCard(courseId: string) {
   return {
     id: c.id, flag: c.flag, name: c.targetName, native: lang?.native ?? "English", script: lang?.script ?? "Latin", taughtIn: c.nativeName,
     units: c.units.length, lessons: c.units.reduce((n, u) => n + u.lessons.length, 0), level: c.units[0]?.cefr ?? "A1",
-    reviewPending: /pending|needs/i.test(c.review), target: c.ttsLang,
+    reviewPending: /pending|needs/i.test(c.review), target: c.ttsLang, rtl: !!lang?.rtl,
   };
 }

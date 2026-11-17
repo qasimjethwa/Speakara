@@ -3,7 +3,7 @@ import { Check } from "lucide-react";
 import { courseCard } from "@/lib/content/languages";
 import { useT } from "@/lib/i18n";
 
-const SCRIPT_LABEL = { Latin: "Latin alphabet", Cyrillic: "Cyrillic alphabet", Hangul: "Hangul" } as const;
+const SCRIPT_LABEL = { Latin: "Latin alphabet", Cyrillic: "Cyrillic alphabet", Hangul: "Hangul", Arabic: "Arabic script" } as const;
 
 /** Selectable course cards: flag, names, writing system, size and level. One column on phones, two from 480 px. */
 export function CourseCards({ ids, value, onChange, label }: { ids: string[]; value: string; onChange: (id: string) => void; label: string }) {

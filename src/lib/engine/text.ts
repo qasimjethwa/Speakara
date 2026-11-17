@@ -7,7 +7,8 @@ const CONTRACTIONS: Record<string, string> = {
 export function normalize(s: string): string {
   // ё and е are the same letter for answer-checking purposes (Russian texts often omit the dots).
   // Russian stress marks (а́) are a learning aid, not spelling: drop the combining acute after Cyrillic letters.
-  let out = s.normalize("NFC").replace(/([\u0400-\u04ff])\u0301/g, "$1").toLowerCase().replace(/ё/g, "е").replace(/[’‘`]/g, "'").replace(/[¿?¡!.,;:"“”।()\-–—]/g, " ");
+  // Arabic short vowels, tanwin, shadda, sukun, dagger alef and tatweel are reading aids: answers match with or without them.
+  let out = s.normalize("NFC").replace(/[\u064b-\u065f\u0670\u0640]/g, "").replace(/[،؟؛«»]/g, " ").replace(/([\u0400-\u04ff])\u0301/g, "$1").toLowerCase().replace(/ё/g, "е").replace(/[’‘`]/g, "'").replace(/[¿?¡!.,;:"“”।()\-–—]/g, " ");
   out = out.replace(/\s+/g, " ").trim();
   return out.split(" ").map((w) => CONTRACTIONS[w] ?? w).join(" ");
 }
@@ -16,10 +17,15 @@ export function normalize(s: string): string {
  * Meaningful marks are kept: ñ (año ≠ ano), umlauts (Mütter ≠ Mutter), diaeresis, breve, and every non-Latin script
  * (Devanagari vowel signs, Cyrillic й, Hangul jamo).
  */
-export const stripAccents = (s: string) => s.normalize("NFD").replace(/([A-Za-z])[\u0300-\u0302\u0327]/g, "$1").normalize("NFC");
+export const stripAccents = (s: string) => foldArabic(s.normalize("NFD").replace(/([A-Za-z])[\u0300-\u0302\u0327]/g, "$1").normalize("NFC"));
+/**
+ * Arabic spelling variants learners commonly type interchangeably (hamza seats, alef maqsura, ta marbuta). Treated like
+ * a missing accent: accepted, with a note showing the correct spelling.
+ */
+export const foldArabic = (s: string) => s.replace(/[أإآٱ]/g, "ا").replace(/ى/g, "ي").replace(/ة/g, "ه").replace(/ؤ/g, "و").replace(/ئ/g, "ي");
 
 /** Lenient keyword folding for conversation matching (not for grading): drops every Latin combining mark. */
-export const foldMarks = (s: string) => s.normalize("NFD").replace(/([A-Za-z])[\u0300-\u036f]+/g, "$1").normalize("NFC");
+export const foldMarks = (s: string) => foldArabic(s.normalize("NFD").replace(/([A-Za-z])[\u0300-\u036f]+/g, "$1").normalize("NFC"));
 
 export function levenshtein(a: string, b: string): number {
   if (a === b) return 0;
@@ -70,7 +76,7 @@ export function compareText(given: string, accepted: string[]): Verdict {
   return { correct: false, expected };
 }
 
-export const tokens = (s: string) => s.replace(/[¿?¡!.,;:"“”।]/g, " ").split(/\s+/).filter(Boolean);
+export const tokens = (s: string) => s.replace(/[¿?¡!.,;:"“”।،؟؛«»]/g, " ").split(/\s+/).filter(Boolean);
 
 /** Share of expected words heard in a speech transcript (order-insensitive, accent-insensitive). */
 export function speechScore(transcript: string, expected: string): number {

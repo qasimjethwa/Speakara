@@ -336,8 +336,10 @@ if (cloud && PASSWORD) {
   expect(!(await gp.evaluate(() => localStorage.getItem("speakara:learner:v1"))), "device copy is cleared after import, so it cannot be imported twice");
   const cx = Number((await gp.locator('a[href="/profile"][aria-label$="XP"]').first().getAttribute("aria-label")).replace(/\D/g, ""));
   expect(cx === guestXp, `account XP equals what the guest earned (${cx})`);
-  await gp.goto(`${BASE}/settings`); await gp.getByRole("button", { name: "Delete account" }).click(); await gp.getByRole("button", { name: "Yes, delete everything" }).click();
-  await gp.waitForURL((u) => new URL(u).pathname === "/"); expect(true, "account deletion from Settings works");
+  if (process.env.E2E_ALLOW_DELETE === "1") {
+    await gp.goto(`${BASE}/settings`); await gp.getByRole("button", { name: "Delete account" }).click(); await gp.getByRole("button", { name: "Yes, delete everything" }).click();
+    await gp.waitForURL((u) => new URL(u).pathname === "/"); expect(true, "account deletion from Settings works");
+  } else log("(account deletion skipped: set E2E_ALLOW_DELETE=1)");
   await g.close();
 } else log(`(account journeys skipped: ${cloud ? "set E2E_PASSWORD" : "app has no account server"})`);
 

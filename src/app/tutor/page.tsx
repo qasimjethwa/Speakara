@@ -11,13 +11,14 @@ import type { TutorReply } from "@/lib/tutor/engine";
 import type { Conversation, TutorMessage } from "@/lib/state/types";
 import { listenOnce, say, speechRecognizer } from "@/lib/audio";
 import { useT } from "@/lib/i18n";
+import { ArabicKeyboard } from "@/components/lesson/ArabicKeyboard";
 
 function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => void; resume?: Conversation }) {
   const { state, saveConversation, setProfile } = useStore(); const { t } = useT(); const course = getCourse(state.profile.courseId);
   const [id] = useState(() => resume?.id ?? `c-${Date.now().toString(36)}`);
   const [messages, setMessages] = useState<TutorMessage[]>(resume?.messages ?? []); const [input, setInput] = useState(""); const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null); const [done, setDone] = useState(!!resume); const [vocab, setVocab] = useState<{ t: string; n: string }[]>([]); const [hearing, setHearing] = useState(false);
-  const cursor = useRef({ step: 0, retry: false }); const end = useRef<HTMLDivElement>(null); const booted = useRef(false);
+  const cursor = useRef({ step: 0, retry: false }); const box = useRef<HTMLInputElement>(null); const end = useRef<HTMLDivElement>(null); const booted = useRef(false);
   const rate = state.profile.slowAudio ? 0.75 : 1;
   const saved = (p: { t: string }) => state.profile.savedPhrases.some((x) => x.t === p.t && x.courseId === course.id);
   const save = (p: { t: string; n: string }) => { if (!saved(p)) setProfile({ savedPhrases: [{ ...p, courseId: course.id }, ...state.profile.savedPhrases].slice(0, 100) }); };
@@ -66,9 +67,10 @@ function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => 
       <form onSubmit={(e) => { e.preventDefault(); send(input); }} className="fixed inset-x-0 bottom-[68px] z-20 border-t-2 border-line bg-paper p-3 md:bottom-0 md:left-[88px] lg:left-[240px] xl:right-[340px]">
         <div className="mx-auto flex max-w-[640px] gap-2">
           {speechRecognizer() && <button type="button" onClick={dictate} disabled={busy || done} aria-label={t("Speak your reply")} className={`key grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-b-4 text-white disabled:border-line-dark disabled:bg-line disabled:text-sub ${hearing ? "border-coral-dark bg-coral" : "border-sky-dark bg-sky"}`}><Mic size={22} /></button>}
-          <input value={input} onChange={(e) => setInput(e.target.value)} disabled={done} maxLength={500} aria-label={t("Your reply")} placeholder={done ? t("Scene finished") : t("Type in {lang}", { lang: t(course.targetName) })} lang={course.ttsLang} autoComplete="off" className="min-w-0 flex-1 rounded-2xl border-2 border-line-dark bg-mist px-4 text-base font-semibold placeholder:text-sub focus:border-sky-dark focus:bg-paper focus:outline-none" />
+          <input ref={box} dir={course.target === "ar" ? "rtl" : undefined} value={input} onChange={(e) => setInput(e.target.value)} disabled={done} maxLength={500} aria-label={t("Your reply")} placeholder={done ? t("Scene finished") : t("Type in {lang}", { lang: t(course.targetName) })} lang={course.ttsLang} autoComplete="off" className="min-w-0 flex-1 rounded-2xl border-2 border-line-dark bg-mist px-4 text-base font-semibold placeholder:text-sub focus:border-sky-dark focus:bg-paper focus:outline-none" />
           <button type="submit" disabled={!input.trim() || busy || done} aria-label={t("Send")} className="key grid h-12 w-12 shrink-0 place-items-center rounded-2xl border-b-4 border-brand-dark bg-brand text-white disabled:border-line-dark disabled:bg-line disabled:text-sub"><Send size={22} /></button>
         </div>
+        {course.target === "ar" && !done && <div className="mx-auto mt-2 max-w-[640px]"><ArabicKeyboard target={box} disabled={done} onChange={setInput} defaultOpen={false} /></div>}
       </form>
     </div>
   );

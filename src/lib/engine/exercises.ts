@@ -1,6 +1,6 @@
 import type { Course, Lesson, Sentence, Word } from "../content/types";
 import { allLessons, allSentences, allWords } from "../content";
-import { compareText, speechScore, tokens, type Verdict } from "./text";
+import { compareText, normalize, speechScore, tokens, type Verdict } from "./text";
 
 export type ExerciseType = "choose" | "wordbank" | "translate" | "listen" | "dictation" | "speak" | "match" | "fill";
 interface Base { id: string; type: ExerciseType; wordIds: string[]; sentenceId?: string; difficulty: 1 | 2 | 3; instruction: string; vars?: Record<string, string> }
@@ -54,6 +54,12 @@ const pick = <T,>(arr: T[], n: number, rng: Rng) => shuffle(arr, rng).slice(0, n
 const uniq = <T,>(arr: T[]) => [...new Set(arr)];
 
 /* ---------- exercise builders ---------- */
+/**
+ * How tokens are compared when picking distractors. Arabic compares in normalised form (vowel marks dropped), so a
+ * marked and an unmarked spelling of one word never appear as two options. Other courses keep plain lower-casing, so
+ * their generated sessions are unchanged.
+ */
+const keyFor = (c: Course) => (c.target === "ar" ? normalize : (x: string) => x.toLowerCase());
 function choose(c: Course, w: Word, toNative: boolean, rng: Rng, n: number): ChooseEx {
   const correct = toNative ? w.n : w.t;
   // A distractor must not be another right answer: skip words that share this word's prompt side (soy / estoy → "I am").
@@ -65,13 +71,15 @@ function choose(c: Course, w: Word, toNative: boolean, rng: Rng, n: number): Cho
 }
 function wordsIn(c: Course, s: Sentence): string[] {
   const lesson = allLessons(c).find((x) => x.lesson.sentences.some((y) => y.id === s.id))?.lesson;
-  const low = ` ${tokens(s.t).join(" ").toLowerCase()} `;
-  return (lesson?.words ?? []).filter((w) => low.includes(` ${w.t.toLowerCase()} `)).map((w) => w.id);
+  const k = keyFor(c); const low = ` ${k(tokens(s.t).join(" "))} `;
+  return (lesson?.words ?? []).filter((w) => low.includes(` ${k(w.t)} `)).map((w) => w.id);
 }
 function tilesFor(c: Course, s: Sentence, target: boolean, rng: Rng): string[] {
   const own = tokens(target ? s.t : s.n);
-  const lower = new Set(own.map((x) => x.toLowerCase()));
-  const others = uniq(allSentences(c).filter((x) => x.id !== s.id).flatMap((x) => tokens(target ? x.t : x.n))).filter((x) => !lower.has(x.toLowerCase()));
+  // Compare in normalised form so a distractor never differs from a right tile only by case or Arabic vowel marks.
+  const k = target ? keyFor(c) : (x: string) => x.toLowerCase();
+  const lower = new Set(own.map(k));
+  const others = uniq(allSentences(c).filter((x) => x.id !== s.id).flatMap((x) => tokens(target ? x.t : x.n))).filter((x) => !lower.has(k(x)));
   return shuffle([...own, ...pick(others, Math.min(4, Math.max(2, 7 - own.length)), rng)], rng);
 }
 function wordbank(c: Course, s: Sentence, toNative: boolean, rng: Rng): WordBankEx {
@@ -109,7 +117,8 @@ function fill(c: Course, s: Sentence, rng: Rng): FillEx | null {
   const candidates = toks.map((tok, i) => ({ tok, i, bare: tokens(tok)[0] ?? "" })).filter((x) => x.bare.length >= 2 && !/^[A-ZÁÉÍÓÚÑ]/.test(x.bare) || x.i === 0 && x.bare.length >= 3);
   if (!candidates.length) return null;
   const target = candidates[Math.floor(rng() * candidates.length)];
-  const pool = uniq(allSentences(c).flatMap((x) => tokens(x.t)).map((x) => x.toLowerCase())).filter((x) => x !== target.bare.toLowerCase() && x.length >= 2);
+  const key = keyFor(c); const seen = new Set([key(target.bare)]);
+  const pool = uniq(allSentences(c).flatMap((x) => tokens(x.t)).map((x) => x.toLowerCase())).filter((x) => { const k = key(x); if (seen.has(k) || x.length < 2) return false; seen.add(k); return true; });
   const options = shuffle([target.bare.toLowerCase(), ...pick(pool, 2, rng)], rng);
   const lead = target.tok.slice(0, target.tok.indexOf(target.bare));
   const trail = target.tok.slice(target.tok.indexOf(target.bare) + target.bare.length);

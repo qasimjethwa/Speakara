@@ -1,10 +1,11 @@
 @import "tailwindcss";
 @import "@fontsource-variable/nunito";
 @import "@fontsource-variable/noto-sans-devanagari";
+@import "@fontsource-variable/noto-sans-arabic";
 
 /* Speakara design tokens — see docs/design/DESIGN-SYSTEM.md */
 @theme {
-  --font-sans: "Nunito Variable", "Noto Sans Devanagari Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Nunito Variable", "Noto Sans Devanagari Variable", "Noto Sans Arabic Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
   /* Fills carry white text at >= 4.5:1; *-dark shades carry text on white and on *-soft tints at >= 4.5:1. */
   --color-brand: #0a8549;        --color-brand-dark: #0a6e3f;   --color-brand-soft: #dcf7e9;   --color-brand-bright: #12b76a;
   --color-sky: #1a73d1;          --color-sky-dark: #125aa8;     --color-sky-soft: #dceeff;
@@ -37,11 +38,16 @@ button:disabled { cursor: not-allowed; }
 @keyframes shake { 0%,100% { transform: translateX(0) } 25% { transform: translateX(-6px) } 75% { transform: translateX(6px) } }
 @keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .9 } }
 @keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 rgb(10 133 73 / .45) } 100% { box-shadow: 0 0 0 18px rgb(10 133 73 / 0) } }
-.anim-pop { animation: pop .35s cubic-bezier(.2,.9,.3,1.3) both; }
+.anim-pop { animation: pop .35s cubic-bezier(.2,.9,.3,1.3) backwards; }
 .anim-rise { animation: rise .22s ease-out both; }
 .anim-bob { animation: bob 2.4s ease-in-out infinite; }
 .anim-shake { animation: shake .3s ease-in-out; }
-.confetti { position: fixed; top: -20px; width: 10px; height: 16px; border-radius: 3px; animation: fall linear forwards; pointer-events: none; z-index: 60; }
+.confetti { position: absolute; top: -20px; width: 10px; height: 16px; border-radius: 3px; animation: fall linear forwards; pointer-events: none; z-index: 60; }
 @media (prefers-reduced-motion: reduce) { .anim-pop, .anim-rise, .anim-bob, .anim-shake, .confetti { animation: none !important; } .confetti { display: none; } }
 html[data-motion="off"] .anim-pop, html[data-motion="off"] .anim-rise, html[data-motion="off"] .anim-bob, html[data-motion="off"] .anim-shake { animation: none !important; }
 html[data-motion="off"] .confetti { display: none; }
+
+/* Arabic: right to left, isolated from surrounding English so punctuation stays on the correct side, and never
+   letter-spaced or case-transformed (either would break the joined letter shapes). */
+:lang(ar) { direction: rtl; unicode-bidi: isolate; letter-spacing: 0 !important; text-transform: none !important; font-family: "Noto Sans Arabic Variable", "Geeza Pro", "Segoe UI", Tahoma, sans-serif; line-height: 1.8; }
+textarea:lang(ar), .text-left:lang(ar) { text-align: right; }

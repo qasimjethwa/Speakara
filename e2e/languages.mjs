@@ -1,4 +1,4 @@
-// Browser journeys for the six target languages (desktop, guest mode).
+// Browser journeys for the seven target languages (desktop, guest mode).
 //   node e2e/languages.mjs [baseUrl]            (E2E_LANG=de-en to run one course)
 // Shared helpers and the answer solver are the same as e2e/smoke.mjs.
 import { createRequire } from "node:module";
@@ -15,7 +15,7 @@ const SHOTS = process.argv[3]; if (SHOTS) mkdirSync(SHOTS, { recursive: true });
 const PASSWORD = process.env.E2E_PASSWORD;
 const DUMP = JSON.parse(execSync("npx tsx e2e/dump-content.ts", { encoding: "utf8" }));
 let content = DUMP["es-en"];
-const toks = (s) => s.replace(/[¿?¡!.,;:"“”।]/g, " ").split(/\s+/).filter(Boolean);
+const toks = (s) => s.replace(/[¿?¡!.,;:"“”।،؟؛]/g, " ").split(/\s+/).filter(Boolean);
 const norm = (s) => toks(s).join(" ").toLowerCase();
 const log = (...a) => console.log("•", ...a);
 let failures = 0; const errors = []; const a11y = [];
@@ -26,7 +26,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 /** Replaces speech APIs with stubs that record what was spoken and "hear" the sentence shown on screen. */
 const speechStubs = () => {
   window.__spoken = [];
-  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }, ...(window.__noVoices ?? []).length ? [] : ["de-DE", "ko-KR", "it-IT", "ru-RU"].map((lang) => ({ lang, name: "Stub " + lang, localService: true }))], cancel() {}, resume() {}, addEventListener() {}, removeEventListener() {},
+  const synth = { getVoices: () => [{ lang: "es-ES", name: "Stub ES", localService: true }, { lang: "fr-FR", name: "Stub FR", localService: true }, { lang: "en-US", name: "Stub EN", localService: true }, ...(window.__noVoices ?? []).length ? [] : ["de-DE", "ko-KR", "it-IT", "ru-RU", "ar-SA"].map((lang) => ({ lang, name: "Stub " + lang, localService: true }))], cancel() {}, resume() {}, addEventListener() {}, removeEventListener() {},
     speak(u) { window.__spoken.push({ text: u.text, lang: u.lang, rate: u.rate }); setTimeout(() => u.onend && u.onend(), 5); } };
   Object.defineProperty(window, "speechSynthesis", { value: synth, configurable: true });
   window.SpeechSynthesisUtterance = function (text) { this.text = text; };
@@ -49,6 +49,18 @@ async function clickTiles(page, answer) {
     for (let i = 0; i < n; i++) if ((await bank.nth(i).innerText()).toLowerCase() === tok.toLowerCase()) { await bank.nth(i).click(); hit = true; break; }
     if (!hit) throw new Error(`tile “${tok}” missing for “${answer}”`);
   }
+}
+/** Types an Arabic answer by tapping the on-screen keyboard: vowel marks are left out, as most learners would. */
+async function typeArabic(page, text, st) {
+  const plain = text.replace(/[\u064b-\u065f\u0670\u0640]/g, "").replace(/[.!،؟]/g, "").trim();
+  const kb = page.locator("[data-arabic-keyboard]");
+  for (const ch of plain) {
+    if (ch === " ") await kb.getByRole("button", { name: "Space" }).click();
+    else await kb.locator("[role=group] button", { hasText: new RegExp(`^${ch}$`) }).first().click();
+  }
+  const got = await page.getByRole("textbox").inputValue();
+  if (got !== plain) throw new Error(`keyboard typed “${got}”, expected “${plain}”`);
+  st.keyboard = (st.keyboard ?? 0) + 1;
 }
 /** Solves whatever exercise is on screen using selectors that do not depend on the interface language. */
 async function solve(page, st) {
@@ -91,7 +103,9 @@ async function solve(page, st) {
       await opts.nth(idx).click();
     } else {
       const s = content.sentences.find((x) => x.t === prompt || x.n === prompt); const want = s.t === prompt ? s.n : s.t;
-      if (type === "wordbank") await clickTiles(page, want); else await page.getByRole("textbox").fill(want);
+      if (type === "wordbank") await clickTiles(page, want);
+      else if (globalThis.TYPE_WITH_KEYBOARD && await page.locator("[data-arabic-keyboard]").count()) await typeArabic(page, want, st);
+      else await page.getByRole("textbox").fill(want);
     }
     await check.click();
   }
@@ -121,6 +135,7 @@ const nextBtn = (page) => page.locator("footer button").click();
 // Twelve viewports. On every screen: horizontal overflow, elements past the right edge, small touch targets on touch
 // sizes, console errors; in lessons, whether the fixed footer covers any control once scrolled to the end.
 if (process.env.E2E_AUDIT) {
+  const AC = process.env.E2E_AUDIT_COURSE ?? "es-en"; // E2E_AUDIT_COURSE=ar-en audits the right-to-left course
   const VIEWPORTS = [[1280, 800], [1366, 768], [1440, 900], [1920, 1080], [768, 1024], [820, 1180], [1024, 768], [320, 720], [360, 800], [375, 812], [390, 844], [430, 932]];
   const only = process.env.E2E_VIEWPORT; const findings = [];
   const browser = await launchBrowser();
@@ -154,14 +169,14 @@ if (process.env.E2E_AUDIT) {
       for (const r of ["login", "signup"]) { await page.goto(`${BASE}/${r}`); await page.locator("h1").first().waitFor(); await inspect(r); }
       await page.goto(`${BASE}/onboarding`); await page.getByRole("textbox").fill("Tess"); await inspect("onboarding-welcome"); await nextBtn(page);
       await inspect("onboarding-language"); await page.getByRole("radio").nth(0).click(); await nextBtn(page);
-      await page.locator('[data-course="es-en"]').click(); await inspect("onboarding-course", { lesson: true }); await nextBtn(page);
+      await page.locator(`[data-course="${AC}"]`).click(); await inspect("onboarding-course", { lesson: true }); await nextBtn(page);
       await page.getByRole("radio").first().click(); await inspect("onboarding-goal", { lesson: true }); await nextBtn(page);
       await nextBtn(page); await nextBtn(page); await nextBtn(page); await page.waitForURL(/learn/, { timeout: 20000 });
       await page.locator('[data-state="current"]').waitFor(); await inspect("path");
-      content = DUMP["es-en"]; const st = newState(true);
+      content = DUMP[AC]; const st = newState(true);
       await page.locator('[data-state="current"]').click(); await page.locator("[data-start]").waitFor(); await inspect("lesson-intro", { lesson: true });
       await runSession(page, st); await inspect("lesson-summary");
-      for (const r of ["learn", "practice", "vocabulary", "stories", "tutor", "profile", "settings", "quests", "leaderboard", "guidebook?unit=es1"]) {
+      for (const r of ["learn", "practice", "vocabulary", "stories", "tutor", "profile", "settings", "quests", "leaderboard", `guidebook?unit=${AC.slice(0, 2)}1`]) {
         await page.goto(`${BASE}/${r}`); await page.locator("main h1, main h2").first().waitFor({ timeout: 15000 }); await inspect(r.split("?")[0]);
       }
       await page.goto(`${BASE}/tutor`); await page.locator("main .grid button:not([disabled])").first().click(); await page.locator("input").waitFor(); await inspect("tutor-chat", { lesson: true });
@@ -180,7 +195,7 @@ if (process.env.E2E_AUDIT) {
 // another course and back → the first course's progress must be unchanged. Listening and speaking use the browser's
 // speech engines: where the headless browser has none, the exercise is skipped and reported as skipped, not passed.
 const LANGS = [
-  ["de-en", "🇩🇪"], ["ko-en", "🇰🇷"], ["it-en", "🇮🇹"], ["ru-en", "🇷🇺"], ["fr-en", "🇫🇷"], ["es-en", "🇪🇸"],
+  ["ar-en", "🇸🇦"], ["de-en", "🇩🇪"], ["ko-en", "🇰🇷"], ["it-en", "🇮🇹"], ["ru-en", "🇷🇺"], ["fr-en", "🇫🇷"], ["es-en", "🇪🇸"],
 ];
 const ONLY_LANG = process.env.E2E_LANG;
 let browser = await launchBrowser({ args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"] });
@@ -206,7 +221,7 @@ for (const [courseId, flag] of LANGS.filter(([id]) => !ONLY_LANG || id === ONLY_
   expect(xp > 0 && st.wrong === 1, `${courseId}: lesson completed with XP ${xp} and one miss re-asked`);
   expect(Object.keys(st.types).length >= 4, `${courseId}: exercise types answered ${JSON.stringify(st.types)}`);
   expect(st.listened >= 2 && st.spoke >= 1 && st.skipped === 0, `${courseId}: listening and speaking answered with the ${courseId.slice(0, 2)} voice and recogniser (not skipped)`);
-  const spoken = await page.evaluate(() => window.__spoken); const locale = { de: "de-DE", ko: "ko-KR", it: "it-IT", ru: "ru-RU", fr: "fr-FR", es: "es-ES" }[courseId.slice(0, 2)];
+  const spoken = await page.evaluate(() => window.__spoken); const locale = { de: "de-DE", ko: "ko-KR", it: "it-IT", ru: "ru-RU", fr: "fr-FR", es: "es-ES", ar: "ar-SA" }[courseId.slice(0, 2)];
   expect(spoken.length >= 3 && spoken.every((x) => x.lang === locale), `${courseId}: text-to-speech requested ${spoken.length} times, always as ${locale}`);
   const fx = await page.evaluate(() => [...window.__sfx]);
   expect(fx.includes("tap") && fx.includes("correct") && fx.filter((x) => x === "wrong").length >= 1 && fx.filter((x) => x === "finish").length === 1 && fx.at(-1) === "finish", `${courseId}: sound effects fired — tap, correct, wrong, and one finish at the end (${fx.length} in total)`);
@@ -243,6 +258,61 @@ if (!ONLY_LANG || ONLY_LANG === "novoice") {
   expect((await page.evaluate(() => window.__spoken.length)) === 0, "nothing is read aloud in an unrelated voice when the language has none");
   expect(st.skipped >= 1 && (await page.locator("[data-summary]").count()) === 1, `the lesson still completes; ${st.skipped} listening exercise(s) were skipped and reported as skipped`);
   expect((await page.evaluate(() => window.__sfx.length)) === 0, "with sound off, no sound effect plays during a whole lesson");
+  await ctx.close();
+}
+if (!ONLY_LANG || ONLY_LANG === "ar-rtl") {
+  log("=== Arabic: right-to-left layout, joined letters and the on-screen keyboard (390 px phone) ===");
+  content = DUMP["ar-en"];
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, hasTouch: true });
+  await ctx.addInitScript(speechStubs);
+  const page = await ctx.newPage(); watch(page, "ar-rtl");
+  await page.goto(`${BASE}/onboarding`); await page.getByRole("textbox").fill("Tess"); await nextBtn(page);
+  await page.getByRole("radio").nth(0).click(); await nextBtn(page); await page.locator('[data-course="ar-en"]').click(); await nextBtn(page);
+  await page.getByRole("radio").first().click(); await nextBtn(page); await nextBtn(page); await nextBtn(page); await nextBtn(page); await page.waitForURL(/learn/);
+  const bad = []; const seenTypes = new Set(); let shaped = null; let tilesRtl = null;
+  globalThis.AUDIT = async (pg) => {
+    const r = await pg.evaluate(() => {
+      const out = { ltr: [], overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth };
+      for (const e of document.querySelectorAll('main [lang^="ar"]')) { const b = e.getBoundingClientRect(); if (b.width && getComputedStyle(e).direction !== "rtl") out.ltr.push(e.tagName + " " + (e.textContent ?? "").slice(0, 20)); }
+      const ta = document.querySelector("main textarea"); if (ta && (ta.lang?.startsWith("ar") ? "rtl" : "ltr") !== getComputedStyle(ta).direction) out.ltr.push(`textarea (lang ${ta.lang || "en"}) is ${getComputedStyle(ta).direction}`);
+      const bank = document.querySelector("[data-bank]"); out.bank = bank ? bank.getAttribute("dir") : undefined;
+      return out;
+    });
+    const type = await pg.locator("main h1[data-ex-type]").getAttribute("data-ex-type"); seenTypes.add(type);
+    if (r.ltr.length) bad.push(`${type}: not right-to-left — ${r.ltr.slice(0, 3).join("; ")}`);
+    if (r.overflow > 1) bad.push(`${type}: horizontal scroll +${r.overflow}px`);
+    if (r.bank !== undefined && (await pg.locator("[data-bank] button[lang^=ar]").count())) tilesRtl = (tilesRtl ?? true) && r.bank === "rtl";
+    if (shaped === null && (await pg.locator('main [lang^="ar"]').count())) shaped = await pg.evaluate(() => {
+      // Joined (shaped) Arabic is narrower than the same letters forced apart with zero-width non-joiners.
+      const m = (s) => { const x = document.createElement("span"); x.lang = "ar"; x.style.cssText = "position:absolute;visibility:hidden;font-size:40px;white-space:nowrap"; x.textContent = s; document.body.append(x); const w = x.getBoundingClientRect().width; x.remove(); return w; };
+      const joined = m("مستشفى"), apart = m([..."مستشفى"].join("\u200c"));
+      return { joined: Math.round(joined), apart: Math.round(apart), font: document.fonts.check('40px "Noto Sans Arabic Variable"', "م") };
+    });
+  };
+  globalThis.TYPE_WITH_KEYBOARD = true;
+  const st = newState();
+  await page.locator('[data-state="current"]').click(); await runSession(page, st);
+  globalThis.AUDIT = null; globalThis.TYPE_WITH_KEYBOARD = false;
+  expect(bad.length === 0, `Arabic text, answer boxes and tiles are right-to-left with no sideways scroll on every exercise (${[...seenTypes].join(", ")})${bad.length ? " — " + bad.join(" | ") : ""}`);
+  expect(tilesRtl === true, "word-bank tiles run right to left");
+  expect(shaped && shaped.font && shaped.joined < shaped.apart - 4, `Arabic letters join (shaped width ${shaped?.joined}px vs ${shaped?.apart}px forced apart; web font loaded: ${shaped?.font})`);
+  expect((st.keyboard ?? 0) >= 1, `answers typed with the on-screen Arabic keyboard were accepted (${st.keyboard ?? 0})`);
+  expect((await page.locator("[data-summary]").count()) === 1, "the Arabic lesson completes");
+  for (const path of ["guidebook?unit=ar1", "vocabulary", "stories"]) {
+    await page.goto(`${BASE}/${path}`); await page.locator("main h1, main h2").first().waitFor();
+    const r = await page.evaluate(() => ({ over: document.documentElement.scrollWidth - document.documentElement.clientWidth, ltr: [...document.querySelectorAll('main [lang^="ar"]')].filter((e) => getComputedStyle(e).direction !== "rtl").length, n: document.querySelectorAll('main [lang^="ar"]').length }));
+    expect(r.over <= 1 && r.ltr === 0 && r.n > 0, `${path}: ${r.n} Arabic items, all right-to-left, no sideways scroll`);
+  }
+  await page.goto(`${BASE}/story?id=ar1-story`); await page.locator("main h1").waitFor();
+  const story = await page.evaluate(() => ({ title: getComputedStyle(document.querySelector("main h1")).direction, over: document.documentElement.scrollWidth - document.documentElement.clientWidth }));
+  expect(story.title === "rtl" && story.over <= 1, "the first Arabic story renders right to left");
+  await page.goto(`${BASE}/tutor`); await page.locator("main .grid button:not([disabled])").first().click(); await page.locator("input").waitFor();
+  await page.getByRole("button", { name: "Show Arabic keyboard" }).click();
+  for (const ch of "اسمي سام") await (ch === " " ? page.getByRole("button", { name: "Space" }) : page.locator("[data-arabic-keyboard] [role=group] button", { hasText: new RegExp(`^${ch}$`) }).first()).click();
+  expect((await page.locator("input").inputValue()) === "اسمي سام", "the tutor reply box takes Arabic from the on-screen keyboard");
+  await page.getByRole("button", { name: "Send" }).click();
+  await page.waitForFunction(() => document.querySelectorAll('main [lang^="ar"]').length >= 3, null, { timeout: 15000 });
+  expect((await page.getByText("Try answering with something like").count()) === 0, "the scripted Arabic tutor accepts the reply and moves on");
   await ctx.close();
 }
 await browser.close();

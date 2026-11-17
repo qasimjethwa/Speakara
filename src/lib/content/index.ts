@@ -1,10 +1,11 @@
 import { esEn } from "./courses/es-en";
 import { frEn, enEs, enHi } from "./courses/starters";
 import { deEn, itEn, koEn, ruEn } from "./courses/languages";
+import { arEn } from "./courses/ar-en";
 import type { Course, Lesson, Unit, Word, Sentence } from "./types";
 
-/** Every course. The six target languages come first; English-taught reverse courses follow. */
-export const COURSES: Course[] = [esEn, frEn, deEn, koEn, itEn, ruEn, enEs, enHi];
+/** Every course. The seven target languages come first; English-taught reverse courses follow. */
+export const COURSES: Course[] = [esEn, frEn, deEn, koEn, itEn, ruEn, arEn, enEs, enHi];
 export const DEFAULT_COURSE = "es-en";
 export const getCourse = (id: string): Course => COURSES.find((c) => c.id === id) ?? esEn;
 export const allLessons = (c: Course): { unit: Unit; lesson: Lesson; index: number }[] =>

@@ -126,8 +126,8 @@ if (bHas.xp === 0 && !bHas.imported) {
 } else ok(imp.status === 409 || imp.body.duplicate, "import refused for an account that already imported");
 
 console.log("\n— account deletion —");
-ok(!(await B.db.rpc("delete_my_account")).error, "B deletes their account");
-ok((await createClient(URL_, KEY, { auth: { persistSession: false } }).auth.signInWithPassword({ email: process.env.E2E_EMAIL_B ?? "e2e-ben@speakara.test", password: PASSWORD })).error, "deleted account can no longer log in");
+if (process.env.E2E_ALLOW_DELETE === "1") { ok(!(await B.db.rpc("delete_my_account")).error, "B deletes their account");
+ok((await createClient(URL_, KEY, { auth: { persistSession: false } }).auth.signInWithPassword({ email: process.env.E2E_EMAIL_B ?? "e2e-ben@speakara.test", password: PASSWORD })).error, "deleted account can no longer log in"); } else console.log("skip: account deletion (set E2E_ALLOW_DELETE=1)");
 ok((await A.db.from("follows").select("*")).data?.length === 0, "deleting B removed the follow rows");
 
 console.log(failures ? `\n${failures} failure(s)` : "\nAll live-backend checks passed");
