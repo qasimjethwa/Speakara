@@ -127,6 +127,7 @@ export async function removeVoice() {
 
 let tts: Promise<NabraTTS> | null = null; let loading: Promise<NabraTTS> | null = null;
 const WASM_ONLY = "speakara:arabic-voice:wasm-only";
+const webGpuOptIn = () => { try { return localStorage.getItem("speakara:arabic-voice:webgpu") === "1"; } catch { return false; } };
 const wasmOnly = () => { try { return localStorage.getItem(WASM_ONLY) === "1"; } catch { return false; } };
 /** Remembers that WebGPU failed on this device, so the voice starts on WebAssembly from now on. */
 function preferWasm() { try { localStorage.setItem(WASM_ONLY, "1"); } catch { /* storage blocked */ } }
@@ -147,7 +148,10 @@ function engine(): Promise<NabraTTS> {
   if (!read()) return Promise.reject(new Error("not-downloaded"));
   set({ status: "loading" });
   loading = (async () => {
-    const gpu = !wasmOnly() && realGpu(await gpuAdapter());
+    // Synthesis runs on WebAssembly: it is the path whose output was measured clean in every browser tested, and
+    // fast enough (about 5x real time). WebGPU is used only when explicitly enabled for evaluation, because its FP16
+    // output on real GPUs was reported to crackle and could not be verified here.
+    const gpu = webGpuOptIn() && !wasmOnly() && realGpu(await gpuAdapter());
     let t: NabraTTS;
     try { t = await startEngine(gpu ? "auto" : "wasm"); }
     catch (e) { if (!gpu) throw e; preferWasm(); t = await startEngine("wasm"); }
@@ -167,7 +171,16 @@ async function fallBackToWasm(): Promise<boolean> {
 /* ---------- playback ---------- */
 let actx: AudioContext | null = null; let src: AudioBufferSourceNode | null = null; let token = 0;
 const clips = new Map<string, Float32Array>();
-function ctx() { const C = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext; actx ??= new C(); if (actx.state !== "running") void actx.resume().catch(() => {}); return actx; }
+function ctx() { const C = window.AudioContext ?? (window as unknown as { webkitAudioContext?: typeof AudioContext }).webkitAudioContext; actx ??= new C({ latencyHint: "playback" }); /* larger buffer: no dropouts (crackle) on busy devices */ if (actx.state !== "running") void actx.resume().catch(() => {}); return actx; }
+/** Removes any invalid samples, keeps the level below clipping and fades the first/last 10 ms so playback never clicks. */
+function smooth(a: Float32Array): Float32Array {
+  const out = new Float32Array(a.length); let peak = 0;
+  for (let i = 0; i < a.length; i++) { const x = Number.isFinite(a[i]) ? a[i] : 0; out[i] = x; peak = Math.max(peak, Math.abs(x)); }
+  const g = peak > 0.95 ? 0.95 / peak : 1; const f = Math.min(240, out.length >> 1);
+  for (let i = 0; i < out.length; i++) out[i] *= g;
+  for (let i = 0; i < f; i++) { const k = i / f; out[i] *= k; out[out.length - 1 - i] *= k; }
+  return out;
+}
 export const lastPlayback: { text: string; speed: number; ms: number; samples: number; cached: boolean; device?: string }[] = [];
 
 /** Stops any Arabic speech that is generating or playing. */
@@ -201,7 +214,7 @@ export async function speakArabic(text: string, rate = 1): Promise<boolean> {
       clips.set(key, audio); if (clips.size > 40) clips.delete(clips.keys().next().value!);
     }
     lastPlayback.push({ text, speed, ms: Math.round(performance.now() - t0), samples: audio.length, cached, device: state.device }); if (lastPlayback.length > 20) lastPlayback.shift();
-    const buf = c.createBuffer(1, audio.length, 24000); buf.copyToChannel(audio as Float32Array<ArrayBuffer>, 0);
+    const buf = c.createBuffer(1, audio.length, 24000); buf.copyToChannel(smooth(audio) as Float32Array<ArrayBuffer>, 0);
     const s = c.createBufferSource(); s.buffer = buf; s.connect(c.destination); src = s;
     return await new Promise<boolean>((resolve) => { s.onended = () => { if (src === s) src = null; resolve(mine === token); }; s.start(); });
   } catch (e) {

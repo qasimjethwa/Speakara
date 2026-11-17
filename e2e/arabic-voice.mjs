@@ -102,7 +102,7 @@ else await ctx.setOffline(false);
 {
   const g = await browser.newContext();
   await g.addInitScript(() => {
-    window.__failWebGpu = true;
+    window.__failWebGpu = true; localStorage.setItem("speakara:arabic-voice:webgpu", "1");   // WebGPU is opt-in
     Object.defineProperty(navigator, "gpu", { configurable: true, get: () => ({ requestAdapter: async () => ({ features: new Set(["shader-f16"]), info: { architecture: "test-gpu", vendor: "test" } }) }) });
   });
   const gp = await g.newPage(); await gp.addInitScript((s) => { if (!localStorage.getItem("speakara:learner:v1")) localStorage.setItem("speakara:learner:v1", s); }, seed);
