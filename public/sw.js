@@ -3,6 +3,7 @@
    - /_next/static and /vendor: cache-first (file names are versioned, so they never change).
    - Pages and other same-origin GETs: network-first, falling back to the last cached copy when offline. */
 const CACHE = "speakara-app-v1";
+const VERSION = 2; // bump to replace an installed worker
 self.addEventListener("install", () => self.skipWaiting());
 self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 self.addEventListener("fetch", (e) => {
@@ -13,9 +14,12 @@ self.addEventListener("fetch", (e) => {
     if (immutable) {
       const hit = await caches.match(req, { ignoreVary: true });   // searches every cache, including the voice cache
       if (hit) return hit;
-      const res = await fetch(req);
-      if (res.ok) { const c = await caches.open(CACHE); c.put(req, res.clone()).catch(() => {}); }
-      return res;
+      // A cancelled or failed request must surface as an ordinary network error, never a rejected respondWith.
+      try {
+        const res = await fetch(req);
+        if (res.ok) { const c = await caches.open(CACHE); c.put(req, res.clone()).catch(() => {}); }
+        return res;
+      } catch { return Response.error(); }
     }
     try {
       const res = await fetch(req);
@@ -24,7 +28,7 @@ self.addEventListener("fetch", (e) => {
     } catch (err) {
       const hit = await caches.match(req, { ignoreVary: true }) ?? (req.mode === "navigate" ? await caches.match(url.pathname, { ignoreSearch: true, ignoreVary: true }) : undefined);
       if (hit) return hit;
-      throw err;
+      void err; return Response.error();
     }
   })());
 });
