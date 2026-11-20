@@ -239,3 +239,18 @@ Tests: `bash supabase/tests/run-local.sh` (includes `live_test.sql`); `npx vites
 `e2e/live.mjs` against a local stack (`e2e/live/stack.sh`: real Postgres + a fake Supabase HTTP layer; LiveKit is
 not running there, so media connection failure paths are what is checked). Real audio/video, Gemini and Anam are NOT
 VERIFIED until run with real keys (checklist in `agent/README.md`).
+
+### 15.1 Live status (2026-11-20, end of day)
+
+- **AI companion is LIVE for all signed-in learners** (`LIVE_AVATAR_ACCESS=everyone` in Vercel). The owner tested it in a
+  real browser and confirmed it works.
+- Worker: LiveKit Cloud agent `CA_pYWfM4oLJQGa` (`speakara-companion`, us-east), deployed with `lk agent deploy` from
+  `agent/` (config in `agent/livekit.toml`). Secrets there: `ANAM_API_KEY`, `GEMINI_API_KEY`, `SPEAKARA_API_URL`.
+- Gemini Live runs through **LiveKit Inference** (`google/gemini-3.8-live`, LiveKit free inference credits): the
+  project's own Gemini key has no Live models enabled. `GEMINI_LIVE_PROVIDER=google` switches back once it does.
+- No shared app/worker secret: the app verifies the worker by asking LiveKit that the caller is the AGENT participant in
+  the room; reports need a one-time HMAC token issued at claim (`LIVE_WORKER_SECRET` optional).
+- Avatars: `LIVE_AVATAR_CATALOG` in Vercel (Liv, Mia, Simon, Hana, Gabriel, Layla; IDs verified via the Anam API).
+- Test account `e2e-live@speakara.test` (editor, private) exists in production for live tests; its password is not
+  stored anywhere in the repo.
+- Anam free plan: commercial use is listed as not included; the owner chose to open access anyway.
