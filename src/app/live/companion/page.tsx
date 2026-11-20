@@ -100,8 +100,11 @@ function Companion() {
     try {
       const s = await liveApi<Started>("/api/companion/start", prefs);
       setSession(s); setPhase("call");
-      const ok = await call.connect(s.url, s.token);
-      if (!ok) { await liveApi("/api/companion/end", { session_id: s.session_id }).catch(() => undefined); endedOnce.current = true; setPhase("setup"); void reload(); }
+      const result = await call.connect(s.url, s.token);
+      if (result !== "ok") {
+        await liveApi("/api/companion/end", { session_id: s.session_id }).catch(() => undefined); endedOnce.current = true; setPhase("setup"); void reload();
+        setError(result === "mic-denied" ? /*i18n*/ "Microphone access is blocked. Allow the microphone for this site in your browser’s address bar, then try again." : /*i18n*/ "We couldn’t connect. Check your internet connection and try again.");
+      }
     } catch (e) { setError(e instanceof ApiError ? e.message : /*i18n*/ "Something went wrong. Please try again."); void reload(); }
     finally { setBusy(false); }
   };

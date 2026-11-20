@@ -53,7 +53,7 @@ export function useLiveRoom(opts: { camera: boolean; onEnded?: () => void }) {
   const [remoteVideo, setRemoteVideo] = useState(false); const [remoteName, setRemoteName] = useState<string | null>(null);
   const [agentState, setAgentState] = useState<string | null>(null);
   const roomRef = useRef<Room | null>(null); const videoRef = useRef<HTMLVideoElement>(null); const localRef = useRef<HTMLVideoElement>(null);
-  const audioBox = useRef<HTMLDivElement>(null); const ended = useRef(opts.onEnded); ended.current = opts.onEnded;
+  const audioBox = useRef<HTMLDivElement>(null); const ended = useRef(opts.onEnded); ended.current = opts.onEnded; const connected = useRef(false);
 
   const attach = useCallback((track: RemoteTrack) => {
     if (track.kind === Track.Kind.Video && videoRef.current) { track.attach(videoRef.current); setRemoteVideo(true); }
@@ -61,7 +61,7 @@ export function useLiveRoom(opts: { camera: boolean; onEnded?: () => void }) {
   }, []);
 
   const connect = useCallback(async (url: string, token: string) => {
-    setState("connecting");
+    setState("connecting"); connected.current = false;
     const room = new Room({ adaptiveStream: true, dynacast: true, disconnectOnPageLeave: true });
     roomRef.current = room;
     room.on(RoomEvent.TrackSubscribed, (track) => attach(track))
@@ -70,19 +70,19 @@ export function useLiveRoom(opts: { camera: boolean; onEnded?: () => void }) {
       .on(RoomEvent.ParticipantAttributesChanged, (changed, p) => { if ("lk.agent.state" in changed && p.identity !== room.localParticipant.identity) setAgentState(changed["lk.agent.state"]); })
       .on(RoomEvent.Reconnecting, () => setState("reconnecting"))
       .on(RoomEvent.Reconnected, () => setState("connected"))
-      .on(RoomEvent.Disconnected, () => { setState((s) => (s === "failed" ? s : "ended")); ended.current?.(); });
+      .on(RoomEvent.Disconnected, () => { setState((s) => (s === "failed" || s === "mic-denied" ? s : "ended")); if (connected.current) ended.current?.(); });
     try { await room.connect(url, token); }
-    catch { setState("failed"); return false; }
+    catch { setState("failed"); return "failed" as const; }
     room.remoteParticipants.forEach((p) => { setRemoteName(p.name || null); p.trackPublications.forEach((pub) => { if (pub.track) attach(pub.track as RemoteTrack); }); });
     try { await room.localParticipant.setMicrophoneEnabled(true); }
-    catch { setState("mic-denied"); await room.disconnect(); return false; }
+    catch { setState("mic-denied"); await room.disconnect(); return "mic-denied" as const; }
     if (opts.camera) {
       try { await room.localParticipant.setCameraEnabled(true); const pub = room.localParticipant.getTrackPublication(Track.Source.Camera); if (pub?.track && localRef.current) pub.track.attach(localRef.current); }
       catch { setCamOn(false); }
     }
     try { await room.startAudio(); } catch { /* resumes on the next tap */ }
-    setState("connected");
-    return true;
+    connected.current = true; setState("connected");
+    return "ok" as const;
   }, [attach, opts.camera]);
 
   const toggleMic = useCallback(async () => { const r = roomRef.current; if (!r) return; const next = !micOn; await r.localParticipant.setMicrophoneEnabled(next).catch(() => undefined); setMicOn(next); }, [micOn]);

@@ -17,7 +17,8 @@ Works as a **guest** (progress saved in the browser) or with an **account** (pro
 
 - Preserve existing courses, lesson/word/sentence IDs, user progress and Supabase data. IDs are positional
   (`unit.lessonIndex.w|s index`, for example `ar3.2.s1`). **Only ever append; never renumber or reorder.**
-- No emails, subscriptions, payment systems, AI integrations or unnecessary redesigns. The tutor works without any AI API.
+- No emails, subscriptions, payment systems or unnecessary redesigns. The scripted tutor (/tutor) works without any AI API and must stay
+  that way. **Exception approved by the owner on 2026-11-20:** Speakara Live (section 15) uses Gemini Live, Anam and LiveKit.
 - Never delete production test accounts or real user records. Account deletion in tests runs only with `E2E_ALLOW_DELETE=1`.
 - Never put the Supabase service-role key in the browser; never expose secrets. No service-role key is used anywhere.
 - Never report a test, review or deployment as successful unless it actually happened. Mark untestable things
@@ -206,3 +207,35 @@ database tests were not re-run after the Arabic work.
 
 Paste or attach this file and say what to build. A good opening: "Read `docs/HANDOFF.md` in `/home/user/speakara`, work on
 a new branch off `claude/wizardly-wozniak-9582qa`, follow its rules and release process, and ask me before anything outward-facing."
+
+## 15. Speakara Live (added 2026-11-20, branch `claude/hopeful-hypatia-19kael`, NOT yet deployed)
+
+Two new experiences under `/live`, for signed-in learners only (guests see a sign-up prompt):
+
+- **AI companion** (`/live/companion`): spoken conversation with a pre-made Anam avatar driven by Gemini Live, in a
+  LiveKit room. Personalised name, personality, teaching style, Gemini voice, language, level and scenario; learning
+  report afterwards; learning memory (`/live/memory`) saved only with consent, viewable and deletable.
+- **Community language exchange** (`/live/community`): one-to-one LiveKit video calls between learners. Live matching
+  queue (reciprocal languages first, then same target language at a similar level; interests break ties), mutual
+  acceptance, mute/camera/end, prompts, a phrasebook help panel built from course content, call notes, block and
+  report. Adults only (self-attested 18+). Uses no Anam minutes.
+
+Architecture: Next.js API routes (`src/app/api/companion`, `src/app/api/community`, `src/app/api/live`) →
+`public.live_op()` (HMAC-signed with `PROGRESS_SIGNING_SECRET + ':live'`, nonce, 2-minute expiry) in Supabase. The
+Python worker in `agent/` runs on LiveKit Cloud (never Vercel); see `agent/README.md`.
+
+Anam free plan safeguards (all server-side, in `supabase/migrations/20261120000000_live_conversations.sql`): 28 of the
+30 monthly minutes are usable (`private.live_config`), shared by the whole app; each conversation reserves at most
+165 s up front (ends before Anam's 3-minute cap); one avatar session at a time (row lock); unused time is refunded
+only after the room is confirmed closed; abandoned sessions expire fully charged; the worker must claim a session once
+before starting Anam. **Public access is off** (`LIVE_AVATAR_ACCESS` unset = editors/admins only) until the owner
+confirms Anam's free-plan terms allow it: the pricing page lists commercial use as not included on Free.
+
+Vercel env needed: `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, `LIVE_WORKER_SECRET` (new), optional
+`LIVE_AVATAR_CATALOG` and `LIVE_AVATAR_ACCESS=everyone`. Worker env: see `agent/README.md`. `ANAM_API_KEY` and
+`GEMINI_API_KEY` belong only to the worker.
+
+Tests: `bash supabase/tests/run-local.sh` (includes `live_test.sql`); `npx vitest run`; `agent/test_prompts.py`;
+`e2e/live.mjs` against a local stack (`e2e/live/stack.sh`: real Postgres + a fake Supabase HTTP layer; LiveKit is
+not running there, so media connection failure paths are what is checked). Real audio/video, Gemini and Anam are NOT
+VERIFIED until run with real keys (checklist in `agent/README.md`).

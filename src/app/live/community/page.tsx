@@ -9,7 +9,7 @@ import { useStore } from "@/lib/state/store";
 import { useT } from "@/lib/i18n";
 import { supabase } from "@/lib/supabase";
 import { COURSES } from "@/lib/content";
-import { clock, DAY_LABELS, DAYS, INTERESTS, langFlag, langName, LEVELS, LIVE_LANGS, NATIVE_LANGS, SLOTS } from "@/lib/live/catalog";
+import { clock, DAY_LABELS, DAYS, INTERESTS, langFlag, langName, LEVELS, NATIVE_LANGS, SLOTS } from "@/lib/live/catalog";
 import { ApiError, liveApi, useLiveConfig, useLiveRoom } from "@/lib/live/client";
 
 interface Prefs { native_lang: string; target_lang: string; level: number; availability: Record<string, string[]>; interests: string[] }
@@ -27,7 +27,7 @@ const REASONS = [{ id: "harassment", label: /*i18n*/ "Harassment or bullying" },
 /** Phrasebook for the help panel, built from Speakara's own course content (no AI, no cost). */
 function usePhrasebook(lang: string) {
   return useMemo(() => {
-    const c = COURSES.find((x) => x.target === lang && x.native === "en");
+    const c = COURSES.find((x) => x.target === lang && x.native === "en") ?? COURSES.find((x) => x.target === lang);
     const out: { t: string; n: string }[] = []; const seen = new Set<string>();
     c?.units.forEach((u) => u.lessons.forEach((l) => [...l.words, ...l.sentences].forEach((x) => { if (!seen.has(x.t)) { seen.add(x.t); out.push({ t: x.t, n: x.n }); } })));
     return out;
@@ -75,17 +75,23 @@ function Community() {
       try {
         const tok = await liveApi<{ token: string; url: string }>("/api/community/token", { match_id: s.match.id });
         endedCall.current = false; setPhase("call"); setStartedAt(Date.now());
-        if (!(await call.connect(tok.url, tok.token))) { await liveApi("/api/community", { op: "end", match_id: s.match.id }).catch(() => undefined); }
+        const result = await call.connect(tok.url, tok.token);
+        if (result !== "ok") {
+          await liveApi("/api/community", { op: "end", match_id: s.match.id }).catch(() => undefined);
+          joiningCall.current = false; endedCall.current = true; setPhase("lobby");
+          setError(result === "mic-denied" ? /*i18n*/ "Microphone access is blocked. Allow the microphone for this site in your browser’s address bar, then try again." : /*i18n*/ "We couldn’t connect. Check your internet connection and try again.");
+        }
       } catch (e) { setError(e instanceof ApiError ? e.message : /*i18n*/ "Something went wrong. Please try again."); joiningCall.current = false; }
     }
     if (phase === "call" && s.match && s.match.id === matchId && s.match.status !== "active") void call.leave();
   }, [phase, call, matchId]);
 
+  const pollRef = useRef(poll); pollRef.current = poll;
   useEffect(() => {
     if (phase !== "lobby" && phase !== "call") return;
-    void poll(); const id = setInterval(() => void poll(), phase === "call" ? 5000 : 2000);
+    void pollRef.current(); const id = setInterval(() => void pollRef.current(), phase === "call" ? 5000 : 2000);
     return () => clearInterval(id);
-  }, [phase, poll]);
+  }, [phase]);
   useEffect(() => { const id = setInterval(() => tick((n) => n + 1), 1000); return () => clearInterval(id); }, []);
 
   const savePrefs = async () => {
@@ -136,7 +142,7 @@ function Community() {
               <label className="block"><span className="mb-1 block text-sm font-bold text-sub">{t("I speak")}</span>
                 <select value={prefs.native_lang} onChange={(e) => setPrefs({ ...prefs, native_lang: e.target.value })} className="min-h-12 w-full rounded-2xl border-2 border-line-dark bg-mist px-3 font-semibold">{NATIVE_LANGS.map((l) => <option key={l.code} value={l.code}>{l.flag} {t(l.name)}</option>)}</select></label>
               <label className="block"><span className="mb-1 block text-sm font-bold text-sub">{t("I’m learning")}</span>
-                <select value={prefs.target_lang} onChange={(e) => setPrefs({ ...prefs, target_lang: e.target.value })} className="min-h-12 w-full rounded-2xl border-2 border-line-dark bg-mist px-3 font-semibold">{LIVE_LANGS.map((l) => <option key={l.code} value={l.code}>{l.flag} {t(l.name)}</option>)}</select></label>
+                <select value={prefs.target_lang} onChange={(e) => setPrefs({ ...prefs, target_lang: e.target.value })} className="min-h-12 w-full rounded-2xl border-2 border-line-dark bg-mist px-3 font-semibold">{NATIVE_LANGS.map((l) => <option key={l.code} value={l.code}>{l.flag} {t(l.name)}</option>)}</select></label>
             </div>
             <fieldset><legend className="mb-2 text-sm font-bold text-sub">{t("Your level")}</legend>
               <div className="flex flex-wrap gap-2">{LEVELS.map((l) => <button key={l.value} type="button" aria-pressed={prefs.level === l.value} onClick={() => setPrefs({ ...prefs, level: l.value })} className={`min-h-11 rounded-2xl border-2 px-3 font-extrabold ${prefs.level === l.value ? "border-sky bg-sky-soft text-sky-dark" : "border-line"}`}>{t(l.label)}</button>)}</div></fieldset>
@@ -175,13 +181,14 @@ function Community() {
                   <Button onClick={() => void join()} disabled={busy}><Users size={20} aria-hidden="true" />{t("Find a partner")}</Button></>}
             {ms?.match?.status === "declined" && <Notice tone="info">{t("That invitation was declined. Try again for a new partner.")}</Notice>}
             {ms?.match?.status === "expired" && <Notice tone="info">{t("That invitation has expired.")}</Notice>}
+            {ms?.match?.status === "ended" && ms.match.me_accepted && <Notice tone="info">{t("This call has ended.")}</Notice>}
           </Card>
           {error && <Notice tone="error">{t(error)}</Notice>}
           <Button variant="ghost" onClick={() => setPhase("setup")}>{t("Edit my preferences")}</Button>
         </div>
       )}
 
-      <Dialog open={phase === "lobby" && !!invite} onClose={() => void respond(false)} labelledBy="invite-title">
+      <Dialog open={phase === "lobby" && !!invite} onClose={() => { if (invite && !invite.me_accepted) void respond(false); }} labelledBy="invite-title">
         {invite?.partner && <div className="space-y-3">
           <Mascot mood="cheer" size={72} className="mx-auto" />
           <h2 id="invite-title" className="text-xl">{t("{name} wants to practise with you", { name: invite.partner.display_name })}</h2>
