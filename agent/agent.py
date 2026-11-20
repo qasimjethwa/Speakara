@@ -39,20 +39,15 @@ if not os.getenv("GOOGLE_API_KEY") and os.getenv("GEMINI_API_KEY"):
 server = AgentServer()
 
 
-def worker_key() -> str:
-    """LIVE_WORKER_SECRET if set, else derived from LIVEKIT_API_SECRET exactly as the Speakara app derives it."""
-    if os.getenv("LIVE_WORKER_SECRET"):
-        return os.environ["LIVE_WORKER_SECRET"]
-    return hmac.new(os.environ["LIVEKIT_API_SECRET"].encode(), b"speakara-live-worker-v1", hashlib.sha256).hexdigest()
-
-
 async def speakara(op: str, body: dict[str, Any]) -> dict[str, Any]:
     """Signed call to the Speakara app's worker endpoint."""
     base = os.environ["SPEAKARA_API_URL"].rstrip("/")
     raw = json.dumps({"op": op, **body}, separators=(",", ":"))
-    ts = str(int(time.time() * 1000))
-    sig = hmac.new(worker_key().encode(), f"{ts}.{raw}".encode(), hashlib.sha256).hexdigest()
-    headers = {"content-type": "application/json", "x-speakara-ts": ts, "x-speakara-signature": sig}
+    headers = {"content-type": "application/json"}
+    if os.getenv("LIVE_WORKER_SECRET"):   # optional shared key; otherwise the app verifies us through LiveKit
+        ts = str(int(time.time() * 1000))
+        headers["x-speakara-ts"] = ts
+        headers["x-speakara-signature"] = hmac.new(os.environ["LIVE_WORKER_SECRET"].encode(), f"{ts}.{raw}".encode(), hashlib.sha256).hexdigest()
     if os.getenv("VERCEL_AUTOMATION_BYPASS_SECRET"):
         headers["x-vercel-protection-bypass"] = os.environ["VERCEL_AUTOMATION_BYPASS_SECRET"]
     async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=20)) as http:
@@ -99,8 +94,9 @@ async def companion(ctx: agents.JobContext) -> None:
     if not room_name.startswith("ai_") or not session_id:
         log.warning("refusing dispatch without a Speakara session: %s", room_name)
         return
+    await ctx.connect()
     try:
-        claim = await speakara("claim", {"session_id": session_id, "room_name": room_name})
+        claim = await speakara("claim", {"session_id": session_id, "room_name": room_name, "identity": ctx.room.local_participant.identity})
     except Exception:
         log.exception("session %s not claimable; not starting Gemini or Anam", session_id)
         return
@@ -111,8 +107,6 @@ async def companion(ctx: agents.JobContext) -> None:
         return
     deadline = time.monotonic() + seconds
     finished = asyncio.Event()
-
-    await ctx.connect()
     session = AgentSession(
         llm=google.realtime.RealtimeModel(
             model=os.getenv("GEMINI_LIVE_MODEL", "gemini-3.8-live"),
@@ -164,7 +158,7 @@ async def companion(ctx: agents.JobContext) -> None:
             log.exception("could not delete room %s", room_name)
         report = await write_report(cfg, transcript)
         try:
-            await speakara("report", {"session_id": session_id, "room_name": room_name, "report": report, "memory": prompts.memory_items(report)})
+            await speakara("report", {"session_id": session_id, "room_name": room_name, "report_token": claim.get("report_token", ""), "report": report, "memory": prompts.memory_items(report)})
         except Exception:
             log.exception("could not send report for %s", session_id)
         ctx.shutdown("conversation finished")

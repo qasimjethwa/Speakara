@@ -14,15 +14,8 @@ import type { AvatarChoice } from "./catalog";
 export const AGENT_NAME = "speakara-companion";
 const env = (k: string) => process.env[k]?.trim() || undefined;
 
-/**
- * Key for app <-> worker requests. LIVE_WORKER_SECRET if set; otherwise derived from LIVEKIT_API_SECRET, which both the
- * app and the LiveKit Cloud worker already hold, so no extra secret has to be copied between providers.
- */
-export function workerKey(): string | undefined {
-  const explicit = env("LIVE_WORKER_SECRET"); if (explicit) return explicit;
-  const lk = env("LIVEKIT_API_SECRET");
-  return lk ? createHmac("sha256", lk).update("speakara-live-worker-v1").digest("hex") : undefined;
-}
+/** Optional shared key for app <-> worker requests (LIVE_WORKER_SECRET). Without it, workers are verified through LiveKit. */
+export function workerKey(): string | undefined { return env("LIVE_WORKER_SECRET"); }
 
 export class LiveError extends Error { constructor(public status: number, public code: string, message: string) { super(message); } }
 
@@ -31,7 +24,7 @@ export function liveStatus() {
   return {
     livekit: !!(env("LIVEKIT_URL") && env("LIVEKIT_API_KEY") && env("LIVEKIT_API_SECRET")),
     signing: !!env("PROGRESS_SIGNING_SECRET"),
-    worker: !!workerKey(),
+    worker: true,   // workers are verified per request: shared key if set, otherwise LiveKit agent presence
     /** "staff" until the owner confirms Anam's free-plan terms allow public use; then "everyone". */
     avatarAccess: env("LIVE_AVATAR_ACCESS") === "everyone" ? "everyone" as const : "staff" as const,
   };
@@ -147,3 +140,23 @@ export function fail(e: unknown) {
   console.error("live route failed", e);
   return json({ error: "Something went wrong. Please try again.", code: "server" }, 500);
 }
+
+/**
+ * Proves a claim comes from the real companion agent without any shared secret: LiveKit itself must report that
+ * `identity` is an AGENT participant inside `room`. Only LiveKit Cloud can dispatch an agent into a Speakara room.
+ */
+export async function isAgentInRoom(room: string, identity: string): Promise<boolean> {
+  try {
+    const lk = livekit();
+    const p = await new RoomServiceClient(lk.url.replace(/^wss:/, "https:").replace(/^ws:/, "http:"), lk.apiKey, lk.apiSecret).getParticipant(room, identity);
+    return Number(p.kind) === 4;   // ParticipantInfo_Kind.AGENT
+  } catch { return false; }
+}
+
+/** One-time token handed to the worker at claim time and required with its report (stateless HMAC). */
+export function reportToken(sessionId: string): string {
+  const secret = env("PROGRESS_SIGNING_SECRET");
+  if (!secret) throw new LiveError(503, "not_configured", "Live practice isn’t set up on this server yet.");
+  return createHmac("sha256", `${secret}:report`).update(sessionId).digest("hex");
+}
+export function sameToken(a: string, b: string) { return a.length === b.length && timingSafeEqual(Buffer.from(a), Buffer.from(b)); }

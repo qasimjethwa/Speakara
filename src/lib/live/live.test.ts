@@ -1,6 +1,6 @@
 import { createHmac } from "node:crypto";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { avatarCatalog, roomToken, verifyWorker, workerKey } from "./server";
+import { avatarCatalog, roomToken, verifyWorker } from "./server";
 import { cleanPrefs, clock } from "./catalog";
 
 const decode = (jwt: string) => JSON.parse(Buffer.from(jwt.split(".")[1], "base64url").toString());
@@ -34,18 +34,19 @@ describe("worker signatures", () => {
     expect(verifyWorker('{"a":1}', ts, sign(ts, "{}"))).toBe(false);
     expect(verifyWorker("{}", old, sign(old, "{}"))).toBe(false);
     expect(verifyWorker("{}", null, null)).toBe(false);
-    delete process.env.LIVE_WORKER_SECRET; delete process.env.LIVEKIT_API_SECRET;
+    delete process.env.LIVE_WORKER_SECRET;
     expect(verifyWorker("{}", ts, sign(ts, "{}"))).toBe(false);
   });
 });
 
-describe("derived worker key", () => {
-  it("matches the Python worker's derivation from LIVEKIT_API_SECRET", () => {
-    delete process.env.LIVE_WORKER_SECRET;
-    const key = createHmac("sha256", "s".repeat(40)).update("speakara-live-worker-v1").digest("hex");
-    expect(workerKey()).toBe(key);
-    const ts = String(Date.now()); const sig = createHmac("sha256", key).update(`${ts}.{}`).digest("hex");
-    expect(verifyWorker("{}", ts, sig)).toBe(true);
+describe("report tokens", () => {
+  it("are per-session and verifiable without storage", async () => {
+    process.env.PROGRESS_SIGNING_SECRET = "p".repeat(40);
+    const { reportToken, sameToken } = await import("./server");
+    const t = reportToken("11111111-1111-1111-1111-111111111111");
+    expect(sameToken(t, reportToken("11111111-1111-1111-1111-111111111111"))).toBe(true);
+    expect(sameToken(t, reportToken("22222222-2222-2222-2222-222222222222"))).toBe(false);
+    expect(sameToken(t, "short")).toBe(false);
   });
 });
 
