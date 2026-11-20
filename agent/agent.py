@@ -25,7 +25,7 @@ import aiohttp
 from google import genai
 from google.genai import types as gtypes
 from livekit import agents, rtc
-from livekit.agents import Agent, AgentServer, AgentSession, room_io
+from livekit.agents import Agent, AgentServer, AgentSession, inference, room_io
 from livekit.plugins import anam, google
 
 import prompts
@@ -84,6 +84,20 @@ async def speakara(op: str, body: dict[str, Any]) -> dict[str, Any]:
             return data
 
 
+def live_model(voice: str):
+    """
+    Gemini Live for the conversation. Default: through LiveKit Inference (`google/gemini-3.8-live`, billed to the LiveKit
+    project's inference credits, no Google key needed). GEMINI_LIVE_PROVIDER=google uses the project's own Gemini key
+    instead, which requires that key to have Gemini Live models enabled.
+    """
+    if os.getenv("GEMINI_LIVE_PROVIDER", "livekit") == "google":
+        return google.realtime.RealtimeModel(
+            model=os.getenv("GEMINI_LIVE_MODEL", "gemini-3.8-live"), voice=voice, temperature=0.7,
+            input_audio_transcription=gtypes.AudioTranscriptionConfig(), output_audio_transcription=gtypes.AudioTranscriptionConfig(),
+        )
+    return inference.RealtimeModel(model=os.getenv("GEMINI_LIVE_MODEL", "google/gemini-3.8-live"), voice=voice)
+
+
 def transcript_of(session: AgentSession) -> list[dict[str, str]]:
     out = []
     for item in session.history.items:
@@ -133,15 +147,7 @@ async def companion(ctx: agents.JobContext) -> None:
         return
     deadline = time.monotonic() + seconds
     finished = asyncio.Event()
-    session = AgentSession(
-        llm=google.realtime.RealtimeModel(
-            model=os.getenv("GEMINI_LIVE_MODEL", "gemini-3.8-live"),
-            voice=str(cfg.get("voice", "Puck")),
-            temperature=0.7,
-            input_audio_transcription=gtypes.AudioTranscriptionConfig(),
-            output_audio_transcription=gtypes.AudioTranscriptionConfig(),
-        ),
-    )
+    session = AgentSession(llm=live_model(str(cfg.get("voice", "Puck"))))
     avatar = anam.AvatarSession(
         persona_config=anam.PersonaConfig(name=str(cfg.get("avatar_name", cfg.get("companion_name", "Kiko")))[:24], avatarId=str(cfg["avatar_id"])),
         session_options=anam.SessionOptions(show_ai_avatar_disclosure=True),
