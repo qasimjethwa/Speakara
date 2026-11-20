@@ -1,155 +1,159 @@
 1
-00:00:00,600 --> 00:00:04,410
-You learned your mother tongue without a subscription.
+00:00:00,600 --> 00:00:04,840
+You learned your mother tongue… without a subscription.
 
 2
-00:00:04,410 --> 00:00:08,000
-Why should your next language be locked behind one?
+00:00:05,440 --> 00:00:09,400
+So why should your next language be locked behind one?
 
 3
-00:00:12,800 --> 00:00:17,850
+00:00:12,800 --> 00:00:17,930
 1.4 billion people are learning, or want to learn, English.
 
 4
-00:00:17,850 --> 00:00:22,730
-40% of people worldwide lack education in a language they
+00:00:18,380 --> 00:00:22,540
+40% of people worldwide lack education in a language
 
 5
-00:00:22,730 --> 00:00:24,440
-understand fluently.
+00:00:22,540 --> 00:00:24,540
+they understand fluently.
 
 6
-00:00:24,440 --> 00:00:29,240
-And 430 million people need rehabilitation for disabling
+00:00:25,040 --> 00:00:29,260
+And 430 million people need rehabilitation for
 
 7
-00:00:29,240 --> 00:00:30,350
-hearing loss.
+00:00:29,260 --> 00:00:31,370
+disabling hearing loss.
 
 8
-00:00:33,600 --> 00:00:37,950
-Speakara brings structured language learning, interactive
+00:00:33,600 --> 00:00:36,810
+Speakara brings structured learning, interactive
 
 9
-00:00:37,950 --> 00:00:42,000
+00:00:36,810 --> 00:00:40,360
 practice and real-world speaking into one experience.
 
 10
-00:00:42,000 --> 00:00:46,040
+00:00:40,760 --> 00:00:45,070
 Bite-sized lessons, stories, quests and streaks, with
 
 11
-00:00:46,040 --> 00:00:47,650
-Kiko cheering you on.
+00:00:45,070 --> 00:00:46,780
+Kiko cheering you on!
 
 12
-00:00:51,000 --> 00:00:54,250
+00:00:51,000 --> 00:00:54,670
 Meet your personal AI language companion.
 
 13
-00:00:54,250 --> 00:00:58,850
-Powered by Google Gemini and brought to life through Anam,
+00:00:55,170 --> 00:00:58,760
+Powered by Google Gemini, and brought to life through
 
 14
-00:00:58,850 --> 00:01:01,940
-it's always ready to practise with you.
+00:00:58,760 --> 00:01:01,810
+Anam, it's always ready to practise with you.
 
 15
-00:01:01,940 --> 00:01:02,810
+00:01:02,260 --> 00:01:03,980
 It listens.
 
 16
-00:01:02,810 --> 00:01:06,220
+00:01:04,380 --> 00:01:07,640
 It speaks, in the language you're learning.
 
 17
-00:01:06,220 --> 00:01:11,130
-And you can interrupt any time, just like a real conversation.
+00:01:08,040 --> 00:01:11,490
+And you can interrupt any time, just like a real
 
 18
-00:01:11,130 --> 00:01:15,570
-Explore real-life scenarios, learn through roleplay, and
+00:01:11,490 --> 00:01:12,420
+conversation.
 
 19
-00:01:15,570 --> 00:01:18,580
-build confidence by actually speaking.
+00:01:12,870 --> 00:01:16,570
+Explore real-life scenarios, learn through roleplay,
 
 20
-00:01:23,000 --> 00:01:25,830
-But learning shouldn't stop with AI.
+00:01:16,570 --> 00:01:19,560
+and build confidence by actually speaking.
 
 21
-00:01:25,830 --> 00:01:29,850
-Speakara's language exchange connects you with real
+00:01:23,000 --> 00:01:26,230
+But learning shouldn't stop with AI.
 
 22
-00:01:29,850 --> 00:01:34,330
-learners around the world through one-to-one video calls.
+00:01:26,680 --> 00:01:29,930
+Speakara's language exchange connects you with real
 
 23
-00:01:34,330 --> 00:01:38,580
-Match by language and level, start a conversation, and
+00:01:29,930 --> 00:01:33,610
+learners around the world, through one-to-one video calls.
 
 24
-00:01:38,580 --> 00:01:39,760
-learn together.
+00:01:34,010 --> 00:01:38,160
+Match by language and level, start a conversation, and
 
 25
-00:01:39,760 --> 00:01:41,960
-You help with your language.
+00:01:38,160 --> 00:01:39,310
+learn together.
 
 26
-00:01:41,960 --> 00:01:43,700
-They help with theirs.
+00:01:39,710 --> 00:01:42,180
+You help with your language.
 
 27
-00:01:48,000 --> 00:01:51,370
-And language should be accessible to everyone.
+00:01:42,180 --> 00:01:44,120
+They help with theirs.
 
 28
-00:01:51,370 --> 00:01:55,400
-Our next phase aims to bring language education to Deaf
+00:01:48,000 --> 00:01:51,930
+And language should be accessible to everyone.
 
 29
-00:01:55,400 --> 00:01:59,650
-learners, through an Indian Sign Language teaching avatar,
+00:01:52,430 --> 00:01:56,350
+Our next phase aims to bring language education to Deaf
 
 30
-00:01:59,650 --> 00:02:03,460
-developed with the Deaf community and ISL educators.
+00:01:56,350 --> 00:01:59,910
+learners, through an Indian Sign Language teaching
 
 31
-00:02:07,000 --> 00:02:09,090
-Our approach is simple.
+00:01:59,910 --> 00:02:04,180
+avatar, developed with the Deaf community and ISL educators.
 
 32
-00:02:09,090 --> 00:02:14,090
-Free forever for learners in India, and just $1 a month
+00:02:07,000 --> 00:02:09,200
+Our approach is simple.
 
 33
-00:02:14,090 --> 00:02:16,720
-for learners everywhere else.
+00:02:09,650 --> 00:02:14,030
+Free forever for learners in India… and just $1 a
 
 34
-00:02:16,720 --> 00:02:20,540
-Imagine 100,000 international subscribers:
+00:02:14,030 --> 00:02:16,270
+month, for everyone else.
 
 35
-00:02:20,540 --> 00:02:24,270
-that's $100,000 in monthly gross revenue.
+00:02:16,720 --> 00:02:20,980
+Imagine 100,000 international subscribers.
 
 36
-00:02:24,270 --> 00:02:27,720
-At 1 million, it's $1 million a month.
+00:02:20,980 --> 00:02:25,140
+That's $100,000 in monthly gross revenue.
 
 37
-00:02:32,000 --> 00:02:32,810
-Speakara.
+00:02:25,540 --> 00:02:29,250
+At one million, it's a million dollars a month.
 
 38
-00:02:32,810 --> 00:02:37,470
-A world where everyone can learn, speak and connect,
+00:02:32,000 --> 00:02:33,750
+Speakara.
 
 39
-00:02:37,470 --> 00:02:38,990
+00:02:34,400 --> 00:02:38,930
+A world where everyone can learn, speak and connect…
+
+40
+00:02:38,930 --> 00:02:40,410
 without barriers.

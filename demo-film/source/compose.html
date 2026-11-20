@@ -157,19 +157,19 @@ function seek(t){
  for(const [id,a,b] of SC){const o=Math.min(R(t,a-.01,a+.6),1-R(t,b-.5,b+.1));$(id).style.opacity=C(o);$(id).style.display=o>0.001?'block':'none'}
  $('bg').style.transform=`translate(${Math.sin(t*.15)*30}px,${Math.cos(t*.12)*20}px) scale(1.05)`;
  // S1
- const ci=t<4?'av4':t<8?'av3':'av2'; if(!$('s1img').src.endsWith(ci+'c.png'))$('s1img').src='assets/'+ci+'c.png';
- const z=1+t*.012; $('s1card').style.transform=`scale(${z})`; $('s1card').style.opacity=1-R(t,7.6,8.6); $('s1title').style.opacity=R(t,8.2,9.2); $('s1title').style.transform=`translateY(${(1-R(t,8.2,9.4))*40}px)`;
+ const ci=t<4?'av4':t<7?'av3':'av2'; if(!$('s1img').src.endsWith(ci+'c.png'))$('s1img').src='assets/'+ci+'c.png';
+ const z=1+t*.012; $('s1card').style.transform=`scale(${z})`; $('s1card').style.opacity=1-R(t,9.2,10.0); $('s1title').style.opacity=R(t,9.8,10.6); $('s1title').style.transform=`translateY(${(1-R(t,9.8,10.9))*40}px)`;
  // S2 stats
- [[ 'st1',13],['st2',18.5],['st3',24.5]].forEach(([id,a])=>{$(id).style.opacity=R(t,a,a+.7);$(id).style.transform=`translateY(${(1-R(t,a,a+.8))*50}px)`});
+ [[ 'st1',13],['st2',18.3],['st3',25.0]].forEach(([id,a])=>{$(id).style.opacity=R(t,a,a+.7);$(id).style.transform=`translateY(${(1-R(t,a,a+.8))*50}px)`});
  // S3 carousel
  const L=["Structured courses","Bite-sized lessons","Practice modes","Quests &amp; streaks"];const ids=['s3a','s3b','s3c','s3d'];const lt=t-33.6, step=3.7;
  ids.forEach((id,i)=>{const p=lt-i*step;const vis=C(Math.min((p+.6)/.6,(step+.3-p)/.6));const el=$(id);el.style.opacity=i==3?C((p+.6)/.6):vis;el.style.left=(800+ (1-R(p,-0.6,0.3))*120)+'px';el.style.top='230px';el.style.transform=`scale(${1+C(p/step)*0.04})`});
  $('s3lab').innerHTML=L.map((s,i)=>`<div style="opacity:${lt>i*step-0.3?1:.25};color:${(lt>=i*step&&lt<(i+1)*step)||(i==3&&lt>=3*step)?'#5cf2a4':'#cfeedd'}">${s}</div>`).join('');
  // S4 avatar sequence: joining -> listening -> speaking -> listening
- const a4=t-50, seq=a4<5?'av4':a4<13?'av1':a4<22?'av3':'av2'; if(!$('s4img').src.endsWith(seq+'c.png'))$('s4img').src='assets/'+seq+'c.png';
- const st=a4<5?["Kiko is joining…","#9fd8bb"]:(a4<13||a4>=22)?["● Listening","#5cf2a4"]:["● Speaking","#ffcf66"];
+ const a4=t-50, seq=a4<4.2?'av4':a4<13.3?'av1':a4<17?'av3':'av2'; if(!$('s4img').src.endsWith(seq+'c.png'))$('s4img').src='assets/'+seq+'c.png';
+ const st=a4<4.2?["Kiko is joining…","#9fd8bb"]:(a4<13.3||a4>=17)?["● Listening","#5cf2a4"]:["● Speaking","#ffcf66"];
  $('s4state').innerHTML=`<span class="pill" style="background:rgba(255,255,255,.08);color:${st[1]};font-size:30px">${st[0]}</span>`;
- const seg=a4<5?a4:a4<13?a4-5:a4<22?a4-13:a4-22; $('s4img').style.transform=`scale(${1+seg*.006})`;$('s4img').style.transformOrigin='50% 35%';
+ const seg=a4<4.2?a4:a4<13.3?a4-4.2:a4<17?a4-13.3:a4-17; $('s4img').style.transform=`scale(${1+seg*.006})`;$('s4img').style.transformOrigin='50% 35%';
  $('s4card').style.transform=`translateY(${(1-R(a4,0,1))*60}px)`;
  // S5
  const a5=t-82; $('s5card').style.transform=`translateY(${(1-R(a5,0,1))*60}px) scale(${1+a5*.003})`;
@@ -181,8 +181,8 @@ function seek(t){
  const a6=t-107; signer(t); $('s6stage').style.transform=`translateY(${(1-R(a6,0,1))*60}px)`;
  $('s6list').innerHTML=["Visual vocabulary","ISL explanations","Visual grammar lessons","Interactive exercises","Captions throughout"].map((s,i)=>`<div style="opacity:${R(a6,1.5+i*1.6,2.3+i*1.6)}">✦ ${s}</div>`).join('');
  // S7
- const a7=t-126; $('p1').style.transform=`translateY(${(1-R(a7,.5,1.5))*80}px)`;$('p1').style.opacity=R(a7,.5,1.3);
- $('p2').style.transform=`translateY(${(1-R(a7,3,4))*80}px)`;$('p2').style.opacity=R(a7,3,3.8);$('rev').style.opacity=R(a7,9,10);
+ const a7=t-126; $('p1').style.transform=`translateY(${(1-R(a7,2.4,3.4))*80}px)`;$('p1').style.opacity=R(a7,2.4,3.2);
+ $('p2').style.transform=`translateY(${(1-R(a7,5,6))*80}px)`;$('p2').style.opacity=R(a7,5,5.8);$('rev').style.opacity=R(a7,9.6,10.4);
  kiko(t);
  const s=SUBS.find(x=>t>=x[0]&&t<x[1]); $('sub').innerHTML=s?`<span>${s[2]}</span>`:'';
 }

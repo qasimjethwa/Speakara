@@ -1,0 +1,25 @@
+s1|-8%|-2Hz|0.45|You learned your mother tongue... without a subscription.
+s1|-4%|+3Hz|0.2|So why should your next language be locked behind one?
+s2|+0%|+0Hz|0.3|1.4 billion people are learning, or want to learn, English.
+s2|-2%|-1Hz|0.35|40% of people worldwide lack education in a language they understand fluently.
+s2|-8%|-3Hz|0.2|And 430 million people need rehabilitation for disabling hearing loss.
+s3|+4%|+4Hz|0.25|Speakara brings structured learning, interactive practice and real-world speaking into one experience.
+s3|+6%|+6Hz|0.2|Bite-sized lessons, stories, quests and streaks, with Kiko cheering you on!
+s4|-4%|+2Hz|0.35|Meet your personal AI language companion.
+s4|+0%|+0Hz|0.3|Powered by Google Gemini, and brought to life through Anam, it's always ready to practise with you.
+s4|-6%|-2Hz|0.25|It listens.
+s4|+0%|+4Hz|0.25|It speaks, in the language you're learning.
+s4|+2%|+2Hz|0.3|And you can interrupt any time, just like a real conversation.
+s4|+3%|+3Hz|0.2|Explore real-life scenarios, learn through roleplay, and build confidence by actually speaking.
+s5|-4%|-2Hz|0.3|But learning shouldn't stop with AI.
+s5|+2%|+3Hz|0.25|Speakara's language exchange connects you with real learners around the world, through one-to-one video calls.
+s5|+4%|+3Hz|0.25|Match by language and level, start a conversation, and learn together.
+s5|+0%|+5Hz|0.2|You help with your language. They help with theirs.
+s6|-8%|-3Hz|0.35|And language should be accessible to everyone.
+s6|-5%|-1Hz|0.2|Our next phase aims to bring language education to Deaf learners, through an Indian Sign Language teaching avatar, developed with the Deaf community and ISL educators.
+s7|+2%|+2Hz|0.3|Our approach is simple.
+s7|+0%|+5Hz|0.3|Free forever for learners in India... and just one dollar a month, for everyone else.
+s7|+0%|+0Hz|0.25|Imagine 100,000 international subscribers. That's 100,000 dollars in monthly gross revenue.
+s7|+2%|+4Hz|0.2|At one million, it's a million dollars a month.
+s8|-10%|-2Hz|0.5|Speakara.
+s8|-7%|+0Hz|0.2|A world where everyone can learn, speak and connect... without barriers.
