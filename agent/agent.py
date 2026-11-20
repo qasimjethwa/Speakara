@@ -51,6 +51,20 @@ if not os.getenv("GOOGLE_API_KEY") and os.getenv("GEMINI_API_KEY"):
 server = AgentServer()
 
 
+def _log_live_models() -> None:
+    """Startup diagnostic (no avatar minutes): which Gemini Live models can this key use?"""
+    try:
+        client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
+        live = [m.name for m in client.models.list() if "bidiGenerateContent" in (getattr(m, "supported_actions", None) or [])]
+        log.warning("gemini live models for this key: %s (configured: %s)", ", ".join(live) or "none", os.getenv("GEMINI_LIVE_MODEL", "gemini-3.8-live"))
+    except Exception as e:  # never block the worker on a diagnostic
+        log.warning("could not list gemini models: %s", str(e)[:200])
+
+
+if os.getenv("GOOGLE_API_KEY"):
+    _log_live_models()
+
+
 async def speakara(op: str, body: dict[str, Any]) -> dict[str, Any]:
     """Signed call to the Speakara app's worker endpoint."""
     base = os.environ["SPEAKARA_API_URL"].rstrip("/")
