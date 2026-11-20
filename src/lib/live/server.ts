@@ -14,6 +14,16 @@ import type { AvatarChoice } from "./catalog";
 export const AGENT_NAME = "speakara-companion";
 const env = (k: string) => process.env[k]?.trim() || undefined;
 
+/**
+ * Key for app <-> worker requests. LIVE_WORKER_SECRET if set; otherwise derived from LIVEKIT_API_SECRET, which both the
+ * app and the LiveKit Cloud worker already hold, so no extra secret has to be copied between providers.
+ */
+export function workerKey(): string | undefined {
+  const explicit = env("LIVE_WORKER_SECRET"); if (explicit) return explicit;
+  const lk = env("LIVEKIT_API_SECRET");
+  return lk ? createHmac("sha256", lk).update("speakara-live-worker-v1").digest("hex") : undefined;
+}
+
 export class LiveError extends Error { constructor(public status: number, public code: string, message: string) { super(message); } }
 
 /** What is configured on this deployment, without revealing any value. */
@@ -21,7 +31,7 @@ export function liveStatus() {
   return {
     livekit: !!(env("LIVEKIT_URL") && env("LIVEKIT_API_KEY") && env("LIVEKIT_API_SECRET")),
     signing: !!env("PROGRESS_SIGNING_SECRET"),
-    worker: !!env("LIVE_WORKER_SECRET"),
+    worker: !!workerKey(),
     /** "staff" until the owner confirms Anam's free-plan terms allow public use; then "everyone". */
     avatarAccess: env("LIVE_AVATAR_ACCESS") === "everyone" ? "everyone" as const : "staff" as const,
   };
@@ -124,7 +134,7 @@ export async function closeRoom(room: string): Promise<boolean> {
 
 /** Verifies a request from the agent worker: HMAC-SHA256 over "<timestamp>.<body>" with LIVE_WORKER_SECRET. */
 export function verifyWorker(body: string, ts: string | null, signature: string | null): boolean {
-  const secret = env("LIVE_WORKER_SECRET");
+  const secret = workerKey();
   if (!secret || !ts || !signature || !/^[0-9a-f]{64}$/i.test(signature)) return false;
   if (Math.abs(Date.now() - Number(ts)) > 60_000) return false;
   const expected = createHmac("sha256", secret).update(`${ts}.${body}`, "utf8").digest();

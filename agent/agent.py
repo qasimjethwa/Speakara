@@ -39,12 +39,19 @@ if not os.getenv("GOOGLE_API_KEY") and os.getenv("GEMINI_API_KEY"):
 server = AgentServer()
 
 
+def worker_key() -> str:
+    """LIVE_WORKER_SECRET if set, else derived from LIVEKIT_API_SECRET exactly as the Speakara app derives it."""
+    if os.getenv("LIVE_WORKER_SECRET"):
+        return os.environ["LIVE_WORKER_SECRET"]
+    return hmac.new(os.environ["LIVEKIT_API_SECRET"].encode(), b"speakara-live-worker-v1", hashlib.sha256).hexdigest()
+
+
 async def speakara(op: str, body: dict[str, Any]) -> dict[str, Any]:
     """Signed call to the Speakara app's worker endpoint."""
     base = os.environ["SPEAKARA_API_URL"].rstrip("/")
     raw = json.dumps({"op": op, **body}, separators=(",", ":"))
     ts = str(int(time.time() * 1000))
-    sig = hmac.new(os.environ["LIVE_WORKER_SECRET"].encode(), f"{ts}.{raw}".encode(), hashlib.sha256).hexdigest()
+    sig = hmac.new(worker_key().encode(), f"{ts}.{raw}".encode(), hashlib.sha256).hexdigest()
     headers = {"content-type": "application/json", "x-speakara-ts": ts, "x-speakara-signature": sig}
     if os.getenv("VERCEL_AUTOMATION_BYPASS_SECRET"):
         headers["x-vercel-protection-bypass"] = os.environ["VERCEL_AUTOMATION_BYPASS_SECRET"]
