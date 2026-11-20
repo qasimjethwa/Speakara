@@ -36,7 +36,14 @@ log = logging.getLogger("speakara-companion")
 # Dashboard-pasted secrets sometimes carry quotes or whitespace, which providers reject as invalid keys.
 for _name in ("ANAM_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY"):
     if os.getenv(_name):
-        os.environ[_name] = os.environ[_name].strip().strip('"').strip("'").strip()
+        _v = os.environ[_name].strip().strip('"').strip("'").strip()
+        if _v.startswith(_name + "="):
+            _v = _v[len(_name) + 1 :].strip().strip('"').strip("'").strip()
+        os.environ[_name] = _v
+        # Non-secret fingerprint so a key can be compared with the one in the provider's dashboard.
+        logging.getLogger("speakara-companion").warning(
+            "key %s: length=%d sha256_8=%s whitespace_inside=%s", _name, len(_v),
+            hashlib.sha256(_v.encode()).hexdigest()[:8], any(c.isspace() for c in _v))
 
 if not os.getenv("GOOGLE_API_KEY") and os.getenv("GEMINI_API_KEY"):
     os.environ["GOOGLE_API_KEY"] = os.environ["GEMINI_API_KEY"]
