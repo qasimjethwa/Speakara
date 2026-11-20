@@ -87,10 +87,10 @@ export function AppShell({ children, rail = true }: { children: ReactNode; rail?
         <main id="main" tabIndex={-1} className="mx-auto w-full max-w-[640px] flex-1 px-4 pb-28 pt-6 outline-none md:pb-12 md:pt-8">{children}</main>
       </div>
       {rail && <RightRail />}
-      <nav aria-label={t("Main")} className="fixed inset-x-0 bottom-0 z-30 flex justify-around border-t-2 border-line bg-paper px-1 pb-[max(6px,env(safe-area-inset-bottom))] pt-1.5 md:hidden">
+      <nav aria-label={t("Main")} className="fixed inset-x-0 bottom-0 z-30 flex justify-around gap-0.5 border-t-2 border-line bg-paper px-1 pb-[max(6px,env(safe-area-inset-bottom))] pt-1.5 md:hidden">
         {NAV.filter((n) => MOBILE.includes(n.href)).map(({ href, label, icon: Icon }) => {
           const on = path.startsWith(href);
-          return <Link key={href} href={href} aria-current={on ? "page" : undefined} className={`flex min-h-12 min-w-14 flex-col items-center justify-center rounded-xl border-2 px-2 text-[11px] font-extrabold ${on ? "border-sky bg-sky-soft text-sky-dark" : "border-transparent text-sub"}`}><Icon size={24} strokeWidth={2.4} aria-hidden="true" />{t(label)}</Link>;
+          return <Link key={href} href={href} aria-current={on ? "page" : undefined} className={`flex min-h-12 min-w-0 max-w-20 flex-1 flex-col items-center justify-center rounded-xl border-2 px-0.5 text-[11px] font-extrabold ${on ? "border-sky bg-sky-soft text-sky-dark" : "border-transparent text-sub"}`}><Icon size={24} strokeWidth={2.4} aria-hidden="true" />{t(label)}</Link>;
         })}
       </nav>
     </div>
