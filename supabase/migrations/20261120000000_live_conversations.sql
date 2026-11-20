@@ -448,6 +448,6 @@ begin
 end $$;
 
 revoke execute on function private.hit_rate(text, int, interval), private.cfg(text), private.expire_stale_ai(), private.has_consent(uuid, text), private.finish_ai(uuid, boolean) from public, anon, authenticated;
-revoke execute on function public.live_op(text, text), public.avatar_quota(), public.my_match_state() from public;
+revoke execute on function public.live_op(text, text), public.avatar_quota(), public.my_match_state() from public, anon, authenticated;
 grant execute on function public.live_op(text, text) to anon, authenticated;     -- safe: rejects anything not signed by the server
 grant execute on function public.avatar_quota(), public.my_match_state() to authenticated;
