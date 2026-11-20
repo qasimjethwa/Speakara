@@ -55,7 +55,7 @@ def _log_live_models() -> None:
     """Startup diagnostic (no avatar minutes): which Gemini Live models can this key use?"""
     try:
         client = genai.Client(api_key=os.environ["GOOGLE_API_KEY"])
-        live = [m.name for m in client.models.list() if "bidiGenerateContent" in (getattr(m, "supported_actions", None) or [])]
+        live = [f"{m.name}[{','.join(getattr(m, 'supported_actions', None) or [])}]" for m in client.models.list() if any(t in (m.name or "") for t in ("live", "audio"))]
         log.warning("gemini live models for this key: %s (configured: %s)", ", ".join(live) or "none", os.getenv("GEMINI_LIVE_MODEL", "gemini-3.8-live"))
     except Exception as e:  # never block the worker on a diagnostic
         log.warning("could not list gemini models: %s", str(e)[:200])
