@@ -2050,5 +2050,877 @@
  "Licences": [
   "Licencias",
   "लाइसेंस"
+ ],
+ "A companion is talking with someone right now.": [
+  "Un compañero está hablando con alguien ahora mismo.",
+  "अभी एक साथी किसी और से बात कर रहा है।"
+ ],
+ "A real-time spoken conversation with an AI avatar.": [
+  "Una conversación hablada en tiempo real con un avatar de IA.",
+  "AI अवतार के साथ रियल-टाइम में बोलकर बातचीत।"
+ ],
+ "A video conversation with an AI avatar who adapts to your level and corrects you kindly.": [
+  "Una videollamada con un avatar de IA que se adapta a tu nivel y te corrige con amabilidad.",
+  "AI अवतार के साथ वीडियो बातचीत, जो आपके स्तर के अनुसार ढलता है और प्यार से सुधारता है।"
+ ],
+ "AI": [
+  "IA",
+  "AI"
+ ],
+ "AI companion": [
+  "Compañero de IA",
+  "AI साथी"
+ ],
+ "Accept": [
+  "Aceptar",
+  "स्वीकार करें"
+ ],
+ "Advanced": [
+  "Avanzado",
+  "उन्नत"
+ ],
+ "After a conversation, the words and corrections you choose to keep will appear here.": [
+  "Después de una conversación, aquí aparecerán las palabras y correcciones que decidas guardar.",
+  "बातचीत के बाद, जिन शब्दों और सुधारों को आप रखना चुनेंगे, वे यहाँ दिखेंगे।"
+ ],
+ "Afternoon": [
+  "Tarde",
+  "दोपहर"
+ ],
+ "Another learner is talking to a companion right now. Please try again in a few minutes.": [
+  "Otro estudiante está hablando con un compañero ahora mismo. Inténtalo de nuevo en unos minutos.",
+  "अभी कोई और शिक्षार्थी साथी से बात कर रहा है। कुछ मिनट बाद फिर कोशिश करें।"
+ ],
+ "Balanced": [
+  "Equilibrado",
+  "संतुलित"
+ ],
+ "Be kind and patient. Everyone here is learning.": [
+  "Sé amable y paciente. Aquí todos están aprendiendo.",
+  "दयालु और धैर्यवान रहें। यहाँ सभी सीख रहे हैं।"
+ ],
+ "Beginner": [
+  "Principiante",
+  "शुरुआती"
+ ],
+ "Block and leave": [
+  "Bloquear y salir",
+  "ब्लॉक करें और निकलें"
+ ],
+ "Block {name}": [
+  "Bloquear a {name}",
+  "{name} को ब्लॉक करें"
+ ],
+ "Blocked. You won’t be matched again.": [
+  "Bloqueado. No volveréis a coincidir.",
+  "ब्लॉक कर दिया। आपका मिलान फिर नहीं होगा।"
+ ],
+ "Books": [
+  "Libros",
+  "किताबें"
+ ],
+ "Breezy": [
+  "Desenfadada",
+  "हल्की-फुल्की"
+ ],
+ "Call controls": [
+  "Controles de la llamada",
+  "कॉल नियंत्रण"
+ ],
+ "Call ended.": [
+  "Llamada finalizada.",
+  "कॉल समाप्त हुई।"
+ ],
+ "Calls aren’t recorded. Either person can end a call, block or report at any time.": [
+  "Las llamadas no se graban. Cualquiera de los dos puede colgar, bloquear o denunciar en cualquier momento.",
+  "कॉल रिकॉर्ड नहीं होतीं। कोई भी व्यक्ति कभी भी कॉल खत्म कर सकता है, ब्लॉक या रिपोर्ट कर सकता है।"
+ ],
+ "Calls with strangers are only for adults. Learners under 18 can practise with the AI companion instead.": [
+  "Las llamadas con desconocidos son solo para adultos. Los menores de 18 pueden practicar con el compañero de IA.",
+  "अजनबियों से कॉल केवल वयस्कों के लिए हैं। 18 से कम उम्र के शिक्षार्थी AI साथी के साथ अभ्यास कर सकते हैं।"
+ ],
+ "Calm": [
+  "Tranquilo",
+  "शांत"
+ ],
+ "Choose a conversation scenario.": [
+  "Elige una situación de conversación.",
+  "बातचीत की स्थिति चुनें।"
+ ],
+ "Choose a language to practise.": [
+  "Elige un idioma para practicar.",
+  "अभ्यास के लिए एक भाषा चुनें।"
+ ],
+ "Choose a personality.": [
+  "Elige una personalidad.",
+  "एक व्यक्तित्व चुनें।"
+ ],
+ "Choose a teaching style.": [
+  "Elige un estilo de enseñanza.",
+  "पढ़ाने का तरीका चुनें।"
+ ],
+ "Choose a voice.": [
+  "Elige una voz.",
+  "एक आवाज़ चुनें।"
+ ],
+ "Choose one of the companions.": [
+  "Elige uno de los compañeros.",
+  "किसी एक साथी को चुनें।"
+ ],
+ "Choose your companion": [
+  "Elige tu compañero",
+  "अपना साथी चुनें"
+ ],
+ "Choose your level.": [
+  "Elige tu nivel.",
+  "अपना स्तर चुनें।"
+ ],
+ "Clear and to the point": [
+  "Claro y directo",
+  "स्पष्ट और सीधा"
+ ],
+ "Community rules": [
+  "Normas de la comunidad",
+  "समुदाय के नियम"
+ ],
+ "Companion busy — try again soon": [
+  "Compañero ocupado: inténtalo pronto",
+  "साथी व्यस्त है — थोड़ी देर में फिर कोशिश करें"
+ ],
+ "Companions are ready-made AI avatars. You can’t upload a face.": [
+  "Los compañeros son avatares de IA prediseñados. No puedes subir una cara.",
+  "साथी पहले से बने AI अवतार हैं। आप कोई चेहरा अपलोड नहीं कर सकते।"
+ ],
+ "Companion’s name": [
+  "Nombre del compañero",
+  "साथी का नाम"
+ ],
+ "Connecting…": [
+  "Conectando…",
+  "कनेक्ट हो रहा है…"
+ ],
+ "Connection lost. Reconnecting…": [
+  "Se perdió la conexión. Reconectando…",
+  "कनेक्शन टूट गया। फिर से जुड़ रहा है…"
+ ],
+ "Correction": [
+  "Corrección",
+  "सुधार"
+ ],
+ "Corrections": [
+  "Correcciones",
+  "सुधार"
+ ],
+ "Corrects every mistake": [
+  "Corrige cada error",
+  "हर गलती सुधारता है"
+ ],
+ "Corrects the most useful mistakes": [
+  "Corrige los errores más útiles",
+  "सबसे काम की गलतियाँ सुधारता है"
+ ],
+ "Culture": [
+  "Cultura",
+  "संस्कृति"
+ ],
+ "Day": [
+  "Día",
+  "दिन"
+ ],
+ "Decline": [
+  "Rechazar",
+  "मना करें"
+ ],
+ "Delete everything": [
+  "Borrar todo",
+  "सब कुछ हटाएँ"
+ ],
+ "Delete your whole learning memory?": [
+  "¿Borrar toda tu memoria de aprendizaje?",
+  "क्या अपनी पूरी सीखने की स्मृति हटानी है?"
+ ],
+ "Describe your favourite food and how to make it.": [
+  "Describe tu comida favorita y cómo se prepara.",
+  "अपने पसंदीदा खाने के बारे में बताएँ और उसे कैसे बनाते हैं।"
+ ],
+ "Details (optional)": [
+  "Detalles (opcional)",
+  "विवरण (वैकल्पिक)"
+ ],
+ "Edit my preferences": [
+  "Editar mis preferencias",
+  "मेरी प्राथमिकताएँ बदलें"
+ ],
+ "Elementary": [
+  "Básico",
+  "प्रारंभिक"
+ ],
+ "End call": [
+  "Colgar",
+  "कॉल खत्म करें"
+ ],
+ "Evening": [
+  "Noche",
+  "शाम"
+ ],
+ "Expires in {s}": [
+  "Caduca en {s}",
+  "{s} में समाप्त"
+ ],
+ "Films": [
+  "Cine",
+  "फ़िल्में"
+ ],
+ "Find a partner": [
+  "Buscar compañero",
+  "साथी खोजें"
+ ],
+ "Find another partner": [
+  "Buscar otro compañero",
+  "दूसरा साथी खोजें"
+ ],
+ "Firm": [
+  "Firme",
+  "दृढ़"
+ ],
+ "Fluency": [
+  "Fluidez",
+  "प्रवाह"
+ ],
+ "Food": [
+  "Comida",
+  "खाना"
+ ],
+ "Free avatar minutes this month": [
+  "Minutos gratis de avatar este mes",
+  "इस महीने के मुफ़्त अवतार मिनट"
+ ],
+ "Fri": [
+  "Vie",
+  "शुक्र"
+ ],
+ "Friendly": [
+  "Amable",
+  "मिलनसार"
+ ],
+ "Gentle": [
+  "Suave",
+  "नरम"
+ ],
+ "Give your companion a name of up to 24 letters.": [
+  "Dale a tu compañero un nombre de hasta 24 letras.",
+  "अपने साथी को 24 अक्षरों तक का नाम दें।"
+ ],
+ "Great conversation!": [
+  "¡Gran conversación!",
+  "शानदार बातचीत!"
+ ],
+ "Harassment or bullying": [
+  "Acoso o intimidación",
+  "उत्पीड़न या धमकाना"
+ ],
+ "Help": [
+  "Ayuda",
+  "मदद"
+ ],
+ "How it went": [
+  "Cómo fue",
+  "कैसा रहा"
+ ],
+ "I agree to the community rules": [
+  "Acepto las normas de la comunidad",
+  "मैं समुदाय के नियमों से सहमत हूँ"
+ ],
+ "I am 18 or older": [
+  "Tengo 18 años o más",
+  "मेरी उम्र 18 वर्ष या उससे अधिक है"
+ ],
+ "I speak": [
+  "Hablo",
+  "मैं बोलता/बोलती हूँ"
+ ],
+ "Immersive": [
+  "Inmersivo",
+  "पूरी तरह भाषा में"
+ ],
+ "Inappropriate or sexual content": [
+  "Contenido inapropiado o sexual",
+  "अनुचित या यौन सामग्री"
+ ],
+ "Informative": [
+  "Informativa",
+  "जानकारी भरी"
+ ],
+ "Interests": [
+  "Intereses",
+  "रुचियाँ"
+ ],
+ "Intermediate": [
+  "Intermedio",
+  "मध्यम"
+ ],
+ "Introduce yourselves: name, city and why you’re learning.": [
+  "Presentaos: nombre, ciudad y por qué estáis aprendiendo.",
+  "अपना परिचय दें: नाम, शहर और आप क्यों सीख रहे हैं।"
+ ],
+ "Invalid request.": [
+  "Solicitud no válida.",
+  "अमान्य अनुरोध।"
+ ],
+ "I’m learning": [
+  "Estoy aprendiendo",
+  "मैं सीख रहा/रही हूँ"
+ ],
+ "Jokes and light teasing": [
+  "Bromas y un poco de guasa",
+  "मज़ाक और हल्की छेड़छाड़"
+ ],
+ "Language": [
+  "Idioma",
+  "भाषा"
+ ],
+ "Language exchange": [
+  "Intercambio de idiomas",
+  "भाषा आदान-प्रदान"
+ ],
+ "Learning {lang}": [
+  "Aprende {lang}",
+  "{lang} सीख रहे हैं"
+ ],
+ "Less than 30 seconds left. Your companion will wrap up.": [
+  "Quedan menos de 30 segundos. Tu compañero va a despedirse.",
+  "30 सेकंड से कम बचे हैं। आपका साथी बातचीत समेटेगा।"
+ ],
+ "Listening": [
+  "Escuchando",
+  "सुन रहा है"
+ ],
+ "Live": [
+  "En vivo",
+  "लाइव"
+ ],
+ "Live practice": [
+  "Práctica en vivo",
+  "लाइव अभ्यास"
+ ],
+ "Live practice is coming soon": [
+  "La práctica en vivo llegará pronto",
+  "लाइव अभ्यास जल्द आ रहा है"
+ ],
+ "Live practice isn’t set up on this server yet.": [
+  "La práctica en vivo aún no está configurada en este servidor.",
+  "इस सर्वर पर लाइव अभ्यास अभी सेट नहीं है।"
+ ],
+ "Live practice needs a free account": [
+  "La práctica en vivo necesita una cuenta gratuita",
+  "लाइव अभ्यास के लिए मुफ़्त खाता चाहिए"
+ ],
+ "Look up a word": [
+  "Buscar una palabra",
+  "कोई शब्द खोजें"
+ ],
+ "Look up a word in English or {lang}": [
+  "Busca una palabra en inglés o en {lang}",
+  "अंग्रेज़ी या {lang} में शब्द खोजें"
+ ],
+ "Looking for a partner…": [
+  "Buscando compañero…",
+  "साथी खोज रहे हैं…"
+ ],
+ "Make it yours": [
+  "Personalízalo",
+  "इसे अपना बनाएँ"
+ ],
+ "Matching happens live: you’re paired with someone who is online at the same moment. Your usual times help us suggest when to come back.": [
+  "El emparejamiento es en vivo: coincides con alguien que está conectado en ese momento. Tus horarios habituales nos ayudan a sugerirte cuándo volver.",
+  "मिलान लाइव होता है: आपको उसी समय ऑनलाइन किसी व्यक्ति से जोड़ा जाता है। आपके सामान्य समय से हम बता पाते हैं कि कब लौटें।"
+ ],
+ "May be under 18": [
+  "Puede ser menor de 18",
+  "18 से कम उम्र हो सकती है"
+ ],
+ "Mon": [
+  "Lun",
+  "सोम"
+ ],
+ "Morning": [
+  "Mañana",
+  "सुबह"
+ ],
+ "Music": [
+  "Música",
+  "संगीत"
+ ],
+ "Mute microphone": [
+  "Silenciar micrófono",
+  "माइक्रोफ़ोन म्यूट करें"
+ ],
+ "My learning memory": [
+  "Mi memoria de aprendizaje",
+  "मेरी सीखने की स्मृति"
+ ],
+ "Never share your address, phone number, social media or other contact details.": [
+  "Nunca compartas tu dirección, teléfono, redes sociales ni otros datos de contacto.",
+  "अपना पता, फ़ोन नंबर, सोशल मीडिया या कोई संपर्क जानकारी कभी साझा न करें।"
+ ],
+ "Next prompt": [
+  "Siguiente tema",
+  "अगला विषय"
+ ],
+ "Next time": [
+  "La próxima vez",
+  "अगली बार"
+ ],
+ "No free minutes left this month": [
+  "No quedan minutos gratis este mes",
+  "इस महीने कोई मुफ़्त मिनट नहीं बचे"
+ ],
+ "No matches in Speakara’s phrasebook.": [
+  "No hay resultados en el vocabulario de Speakara.",
+  "Speakara की वाक्यांश सूची में कुछ नहीं मिला।"
+ ],
+ "Note": [
+  "Nota",
+  "नोट"
+ ],
+ "Nothing saved yet": [
+  "Aún no hay nada guardado",
+  "अभी कुछ सेव नहीं है"
+ ],
+ "One-to-one video calls with other Speakara learners.": [
+  "Videollamadas individuales con otros estudiantes de Speakara.",
+  "Speakara के दूसरे शिक्षार्थियों के साथ आमने-सामने वीडियो कॉल।"
+ ],
+ "Only corrects big mistakes": [
+  "Solo corrige errores importantes",
+  "सिर्फ़ बड़ी गलतियाँ सुधारता है"
+ ],
+ "Only you can see this.": [
+  "Solo tú puedes verlo.",
+  "इसे सिर्फ़ आप देख सकते हैं।"
+ ],
+ "Patient and unhurried": [
+  "Paciente y sin prisas",
+  "धैर्यवान और इत्मीनान से"
+ ],
+ "Personality": [
+  "Personalidad",
+  "व्यक्तित्व"
+ ],
+ "Playful": [
+  "Juguetón",
+  "चंचल"
+ ],
+ "Please confirm the community rules and your age first.": [
+  "Primero confirma las normas de la comunidad y tu edad.",
+  "पहले समुदाय के नियम और अपनी उम्र की पुष्टि करें।"
+ ],
+ "Please log in to use live practice.": [
+  "Inicia sesión para usar la práctica en vivo.",
+  "लाइव अभ्यास के लिए कृपया लॉग इन करें।"
+ ],
+ "Practise again": [
+  "Practicar otra vez",
+  "फिर से अभ्यास करें"
+ ],
+ "Practise {lang} with a real person": [
+  "Practica {lang} con una persona real",
+  "किसी असली व्यक्ति के साथ {lang} का अभ्यास करें"
+ ],
+ "Prefer typing? The scripted tutor is still in Tutor, free and unlimited.": [
+  "¿Prefieres escribir? El tutor guionizado sigue en Tutor, gratis e ilimitado.",
+  "टाइप करना पसंद है? स्क्रिप्ट वाला ट्यूटर अब भी ट्यूटर में है, मुफ़्त और असीमित।"
+ ],
+ "Professional": [
+  "Profesional",
+  "पेशेवर"
+ ],
+ "Prompts": [
+  "Temas",
+  "विषय"
+ ],
+ "Pronunciation": [
+  "Pronunciación",
+  "उच्चारण"
+ ],
+ "Remember what I learn": [
+  "Recordar lo que aprendo",
+  "जो मैं सीखूँ उसे याद रखें"
+ ],
+ "Report": [
+  "Denunciar",
+  "रिपोर्ट करें"
+ ],
+ "Report {name}": [
+  "Denunciar a {name}",
+  "{name} की रिपोर्ट करें"
+ ],
+ "Sat": [
+  "Sáb",
+  "शनि"
+ ],
+ "Save to my learning memory": [
+  "Guardar en mi memoria de aprendizaje",
+  "मेरी सीखने की स्मृति में सेव करें"
+ ],
+ "Save words, corrections and pronunciation tips from my conversations so my companion can build on them. You can view or delete them at any time.": [
+  "Guarda palabras, correcciones y consejos de pronunciación de mis conversaciones para que mi compañero pueda partir de ellos. Puedes verlos o borrarlos cuando quieras.",
+  "मेरी बातचीत से शब्द, सुधार और उच्चारण सुझाव सेव करें ताकि मेरा साथी उन पर आगे बढ़ सके। आप इन्हें कभी भी देख या हटा सकते हैं।"
+ ],
+ "Save your language preferences first.": [
+  "Primero guarda tus preferencias de idioma.",
+  "पहले अपनी भाषा प्राथमिकताएँ सेव करें।"
+ ],
+ "Scenario": [
+  "Situación",
+  "स्थिति"
+ ],
+ "Send report": [
+  "Enviar denuncia",
+  "रिपोर्ट भेजें"
+ ],
+ "Shared by every Speakara learner. Each conversation lasts up to {m}.": [
+  "Compartidos por todos los estudiantes de Speakara. Cada conversación dura hasta {m}.",
+  "सभी Speakara शिक्षार्थियों के लिए साझा। हर बातचीत अधिकतम {m} चलती है।"
+ ],
+ "Something else": [
+  "Otra cosa",
+  "कुछ और"
+ ],
+ "Something went wrong. Please try again.": [
+  "Algo salió mal. Inténtalo de nuevo.",
+  "कुछ गलत हो गया। कृपया फिर कोशिश करें।"
+ ],
+ "Something wrong?": [
+  "¿Algo va mal?",
+  "कुछ गड़बड़ है?"
+ ],
+ "Spam or selling": [
+  "Spam o ventas",
+  "स्पैम या बिक्री"
+ ],
+ "Speak out loud, in real time.": [
+  "Habla en voz alta, en tiempo real.",
+  "ज़ोर से बोलें, रियल-टाइम में।"
+ ],
+ "Speak whenever you like — you can interrupt your companion at any time.": [
+  "Habla cuando quieras: puedes interrumpir a tu compañero en cualquier momento.",
+  "जब चाहें बोलें — आप कभी भी अपने साथी को टोक सकते हैं।"
+ ],
+ "Speaking": [
+  "Hablando",
+  "बोल रहा है"
+ ],
+ "Speaks {lang}": [
+  "Habla {lang}",
+  "{lang} बोलते हैं"
+ ],
+ "Sport": [
+  "Deporte",
+  "खेल"
+ ],
+ "Start conversation": [
+  "Empezar conversación",
+  "बातचीत शुरू करें"
+ ],
+ "Starting…": [
+  "Iniciando…",
+  "शुरू हो रहा है…"
+ ],
+ "Stays in the language, minimal English": [
+  "Se queda en el idioma, con muy poco inglés",
+  "भाषा में ही रहता है, अंग्रेज़ी बहुत कम"
+ ],
+ "Steady": [
+  "Serena",
+  "स्थिर"
+ ],
+ "Stop looking": [
+  "Dejar de buscar",
+  "खोजना बंद करें"
+ ],
+ "Strict": [
+  "Estricto",
+  "सख़्त"
+ ],
+ "Study": [
+  "Estudios",
+  "पढ़ाई"
+ ],
+ "Sun": [
+  "Dom",
+  "रवि"
+ ],
+ "Talk about a film, series or book you enjoyed.": [
+  "Hablad de una película, serie o libro que os haya gustado.",
+  "किसी फ़िल्म, सीरीज़ या किताब के बारे में बात करें जो आपको पसंद आई।"
+ ],
+ "Talking with a companion or another learner happens in real time, so we need to know who you are. Your guest progress stays on this device.": [
+  "Hablar con un compañero o con otro estudiante ocurre en tiempo real, así que necesitamos saber quién eres. Tu progreso de invitado se queda en este dispositivo.",
+  "साथी या किसी दूसरे शिक्षार्थी से बात रियल-टाइम में होती है, इसलिए हमें जानना होगा कि आप कौन हैं। आपकी अतिथि प्रगति इसी डिवाइस पर रहती है।"
+ ],
+ "Tap a result to add it to your call notes.": [
+  "Toca un resultado para añadirlo a tus notas de la llamada.",
+  "किसी नतीजे पर टैप करके उसे कॉल नोट्स में जोड़ें।"
+ ],
+ "Teach each other one expression people really use.": [
+  "Enseñaos una expresión que la gente use de verdad.",
+  "एक-दूसरे को कोई ऐसा मुहावरा सिखाएँ जो लोग सच में इस्तेमाल करते हैं।"
+ ],
+ "Teaching style": [
+  "Estilo de enseñanza",
+  "पढ़ाने का तरीका"
+ ],
+ "Technology": [
+  "Tecnología",
+  "तकनीक"
+ ],
+ "Thanks. Our team will review your report.": [
+  "Gracias. Nuestro equipo revisará tu denuncia.",
+  "धन्यवाद। हमारी टीम आपकी रिपोर्ट देखेगी।"
+ ],
+ "That invitation has expired.": [
+  "Esa invitación ha caducado.",
+  "वह आमंत्रण समाप्त हो गया है।"
+ ],
+ "That invitation was declined. Try again for a new partner.": [
+  "Esa invitación fue rechazada. Vuelve a buscar otro compañero.",
+  "वह आमंत्रण अस्वीकार हो गया। नए साथी के लिए फिर कोशिश करें।"
+ ],
+ "That session has already started or ended.": [
+  "Esa sesión ya empezó o terminó.",
+  "वह सत्र पहले ही शुरू या समाप्त हो चुका है।"
+ ],
+ "That session no longer exists.": [
+  "Esa sesión ya no existe.",
+  "वह सत्र अब मौजूद नहीं है।"
+ ],
+ "The AI companion is in a limited preview and isn’t open to everyone yet.": [
+  "El compañero de IA está en una prueba limitada y aún no está abierto a todos.",
+  "AI साथी अभी सीमित पूर्वावलोकन में है और सबके लिए खुला नहीं है।"
+ ],
+ "The AI companion is in a limited preview while we confirm our avatar provider’s free-plan terms. It is open to Speakara staff only for now.": [
+  "El compañero de IA está en una prueba limitada mientras confirmamos las condiciones del plan gratuito de nuestro proveedor de avatares. Por ahora solo está abierto al equipo de Speakara.",
+  "जब तक हम अपने अवतार प्रदाता के मुफ़्त प्लान की शर्तों की पुष्टि कर रहे हैं, AI साथी सीमित पूर्वावलोकन में है। अभी यह केवल Speakara टीम के लिए खुला है।"
+ ],
+ "These notes weren’t saved to your learning memory because memory is turned off.": [
+  "Estas notas no se guardaron en tu memoria de aprendizaje porque la memoria está desactivada.",
+  "ये नोट्स आपकी सीखने की स्मृति में सेव नहीं हुए क्योंकि स्मृति बंद है।"
+ ],
+ "Thinking…": [
+  "Pensando…",
+  "सोच रहा है…"
+ ],
+ "This call has ended.": [
+  "Esta llamada ha terminado.",
+  "यह कॉल समाप्त हो गई है।"
+ ],
+ "This can’t be undone. Your lessons, XP and streak are not affected.": [
+  "No se puede deshacer. Tus lecciones, XP y racha no se ven afectados.",
+  "इसे वापस नहीं लिया जा सकता। आपके पाठ, XP और स्ट्रीक पर असर नहीं पड़ेगा।"
+ ],
+ "This month’s free avatar minutes are used up. They reset at the start of next month.": [
+  "Se han agotado los minutos gratis de avatar de este mes. Se renuevan a principios del mes que viene.",
+  "इस महीने के मुफ़्त अवतार मिनट खत्म हो गए हैं। अगले महीने की शुरुआत में ये फिर मिलेंगे।"
+ ],
+ "Thu": [
+  "Jue",
+  "गुरु"
+ ],
+ "Tue": [
+  "Mar",
+  "मंगल"
+ ],
+ "Turn camera off": [
+  "Apagar cámara",
+  "कैमरा बंद करें"
+ ],
+ "Turn camera on": [
+  "Encender cámara",
+  "कैमरा चालू करें"
+ ],
+ "Turn on “Remember what I learn” in your learning memory to save these words.": [
+  "Activa «Recordar lo que aprendo» en tu memoria de aprendizaje para guardar estas palabras.",
+  "इन शब्दों को सेव करने के लिए अपनी सीखने की स्मृति में “जो मैं सीखूँ उसे याद रखें” चालू करें।"
+ ],
+ "Unmute microphone": [
+  "Activar micrófono",
+  "माइक्रोफ़ोन अनम्यूट करें"
+ ],
+ "Upbeat": [
+  "Animada",
+  "जोशीली"
+ ],
+ "Upper intermediate": [
+  "Intermedio alto",
+  "उच्च मध्यम"
+ ],
+ "Used up": [
+  "Agotados",
+  "खत्म"
+ ],
+ "Video calls with other learners: you help with your language, they help with theirs. Adults only.": [
+  "Videollamadas con otros estudiantes: tú ayudas con tu idioma y ellos con el suyo. Solo para adultos.",
+  "दूसरे शिक्षार्थियों के साथ वीडियो कॉल: आप अपनी भाषा में मदद करें, वे अपनी में। केवल वयस्क।"
+ ],
+ "View my learning memory": [
+  "Ver mi memoria de aprendizaje",
+  "मेरी सीखने की स्मृति देखें"
+ ],
+ "Voice": [
+  "Voz",
+  "आवाज़"
+ ],
+ "Waiting for your partner to join…": [
+  "Esperando a que tu compañero se una…",
+  "साथी के जुड़ने का इंतज़ार…"
+ ],
+ "Waiting for {name} to accept…": [
+  "Esperando a que {name} acepte…",
+  "{name} के स्वीकार करने का इंतज़ार…"
+ ],
+ "Warm and encouraging": [
+  "Cálido y alentador",
+  "स्नेही और उत्साह बढ़ाने वाला"
+ ],
+ "We couldn’t connect. Check your internet connection and try again.": [
+  "No pudimos conectar. Revisa tu conexión a internet e inténtalo de nuevo.",
+  "हम कनेक्ट नहीं कर पाए। अपना इंटरनेट कनेक्शन जाँचें और फिर कोशिश करें।"
+ ],
+ "Wed": [
+  "Mié",
+  "बुध"
+ ],
+ "We’ll pair you with someone learning {lang} or who speaks it. Keep this page open.": [
+  "Te emparejaremos con alguien que aprende {lang} o que lo habla. Mantén esta página abierta.",
+  "हम आपको किसी ऐसे व्यक्ति से जोड़ेंगे जो {lang} सीख रहा है या बोलता है। यह पेज खुला रखें।"
+ ],
+ "What did you do last weekend?": [
+  "¿Qué hicisteis el fin de semana pasado?",
+  "पिछले सप्ताहांत आपने क्या किया?"
+ ],
+ "What to practise": [
+  "Qué practicar",
+  "क्या अभ्यास करें"
+ ],
+ "What’s a normal day like for you?": [
+  "¿Cómo es un día normal para vosotros?",
+  "आपका एक सामान्य दिन कैसा होता है?"
+ ],
+ "What’s a place you’d love to visit, and why?": [
+  "¿Qué lugar os encantaría visitar y por qué?",
+  "आप कौन-सी जगह घूमना चाहेंगे, और क्यों?"
+ ],
+ "What’s something you’re looking forward to?": [
+  "¿Qué es algo que estáis deseando?",
+  "आप किस चीज़ का बेसब्री से इंतज़ार कर रहे हैं?"
+ ],
+ "When are you usually free?": [
+  "¿Cuándo sueles estar libre?",
+  "आप आमतौर पर कब खाली होते हैं?"
+ ],
+ "When this is off, nothing new is saved. Turning it off doesn’t delete what’s already here.": [
+  "Si está desactivado, no se guarda nada nuevo. Desactivarlo no borra lo que ya hay aquí.",
+  "बंद होने पर कुछ नया सेव नहीं होता। बंद करने से यहाँ पहले से मौजूद चीज़ें नहीं हटतीं।"
+ ],
+ "Word": [
+  "Palabra",
+  "शब्द"
+ ],
+ "Words and phrases": [
+  "Palabras y frases",
+  "शब्द और वाक्यांश"
+ ],
+ "Words, corrections and tips saved from your conversations.": [
+  "Palabras, correcciones y consejos guardados de tus conversaciones.",
+  "आपकी बातचीत से सेव किए गए शब्द, सुधार और सुझाव।"
+ ],
+ "Work": [
+  "Trabajo",
+  "काम"
+ ],
+ "Writing your learning report…": [
+  "Escribiendo tu informe de aprendizaje…",
+  "आपकी सीखने की रिपोर्ट लिखी जा रही है…"
+ ],
+ "You already have a call invitation open.": [
+  "Ya tienes una invitación de llamada abierta.",
+  "आपका एक कॉल आमंत्रण पहले से खुला है।"
+ ],
+ "You both must accept before a call connects.": [
+  "Los dos debéis aceptar antes de que se conecte la llamada.",
+  "कॉल जुड़ने से पहले दोनों को स्वीकार करना होगा।"
+ ],
+ "You didn’t look anything up this time.": [
+  "Esta vez no buscaste nada.",
+  "इस बार आपने कुछ नहीं खोजा।"
+ ],
+ "You don’t have access to that.": [
+  "No tienes acceso a eso.",
+  "आपको इसकी अनुमति नहीं है।"
+ ],
+ "You practised with {name} for {time}.": [
+  "Practicaste con {name} durante {time}.",
+  "आपने {name} के साथ {time} तक अभ्यास किया।"
+ ],
+ "Your call notes": [
+  "Tus notas de la llamada",
+  "आपके कॉल नोट्स"
+ ],
+ "Your camera": [
+  "Tu cámara",
+  "आपका कैमरा"
+ ],
+ "Your languages": [
+  "Tus idiomas",
+  "आपकी भाषाएँ"
+ ],
+ "Your level": [
+  "Tu nivel",
+  "आपका स्तर"
+ ],
+ "Your native language and the language you’re learning must be different.": [
+  "Tu idioma nativo y el que aprendes deben ser distintos.",
+  "आपकी मातृभाषा और सीखी जा रही भाषा अलग होनी चाहिए।"
+ ],
+ "Your report isn’t ready. It will appear in your learning memory if it arrives later.": [
+  "Tu informe no está listo. Aparecerá en tu memoria de aprendizaje si llega más tarde.",
+  "आपकी रिपोर्ट तैयार नहीं है। बाद में आने पर यह आपकी सीखने की स्मृति में दिखेगी।"
+ ],
+ "Youthful": [
+  "Juvenil",
+  "युवा"
+ ],
+ "You’ll be talking to an AI, not a person. Nothing is recorded; the conversation is transcribed only to write your report.": [
+  "Hablarás con una IA, no con una persona. No se graba nada; la conversación se transcribe solo para escribir tu informe.",
+  "आप किसी व्यक्ति से नहीं, AI से बात करेंगे। कुछ भी रिकॉर्ड नहीं होता; बातचीत केवल आपकी रिपोर्ट लिखने के लिए लिखी जाती है।"
+ ],
+ "You’re going a bit fast. Please wait a little and try again.": [
+  "Vas un poco rápido. Espera un momento e inténtalo de nuevo.",
+  "आप थोड़ा तेज़ चल रहे हैं। थोड़ा रुककर फिर कोशिश करें।"
+ ],
+ "{name} is joining…": [
+  "{name} se está uniendo…",
+  "{name} जुड़ रहा है…"
+ ],
+ "{name} wants to practise with you": [
+  "{name} quiere practicar contigo",
+  "{name} आपके साथ अभ्यास करना चाहता है"
+ ],
+ "{name}, your AI companion": [
+  "{name}, tu compañero de IA",
+  "{name}, आपका AI साथी"
+ ],
+ "{name}’s camera": [
+  "Cámara de {name}",
+  "{name} का कैमरा"
+ ],
+ "{name}’s camera is off": [
+  "La cámara de {name} está apagada",
+  "{name} का कैमरा बंद है"
+ ],
+ "{n} min left": [
+  "Quedan {n} min",
+  "{n} मिनट बचे"
  ]
 }

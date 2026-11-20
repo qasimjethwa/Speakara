@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
-import { BookOpen, Dumbbell, Flame, Gem, Home, MessagesSquare, NotebookText, Shield, Target, Trophy, User, Zap, CloudOff, Wrench } from "lucide-react";
+import { BookOpen, Dumbbell, Video, Flame, Gem, Home, MessagesSquare, NotebookText, Shield, Target, Trophy, User, Zap, CloudOff, Wrench } from "lucide-react";
 import { useStore } from "@/lib/state/store";
 import { getCourse } from "@/lib/content";
 import { liveStreak, todayXp, QUEST_LABELS, questsFor, dayKey, weeklyXp, leagueFor } from "@/lib/engine/gamification";
@@ -12,10 +12,10 @@ import { Card, Loading, ProgressBar } from "./ui";
 
 const NAV = [
   { href: "/learn", label: "Learn", icon: Home }, { href: "/practice", label: "Practice", icon: Dumbbell }, { href: "/stories", label: "Stories", icon: BookOpen },
-  { href: "/tutor", label: "Tutor", icon: MessagesSquare }, { href: "/leaderboard", label: "Leagues", icon: Shield }, { href: "/quests", label: "Quests", icon: Target },
+  { href: "/tutor", label: "Tutor", icon: MessagesSquare }, { href: "/live", label: "Live", icon: Video }, { href: "/leaderboard", label: "Leagues", icon: Shield }, { href: "/quests", label: "Quests", icon: Target },
   { href: "/vocabulary", label: "Words", icon: NotebookText }, { href: "/profile", label: "Profile", icon: User },
 ];
-const MOBILE = ["/learn", "/practice", "/tutor", "/leaderboard", "/profile"];
+const MOBILE = ["/learn", "/practice", "/tutor", "/live", "/leaderboard", "/profile"];
 
 export function StatChips() {
   const { state } = useStore(); const { t, num } = useT(); const now = Date.now(); const c = getCourse(state.profile.courseId);
