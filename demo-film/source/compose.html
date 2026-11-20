@@ -1,0 +1,190 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;800;900&display=block');
+*{box-sizing:border-box;margin:0}
+html,body{width:1920px;height:1080px;overflow:hidden;background:#04140d;font-family:Nunito,system-ui,sans-serif;color:#fff}
+#stage{position:absolute;inset:0;overflow:hidden}
+.bg{position:absolute;inset:-10%;background:radial-gradient(60% 60% at 30% 30%,#0f5a37 0%,transparent 60%),radial-gradient(50% 50% at 80% 75%,#0b3f5c 0%,transparent 60%),#04140d}
+.light{background:radial-gradient(80% 80% at 50% 0%,#ffffff 0%,#e9f8ef 55%,#cfeedd 100%)}
+.sc{position:absolute;inset:0;opacity:0}
+.abs{position:absolute}
+.card{position:absolute;border-radius:28px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.08)}
+.card img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
+.kicker{font-weight:900;letter-spacing:.18em;font-size:26px;color:#5cf2a4;text-transform:uppercase}
+.h1{font-weight:900;font-size:96px;line-height:1.02;letter-spacing:-.02em}
+.h2{font-weight:900;font-size:64px;line-height:1.05;letter-spacing:-.01em}
+.pill{display:inline-block;padding:10px 22px;border-radius:999px;font-weight:900;font-size:24px;letter-spacing:.08em}
+.sub{position:absolute;left:0;right:0;bottom:46px;text-align:center;z-index:50}
+.sub span{background:rgba(0,0,0,.62);padding:8px 20px;border-radius:10px;font-size:34px;font-weight:700;line-height:1.5;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.stat{position:absolute;width:520px;text-align:left}
+.stat .n{font-size:132px;font-weight:900;color:#5cf2a4;letter-spacing:-.03em;line-height:1}
+.stat .d{font-size:32px;font-weight:700;margin-top:10px;line-height:1.25}
+.stat .s{font-size:21px;color:#9fd8bb;margin-top:16px;font-weight:600}
+.tag{position:absolute;padding:12px 26px;border-radius:14px;background:rgba(4,20,13,.82);border:2px solid #5cf2a4;color:#5cf2a4;font-weight:900;font-size:26px;letter-spacing:.1em}
+.price{position:absolute;width:640px;height:520px;border-radius:40px;padding:56px;text-align:center}
+</style></head><body><div id="stage">
+<div class="bg" id="bg"></div>
+
+<!-- S1 open -->
+<div class="sc" id="s1">
+  <div class="card" id="s1card" style="left:650px;top:70px;width:620px;height:814px;background:#fff"><img id="s1img" src="assets/av4c.png"></div>
+  <div class="abs" id="s1title" style="left:0;right:0;top:330px;text-align:center;opacity:0">
+    <div style="font-size:190px;font-weight:900;letter-spacing:-.04em">speakara</div>
+    <div style="font-size:52px;font-weight:800;color:#5cf2a4;margin-top:10px">Learn. Speak. Connect. Without Barriers.</div>
+  </div>
+</div>
+
+<!-- S2 problem -->
+<div class="sc" id="s2">
+  <div class="kicker abs" style="left:150px;top:120px">The problem</div>
+  <div class="h2 abs" style="left:150px;top:170px">Speaking practice is still a privilege.</div>
+  <div class="stat" id="st1" style="left:150px;top:420px"><div class="n">1.4B</div><div class="d">people are learning, or want to learn, English</div><div class="s">Source: British Council (accessed 2026)</div></div>
+  <div class="stat" id="st2" style="left:720px;top:420px"><div class="n">40%</div><div class="d">of people globally lack education in a language they understand fluently</div><div class="s">Source: UNESCO, Languages in education</div></div>
+  <div class="stat" id="st3" style="left:1290px;top:420px"><div class="n">430M</div><div class="d">people need rehabilitation for disabling hearing loss</div><div class="s">Source: WHO fact sheet, Mar 2026</div></div>
+  <div class="abs" style="left:150px;top:900px;font-size:22px;color:#7fb79a;font-weight:600">Separate populations — not additive.</div>
+</div>
+
+<!-- S3 meet -->
+<div class="sc" id="s3">
+  <div class="kicker abs" style="left:120px;top:110px">Meet Speakara</div>
+  <div class="h2 abs" style="left:120px;top:160px;width:640px">Learn, practise and speak — in one place.</div>
+  <div class="abs" id="s3lab" style="left:120px;top:420px;font-size:40px;font-weight:800;line-height:1.7;color:#cfeedd"></div>
+  <div class="card" id="s3a" style="width:1000px;height:563px"><img src="assets/learn.png"></div>
+  <div class="card" id="s3b" style="width:1000px;height:563px"><img src="assets/lesson1.png"></div>
+  <div class="card" id="s3c" style="width:1000px;height:563px"><img src="assets/practice.png"></div>
+  <div class="card" id="s3d" style="width:1000px;height:563px"><img src="assets/quests.png"></div>
+  <div class="abs" style="left:120px;top:880px;font-size:22px;color:#7fb79a;font-weight:600">Real screens · speakara.vercel.app</div>
+</div>
+
+<!-- S4 avatar -->
+<div class="sc" id="s4">
+  <div class="abs" style="left:120px;top:110px"><span class="pill" style="background:#5cf2a4;color:#04140d">USP 1 · LIVE TODAY</span></div>
+  <div class="h1 abs" style="left:120px;top:180px;width:700px">Talk to your AI avatar.</div>
+  <div class="abs" style="left:120px;top:420px;font-size:34px;font-weight:700;line-height:1.6;color:#cfeedd">Google Gemini Live voice<br>Anam real-time avatar<br>Role-play &amp; live corrections</div>
+  <div class="abs" id="s4state" style="left:120px;top:660px"></div>
+  <div class="card" id="s4card" style="left:1060px;top:70px;width:680px;height:893px;background:#fff"><img id="s4img" src="assets/av4c.png"></div>
+  <div class="abs" style="left:120px;top:880px;font-size:22px;color:#7fb79a;font-weight:600">Genuine captures · /live/companion</div>
+</div>
+
+<!-- S5 community -->
+<div class="sc" id="s5">
+  <div class="abs" style="left:120px;top:110px"><span class="pill" style="background:#5cf2a4;color:#04140d">USP 2 · COMMUNITY</span></div>
+  <div class="h1 abs" style="left:120px;top:180px;width:760px">Talk to real people.</div>
+  <div class="abs" style="left:120px;top:420px;font-size:34px;font-weight:700;line-height:1.6;color:#cfeedd">Match by language &amp; level<br>One-to-one video calls<br>You teach yours, they teach theirs</div>
+  <div class="card" id="s5card" style="left:900px;top:150px;width:900px;height:506px"><img src="assets/live.png"></div>
+  <div class="abs" id="s5flow" style="left:900px;top:700px;width:900px;height:240px"></div>
+  <div class="abs" style="left:120px;top:880px;font-size:22px;color:#7fb79a;font-weight:600">Real /live hub · matching flow shown as illustration</div>
+</div>
+
+<!-- S6 ISL -->
+<div class="sc" id="s6">
+  <div class="tag" style="left:120px;top:110px">PHASE 2 — ISL TEACHING AVATAR</div>
+  <div class="h1 abs" style="left:120px;top:200px;width:760px">Learning for Deaf learners.</div>
+  <div class="abs" id="s6list" style="left:120px;top:460px;font-size:34px;font-weight:700;line-height:1.65;color:#cfeedd"></div>
+  <div class="abs" id="s6stage" style="left:980px;top:90px;width:820px;height:880px;border-radius:36px;overflow:hidden;background:radial-gradient(70% 60% at 50% 35%,#1d6b4a,#06261a);box-shadow:0 40px 120px rgba(0,0,0,.5)">
+    <svg id="signer" viewBox="0 0 820 880" width="820" height="880"></svg>
+    <div class="abs" style="left:40px;right:40px;bottom:40px;display:flex;gap:16px;align-items:center">
+      <div style="flex:1;background:rgba(255,255,255,.92);color:#04140d;border-radius:16px;padding:16px 22px;font-size:28px;font-weight:800">Caption: “water” <span style="color:#0a8549">(noun)</span></div>
+      <div style="background:#5cf2a4;color:#04140d;border-radius:16px;padding:16px 20px;font-weight:900;font-size:24px">REPLAY</div>
+      <div style="background:rgba(255,255,255,.18);border-radius:16px;padding:16px 20px;font-weight:900;font-size:24px">SLOWER</div>
+    </div>
+    <div class="abs" style="left:40px;top:36px;font-size:22px;font-weight:800;color:#9fd8bb;letter-spacing:.1em">CONCEPT VISUAL · NOT YET BUILT</div>
+  </div>
+  <div class="abs" style="left:120px;top:880px;font-size:22px;color:#7fb79a;font-weight:600;width:800px">Signs will be authored with Deaf signers and ISL educators — none shown here.</div>
+</div>
+
+<!-- S7 pricing -->
+<div class="sc" id="s7">
+  <div class="kicker abs" style="left:0;right:0;top:90px;text-align:center">Pricing</div>
+  <div class="price" id="p1" style="left:280px;top:160px;background:linear-gradient(160deg,#12b76a,#0a8549)">
+    <div style="font-size:34px;font-weight:900;letter-spacing:.2em">INDIA</div>
+    <div style="font-size:120px;font-weight:900;line-height:1.05;margin-top:60px">FREE<br>FOREVER</div></div>
+  <div class="price" id="p2" style="left:1000px;top:160px;background:linear-gradient(160deg,#ffffff,#d9f5e6);color:#04140d">
+    <div style="font-size:34px;font-weight:900;letter-spacing:.2em">REST OF THE WORLD</div>
+    <div style="font-size:170px;font-weight:900;line-height:1;margin-top:70px">$1<span style="font-size:60px">/month</span></div></div>
+  <div class="abs" id="rev" style="left:280px;top:720px;width:1360px">
+    <div style="display:flex;gap:40px">
+      <div style="flex:1;background:rgba(255,255,255,.08);border-radius:24px;padding:26px 32px"><div style="font-size:28px;color:#9fd8bb;font-weight:700">100,000 international subscribers</div><div style="font-size:58px;font-weight:900">$100,000 <span style="font-size:28px;color:#9fd8bb">/ month gross</span></div></div>
+      <div style="flex:1;background:rgba(255,255,255,.08);border-radius:24px;padding:26px 32px"><div style="font-size:28px;color:#9fd8bb;font-weight:700">1,000,000 international subscribers</div><div style="font-size:58px;font-weight:900">$1,000,000 <span style="font-size:28px;color:#9fd8bb">/ month gross</span></div></div>
+    </div>
+    <div style="margin-top:14px;font-size:22px;color:#ffcf66;font-weight:800">HYPOTHETICAL SCENARIOS · NOT FORECASTS · paying users outside India only</div>
+  </div>
+</div>
+
+<!-- S8 close -->
+<div class="sc" id="s8">
+  <div class="abs" style="left:0;right:0;top:360px;text-align:center">
+    <div style="font-size:190px;font-weight:900;letter-spacing:-.04em">speakara</div>
+    <div style="font-size:50px;font-weight:800;color:#5cf2a4">Learn. Speak. Connect. Without Barriers.</div>
+    <div style="font-size:40px;font-weight:800;margin-top:70px;color:#fff">speakara.vercel.app</div>
+  </div>
+</div>
+
+<div id="kiko" class="abs" style="z-index:40"></div>
+<div class="sub" id="sub"></div>
+</div>
+<script src="subs.js"></script><script>
+const SKIN={happy:["#12b76a","#0b8f52"],cheer:["#ffb224","#d98e04"],think:["#2e9bff","#1b78d6"],wave:["#12b76a","#0b8f52"]};
+function kikoSVG(mood,size,blink,armA){const [b,s]=SKIN[mood];const mouth={happy:"M52 74 q10 9 22 0",cheer:"M50 72 q13 16 26 0 z",think:"M56 77 h14",wave:"M52 74 q10 9 22 0"}[mood];
+const th=mood==="think";const ey=blink?`<path d="M46 55 q8 3 16 0" stroke="#2f3540" stroke-width="3" fill="none"/><path d="M78 53 q6 3 12 0" stroke="#2f3540" stroke-width="3" fill="none"/>`:
+`<circle cx="${th?58:56}" cy="${th?49:55}" r="5.5" fill="#2f3540"/><circle cx="${th?87:85}" cy="${th?48:53}" r="4.5" fill="#2f3540"/><circle cx="${th?60:58}" cy="${th?47:53}" r="1.6" fill="#fff"/>`;
+const arm=(mood==="wave"||mood==="cheer")?`<g transform="rotate(${armA} 34 86)"><path d="M32 84 q-16 -8 -14 -24" stroke="${s}" stroke-width="8" fill="none" stroke-linecap="round"/></g>`:`<path d="M34 90 q-10 4 -10 12" stroke="${s}" stroke-width="8" fill="none" stroke-linecap="round"/>`;
+return `<svg viewBox="0 0 140 130" width="${size}" height="${size*130/140}"><path d="M96 92 c26 6 36 -10 28 -22 c-7 -10 -22 -6 -20 5 c1 7 9 8 11 3" fill="none" stroke="${s}" stroke-width="9" stroke-linecap="round"/><ellipse cx="68" cy="88" rx="38" ry="27" fill="${b}"/><ellipse cx="66" cy="96" rx="24" ry="14" fill="#fff" opacity=".28"/><path d="M34 62 c0 -30 22 -44 40 -40 c20 4 30 22 26 42 c-4 18 -22 26 -38 24 c-16 -2 -28 -10 -28 -26z" fill="${b}"/><path d="M60 22 l8 -14 l8 13 l9 -9 l2 15" fill="${s}"/><circle cx="54" cy="54" r="14" fill="#fff" stroke="${s}" stroke-width="3"/><circle cx="84" cy="52" r="11" fill="#fff" stroke="${s}" stroke-width="3"/>${ey}<path d="${mouth}" fill="${mood==="cheer"?"#7a2e2e":"none"}" stroke="#2f3540" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 108 q-4 10 6 10 M86 110 q4 9 -6 9" stroke="${s}" stroke-width="7" fill="none" stroke-linecap="round"/>${arm}${mood==="cheer"?`<path d="M102 86 q16 -8 14 -24" stroke="${s}" stroke-width="8" fill="none" stroke-linecap="round"/>`:""}</svg>`}
+const C=(x,a=0,b=1)=>Math.min(b,Math.max(a,x)), E=x=>{x=C(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}, R=(t,a,b)=>E((t-a)/(b-a)), $=id=>document.getElementById(id);
+const SC=[["s1",0,12],["s2",12,33],["s3",33,50],["s4",50,82],["s5",82,107],["s6",107,126],["s7",126,151],["s8",151,167]];
+let SUBS=window.SUBS_DATA||[];
+// Kiko keyframes: [t, x, y, size, mood]
+const KK=[[13,1640,170,210,"think"],[32,1640,170,210,"think"],[33.5,1660,820,170,"happy"],[49.5,1660,820,170,"happy"],[83,1680,60,150,"wave"],[106,1680,60,150,"wave"],[127,110,330,150,"cheer"],[150,110,330,150,"cheer"],[152,1180,150,220,"wave"],[167,1180,150,220,"wave"]];
+function kiko(t){let k=null;for(let i=0;i<KK.length-1;i+=2){if(t>=KK[i][0]-1&&t<=KK[i+1][0]+0.6){k=KK[i];var a=KK[i][0],e=KK[i+1][0]}}
+ const el=$('kiko');if(!k){el.style.opacity=0;return}
+ const op=Math.min(R(t,a-1,a),1-R(t,e,e+0.6));const fly=(1-R(t,a-1,a+0.2))*-260;
+ const bob=Math.sin(t*2.6)*10, blink=(t*10%37)<1.4, arm=Math.sin(t*7)*18;
+ el.style.opacity=op;el.style.transform=`translate(${k[1]+fly}px,${k[2]+bob}px) rotate(${Math.sin(t*1.7)*4}deg)`;el.innerHTML=kikoSVG(k[4],k[3],blink,arm)}
+function signer(t){// abstract full-body figure, hands at rest + gentle breathing. Deliberately no sign handshapes.
+ const br=Math.sin(t*1.8)*4, glow=.5+.5*Math.sin(t*2.2);
+ $('signer').innerHTML=`<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bff7da"/><stop offset="1" stop-color="#3fbf86"/></linearGradient><radialGradient id="h"><stop offset="0" stop-color="#5cf2a4" stop-opacity="${.25+.2*glow}"/><stop offset="1" stop-color="#5cf2a4" stop-opacity="0"/></radialGradient></defs>
+ <ellipse cx="410" cy="430" rx="360" ry="380" fill="url(#h)"/>
+ <ellipse cx="410" cy="790" rx="190" ry="26" fill="#000" opacity=".25"/>
+ <g transform="translate(0 ${br})" fill="url(#g)">
+ <circle cx="410" cy="200" r="78"/><rect x="384" y="268" width="52" height="40" rx="20"/>
+ <path d="M300 320 q110 -40 220 0 q30 12 34 50 l10 220 q2 30 -30 30 l-248 0 q-32 0 -30 -30 l10 -220 q4 -38 34 -50z"/>
+ <path d="M300 330 q-56 30 -62 130 l-6 150 q0 22 22 22 q20 0 22 -22 l10 -130 q6 -60 30 -80z"/>
+ <path d="M520 330 q56 30 62 130 l6 150 q0 22 -22 22 q-20 0 -22 -22 l-10 -130 q-6 -60 -30 -80z"/>
+ <ellipse cx="256" cy="648" rx="30" ry="36"/><ellipse cx="564" cy="648" rx="30" ry="36"/>
+ <rect x="330" y="600" width="70" height="190" rx="30"/><rect x="420" y="600" width="70" height="190" rx="30"/></g>
+ <circle cx="385" cy="${195+br}" r="7" fill="#06261a"/><circle cx="435" cy="${195+br}" r="7" fill="#06261a"/><path d="M385 ${230+br} q25 16 50 0" stroke="#06261a" stroke-width="6" fill="none" stroke-linecap="round"/>`}
+function seek(t){
+ for(const [id,a,b] of SC){const o=Math.min(R(t,a-.01,a+.6),1-R(t,b-.5,b+.1));$(id).style.opacity=C(o);$(id).style.display=o>0.001?'block':'none'}
+ $('bg').style.transform=`translate(${Math.sin(t*.15)*30}px,${Math.cos(t*.12)*20}px) scale(1.05)`;
+ // S1
+ const ci=t<4?'av4':t<8?'av3':'av2'; if(!$('s1img').src.endsWith(ci+'c.png'))$('s1img').src='assets/'+ci+'c.png';
+ const z=1+t*.012; $('s1card').style.transform=`scale(${z})`; $('s1card').style.opacity=1-R(t,7.6,8.6); $('s1title').style.opacity=R(t,8.2,9.2); $('s1title').style.transform=`translateY(${(1-R(t,8.2,9.4))*40}px)`;
+ // S2 stats
+ [[ 'st1',13],['st2',18.5],['st3',24.5]].forEach(([id,a])=>{$(id).style.opacity=R(t,a,a+.7);$(id).style.transform=`translateY(${(1-R(t,a,a+.8))*50}px)`});
+ // S3 carousel
+ const L=["Structured courses","Bite-sized lessons","Practice modes","Quests &amp; streaks"];const ids=['s3a','s3b','s3c','s3d'];const lt=t-33.6, step=3.7;
+ ids.forEach((id,i)=>{const p=lt-i*step;const vis=C(Math.min((p+.6)/.6,(step+.3-p)/.6));const el=$(id);el.style.opacity=i==3?C((p+.6)/.6):vis;el.style.left=(800+ (1-R(p,-0.6,0.3))*120)+'px';el.style.top='230px';el.style.transform=`scale(${1+C(p/step)*0.04})`});
+ $('s3lab').innerHTML=L.map((s,i)=>`<div style="opacity:${lt>i*step-0.3?1:.25};color:${(lt>=i*step&&lt<(i+1)*step)||(i==3&&lt>=3*step)?'#5cf2a4':'#cfeedd'}">${s}</div>`).join('');
+ // S4 avatar sequence: joining -> listening -> speaking -> listening
+ const a4=t-50, seq=a4<5?'av4':a4<13?'av1':a4<22?'av3':'av2'; if(!$('s4img').src.endsWith(seq+'c.png'))$('s4img').src='assets/'+seq+'c.png';
+ const st=a4<5?["Kiko is joining…","#9fd8bb"]:(a4<13||a4>=22)?["● Listening","#5cf2a4"]:["● Speaking","#ffcf66"];
+ $('s4state').innerHTML=`<span class="pill" style="background:rgba(255,255,255,.08);color:${st[1]};font-size:30px">${st[0]}</span>`;
+ const seg=a4<5?a4:a4<13?a4-5:a4<22?a4-13:a4-22; $('s4img').style.transform=`scale(${1+seg*.006})`;$('s4img').style.transformOrigin='50% 35%';
+ $('s4card').style.transform=`translateY(${(1-R(a4,0,1))*60}px)`;
+ // S5
+ const a5=t-82; $('s5card').style.transform=`translateY(${(1-R(a5,0,1))*60}px) scale(${1+a5*.003})`;
+ const conn=R(a5,7,10);
+ $('s5flow').innerHTML=`<div style="display:flex;align-items:center;gap:24px;height:100%">
+ ${[["Asha","Hindi ⇄ Spanish · A1"],["Lucía","Spanish ⇄ Hindi · A2"]].map((p,i)=>`<div style="flex:1;background:rgba(255,255,255,.08);border-radius:24px;padding:24px 28px;opacity:${R(a5,2+i*1.5,3+i*1.5)}"><div style="font-size:34px;font-weight:900">${p[0]}</div><div style="font-size:24px;color:#9fd8bb;font-weight:700">${p[1]}</div></div>`).join(`<div style="width:160px;text-align:center"><div style="height:6px;border-radius:3px;background:linear-gradient(90deg,#5cf2a4 ${conn*100}%,rgba(255,255,255,.15) ${conn*100}%)"></div><div style="margin-top:12px;font-size:22px;font-weight:900;color:#5cf2a4;opacity:${R(a5,10,11)}">MATCHED</div></div>`)}</div>
+ <div style="font-size:18px;color:#7fb79a;font-weight:700;margin-top:-6px">Illustrative example profiles</div>`;
+ // S6
+ const a6=t-107; signer(t); $('s6stage').style.transform=`translateY(${(1-R(a6,0,1))*60}px)`;
+ $('s6list').innerHTML=["Visual vocabulary","ISL explanations","Visual grammar lessons","Interactive exercises","Captions throughout"].map((s,i)=>`<div style="opacity:${R(a6,1.5+i*1.6,2.3+i*1.6)}">✦ ${s}</div>`).join('');
+ // S7
+ const a7=t-126; $('p1').style.transform=`translateY(${(1-R(a7,.5,1.5))*80}px)`;$('p1').style.opacity=R(a7,.5,1.3);
+ $('p2').style.transform=`translateY(${(1-R(a7,3,4))*80}px)`;$('p2').style.opacity=R(a7,3,3.8);$('rev').style.opacity=R(a7,9,10);
+ kiko(t);
+ const s=SUBS.find(x=>t>=x[0]&&t<x[1]); $('sub').innerHTML=s?`<span>${s[2]}</span>`:'';
+}
+window.seek=seek; window.ready=()=>SUBS.length>0;
+</script></body></html>

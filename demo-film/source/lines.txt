@@ -1,0 +1,8 @@
+s1|You learned your mother tongue without a subscription. Why should your next language be locked behind one?
+s2|One point four billion people are learning, or want to learn, English. Forty percent of people worldwide lack education in a language they understand fluently. And four hundred and thirty million people need rehabilitation for disabling hearing loss.
+s3|Speakara brings structured language learning, interactive practice and real-world speaking into one experience. Bite-sized lessons, stories, quests and streaks, with Kiko cheering you on.
+s4|Meet your personal AI language companion. Powered by Google Gemini and brought to life through Anam, it's always ready to practise with you. It listens. It speaks, in the language you're learning. And you can interrupt any time, just like a real conversation. Explore real-life scenarios, learn through roleplay, and build confidence by actually speaking.
+s5|But learning shouldn't stop with AI. Speakara's language exchange connects you with real learners around the world through one-to-one video calls. Match by language and level, start a conversation, and learn together. You help with your language. They help with theirs.
+s6|And language should be accessible to everyone. Our next phase aims to bring language education to Deaf learners, through an Indian Sign Language teaching avatar, developed with the Deaf community and I S L educators.
+s7|Our approach is simple. Free forever for learners in India, and just one dollar a month for learners everywhere else. Imagine a hundred thousand international subscribers: that's a hundred thousand dollars in monthly gross revenue. At one million, it's a million dollars a month.
+s8|Speakara. A world where everyone can learn, speak and connect, without barriers.
