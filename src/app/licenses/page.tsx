@@ -6,6 +6,10 @@ const ROWS: { name: string; use: string; license: string; source: string }[] = [
   { name: "nabra-tts 0.1.0 (commit 16b5281)", use: "On-device Arabic voice engine (downloaded only if you choose the Arabic voice)", license: "Apache-2.0", source: "https://github.com/Oddadmix/nabra-tts/tree/16b5281ce61993df3526740990cf845a3f3036f4" },
   { name: "Nabra-7M-Distill ONNX (revision bbac0f1)", use: "Arabic voice model", license: "Apache-2.0", source: "https://huggingface.co/oddadmix/Nabra-7M-Distill-ONNX/tree/bbac0f1e6b001bfae89871be366a4b000180deb2" },
   { name: "eSpeak NG 1.52.0 (WebAssembly build inside the Arabic voice)", use: "Turns Arabic text into phonemes for the voice model", license: "GPL-3.0-or-later", source: "https://github.com/espeak-ng/espeak-ng/tree/1.52.0 — built with espeak/build.sh and espeak/wrapper.c from the nabra-tts commit above" },
+  { name: "Microsoft Rocketbox avatar “Business_Female_01”", use: "The 3D ISL signing teacher (converted to glTF with Blender; textures resized)", license: "MIT", source: "https://github.com/microsoft/Microsoft-Rocketbox" },
+  { name: "three.js 0.187.0 and React Three Fiber 9.8.2", use: "Renders the 3D signing teacher in the browser", license: "MIT", source: "https://github.com/mrdoob/three.js · https://github.com/pmndrs/react-three-fiber" },
+  { name: "MediaPipe Tasks Vision 1.2.3 and Hand Landmarker model", use: "Hand tracking in ISL camera practice (runs on your device; no recognition or scoring)", license: "Apache-2.0", source: "https://github.com/google-ai-edge/mediapipe" },
+  { name: "ISL Dictionary — Indian Sign Language Research and Training Centre (ISLRTC), DEPwD, Ministry of Social Justice and Empowerment, Govt. of India", use: "Linked as the official reference for signs (not copied or re-hosted)", license: "Acknowledged; used per ISLRTC FAQ (no resale or profiteering)", source: "https://islrtc.nic.in/ · https://divyangjan.depwd.gov.in/islrtc/" },
   { name: "ONNX Runtime Web 1.30.0", use: "Runs the voice model (WebGPU or WebAssembly)", license: "MIT", source: "https://github.com/microsoft/onnxruntime/tree/v1.30.0" },
 ];
 

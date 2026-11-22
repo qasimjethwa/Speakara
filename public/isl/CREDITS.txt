@@ -1,0 +1,4 @@
+Microsoft Rocketbox avatar "Business_Female_01" — MIT License, Copyright (c) 2020 Microsoft.
+Source: https://github.com/microsoft/Microsoft-Rocketbox (Assets/Avatars/Professions/Business_Female_01)
+Converted FBX -> glTF binary with Blender 4.0.2: kept the 52 ARKit facial blendshapes, removed viseme shapes and
+specular maps, resized textures to 2048 px WebP. Rig: 3ds Max Biped (Bip01_*), fully articulated fingers.

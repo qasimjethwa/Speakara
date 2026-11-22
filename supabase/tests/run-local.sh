@@ -10,3 +10,4 @@ $P -f "$HERE/local_stub.sql"
 for f in "$HERE"/../migrations/*.sql; do $P -f "$f"; done
 $P -t -f "$HERE/rls_test.sql"
 $P -t -f "$HERE/live_test.sql"
+$P -t -f "$HERE/isl_test.sql"

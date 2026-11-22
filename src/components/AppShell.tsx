@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, type ReactNode } from "react";
-import { BookOpen, Dumbbell, Video, Flame, Gem, Home, MessagesSquare, NotebookText, Shield, Target, Trophy, User, Zap, CloudOff, Wrench } from "lucide-react";
+import { BookOpen, Dumbbell, Video, Hand, Flame, Gem, Home, MessagesSquare, NotebookText, Shield, Target, Trophy, User, Zap, CloudOff, Wrench } from "lucide-react";
 import { useStore } from "@/lib/state/store";
 import { getCourse } from "@/lib/content";
 import { liveStreak, todayXp, QUEST_LABELS, questsFor, dayKey, weeklyXp, leagueFor } from "@/lib/engine/gamification";
@@ -12,7 +12,7 @@ import { Card, Loading, ProgressBar } from "./ui";
 
 const NAV = [
   { href: "/learn", label: "Learn", icon: Home }, { href: "/practice", label: "Practice", icon: Dumbbell }, { href: "/stories", label: "Stories", icon: BookOpen },
-  { href: "/tutor", label: "Tutor", icon: MessagesSquare }, { href: "/live", label: "Live", icon: Video }, { href: "/leaderboard", label: "Leagues", icon: Shield }, { href: "/quests", label: "Quests", icon: Target },
+  { href: "/tutor", label: "Tutor", icon: MessagesSquare }, { href: "/live", label: "Live", icon: Video }, { href: "/learn/isl", label: "Sign language", icon: Hand }, { href: "/leaderboard", label: "Leagues", icon: Shield }, { href: "/quests", label: "Quests", icon: Target },
   { href: "/vocabulary", label: "Words", icon: NotebookText }, { href: "/profile", label: "Profile", icon: User },
 ];
 const MOBILE = ["/learn", "/practice", "/tutor", "/live", "/leaderboard", "/profile"];
@@ -65,7 +65,7 @@ function RightRail() {
 }
 
 /** Three-part app frame: left navigation, central content, right rail. Collapses to a top bar + bottom tabs on phones. */
-export function AppShell({ children, rail = true }: { children: ReactNode; rail?: boolean }) {
+export function AppShell({ children, rail = true, wide = false }: { children: ReactNode; rail?: boolean; wide?: boolean }) {
   const path = usePathname(); const router = useRouter(); const { state, ready, syncError } = useStore(); const { t } = useT();
   useEffect(() => { if (ready && !state.profile.onboarded) router.replace("/onboarding"); }, [ready, state.profile.onboarded, router]);
   useEffect(() => { document.documentElement.dataset.motion = state.profile.motion ? "on" : "off"; }, [state.profile.motion]);
@@ -77,14 +77,14 @@ export function AppShell({ children, rail = true }: { children: ReactNode; rail?
       <nav aria-label={t("Main")} className="sticky top-0 hidden h-dvh w-[88px] shrink-0 flex-col gap-1 overflow-y-auto border-r-2 border-line px-3 py-6 md:flex lg:w-[240px]">
         <Link href="/learn" className="mb-5 px-3" aria-label="Speakara"><span className="hidden lg:inline"><Logo /></span><span className="lg:hidden"><Logo size={36} iconOnly /></span></Link>
         {nav.map(({ href, label, icon: Icon }) => {
-          const on = path.startsWith(href);
+          const on = path.startsWith(href) && !(href === "/learn" && path.startsWith("/learn/isl"));
           return <Link key={href} href={href} aria-current={on ? "page" : undefined} aria-label={t(label)} className={`flex items-center gap-4 rounded-xl border-2 px-3 py-2.5 text-[15px] font-extrabold uppercase tracking-wide ${on ? "border-sky bg-sky-soft text-sky-dark" : "border-transparent text-sub hover:bg-mist"}`}><Icon size={26} strokeWidth={2.4} aria-hidden="true" /><span className="hidden lg:inline">{t(label)}</span></Link>;
         })}
       </nav>
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="sticky top-0 z-20 border-b-2 border-line bg-paper px-4 py-1.5 xl:hidden"><StatChips /></header>
         {syncError && <div role="alert" className="flex items-center gap-2 bg-coral-soft px-4 py-2 text-sm text-coral-dark"><CloudOff size={16} aria-hidden="true" />{t("Couldn’t sync with the server:")} {t(syncError)}</div>}
-        <main id="main" tabIndex={-1} className="mx-auto w-full max-w-[640px] flex-1 px-4 pb-28 pt-6 outline-none md:pb-12 md:pt-8">{children}</main>
+        <main id="main" tabIndex={-1} className={`mx-auto w-full ${wide ? "max-w-[1120px]" : "max-w-[640px]"} flex-1 px-4 pb-28 pt-6 outline-none md:pb-12 md:pt-8`}>{children}</main>
       </div>
       {rail && <RightRail />}
       <nav aria-label={t("Main")} className="fixed inset-x-0 bottom-0 z-30 flex justify-around gap-0.5 border-t-2 border-line bg-paper px-1 pb-[max(6px,env(safe-area-inset-bottom))] pt-1.5 md:hidden">

@@ -2922,5 +2922,597 @@
  "{n} min left": [
   "Quedan {n} min",
   "{n} मिनट बचे"
+ ],
+ "3D ISL teacher": [
+  "Profesora 3D de ISL",
+  "3D ISL शिक्षिका"
+ ],
+ "A Deaf ISL signer reviewed this animation and approved it for teaching.": [
+  "Una persona sorda que signa ISL revisó esta animación y la aprobó para enseñar.",
+  "एक बधिर ISL साइनर ने इस एनिमेशन की समीक्षा की और इसे पढ़ाने के लिए स्वीकृत किया।"
+ ],
+ "A signed ISL explanation of this grammar will appear here once Deaf ISL educators have recorded and reviewed it.": [
+  "Aquí aparecerá una explicación en ISL de esta gramática cuando educadores sordos de ISL la graben y revisen.",
+  "बधिर ISL शिक्षकों द्वारा रिकॉर्ड और समीक्षा किए जाने के बाद इस व्याकरण की ISL व्याख्या यहाँ दिखेगी।"
+ ],
+ "About the signs": [
+  "Sobre los signos",
+  "संकेतों के बारे में"
+ ],
+ "Add caption": [
+  "Añadir subtítulo",
+  "कैप्शन जोड़ें"
+ ],
+ "Add keyframe": [
+  "Añadir fotograma clave",
+  "कीफ़्रेम जोड़ें"
+ ],
+ "Again later": [
+  "Repasar después",
+  "बाद में फिर"
+ ],
+ "Alphabet": [
+  "Alfabeto",
+  "वर्णमाला"
+ ],
+ "Author ISL signs as keyframes, then record their review by a Deaf ISL signer.": [
+  "Crea signos de ISL con fotogramas clave y registra su revisión por una persona sorda que signa ISL.",
+  "ISL संकेत कीफ़्रेम के रूप में बनाएँ, फिर बधिर ISL साइनर द्वारा उनकी समीक्षा दर्ज करें।"
+ ],
+ "Awaiting validation": [
+  "Pendiente de validación",
+  "सत्यापन बाकी"
+ ],
+ "Body part": [
+  "Parte del cuerpo",
+  "शरीर का हिस्सा"
+ ],
+ "Camera access is blocked or unavailable. Allow the camera for this site in your browser’s address bar, then try again.": [
+  "El acceso a la cámara está bloqueado o no disponible. Permite la cámara para este sitio en la barra de direcciones y vuelve a intentarlo.",
+  "कैमरा अवरुद्ध या अनुपलब्ध है। ब्राउज़र के एड्रेस बार में इस साइट के लिए कैमरा अनुमति दें, फिर दोबारा कोशिश करें।"
+ ],
+ "Camera practice": [
+  "Práctica con cámara",
+  "कैमरा अभ्यास"
+ ],
+ "Caption background": [
+  "Fondo de subtítulos",
+  "कैप्शन पृष्ठभूमि"
+ ],
+ "Caption settings": [
+  "Ajustes de subtítulos",
+  "कैप्शन सेटिंग्स"
+ ],
+ "Caption text": [
+  "Texto del subtítulo",
+  "कैप्शन टेक्स्ट"
+ ],
+ "Captions": [
+  "Subtítulos",
+  "कैप्शन"
+ ],
+ "Captions are hidden for this question.": [
+  "Los subtítulos están ocultos en esta pregunta.",
+  "इस प्रश्न के लिए कैप्शन छिपे हैं।"
+ ],
+ "Captions show the written target language. They support the signed explanation; they are not ISL gloss.": [
+  "Los subtítulos muestran el idioma escrito que aprendes. Apoyan la explicación signada; no son glosas de ISL.",
+  "कैप्शन सीखी जा रही भाषा को लिखित रूप में दिखाते हैं। ये संकेतित व्याख्या का सहारा हैं; ये ISL ग्लॉस नहीं हैं।"
+ ],
+ "Check your understanding": [
+  "Comprueba lo que entendiste",
+  "अपनी समझ जाँचें"
+ ],
+ "Compare your handshape, movement and facial expression with the reference.": [
+  "Compara la forma de tu mano, el movimiento y la expresión facial con la referencia.",
+  "अपने हाथ के आकार, गति और चेहरे के भाव की तुलना संदर्भ से करें।"
+ ],
+ "Completed": [
+  "Completado",
+  "पूरा हुआ"
+ ],
+ "Confirm that a Deaf ISL signer reviewed and approved this sign.": [
+  "Confirma que una persona sorda que signa ISL revisó y aprobó este signo.",
+  "पुष्टि करें कि एक बधिर ISL साइनर ने इस संकेत की समीक्षा और स्वीकृति की है।"
+ ],
+ "Correct!": [
+  "¡Correcto!",
+  "सही!"
+ ],
+ "Delete keyframe": [
+  "Eliminar fotograma clave",
+  "कीफ़्रेम हटाएँ"
+ ],
+ "Duration (seconds)": [
+  "Duración (segundos)",
+  "अवधि (सेकंड)"
+ ],
+ "Edit keyframe": [
+  "Editar fotograma clave",
+  "कीफ़्रेम संपादित करें"
+ ],
+ "End": [
+  "Fin",
+  "अंत"
+ ],
+ "English and Spanish courses designed for Deaf learners.": [
+  "Cursos de inglés y español diseñados para estudiantes sordos.",
+  "बधिर शिक्षार्थियों के लिए बनाए गए अंग्रेज़ी और स्पेनिश पाठ्यक्रम।"
+ ],
+ "Every Deaf person deserves the opportunity to learn a new language.": [
+  "Toda persona sorda merece la oportunidad de aprender un nuevo idioma.",
+  "हर बधिर व्यक्ति को नई भाषा सीखने का अवसर मिलना चाहिए।"
+ ],
+ "Every activity works without sound. Captions are always on, and you can change their size and contrast.": [
+  "Todas las actividades funcionan sin sonido. Los subtítulos están siempre activados y puedes cambiar su tamaño y contraste.",
+  "हर गतिविधि बिना आवाज़ के काम करती है। कैप्शन हमेशा चालू रहते हैं, और आप उनका आकार और कंट्रास्ट बदल सकते हैं।"
+ ],
+ "Export": [
+  "Exportar",
+  "निर्यात"
+ ],
+ "Face (non-manual markers)": [
+  "Cara (marcadores no manuales)",
+  "चेहरा (गैर-हस्त संकेतक)"
+ ],
+ "Face close-up": [
+  "Primer plano de la cara",
+  "चेहरे का क्लोज़-अप"
+ ],
+ "Fingerspelling": [
+  "Dactilología",
+  "फ़िंगरस्पेलिंग"
+ ],
+ "Finish": [
+  "Terminar",
+  "समाप्त करें"
+ ],
+ "Finished!": [
+  "¡Terminado!",
+  "पूरा हुआ!"
+ ],
+ "Flashcards": [
+  "Tarjetas",
+  "फ़्लैशकार्ड"
+ ],
+ "Flip card": [
+  "Girar tarjeta",
+  "कार्ड पलटें"
+ ],
+ "Full body": [
+  "Cuerpo entero",
+  "पूरा शरीर"
+ ],
+ "Gloss": [
+  "Glosa",
+  "ग्लॉस"
+ ],
+ "Good position. Your hands are clearly visible.": [
+  "Buena posición. Tus manos se ven claramente.",
+  "अच्छी स्थिति। आपके हाथ साफ़ दिख रहे हैं।"
+ ],
+ "Grammar": [
+  "Gramática",
+  "व्याकरण"
+ ],
+ "Hand tracking couldn’t start on this device. You can still record and replay yourself.": [
+  "El seguimiento de manos no pudo iniciarse en este dispositivo. Aún puedes grabarte y volver a verte.",
+  "इस डिवाइस पर हाथ ट्रैकिंग शुरू नहीं हो सकी। आप फिर भी खुद को रिकॉर्ड करके दोबारा देख सकते हैं।"
+ ],
+ "Hand tracking shows where your hands are. It does not recognise signs, so Speakara does not score your signing. Your video stays on this device and is never uploaded.": [
+  "El seguimiento de manos muestra dónde están tus manos. No reconoce signos, así que Speakara no puntúa tu signado. Tu vídeo se queda en este dispositivo y nunca se sube.",
+  "हाथ ट्रैकिंग दिखाती है कि आपके हाथ कहाँ हैं। यह संकेत नहीं पहचानती, इसलिए Speakara आपके संकेतों को अंक नहीं देता। आपका वीडियो इसी डिवाइस पर रहता है और कभी अपलोड नहीं होता।"
+ ],
+ "Hands close-up": [
+  "Primer plano de las manos",
+  "हाथों का क्लोज़-अप"
+ ],
+ "High contrast": [
+  "Alto contraste",
+  "उच्च कंट्रास्ट"
+ ],
+ "How ISL does it": [
+  "Cómo lo hace la ISL",
+  "ISL में कैसे होता है"
+ ],
+ "I know it": [
+  "Lo sé",
+  "मुझे आता है"
+ ],
+ "ISL courses": [
+  "Cursos en ISL",
+  "ISL पाठ्यक्रम"
+ ],
+ "ISL fingerspelling mostly uses two hands and is different from American Sign Language. {n} of 26 letters have been reviewed by Deaf ISL signers so far; the rest are awaiting validation.": [
+  "La dactilología de ISL usa sobre todo dos manos y es distinta de la lengua de signos americana. Hasta ahora, personas sordas que signan ISL han revisado {n} de 26 letras; el resto está pendiente de validación.",
+  "ISL फ़िंगरस्पेलिंग में ज़्यादातर दोनों हाथों का उपयोग होता है और यह अमेरिकी सांकेतिक भाषा से अलग है। अब तक 26 में से {n} अक्षरों की बधिर ISL साइनरों ने समीक्षा की है; बाकी सत्यापन की प्रतीक्षा में हैं।"
+ ],
+ "ISL gloss (word order, not a translation)": [
+  "Glosa de ISL (orden de signos, no una traducción)",
+  "ISL ग्लॉस (शब्द क्रम, अनुवाद नहीं)"
+ ],
+ "Import": [
+  "Importar",
+  "आयात"
+ ],
+ "Import / export JSON": [
+  "Importar / exportar JSON",
+  "JSON आयात / निर्यात"
+ ],
+ "Indian Sign Language is the language of instruction. Signs are recorded by ISL educators and only marked as validated after review by Deaf ISL signers. Until a sign is reviewed, it is clearly marked as awaiting validation.": [
+  "La lengua de enseñanza es la lengua de signos india (ISL). Los signos los graban educadores de ISL y solo se marcan como validados tras la revisión de personas sordas que signan ISL. Hasta entonces se indican claramente como pendientes de validación.",
+  "भारतीय सांकेतिक भाषा शिक्षण की भाषा है। संकेत ISL शिक्षक रिकॉर्ड करते हैं और बधिर ISL साइनरों की समीक्षा के बाद ही उन्हें सत्यापित माना जाता है। समीक्षा होने तक उन्हें स्पष्ट रूप से सत्यापन बाकी के रूप में दिखाया जाता है।"
+ ],
+ "I’ve studied this": [
+  "Ya lo he estudiado",
+  "मैंने यह पढ़ लिया"
+ ],
+ "Keyframe time (seconds)": [
+  "Tiempo del fotograma (segundos)",
+  "कीफ़्रेम समय (सेकंड)"
+ ],
+ "Keyframes": [
+  "Fotogramas clave",
+  "कीफ़्रेम"
+ ],
+ "Learn through Indian Sign Language": [
+  "Aprende con lengua de signos india",
+  "भारतीय सांकेतिक भाषा के माध्यम से सीखें"
+ ],
+ "Learning modes": [
+  "Modos de aprendizaje",
+  "सीखने के तरीके"
+ ],
+ "Letter {l}": [
+  "Letra {l}",
+  "अक्षर {l}"
+ ],
+ "Loop": [
+  "Repetir en bucle",
+  "लूप"
+ ],
+ "Mark as validated": [
+  "Marcar como validado",
+  "सत्यापित चिह्नित करें"
+ ],
+ "Motion test — not an ISL sign": [
+  "Prueba de movimiento: no es un signo de ISL",
+  "गति परीक्षण — यह ISL संकेत नहीं है"
+ ],
+ "Move back a little so your hands and face fit in the frame.": [
+  "Échate un poco atrás para que tus manos y tu cara quepan en el encuadre.",
+  "थोड़ा पीछे हटें ताकि आपके हाथ और चेहरा फ़्रेम में आ जाएँ।"
+ ],
+ "Move to the centre of the frame.": [
+  "Colócate en el centro del encuadre.",
+  "फ़्रेम के बीच में आएँ।"
+ ],
+ "Next": [
+  "Siguiente",
+  "आगे"
+ ],
+ "Not quite. The answer is: {a}": [
+  "Casi. La respuesta es: {a}",
+  "पूरी तरह सही नहीं। उत्तर है: {a}"
+ ],
+ "Official sign in the ISLRTC dictionary": [
+  "Signo oficial en el diccionario de ISLRTC",
+  "ISLRTC शब्दकोश में आधिकारिक संकेत"
+ ],
+ "Only author signs you know from qualified ISL sources, and mark a sign validated only after a Deaf ISL signer has reviewed this animation.": [
+  "Crea solo signos que conozcas de fuentes cualificadas de ISL y márcalos como validados solo después de que una persona sorda que signa ISL haya revisado esta animación.",
+  "केवल योग्य ISL स्रोतों से ज्ञात संकेत ही बनाएँ, और किसी संकेत को तभी सत्यापित चिह्नित करें जब किसी बधिर ISL साइनर ने यह एनिमेशन देख लिया हो।"
+ ],
+ "Open the ISLRTC dictionary": [
+  "Abrir el diccionario de ISLRTC",
+  "ISLRTC शब्दकोश खोलें"
+ ],
+ "Pause": [
+  "Pausa",
+  "रोकें"
+ ],
+ "Picture": [
+  "Imagen",
+  "चित्र"
+ ],
+ "Play": [
+  "Reproducir",
+  "चलाएँ"
+ ],
+ "Play to watch the name spelled letter by letter.": [
+  "Pulsa reproducir para ver el nombre deletreado letra a letra.",
+  "नाम को अक्षर-दर-अक्षर देखने के लिए चलाएँ।"
+ ],
+ "Play whole sign": [
+  "Reproducir el signo completo",
+  "पूरा संकेत चलाएँ"
+ ],
+ "Position": [
+  "Posición",
+  "स्थिति"
+ ],
+ "Practise a sign, record yourself and compare with the teacher.": [
+  "Practica un signo, grábate y compáralo con la profesora.",
+  "एक संकेत का अभ्यास करें, खुद को रिकॉर्ड करें और शिक्षिका से तुलना करें।"
+ ],
+ "Preview the player with a motion test (not a sign)": [
+  "Probar el reproductor con una prueba de movimiento (no es un signo)",
+  "गति परीक्षण से प्लेयर देखें (यह संकेत नहीं है)"
+ ],
+ "Progress": [
+  "Progreso",
+  "प्रगति"
+ ],
+ "Quiz": [
+  "Prueba",
+  "क्विज़"
+ ],
+ "Reading": [
+  "Lectura",
+  "पढ़ना"
+ ],
+ "Record (up to 15 s)": [
+  "Grabar (hasta 15 s)",
+  "रिकॉर्ड करें (15 सेकंड तक)"
+ ],
+ "Record review": [
+  "Registrar revisión",
+  "समीक्षा दर्ज करें"
+ ],
+ "Recording": [
+  "Grabando",
+  "रिकॉर्डिंग"
+ ],
+ "Reference": [
+  "Referencia",
+  "संदर्भ"
+ ],
+ "Replay": [
+  "Repetir",
+  "दोबारा चलाएँ"
+ ],
+ "Reset to rest": [
+  "Volver al reposo",
+  "विश्राम मुद्रा पर लौटें"
+ ],
+ "Reset to signing space": [
+  "Volver al espacio de signado",
+  "संकेत क्षेत्र पर लौटें"
+ ],
+ "Review notes": [
+  "Notas de revisión",
+  "समीक्षा टिप्पणियाँ"
+ ],
+ "Reviewed": [
+  "Revisado",
+  "समीक्षित"
+ ],
+ "Reviewed by {name}": [
+  "Revisado por {name}",
+  "{name} द्वारा समीक्षित"
+ ],
+ "Reviewer name and role (Deaf ISL signer)": [
+  "Nombre y función de quien revisa (persona sorda que signa ISL)",
+  "समीक्षक का नाम और भूमिका (बधिर ISL साइनर)"
+ ],
+ "Save draft": [
+  "Guardar borrador",
+  "ड्राफ़्ट सहेजें"
+ ],
+ "Saved as validated. Learners will see this sign.": [
+  "Guardado como validado. Los estudiantes verán este signo.",
+  "सत्यापित रूप में सहेजा गया। शिक्षार्थी यह संकेत देखेंगे।"
+ ],
+ "Saved. Learners won’t see it until it is validated.": [
+  "Guardado. Los estudiantes no lo verán hasta que esté validado.",
+  "सहेजा गया। सत्यापित होने तक शिक्षार्थी इसे नहीं देखेंगे।"
+ ],
+ "Send for review": [
+  "Enviar a revisión",
+  "समीक्षा के लिए भेजें"
+ ],
+ "Show English meaning": [
+  "Mostrar significado en inglés",
+  "अंग्रेज़ी अर्थ दिखाएँ"
+ ],
+ "Show Hindi": [
+  "Mostrar hindi",
+  "हिंदी दिखाएँ"
+ ],
+ "Show both hands in front of your chest.": [
+  "Muestra las dos manos delante del pecho.",
+  "दोनों हाथ अपनी छाती के सामने दिखाएँ।"
+ ],
+ "Sign": [
+  "Signo",
+  "संकेत"
+ ],
+ "Sign Studio": [
+  "Estudio de signos",
+  "साइन स्टूडियो"
+ ],
+ "Sign Studio (ISL educators)": [
+  "Estudio de signos (educadores de ISL)",
+  "साइन स्टूडियो (ISL शिक्षक)"
+ ],
+ "Sign awaiting validation": [
+  "Signo pendiente de validación",
+  "संकेत सत्यापन बाकी"
+ ],
+ "Sign comprehension questions appear here once this unit’s signs have been reviewed by Deaf ISL signers.": [
+  "Las preguntas de comprensión de signos aparecerán aquí cuando personas sordas que signan ISL revisen los signos de esta unidad.",
+  "इस इकाई के संकेतों की बधिर ISL साइनरों द्वारा समीक्षा होने के बाद संकेत-समझ के प्रश्न यहाँ दिखेंगे।"
+ ],
+ "Sign language": [
+  "Lengua de signos",
+  "सांकेतिक भाषा"
+ ],
+ "Sign to practise": [
+  "Signo para practicar",
+  "अभ्यास के लिए संकेत"
+ ],
+ "Signing controls": [
+  "Controles del signado",
+  "संकेत नियंत्रण"
+ ],
+ "Signing view (waist up)": [
+  "Vista de signado (de cintura para arriba)",
+  "संकेत दृश्य (कमर से ऊपर)"
+ ],
+ "Signs": [
+  "Signos",
+  "संकेत"
+ ],
+ "Size": [
+  "Tamaño",
+  "आकार"
+ ],
+ "Some letters in this name are still awaiting validation, so the full name can’t be shown yet.": [
+  "Algunas letras de este nombre aún están pendientes de validación, así que todavía no se puede mostrar el nombre completo.",
+  "इस नाम के कुछ अक्षर अभी सत्यापन की प्रतीक्षा में हैं, इसलिए पूरा नाम अभी नहीं दिखाया जा सकता।"
+ ],
+ "Speed": [
+  "Velocidad",
+  "गति"
+ ],
+ "Spell a name": [
+  "Deletrea un nombre",
+  "एक नाम की स्पेलिंग करें"
+ ],
+ "Spelling a name": [
+  "Deletreando un nombre",
+  "नाम की स्पेलिंग"
+ ],
+ "Starting hand tracking…": [
+  "Iniciando el seguimiento de manos…",
+  "हाथ ट्रैकिंग शुरू हो रही है…"
+ ],
+ "Status": [
+  "Estado",
+  "स्थिति"
+ ],
+ "Tap to see the meaning": [
+  "Toca para ver el significado",
+  "अर्थ देखने के लिए टैप करें"
+ ],
+ "Tap to see the word": [
+  "Toca para ver la palabra",
+  "शब्द देखने के लिए टैप करें"
+ ],
+ "Text only": [
+  "Solo texto",
+  "केवल पाठ"
+ ],
+ "That course doesn’t exist.": [
+  "Ese curso no existe.",
+  "वह पाठ्यक्रम मौजूद नहीं है।"
+ ],
+ "That lesson doesn’t exist.": [
+  "Esa lección no existe.",
+  "वह पाठ मौजूद नहीं है।"
+ ],
+ "The English alphabet in ISL fingerspelling, for names and new words.": [
+  "El alfabeto inglés en la dactilología de ISL, para nombres y palabras nuevas.",
+  "नामों और नए शब्दों के लिए ISL फ़िंगरस्पेलिंग में अंग्रेज़ी वर्णमाला।"
+ ],
+ "The Sign Studio is for ISL educators with a Speakara editor account.": [
+  "El estudio de signos es para educadores de ISL con una cuenta de editor de Speakara.",
+  "साइन स्टूडियो Speakara एडिटर खाते वाले ISL शिक्षकों के लिए है।"
+ ],
+ "This sign’s animation is awaiting recording and review by Deaf ISL educators.": [
+  "La animación de este signo está pendiente de grabación y revisión por educadores sordos de ISL.",
+  "इस संकेत का एनिमेशन बधिर ISL शिक्षकों द्वारा रिकॉर्डिंग और समीक्षा की प्रतीक्षा में है।"
+ ],
+ "Turn off camera": [
+  "Apagar la cámara",
+  "कैमरा बंद करें"
+ ],
+ "Turn on camera": [
+  "Encender la cámara",
+  "कैमरा चालू करें"
+ ],
+ "Type your answer": [
+  "Escribe tu respuesta",
+  "अपना उत्तर लिखें"
+ ],
+ "Watch the sign and choose its meaning": [
+  "Mira el signo y elige su significado",
+  "संकेत देखें और उसका अर्थ चुनें"
+ ],
+ "With English": [
+  "Con inglés",
+  "अंग्रेज़ी के साथ"
+ ],
+ "With Hindi": [
+  "Con hindi",
+  "हिंदी के साथ"
+ ],
+ "Word details": [
+  "Detalles de la palabra",
+  "शब्द का विवरण"
+ ],
+ "Words in this unit": [
+  "Palabras de esta unidad",
+  "इस इकाई के शब्द"
+ ],
+ "You": [
+  "Tú",
+  "आप"
+ ],
+ "You can always look up the official sign in the ISL Dictionary by the Indian Sign Language Research and Training Centre (ISLRTC), DEPwD, Government of India.": [
+  "Siempre puedes consultar el signo oficial en el diccionario de ISL del Indian Sign Language Research and Training Centre (ISLRTC), DEPwD, Gobierno de la India.",
+  "आप आधिकारिक संकेत हमेशा भारतीय सांकेतिक भाषा अनुसंधान एवं प्रशिक्षण केंद्र (ISLRTC), DEPwD, भारत सरकार के ISL शब्दकोश में देख सकते हैं।"
+ ],
+ "Your answer": [
+  "Tu respuesta",
+  "आपका उत्तर"
+ ],
+ "Your attempt": [
+  "Tu intento",
+  "आपका प्रयास"
+ ],
+ "Your browser can’t show 3D graphics, so the signing teacher can’t be displayed. Captions and exercises still work.": [
+  "Tu navegador no puede mostrar gráficos 3D, así que no se puede ver a la profesora. Los subtítulos y los ejercicios siguen funcionando.",
+  "आपका ब्राउज़र 3D ग्राफ़िक्स नहीं दिखा सकता, इसलिए संकेत शिक्षिका नहीं दिख सकती। कैप्शन और अभ्यास फिर भी काम करते हैं।"
+ ],
+ "Your camera is off.": [
+  "Tu cámara está apagada.",
+  "आपका कैमरा बंद है।"
+ ],
+ "Your recorded attempt": [
+  "Tu intento grabado",
+  "आपका रिकॉर्ड किया गया प्रयास"
+ ],
+ "e.g. RAVI": [
+  "p. ej., RAVI",
+  "जैसे RAVI"
+ ],
+ "not started": [
+  "sin empezar",
+  "शुरू नहीं हुआ"
+ ],
+ "{done} of {total} activities": [
+  "{done} de {total} actividades",
+  "{total} में से {done} गतिविधियाँ"
+ ],
+ "{n} to revise": [
+  "{n} para repasar",
+  "{n} दोहराने के लिए"
+ ],
+ "English through ISL": [
+  "Inglés a través de ISL",
+  "ISL के माध्यम से अंग्रेज़ी"
+ ],
+ "Spanish through ISL": [
+  "Español a través de ISL",
+  "ISL के माध्यम से स्पेनिश"
+ ],
+ "Read and write everyday English, explained in Indian Sign Language.": [
+  "Lee y escribe inglés cotidiano, explicado en lengua de signos india.",
+  "भारतीय सांकेतिक भाषा में समझाई गई रोज़मर्रा की अंग्रेज़ी पढ़ें और लिखें।"
+ ],
+ "Read and write beginner Spanish, explained in Indian Sign Language.": [
+  "Lee y escribe español básico, explicado en lengua de signos india.",
+  "भारतीय सांकेतिक भाषा में समझाई गई शुरुआती स्पेनिश पढ़ें और लिखें।"
  ]
 }
