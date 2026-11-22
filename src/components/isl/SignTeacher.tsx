@@ -82,7 +82,7 @@ function buildRig(scene: THREE.Object3D): Rig {
     const m = o as THREE.Mesh; if (m.isMesh) { meshes.push(m); m.frustumCulled = false; m.castShadow = true;
       const mats = Array.isArray(m.material) ? m.material : [m.material];
       mats.forEach((mat) => { const st = mat as THREE.MeshStandardMaterial; if (st.map) st.map.anisotropy = 8; st.envMapIntensity = 0.6;
-        if (st.name?.includes("opacity") || st.transparent) { st.transparent = true; st.alphaTest = 0.4; st.depthWrite = false; } });
+        if (st.name?.includes("opacity") || st.transparent) { st.transparent = false; st.alphaTest = 0.3; st.depthWrite = true; st.side = THREE.DoubleSide; } });
     }
   });
   return { bones, rest, meshes };
