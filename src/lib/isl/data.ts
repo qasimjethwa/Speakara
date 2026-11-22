@@ -60,6 +60,17 @@ export function useIslProgress() {
   return { progress, complete };
 }
 
-export const ACTIVITIES = ["signs", "vocab", "grammar", "reading", "writing", "quiz"] as const;
+export const ACTIVITIES = ["lesson", "signs", "vocab", "grammar", "reading", "writing", "quiz"] as const;
 export type Activity = (typeof ACTIVITIES)[number];
 export const itemId = (course: string, unit: string, a: Activity) => `${course}:${unit}:${a}`;
+
+/** The learner's chosen teacher, kept on this device across sessions. */
+export type TeacherId = "female" | "male";
+const TEACHER_KEY = "speakara:isl:teacher";
+export function useTeacherPref(): [TeacherId, (t: TeacherId) => void, boolean] {
+  const [t, setT] = useState<TeacherId>("female"); const [chosen, setChosen] = useState(true);
+  useEffect(() => { try { const s = localStorage.getItem(TEACHER_KEY); if (s === "male" || s === "female") setT(s); else setChosen(false); } catch { setChosen(false); } }, []);
+  const save = useCallback((n: TeacherId) => { setT(n); setChosen(true); try { localStorage.setItem(TEACHER_KEY, n); } catch { /* private mode */ } window.dispatchEvent(new Event("speakara:teacher")); }, []);
+  useEffect(() => { const on = () => { try { const s = localStorage.getItem(TEACHER_KEY); if (s === "male" || s === "female") setT(s); } catch { /* ignore */ } }; window.addEventListener("speakara:teacher", on); return () => window.removeEventListener("speakara:teacher", on); }, []);
+  return [t, save, chosen];
+}

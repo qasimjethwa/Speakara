@@ -1,6 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
-import { Check, RotateCcw, X } from "lucide-react";
+import { Check, RotateCcw } from "lucide-react";
 import { Button, Card, Notice } from "@/components/ui";
 import { useT } from "@/lib/i18n";
 import { checkWritten, type GrammarPoint, type QuizItem, type Reading, type VocabItem, type WritingTask } from "@/lib/isl/courses";
@@ -34,7 +34,6 @@ export function Flashcards({ vocab, lang, onDone }: { vocab: VocabItem[]; lang: 
   return (
     <div className="space-y-3">
       <button type="button" onClick={() => setFlip(!flip)} aria-label={t("Flip card")} className="key flex min-h-64 w-full flex-col items-center justify-center gap-2 rounded-3xl border-2 border-b-4 border-line bg-paper p-6 text-center">
-        <span className="text-6xl" aria-hidden="true">{w.emoji}</span>
         {!flip ? <span className="text-3xl font-black" lang={lang}>{w.text}</span> : <>
           <span className="text-xl font-extrabold">{w.meaning}</span><span className="text-lg text-sub" lang="hi">{w.hi}</span>
           <span className="mt-2 text-base" lang={lang}>“{w.example}”</span><span className="text-sm text-sub">{w.exampleMeaning}</span>
@@ -71,7 +70,7 @@ export function ReadingView({ reading, lang, onDone }: { reading: Reading; lang:
   return (
     <div className="space-y-4">
       <Card>
-        <h3 className="mb-3 text-xl" lang={lang}><span aria-hidden="true">{reading.emoji} </span>{reading.title}</h3>
+        <h3 className="mb-3 text-xl" lang={lang}>{reading.title}</h3>
         <div className="mb-3 flex flex-wrap gap-2 text-sm">{(["none", "en", "hi"] as const).map((m) => <button key={m} type="button" aria-pressed={show === m} onClick={() => setShow(m)} className={`min-h-11 rounded-xl border-2 px-3 font-bold ${show === m ? "border-sky bg-sky-soft" : "border-line"}`}>{m === "none" ? t("Text only") : m === "en" ? t("With English") : t("With Hindi")}</button>)}</div>
         <div className="space-y-3">{reading.sentences.map((s, i) => <p key={i} className="text-lg leading-relaxed"><span lang={lang}>{s.text}</span>{show === "en" && <span className="block text-sm text-sub">{s.meaning}</span>}{show === "hi" && <span className="block text-sm text-sub" lang="hi">{s.hi}</span>}</p>)}</div>
       </Card>
@@ -93,13 +92,13 @@ function ArrangeTask({ task, lang, onResult }: { task: Extract<WritingTask, { ki
   </div>);
 }
 
-function TypedTask({ task, lang, onResult }: { task: Exclude<WritingTask, { kind: "arrange" }>; lang: string; onResult: (ok: boolean) => void }) {
+function TypedTask({ task, lang, onResult, meaningOf }: { task: Exclude<WritingTask, { kind: "arrange" }>; lang: string; onResult: (ok: boolean) => void; meaningOf?: (w: string) => string | undefined }) {
   const { t } = useT();
   const [val, setVal] = useState(""); const [checked, setChecked] = useState<boolean | null>(null);
   return (<div className="space-y-3">
     {task.kind === "fill" && <p className="text-xl font-bold" lang={lang}>{task.before} <span className="inline-block min-w-16 border-b-4 border-sky text-center">{val || "…"}</span> {task.after}</p>}
     {task.kind === "correct" && <p className="text-xl font-bold text-coral-dark line-through" lang={lang}>{task.wrong}</p>}
-    {task.kind === "picture" && <p className="text-7xl" role="img" aria-label={t("Picture")}>{task.emoji}</p>}
+    {task.kind === "picture" && <p className="rounded-2xl bg-mist p-4 text-xl font-bold">{meaningOf?.(task.answer[0]) ?? task.answer[0].replace(/\S/g, "•")}</p>}
     <label className="block"><span className="sr-only">{t("Your answer")}</span>
       <input value={val} onChange={(e) => { setVal(e.target.value); setChecked(null); }} lang={lang} autoCapitalize="none" autoComplete="off" spellCheck={false}
         className="w-full rounded-2xl border-2 border-line-dark bg-mist px-4 py-3 text-lg font-semibold focus:border-sky-dark focus:bg-paper focus:outline-none" placeholder={t("Type your answer")} /></label>
@@ -108,16 +107,17 @@ function TypedTask({ task, lang, onResult }: { task: Exclude<WritingTask, { kind
   </div>);
 }
 
-export function WritingView({ tasks, lang, onDone }: { tasks: WritingTask[]; lang: string; onDone: (score: number) => void }) {
+export function WritingView({ tasks, lang, onDone, vocab = [] }: { tasks: WritingTask[]; lang: string; onDone: (score: number) => void; vocab?: VocabItem[] }) {
+  const meaningOf = (w: string) => { const v = vocab.find((x) => x.text.toLowerCase() === w.toLowerCase().replace(/^(a|an) /, "")); return v ? `“${v.meaning}”` : undefined; };
   const { t } = useT();
   const [i, setI] = useState(0); const [results, setResults] = useState<Record<number, boolean>>({});
   const task = tasks[i]; const answered = results[i] !== undefined;
   return (
     <Card className="space-y-3">
       <p className="text-sm font-bold text-sub">{i + 1} / {tasks.length}</p>
-      <p className="text-lg font-extrabold">{task.prompt}</p>
+      <p className="text-lg font-extrabold">{task.kind === "picture" ? t("Write the word that means:") : task.prompt}</p>
       {task.kind === "arrange" ? <ArrangeTask key={i} task={task} lang={lang} onResult={(ok) => setResults((r) => ({ ...r, [i]: r[i] ?? ok }))} />
-        : <TypedTask key={i} task={task} lang={lang} onResult={(ok) => setResults((r) => ({ ...r, [i]: r[i] ?? ok }))} />}
+        : <TypedTask key={i} task={task} lang={lang} onResult={(ok) => setResults((r) => ({ ...r, [i]: r[i] ?? ok }))} meaningOf={meaningOf} />}
       {answered && <Button variant="secondary" onClick={() => { if (i + 1 >= tasks.length) onDone(Math.round((Object.values(results).filter(Boolean).length / tasks.length) * 100)); else setI(i + 1); }}>{i + 1 >= tasks.length ? t("Finish") : t("Next")}</Button>}
     </Card>
   );
@@ -134,19 +134,11 @@ export function QuizView({ quiz, vocab, clips, lang, onDone, renderSign }: { qui
     return (<div className="space-y-3">
       <h3 className="text-lg">{t("Watch the sign and choose its meaning")}</h3>
       {renderSign(clips[w.sign])}
-      <div className="space-y-2">{options.map((o) => <button key={o.id} type="button" disabled={!!pick} onClick={() => { setPick(o.id); if (o.id === w.id) setSignScore((s) => s + 1); }} className={opt(pick === o.id, pick ? (o.id === w.id ? true : pick === o.id ? false : undefined) : undefined)} lang={lang}><span aria-hidden="true">{o.emoji} </span>{o.text}</button>)}</div>
+      <div className="space-y-2">{options.map((o) => <button key={o.id} type="button" disabled={!!pick} onClick={() => { setPick(o.id); if (o.id === w.id) setSignScore((s) => s + 1); }} className={opt(pick === o.id, pick ? (o.id === w.id ? true : pick === o.id ? false : undefined) : undefined)} lang={lang}>{o.text}</button>)}</div>
       {pick && <Button onClick={() => { setPick(null); if (si + 1 >= signed.length) setStage("written"); else setSi(si + 1); }}>{t("Next")}</Button>}
     </div>);
   }
   return (<div className="space-y-3">
-    {!signed.length && <Notice tone="info">{t("Sign comprehension questions appear here once this unit’s signs have been reviewed by Deaf ISL signers.")}</Notice>}
     <MultipleChoice items={quiz} lang={lang} onDone={(s) => onDone(signed.length ? Math.round((s + (signScore / signed.length) * 100) / 2) : s)} />
   </div>);
-}
-
-export function StatusBadge({ clip }: { clip: SignClip | undefined }) {
-  const { t } = useT();
-  return clip?.status === "validated"
-    ? <span className="inline-flex items-center gap-1 rounded-full bg-brand-soft px-2 py-0.5 text-xs font-extrabold text-brand-dark"><Check size={14} aria-hidden="true" />{t("Reviewed by {name}", { name: clip.reviewedBy ?? "" })}</span>
-    : <span className="inline-flex items-center gap-1 rounded-full bg-sun-soft px-2 py-0.5 text-xs font-extrabold text-sun-dark"><X size={14} aria-hidden="true" />{t("Sign awaiting validation")}</span>;
 }

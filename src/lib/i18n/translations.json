@@ -3514,5 +3514,729 @@
  "Read and write beginner Spanish, explained in Indian Sign Language.": [
   "Lee y escribe español básico, explicado en lengua de signos india.",
   "भारतीय सांकेतिक भाषा में समझाई गई शुरुआती स्पेनिश पढ़ें और लिखें।"
+ ],
+ "A Spanish question still needs a verb: “¿De qué andén sale el tren?”": [
+  "Una pregunta en español necesita un verbo: «¿De qué andén sale el tren?»",
+  "स्पेनिश प्रश्न में भी क्रिया चाहिए: “¿De qué andén sale el tren?”"
+ ],
+ "A café": [
+  "Una cafetería",
+  "एक कैफ़े"
+ ],
+ "A community event": [
+  "Un evento de la comunidad",
+  "एक सामुदायिक कार्यक्रम"
+ ],
+ "A market stall": [
+  "Un puesto del mercado",
+  "बाज़ार की एक दुकान"
+ ],
+ "A new word: {w}": [
+  "Una palabra nueva: {w}",
+  "एक नया शब्द: {w}"
+ ],
+ "A simple “thank you” fits better here.": [
+  "Aquí queda mejor un simple “thank you”.",
+  "यहाँ सिर्फ़ “thank you” बेहतर है।"
+ ],
+ "A train station": [
+  "Una estación de tren",
+  "एक रेलवे स्टेशन"
+ ],
+ "A workshop": [
+  "Un taller",
+  "एक कार्यशाला"
+ ],
+ "Add “am”: “I am from Pune.”": [
+  "Añade “am”: “I am from Pune.”",
+  "“am” जोड़ें: “I am from Pune.”"
+ ],
+ "Add “please” and “a cup of” to sound polite.": [
+  "Añade “please” y “a cup of” para sonar educado.",
+  "विनम्र लगने के लिए “please” और “a cup of” जोड़ें।"
+ ],
+ "Add “un” and “por favor” to sound polite.": [
+  "Añade «un» y «por favor» para sonar educado.",
+  "विनम्र लगने के लिए “un” और “por favor” जोड़ें।"
+ ],
+ "Another example": [
+  "Otro ejemplo",
+  "एक और उदाहरण"
+ ],
+ "Another example:": [
+  "Otro ejemplo:",
+  "एक और उदाहरण:"
+ ],
+ "Ask a question": [
+  "Haz una pregunta",
+  "सवाल पूछें"
+ ],
+ "Ask a question about this word…": [
+  "Pregunta algo sobre esta palabra…",
+  "इस शब्द के बारे में सवाल पूछें…"
+ ],
+ "Ask for something, check the price and pay.": [
+  "Pide algo, pregunta el precio y paga.",
+  "कुछ माँगें, दाम पूछें और भुगतान करें।"
+ ],
+ "Ask the teacher": [
+  "Pregunta a tu profesora o profesor",
+  "शिक्षक से पूछें"
+ ],
+ "At a restaurant": [
+  "En un restaurante",
+  "रेस्टोरेंट में"
+ ],
+ "At college": [
+  "En la universidad",
+  "कॉलेज में"
+ ],
+ "At the airport": [
+  "En el aeropuerto",
+  "हवाई अड्डे पर"
+ ],
+ "Both teachers sign the same reviewed lessons. You can change this any time.": [
+  "Los dos docentes signan las mismas lecciones revisadas. Puedes cambiarlo cuando quieras.",
+  "दोनों शिक्षक वही समीक्षित पाठ साइन करते हैं। आप इसे कभी भी बदल सकते हैं।"
+ ],
+ "Buy a ticket and ask where your platform is.": [
+  "Compra un billete y pregunta cuál es tu andén.",
+  "टिकट खरीदें और पूछें कि आपका प्लेटफ़ॉर्म कहाँ है।"
+ ],
+ "Camera view": [
+  "Vista de cámara",
+  "कैमरा दृश्य"
+ ],
+ "Captions show the written language. They support the signed explanation; they are not ISL gloss.": [
+  "Los subtítulos muestran la lengua escrita. Apoyan la explicación signada; no son glosa de ISL.",
+  "कैप्शन लिखित भाषा दिखाते हैं। वे साइन की गई व्याख्या का साथ देते हैं; वे ISL ग्लॉस नहीं हैं।"
+ ],
+ "Chat with new friends and make a plan together.": [
+  "Charla con nuevos amigos y haced un plan juntos.",
+  "नए दोस्तों से बात करें और साथ में योजना बनाएँ।"
+ ],
+ "Check in for your flight and find your gate.": [
+  "Factura para tu vuelo y encuentra tu puerta.",
+  "अपनी उड़ान के लिए चेक-इन करें और अपना गेट ढूँढें।"
+ ],
+ "Choose your reply": [
+  "Elige tu respuesta",
+  "अपना जवाब चुनें"
+ ],
+ "Choose your teacher": [
+  "Elige a tu docente",
+  "अपना शिक्षक चुनें"
+ ],
+ "Clear and polite.": [
+  "Claro y educado.",
+  "साफ़ और विनम्र।"
+ ],
+ "Clear answer.": [
+  "Respuesta clara.",
+  "साफ़ जवाब।"
+ ],
+ "Clear question.": [
+  "Pregunta clara.",
+  "साफ़ सवाल।"
+ ],
+ "Close! Let’s go over it once more.": [
+  "¡Casi! Repasémoslo una vez más.",
+  "क़रीब! चलिए एक बार और देखते हैं।"
+ ],
+ "Correct.": [
+  "Correcto.",
+  "सही।"
+ ],
+ "Correct: “Me llamo …”.": [
+  "Correcto: «Me llamo …».",
+  "सही: “Me llamo …”।"
+ ],
+ "Correct: “My name is …”.": [
+  "Correcto: “My name is …”.",
+  "सही: “My name is …”।"
+ ],
+ "Days take “on”: “on Sunday”.": [
+  "Los días llevan “on”: “on Sunday”.",
+  "दिनों के साथ “on” आता है: “on Sunday”।"
+ ],
+ "English needs “is”: “My name is Ravi.”": [
+  "El inglés necesita “is”: “My name is Ravi.”",
+  "अंग्रेज़ी में “is” चाहिए: “My name is Ravi.”"
+ ],
+ "English needs “is”: “Where is …?”": [
+  "El inglés necesita “is”: “Where is …?”",
+  "अंग्रेज़ी में “is” चाहिए: “Where is …?”"
+ ],
+ "English questions start with the question word: “Where is …?”": [
+  "Las preguntas en inglés empiezan por la palabra interrogativa: “Where is …?”",
+  "अंग्रेज़ी प्रश्न प्रश्नवाचक शब्द से शुरू होते हैं: “Where is …?”"
+ ],
+ "English uses “a” before a job: “a student”.": [
+  "El inglés usa “a” delante de una ocupación: “a student”.",
+  "अंग्रेज़ी में काम से पहले “a” आता है: “a student”।"
+ ],
+ "Exactly how to finish a meal.": [
+  "Así se termina una comida.",
+  "खाना ख़त्म करने का बिल्कुल सही तरीका।"
+ ],
+ "Exactly right!": [
+  "¡Exacto!",
+  "बिल्कुल सही!"
+ ],
+ "Exactly right.": [
+  "Exacto.",
+  "बिल्कुल सही।"
+ ],
+ "Explain again": [
+  "Explícalo otra vez",
+  "फिर से समझाएँ"
+ ],
+ "Female teacher": [
+  "Profesora",
+  "महिला शिक्षक"
+ ],
+ "Find your classroom and ask about your timetable.": [
+  "Encuentra tu aula y pregunta por tu horario.",
+  "अपनी कक्षा ढूँढें और समय-सारणी के बारे में पूछें।"
+ ],
+ "For example: {e}": [
+  "Por ejemplo: {e}",
+  "उदाहरण: {e}"
+ ],
+ "For prices, ask “How much?”.": [
+  "Para precios, pregunta “How much?”.",
+  "दाम के लिए पूछें “How much?”।"
+ ],
+ "For prices, ask “¿Cuánto cuesta?”.": [
+  "Para precios, pregunta «¿Cuánto cuesta?».",
+  "दाम के लिए पूछें “¿Cuánto cuesta?”।"
+ ],
+ "Good follow-up.": [
+  "Buena pregunta de seguimiento.",
+  "अच्छा अगला सवाल।"
+ ],
+ "Good order.": [
+  "Buen pedido.",
+  "अच्छा ऑर्डर।"
+ ],
+ "Good try. Watch it again with me.": [
+  "Buen intento. Míralo otra vez conmigo.",
+  "अच्छी कोशिश। मेरे साथ फिर से देखें।"
+ ],
+ "Good use of “I like”.": [
+  "Buen uso de “I like”.",
+  "“I like” का अच्छा इस्तेमाल।"
+ ],
+ "Good use of “a” for a destination.": [
+  "Buen uso de «a» para un destino.",
+  "गंतव्य के लिए “a” का अच्छा इस्तेमाल।"
+ ],
+ "Good use of “flying to”.": [
+  "Buen uso de “flying to”.",
+  "“flying to” का अच्छा इस्तेमाल।"
+ ],
+ "Good use of “me gusta”.": [
+  "Buen uso de «me gusta».",
+  "“me gusta” का अच्छा इस्तेमाल।"
+ ],
+ "Good. “I am from” + place.": [
+  "Bien. “I am from” + lugar.",
+  "अच्छा। “I am from” + जगह।"
+ ],
+ "Good. “Soy de” + place.": [
+  "Bien. «Soy de» + lugar.",
+  "अच्छा। “Soy de” + जगह।"
+ ],
+ "Great, here’s a harder one.": [
+  "Genial, aquí va una más difícil.",
+  "बढ़िया, यह रहा एक कठिन सवाल।"
+ ],
+ "Great: you answered and asked back.": [
+  "Genial: respondiste y preguntaste también.",
+  "बढ़िया: आपने जवाब दिया और वापस पूछा।"
+ ],
+ "Harder question": [
+  "Pregunta más difícil",
+  "कठिन सवाल"
+ ],
+ "Hello! I’m your ISL teacher.": [
+  "¡Hola! Soy tu docente de ISL.",
+  "नमस्ते! मैं आपका ISL शिक्षक हूँ।"
+ ],
+ "I agree to turn on my camera for practice. The video is processed on this device and is not uploaded or saved.": [
+  "Acepto activar la cámara para practicar. El vídeo se procesa en este dispositivo y no se sube ni se guarda.",
+  "मैं अभ्यास के लिए कैमरा चालू करने की अनुमति देता/देती हूँ। वीडियो इसी डिवाइस पर प्रोसेस होता है, अपलोड या सेव नहीं होता।"
+ ],
+ "I couldn’t answer that right now. Try “Explain again” or “Show another example”.": [
+  "Ahora no he podido responder. Prueba «Explícalo otra vez» u «Otro ejemplo».",
+  "अभी मैं जवाब नहीं दे सका। “फिर से समझाएँ” या “एक और उदाहरण” आज़माएँ।"
+ ],
+ "ISL fingerspelling mostly uses two hands and is different from American Sign Language.": [
+  "El deletreo manual de ISL usa sobre todo las dos manos y es distinto del de la lengua de signos americana.",
+  "ISL फ़िंगरस्पेलिंग में ज़्यादातर दोनों हाथ इस्तेमाल होते हैं और यह अमेरिकी सांकेतिक भाषा से अलग है।"
+ ],
+ "ISL teacher (female)": [
+  "Profesora de ISL",
+  "ISL शिक्षक (महिला)"
+ ],
+ "ISL teacher (male)": [
+  "Profesor de ISL",
+  "ISL शिक्षक (पुरुष)"
+ ],
+ "In questions, “is” comes before the subject.": [
+  "En las preguntas, “is” va antes del sujeto.",
+  "प्रश्नों में “is” कर्ता से पहले आता है।"
+ ],
+ "Indian Sign Language is the language of instruction. Every sign your teacher shows has been recorded by ISL educators and reviewed by Deaf ISL signers. Words are always shown in writing too, with captions you can resize.": [
+  "La lengua de signos india es la lengua de enseñanza. Cada signo que muestra tu docente lo han grabado educadores de ISL y lo han revisado signantes sordos de ISL. Las palabras también se muestran siempre por escrito, con subtítulos de tamaño ajustable.",
+  "भारतीय सांकेतिक भाषा शिक्षण की भाषा है। आपके शिक्षक का हर साइन ISL शिक्षकों ने रिकॉर्ड किया है और बधिर ISL साइनर्स ने जाँचा है। शब्द हमेशा लिखकर भी दिखाए जाते हैं, ऐसे कैप्शन के साथ जिनका आकार आप बदल सकते हैं।"
+ ],
+ "Introducing yourself": [
+  "Presentarte",
+  "अपना परिचय देना"
+ ],
+ "It means “{m}”.": [
+  "Significa «{m}».",
+  "इसका अर्थ है “{m}”।"
+ ],
+ "I’ll show you each word, then ask you about it. Use the buttons any time to slow down or ask for help.": [
+  "Te mostraré cada palabra y luego te preguntaré. Usa los botones cuando quieras para ir más despacio o pedir ayuda.",
+  "मैं हर शब्द दिखाऊँगा, फिर उसके बारे में पूछूँगा। धीमा करने या मदद माँगने के लिए कभी भी बटन इस्तेमाल करें।"
+ ],
+ "I’m ready for a question": [
+  "Estoy listo para una pregunta",
+  "मैं सवाल के लिए तैयार हूँ"
+ ],
+ "Lesson": [
+  "Lección",
+  "पाठ"
+ ],
+ "Lesson complete": [
+  "Lección completada",
+  "पाठ पूरा"
+ ],
+ "Lesson complete. Great work today!": [
+  "Lección completada. ¡Buen trabajo hoy!",
+  "पाठ पूरा। आज बहुत अच्छा काम किया!"
+ ],
+ "Let me explain again: “{w}” means “{m}”.": [
+  "Te lo explico otra vez: «{w}» significa «{m}».",
+  "फिर से समझाता हूँ: “{w}” का अर्थ है “{m}”।"
+ ],
+ "Let’s make the next questions a little easier.": [
+  "Hagamos las próximas preguntas un poco más fáciles.",
+  "अगले सवाल थोड़े आसान करते हैं।"
+ ],
+ "Let’s revise the words that were tricky.": [
+  "Repasemos las palabras que costaron.",
+  "चलिए कठिन लगे शब्दों को दोहराते हैं।"
+ ],
+ "Let’s try that again.": [
+  "Probemos otra vez.",
+  "चलिए फिर से कोशिश करते हैं।"
+ ],
+ "Level {d}": [
+  "Nivel {d}",
+  "स्तर {d}"
+ ],
+ "Location uses “estar”: “¿Dónde está …?”": [
+  "La ubicación usa «estar»: «¿Dónde está …?»",
+  "स्थान के लिए “estar”: “¿Dónde está …?”"
+ ],
+ "Lovely and polite.": [
+  "Muy amable y educado.",
+  "बहुत अच्छा और विनम्र।"
+ ],
+ "Make it easier": [
+  "Hazlo más fácil",
+  "आसान करें"
+ ],
+ "Male teacher": [
+  "Profesor",
+  "पुरुष शिक्षक"
+ ],
+ "Meeting new friends": [
+  "Conocer nuevos amigos",
+  "नए दोस्तों से मिलना"
+ ],
+ "Meeting someone new": [
+  "Conocer a alguien",
+  "किसी नए से मिलना"
+ ],
+ "More scenarios": [
+  "Más situaciones",
+  "और परिदृश्य"
+ ],
+ "Nice ending to the conversation.": [
+  "Buen final para la conversación.",
+  "बातचीत का अच्छा अंत।"
+ ],
+ "Not quite, and that’s fine. Let’s look again.": [
+  "No del todo, y no pasa nada. Veámoslo otra vez.",
+  "पूरा सही नहीं, और कोई बात नहीं। फिर से देखते हैं।"
+ ],
+ "Nothing went wrong. Say “gracias”.": [
+  "No pasó nada malo. Di «gracias».",
+  "कुछ ग़लत नहीं हुआ। “gracias” कहें।"
+ ],
+ "Nothing went wrong. Say “thank you”.": [
+  "No pasó nada malo. Di “thank you”.",
+  "कुछ ग़लत नहीं हुआ। “thank you” कहें।"
+ ],
+ "One passport: “Here is”.": [
+  "Un pasaporte: “Here is”.",
+  "एक पासपोर्ट: “Here is”।"
+ ],
+ "Open camera practice": [
+  "Abrir la práctica con cámara",
+  "कैमरा अभ्यास खोलें"
+ ],
+ "Order at a café, check in at the airport, meet new friends — eight everyday situations.": [
+  "Pide en una cafetería, factura en el aeropuerto, conoce nuevos amigos: ocho situaciones cotidianas.",
+  "कैफ़े में ऑर्डर करें, हवाई अड्डे पर चेक-इन करें, नए दोस्त बनाएँ — रोज़ की आठ स्थितियाँ।"
+ ],
+ "Order food and drink politely, then ask for the bill.": [
+  "Pide comida y bebida con educación y luego pide la cuenta.",
+  "विनम्रता से खाना-पीना ऑर्डर करें, फिर बिल माँगें।"
+ ],
+ "Origin uses “ser”: “Soy de …”.": [
+  "El origen usa «ser»: «Soy de …».",
+  "मूल स्थान के लिए “ser”: “Soy de …”।"
+ ],
+ "Perfect: friendly and polite.": [
+  "Perfecto: amable y educado.",
+  "बढ़िया: दोस्ताना और विनम्र।"
+ ],
+ "Play again": [
+  "Jugar otra vez",
+  "फिर से खेलें"
+ ],
+ "Polite and clear.": [
+  "Educado y claro.",
+  "विनम्र और साफ़।"
+ ],
+ "Polite, and a useful question.": [
+  "Educado, y una pregunta útil.",
+  "विनम्र, और उपयोगी सवाल।"
+ ],
+ "Practise this word": [
+  "Practica esta palabra",
+  "यह शब्द अभ्यास करें"
+ ],
+ "Practise {lang} in everyday situations, with your teacher beside you.": [
+  "Practica {lang} en situaciones cotidianas, con tu docente a tu lado.",
+  "रोज़मर्रा की स्थितियों में {lang} का अभ्यास करें, अपने शिक्षक के साथ।"
+ ],
+ "Practise “{w}”: copy the sign in front of your camera, then come back.": [
+  "Practica «{w}»: copia el signo delante de la cámara y luego vuelve.",
+  "“{w}” का अभ्यास करें: कैमरे के सामने साइन दोहराएँ, फिर वापस आएँ।"
+ ],
+ "Real-world scenarios": [
+  "Situaciones reales",
+  "असली दुनिया के परिदृश्य"
+ ],
+ "Repeat the sign": [
+  "Repite el signo",
+  "साइन दोहराएँ"
+ ],
+ "Right question for the price.": [
+  "La pregunta correcta para el precio.",
+  "दाम के लिए सही सवाल।"
+ ],
+ "Say what you want: “a sandwich, please”.": [
+  "Di lo que quieres: “a sandwich, please”.",
+  "बताएँ आपको क्या चाहिए: “a sandwich, please”।"
+ ],
+ "Say “I like reading”.": [
+  "Di “I like reading”.",
+  "कहें “I like reading”।"
+ ],
+ "Say “hasta el domingo”.": [
+  "Di «hasta el domingo».",
+  "कहें “hasta el domingo”।"
+ ],
+ "Say “one ticket to Mumbai, please”.": [
+  "Di “one ticket to Mumbai, please”.",
+  "कहें “one ticket to Mumbai, please”।"
+ ],
+ "Say “un billete a Sevilla, por favor”.": [
+  "Di «un billete a Sevilla, por favor».",
+  "कहें “un billete a Sevilla, por favor”।"
+ ],
+ "Scenario complete!": [
+  "¡Situación completada!",
+  "परिदृश्य पूरा!"
+ ],
+ "Score: {s}%": [
+  "Puntuación: {s} %",
+  "स्कोर: {s}%"
+ ],
+ "See the official handshapes in the ISLRTC dictionary": [
+  "Mira las configuraciones oficiales en el diccionario del ISLRTC",
+  "ISLRTC शब्दकोश में आधिकारिक हस्त-आकृतियाँ देखें"
+ ],
+ "See the official sign in the ISLRTC dictionary": [
+  "Mira el signo oficial en el diccionario del ISLRTC",
+  "ISLRTC शब्दकोश में आधिकारिक साइन देखें"
+ ],
+ "Send question": [
+  "Enviar pregunta",
+  "सवाल भेजें"
+ ],
+ "Show the meaning": [
+  "Mostrar el significado",
+  "अर्थ दिखाएँ"
+ ],
+ "Slow down": [
+  "Más despacio",
+  "धीमा करें"
+ ],
+ "Smooth payment.": [
+  "Pago sin problemas.",
+  "आसान भुगतान।"
+ ],
+ "Spanish says “Me gusta leer”.": [
+  "En español se dice «Me gusta leer».",
+  "स्पेनिश में कहते हैं “Me gusta leer”।"
+ ],
+ "Spanish says “Me llamo Ravi”.": [
+  "En español se dice «Me llamo Ravi».",
+  "स्पेनिश में कहते हैं “Me llamo Ravi”।"
+ ],
+ "Speed {s}×": [
+  "Velocidad {s}×",
+  "गति {s}×"
+ ],
+ "Spell it letter by letter: {l}": [
+  "Deletréalo letra a letra: {l}",
+  "अक्षर-अक्षर स्पेल करें: {l}"
+ ],
+ "Start again": [
+  "Empezar de nuevo",
+  "फिर से शुरू करें"
+ ],
+ "Start the conversation": [
+  "Empezar la conversación",
+  "बातचीत शुरू करें"
+ ],
+ "Sure, let’s make it easier.": [
+  "Claro, hagámoslo más fácil.",
+  "ज़रूर, आसान करते हैं।"
+ ],
+ "Teacher": [
+  "Docente",
+  "शिक्षक"
+ ],
+ "Tell a new classmate your name and where you are from.": [
+  "Dile a un compañero nuevo tu nombre y de dónde eres.",
+  "नए सहपाठी को अपना नाम और आप कहाँ से हैं, बताएँ।"
+ ],
+ "That doesn’t answer the question. Say how you feel.": [
+  "Eso no responde a la pregunta. Di cómo estás.",
+  "यह सवाल का जवाब नहीं है। बताएँ आप कैसे हैं।"
+ ],
+ "That scenario doesn’t exist.": [
+  "Esa situación no existe.",
+  "यह परिदृश्य मौजूद नहीं है।"
+ ],
+ "That’s a greeting. They are leaving.": [
+  "Eso es un saludo. La otra persona se va.",
+  "यह अभिवादन है। वे जा रहे हैं।"
+ ],
+ "That’s mixed up. Try a clear welcome.": [
+  "Eso es confuso. Prueba una bienvenida clara.",
+  "यह उलझा हुआ है। साफ़ स्वागत करें।"
+ ],
+ "That’s the seller’s line. Hand over the money and say thanks.": [
+  "Eso lo dice el vendedor. Entrega el dinero y da las gracias.",
+  "यह विक्रेता की बात है। पैसे दें और धन्यवाद कहें।"
+ ],
+ "That’s the seller’s line. Pay and say thanks.": [
+  "Eso lo dice el vendedor. Paga y da las gracias.",
+  "यह विक्रेता की बात है। भुगतान करें और धन्यवाद कहें।"
+ ],
+ "The check-in desk": [
+  "El mostrador de facturación",
+  "चेक-इन डेस्क"
+ ],
+ "The college canteen": [
+  "La cafetería de la universidad",
+  "कॉलेज कैंटीन"
+ ],
+ "The college office": [
+  "La secretaría de la universidad",
+  "कॉलेज कार्यालय"
+ ],
+ "They aren’t your teacher. “Muchas gracias” fits better.": [
+  "No es tu profesor. Queda mejor «Muchas gracias».",
+  "वे आपके शिक्षक नहीं हैं। “Muchas gracias” बेहतर है।"
+ ],
+ "This question needs a choice, not yes.": [
+  "Esta pregunta necesita una elección, no un sí.",
+  "इस सवाल में चुनाव चाहिए, सिर्फ़ हाँ नहीं।"
+ ],
+ "This question needs a choice, not “sí”.": [
+  "Esta pregunta necesita una elección, no «sí».",
+  "इस सवाल में चुनाव चाहिए, “sí” नहीं।"
+ ],
+ "Today: {u}": [
+  "Hoy: {u}",
+  "आज: {u}"
+ ],
+ "Travelling": [
+  "De viaje",
+  "यात्रा"
+ ],
+ "Try a real-world scenario": [
+  "Prueba una situación real",
+  "असली परिदृश्य आज़माएँ"
+ ],
+ "Two or more needs -s: “dos manzanas”.": [
+  "Dos o más lleva -s: «dos manzanas».",
+  "दो या ज़्यादा के लिए -s: “dos manzanas”।"
+ ],
+ "Two or more needs -s: “two apples”.": [
+  "Dos o más lleva -s: “two apples”.",
+  "दो या ज़्यादा के लिए -s: “two apples”।"
+ ],
+ "Type the word that means “{m}”.": [
+  "Escribe la palabra que significa «{m}».",
+  "वह शब्द लिखें जिसका अर्थ है “{m}”।"
+ ],
+ "Use “a” for a destination.": [
+  "Usa «a» para un destino.",
+  "गंतव्य के लिए “a” इस्तेमाल करें।"
+ ],
+ "Use “does”: “When does it start?”": [
+  "Usa “does”: “When does it start?”",
+  "“does” इस्तेमाल करें: “When does it start?”"
+ ],
+ "Use “to” for a destination.": [
+  "Usa “to” para un destino.",
+  "गंतव्य के लिए “to” इस्तेमाल करें।"
+ ],
+ "Useful question.": [
+  "Pregunta útil.",
+  "उपयोगी सवाल।"
+ ],
+ "Useful words": [
+  "Palabras útiles",
+  "उपयोगी शब्द"
+ ],
+ "Warm and friendly.": [
+  "Cálido y amable.",
+  "गर्मजोशी भरा और दोस्ताना।"
+ ],
+ "Watch the sign": [
+  "Ver el signo",
+  "साइन देखें"
+ ],
+ "Well done, that’s correct.": [
+  "Muy bien, es correcto.",
+  "शाबाश, यह सही है।"
+ ],
+ "Well done. Spanish needs no “a” here.": [
+  "Muy bien. Aquí el español no necesita artículo.",
+  "शाबाश। यहाँ स्पेनिश में “a” की ज़रूरत नहीं।"
+ ],
+ "Well done: “I am a student.”": [
+  "Muy bien: “I am a student.”",
+  "शाबाश: “I am a student.”"
+ ],
+ "What does this word mean?": [
+  "¿Qué significa esta palabra?",
+  "इस शब्द का क्या अर्थ है?"
+ ],
+ "Which word means “{m}”?": [
+  "¿Qué palabra significa «{m}»?",
+  "किस शब्द का अर्थ है “{m}”?"
+ ],
+ "With jobs and roles after “soy”, Spanish usually drops “un/una”.": [
+  "Con profesiones y funciones después de «soy», el español suele omitir «un/una».",
+  "“soy” के बाद काम या भूमिका के साथ स्पेनिश में आमतौर पर “un/una” नहीं लगता।"
+ ],
+ "With staff, use the polite “usted” form: “Aquí tiene”.": [
+  "Con el personal, usa la forma de «usted»: «Aquí tiene».",
+  "कर्मचारियों के साथ विनम्र “usted” रूप: “Aquí tiene”।"
+ ],
+ "Word {n} of {t}": [
+  "Palabra {n} de {t}",
+  "शब्द {n} / {t}"
+ ],
+ "Write the word that means:": [
+  "Escribe la palabra que significa:",
+  "वह शब्द लिखें जिसका अर्थ है:"
+ ],
+ "Yes! You’ve got it.": [
+  "¡Sí! Lo tienes.",
+  "हाँ! आप समझ गए।"
+ ],
+ "You answered {r} of {t} questions correctly.": [
+  "Respondiste bien {r} de {t} preguntas.",
+  "आपने {t} में से {r} सवालों के सही जवाब दिए।"
+ ],
+ "You asked: {q}": [
+  "Preguntaste: {q}",
+  "आपने पूछा: {q}"
+ ],
+ "You can learn every lesson without a camera.": [
+  "Puedes hacer todas las lecciones sin cámara.",
+  "आप हर पाठ बिना कैमरे के सीख सकते हैं।"
+ ],
+ "You chose the right reply first time in {n} of {t} turns.": [
+  "Elegiste la respuesta correcta a la primera en {n} de {t} turnos.",
+  "आपने {t} में से {n} बार पहली बार में सही जवाब चुना।"
+ ],
+ "You learned {n} words in this lesson.": [
+  "Aprendiste {n} palabras en esta lección.",
+  "इस पाठ में आपने {n} शब्द सीखे।"
+ ],
+ "You made a plan.": [
+  "Hicisteis un plan.",
+  "आपने योजना बना ली।"
+ ],
+ "You meet someone for the first time. Greet them and be friendly.": [
+  "Conoces a alguien por primera vez. Salúdale con amabilidad.",
+  "आप किसी से पहली बार मिलते हैं। अभिवादन करें और दोस्ताना रहें।"
+ ],
+ "Your teacher": [
+  "Tu docente",
+  "आपका शिक्षक"
+ ],
+ "You’re doing well, so the next questions will be a little harder.": [
+  "Lo haces muy bien, así que las próximas preguntas serán un poco más difíciles.",
+  "आप अच्छा कर रहे हैं, इसलिए अगले सवाल थोड़े कठिन होंगे।"
+ ],
+ "“Adiós” is for leaving. Try a greeting.": [
+  "«Adiós» es para despedirse. Prueba un saludo.",
+  "“Adiós” जाते समय कहते हैं। अभिवादन आज़माएँ।"
+ ],
+ "“At what time” is “¿A qué hora …?”": [
+  "“At what time” es «¿A qué hora …?»",
+  "“At what time” का मतलब “¿A qué hora …?”"
+ ],
+ "“Goodbye” is for leaving. Try a greeting.": [
+  "“Goodbye” es para despedirse. Prueba un saludo.",
+  "“Goodbye” जाते समय कहते हैं। अभिवादन आज़माएँ।"
+ ],
+ "“How” questions need more than yes or no.": [
+  "Las preguntas con “how” necesitan algo más que sí o no.",
+  "“How” वाले सवालों में हाँ या ना से ज़्यादा चाहिए।"
+ ],
+ "“Tortilla” is feminine: “una tortilla”.": [
+  "«Tortilla» es femenino: «una tortilla».",
+  "“Tortilla” स्त्रीलिंग है: “una tortilla”।"
+ ],
+ "“{w}” means “{m}”.": [
+  "«{w}» significa «{m}».",
+  "“{w}” का अर्थ है “{m}”।"
+ ],
+ "“{w}” means “{m}”. Example: {e} ({em})": [
+  "«{w}» significa «{m}». Ejemplo: {e} ({em})",
+  "“{w}” का अर्थ है “{m}”। उदाहरण: {e} ({em})"
+ ],
+ "“¿Qué tal?” needs more than yes.": [
+  "«¿Qué tal?» necesita algo más que «sí».",
+  "“¿Qué tal?” में सिर्फ़ हाँ से ज़्यादा चाहिए।"
  ]
 }

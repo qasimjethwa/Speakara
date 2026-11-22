@@ -1,4 +1,11 @@
-Microsoft Rocketbox avatar "Business_Female_01" — MIT License, Copyright (c) 2020 Microsoft.
-Source: https://github.com/microsoft/Microsoft-Rocketbox (Assets/Avatars/Professions/Business_Female_01)
-Converted FBX -> glTF binary with Blender 4.0.2: kept the 52 ARKit facial blendshapes, removed viseme shapes and
-specular maps, resized textures to 2048 px WebP. Rig: 3ds Max Biped (Bip01_*), fully articulated fingers.
+ISL teacher models — Microsoft Rocketbox avatars, MIT License, Copyright (c) 2020 Microsoft.
+Source: https://github.com/microsoft/Microsoft-Rocketbox
+
+teacher.glb       — "Business_Female_01" (Assets/Avatars/Professions/Business_Female_01, *_facial.fbx)
+teacher-male.glb  — "Business_Male_06"   (Assets/Avatars/Professions/Business_Male_06, *_facial.fbx)
+
+Modifications by Speakara: textures recoloured (black shirt for both; auburn hair for the female
+teacher, as the closest available match to Speakara's teacher reference); kept the 52 ARKit facial
+blendshapes, removed viseme shapes and specular maps; converted FBX -> glTF binary with Blender 4.0.2, WebP textures.
+Rig: 3ds Max Biped (Bip01_*), fully articulated fingers — identical on both models.
+The female model approximates, but is not an exact 3D likeness of, the 2D reference image.

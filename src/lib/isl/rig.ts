@@ -119,3 +119,11 @@ export function checkClip(c: SignClip): string | null {
   if (c.status === "validated" && !c.reviewedBy?.trim()) return "A validated sign must name its Deaf ISL reviewer.";
   return null;
 }
+
+/** Natural teaching idle (not a sign): elbows softly bent, hands resting together in front of the waist. */
+export const ATTENTIVE: Pose = { bones: {
+  ...RELAXED.bones,
+  [S("L_UpperArm")]: [0.25, 0.8, -0.35], [S("R_UpperArm")]: [-0.25, -0.8, -0.35],
+  [S("L_Forearm")]: [0, 0, -1.05], [S("R_Forearm")]: [0, 0, -1.05],
+  [S("L_Hand")]: [0.35, 0, 0], [S("R_Hand")]: [-0.35, 0, 0],
+} };
