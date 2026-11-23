@@ -157,7 +157,7 @@ await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" });
 await A.getByRole("link", { name: "Learning companion" }).first().click(); await A.waitForURL(/learning-twin$/);
 expect(true, "the sidebar has a Learning companion entry that opens the dashboard");
 await A.getByRole("button", { name: "Explain my next step" }).click();
-await A.locator("[data-testid=companion-coach] [aria-live] p").first().waitFor({ timeout: 20000 });
+await A.waitForFunction(() => { const t = document.querySelector("[data-testid=companion-coach] [aria-live]")?.textContent ?? ""; return t.length > 0 && !/Thinking/.test(t); }, null, { timeout: 25000 });
 const coach = await A.locator("[data-testid=companion-coach]").innerText();
 expect(/Recommended because|\w{20,}/.test(coach), "the AI coach answers, or falls back to the rule-based reason when AI is unavailable");
 
