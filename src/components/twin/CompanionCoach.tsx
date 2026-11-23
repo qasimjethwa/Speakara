@@ -26,23 +26,24 @@ export function CompanionCoach() {
     setBusy(false);
   };
   const weakest = v.estimates.filter((e) => e.skill !== "isl" && band(e) === "needs work").sort((a, b) => a.mastery - b.mastery)[0];
+  const chip = "min-h-11 rounded-full border border-line bg-paper px-4 text-sm font-bold hover:border-brand hover:text-brand-dark disabled:opacity-50";
   return (
-    <section aria-labelledby="coach-title" className="mb-6 rounded-3xl border-2 border-grape bg-grape-soft/40 p-4" data-testid="companion-coach">
-      <h2 id="coach-title" className="mb-1 flex items-center gap-2 text-lg"><Sparkles size={20} className="text-grape-dark" aria-hidden="true" />{t("Ask your learning companion")}</h2>
-      <p className="mb-3 text-sm text-sub">{t("Written by AI from your measured results and preferences. It explains Speakara’s suggestions; it doesn’t change your scores.")}</p>
+    <section aria-labelledby="coach-title" className="rounded-3xl border border-line bg-paper p-5 shadow-[0_1px_2px_rgba(16,24,40,.04),0_8px_24px_-12px_rgba(16,24,40,.12)] sm:p-6" data-testid="companion-coach">
+      <h2 id="coach-title" className="mb-3 flex items-center gap-2 text-xs font-extrabold uppercase tracking-[.12em] text-sub"><Sparkles size={16} className="text-brand" aria-hidden="true" />{t("Ask your learning companion")}</h2>
       <div className="mb-3 flex flex-wrap gap-2">
-        {top && <button type="button" disabled={busy} onClick={() => void ask()} className="min-h-11 rounded-2xl border-2 border-line bg-paper px-3 text-sm font-extrabold hover:bg-mist">{t("Explain my next step")}</button>}
-        {weakest && <button type="button" disabled={busy} onClick={() => void ask(`Give me a short tip to improve my ${weakest.skill}.`)} className="min-h-11 rounded-2xl border-2 border-line bg-paper px-3 text-sm font-extrabold hover:bg-mist">{t("Coach me on {skill}", { skill: t(SKILL_LABEL[weakest.skill]).toLowerCase() })}</button>}
+        {top && <button type="button" disabled={busy} onClick={() => void ask()} className={chip}>{t("Explain my next step")}</button>}
+        {weakest && <button type="button" disabled={busy} onClick={() => void ask(`Give me a short tip to improve my ${weakest.skill}.`)} className={chip}>{t("Coach me on {skill}", { skill: t(SKILL_LABEL[weakest.skill]).toLowerCase() })}</button>}
       </div>
       <form onSubmit={(e) => { e.preventDefault(); if (q.trim()) void ask(q.trim()); }} className="flex gap-2">
         <label htmlFor="coach-q" className="sr-only">{t("Ask a question about your learning")}</label>
-        <input id="coach-q" value={q} onChange={(e) => setQ(e.target.value)} maxLength={300} placeholder={t("Ask a question about your learning…")} className="min-h-12 flex-1 rounded-2xl border-2 border-line-dark bg-paper px-3" />
-        <button type="submit" disabled={busy || !q.trim()} aria-label={t("Send question")} className="grid min-h-12 min-w-12 place-items-center rounded-2xl bg-grape-dark text-white disabled:opacity-40"><Send size={18} aria-hidden="true" /></button>
+        <input id="coach-q" value={q} onChange={(e) => setQ(e.target.value)} maxLength={300} placeholder={t("Ask a question about your learning…")} className="min-h-12 min-w-0 flex-1 rounded-2xl border border-line-dark bg-mist/60 px-4 focus:bg-paper" />
+        <button type="submit" disabled={busy || !q.trim()} aria-label={t("Send question")} className="grid min-h-12 min-w-12 place-items-center rounded-2xl bg-brand text-white disabled:opacity-40"><Send size={18} aria-hidden="true" /></button>
       </form>
       <div aria-live="polite" className="mt-3">
         {busy && <p className="text-sm text-sub">{t("Thinking…")}</p>}
-        {text && <p className="whitespace-pre-line rounded-2xl bg-paper p-3">{text}</p>}
-        {err && <p className="rounded-2xl bg-paper p-3 text-sm text-sub">{t("The AI companion isn’t available right now.")}{top ? ` ${t(top.reason, top.reasonParams)}` : ""}</p>}
+        {text && <p className="whitespace-pre-line rounded-2xl bg-brand-soft/50 p-4 leading-relaxed">{text}</p>}
+        {err && <p className="rounded-2xl bg-mist p-4 text-sm text-sub">{t("The AI companion isn’t available right now.")}{top ? ` ${t(top.reason, top.reasonParams)}` : ""}</p>}
+        {(text || err) && <p className="mt-2 text-xs text-sub">{t("Written by AI from your measured results and preferences. It explains Speakara’s suggestions; it doesn’t change your scores.")}</p>}
       </div>
     </section>
   );

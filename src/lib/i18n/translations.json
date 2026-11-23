@@ -5054,5 +5054,13 @@
  "Your lessons, XP, gems, streaks and quests work exactly the same either way. Turn this on if you want Speakara to adapt to you.": [
   "Tus lecciones, XP, gemas, rachas y misiones funcionan igual en ambos casos. Actívalo si quieres que Speakara se adapte a ti.",
   "आपके पाठ, XP, जेम्स, स्ट्रीक और क्वेस्ट दोनों हालात में बिल्कुल वैसे ही चलते हैं। अगर आप चाहते हैं कि Speakara आपके अनुसार ढले, तो इसे चालू करें।"
+ ],
+ "ISL": [
+  "ISL",
+  "ISL"
+ ],
+ "{n} answers": [
+  "{n} respuestas",
+  "{n} उत्तर"
  ]
 }

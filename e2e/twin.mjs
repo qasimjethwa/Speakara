@@ -195,7 +195,7 @@ expect(/Recommended because|\w{20,}/.test(coach), "the AI coach answers, or fall
 for (const [p, path] of [[A, "/profile/learning-twin"], [B, "/profile/learning-twin"], [A, "/profile/learning-twin/setup"]]) {
   await p.goto(BASE + path, { waitUntil: "networkidle" }); await p.addScriptTag({ content: axeSource });
   const r = await p.evaluate(async () => await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } }));
-  expect(r.violations.length === 0, `axe ${path}: ${r.violations.map((v) => v.id).join(", ") || "clean"}`);
+  expect(r.violations.length === 0, `axe ${path}: ${r.violations.map((v) => v.id + " " + v.nodes.map((n) => n.html.slice(0, 90)).join(" / ")).join(", ") || "clean"}`);
 }
 const mctx = await browser.newContext({ viewport: { width: 360, height: 780 }, isMobile: true, hasTouch: true });
 await mctx.addInitScript((x) => { if (!localStorage.getItem("speakara:learner:v1")) localStorage.setItem("speakara:learner:v1", x); }, seed("Mia"));
