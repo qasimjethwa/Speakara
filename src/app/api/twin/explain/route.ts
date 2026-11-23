@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCourse } from "@/lib/content";
+import { geminiText } from "@/lib/server/gemini";
 
 /**
  * Learning companion: natural-language coaching from Gemini (server-side key only).
@@ -50,13 +51,7 @@ export async function POST(request: Request) {
   ].join("\n");
   const user = `${facts}${b.question ? `\nLearner's question: ${s(b.question, 300)}` : ""}`;
   try {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${process.env.TWIN_GEMINI_MODEL ?? "gemini-2.5-flash"}:generateContent`, {
-      method: "POST", signal: AbortSignal.timeout(15_000), headers: { "content-type": "application/json", "x-goog-api-key": key },
-      body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents: [{ role: "user", parts: [{ text: user }] }], generationConfig: { maxOutputTokens: 400, temperature: 0.5, thinkingConfig: { thinkingBudget: 0 } } }),
-    });
-    if (!r.ok) return NextResponse.json({ error: "unavailable" }, { status: 502 });
-    const j = (await r.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
-    const text = (j.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "").trim().slice(0, 1200);
-    return text ? NextResponse.json({ text }) : NextResponse.json({ error: "unavailable" }, { status: 502 });
+    const text = (await geminiText(system, user, { model: process.env.TWIN_GEMINI_MODEL, maxTokens: 400 })).slice(0, 1200);
+    return NextResponse.json({ text });
   } catch { return NextResponse.json({ error: "unavailable" }, { status: 502 }); }
 }

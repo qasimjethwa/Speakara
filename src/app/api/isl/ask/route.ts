@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getIslCourse, getIslUnit } from "@/lib/isl/courses";
 import { configuredProvider } from "@/lib/tutor/providers";
+import { geminiText } from "@/lib/server/gemini";
 
 /**
  * Optional text help for the ISL lesson ("Ask a question"). Server-side only; keys never reach the browser.
@@ -27,17 +28,7 @@ function islSystemPrompt(target: string, unitTitle: string, word?: { text: strin
   ].join("\n");
 }
 
-async function gemini(system: string, question: string): Promise<string> {
-  const key = process.env.GEMINI_API_KEY; if (!key) throw new Error("no key");
-  const model = process.env.ISL_GEMINI_MODEL ?? "gemini-2.5-flash";
-  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
-    method: "POST", signal: AbortSignal.timeout(15_000), headers: { "content-type": "application/json", "x-goog-api-key": key },
-    body: JSON.stringify({ systemInstruction: { parts: [{ text: system }] }, contents: [{ role: "user", parts: [{ text: question }] }], generationConfig: { maxOutputTokens: 300, temperature: 0.4 } }),
-  });
-  if (!r.ok) throw new Error(`gemini ${r.status}`);
-  const j = (await r.json()) as { candidates?: { content?: { parts?: { text?: string }[] } }[] };
-  return j.candidates?.[0]?.content?.parts?.map((p) => p.text ?? "").join("") ?? "";
-}
+const gemini = (system: string, question: string) => geminiText(system, question, { model: process.env.ISL_GEMINI_MODEL, maxTokens: 300, temperature: 0.4 });
 
 export async function POST(request: Request) {
   const now = Date.now(); const ip = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
