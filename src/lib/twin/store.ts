@@ -6,7 +6,7 @@
  */
 import { useEffect, useSyncExternalStore } from "react";
 import { supabase } from "@/lib/supabase";
-import { defaultPrefs, type LearningEvent, type TwinPrefs } from "./model";
+import { defaultPrefs, normalisePrefs, type LearningEvent, type TwinPrefs } from "./model";
 
 interface TwinData { prefs: TwinPrefs; events: LearningEvent[] }
 const MAX_EVENTS = 1500;
@@ -18,7 +18,7 @@ const listeners = new Set<() => void>();
 const emit = () => { for (const l of listeners) l(); };
 
 function readLocal(u: string | null): TwinData {
-  try { const v = JSON.parse(localStorage.getItem(key(u)) ?? "null"); if (v?.prefs) return { prefs: { ...defaultPrefs(), ...v.prefs }, events: Array.isArray(v.events) ? v.events : [] }; } catch { /* blocked */ }
+  try { const v = JSON.parse(localStorage.getItem(key(u)) ?? "null"); if (v?.prefs) return { prefs: normalisePrefs({ ...defaultPrefs(), ...v.prefs }), events: Array.isArray(v.events) ? v.events : [] }; } catch { /* blocked */ }
   return { prefs: defaultPrefs(), events: [] };
 }
 function writeLocal() { try { localStorage.setItem(key(uid), JSON.stringify(data)); } catch { /* full or blocked */ } }
@@ -38,7 +38,7 @@ export async function loadTwin(u: string | null) {
   const seen = new Set(cloud.map((e) => `${e.at}|${e.item}|${e.skill}`));
   const localOnly = data.events.filter((e) => !seen.has(`${e.at}|${e.item}|${e.skill}`));
   if (localOnly.length) await db.from("learning_events").insert(localOnly.map((e) => toRow(u, e)));
-  data = { prefs: row?.prefs ? { ...defaultPrefs(), ...(row.prefs as TwinPrefs) } : data.prefs, events: [...cloud, ...localOnly].sort((a, b) => a.at - b.at).slice(-MAX_EVENTS) };
+  data = { prefs: row?.prefs ? normalisePrefs({ ...defaultPrefs(), ...(row.prefs as TwinPrefs) }) : data.prefs, events: [...cloud, ...localOnly].sort((a, b) => a.at - b.at).slice(-MAX_EVENTS) };
   if (!row && data.prefs.onboarded) await db.from("learning_twin").upsert({ user_id: u, prefs: data.prefs, updated_at: new Date().toISOString() });
   writeLocal(); emit();
 }
@@ -52,16 +52,18 @@ export function recordEvents(evs: LearningEvent[]) {
 }
 
 export async function savePrefs(patch: Partial<TwinPrefs>) {
-  data = { ...data, prefs: { ...data.prefs, ...patch } }; writeLocal(); emit();
-  const db = supabase(); if (db && uid) await db.from("learning_twin").upsert({ user_id: uid, prefs: data.prefs, brief: patch.companionContext === false ? [] : undefined, updated_at: new Date().toISOString() });
+  data = { ...data, prefs: normalisePrefs({ ...data.prefs, ...patch }) }; writeLocal(); emit();
+  const db = supabase(); if (db && uid) await db.from("learning_twin").upsert({ user_id: uid, prefs: data.prefs, brief: data.prefs.companionContext ? undefined : [], updated_at: new Date().toISOString() });
 }
+/** Explicit consent switch. Off: no personalised recommendations, no AI learning context, no new learning events; lessons, XP and progress are untouched. */
+export const setPersonalisation = (on: boolean) => savePrefs(on ? { personalise: true, consentedAt: Date.now() } : { personalise: false, companionContext: false });
 /** Saves the companion brief (only when the learner consented); the server reads it when a companion session starts. */
 export async function saveBrief(brief: string[]) {
   const db = supabase(); if (!db || !uid) return;
   await db.from("learning_twin").upsert({ user_id: uid, prefs: data.prefs, brief: data.prefs.companionContext ? brief.slice(0, 12) : [], updated_at: new Date().toISOString() });
 }
 export async function resetPrefs() {
-  data = { ...data, prefs: { ...defaultPrefs(), personalise: data.prefs.personalise } }; writeLocal(); emit();
+  data = { ...data, prefs: { ...defaultPrefs(), personalise: data.prefs.personalise, consentedAt: data.prefs.consentedAt } }; writeLocal(); emit();
   const db = supabase(); if (db && uid) await db.from("learning_twin").upsert({ user_id: uid, prefs: data.prefs, brief: [], updated_at: new Date().toISOString() });
 }
 export async function deleteHistory() {

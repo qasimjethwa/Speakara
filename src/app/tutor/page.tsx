@@ -38,7 +38,7 @@ function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => 
     setBusy(true); setError(null);
     try {
       const res = await fetch("/api/tutor", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ scenario: scenario.id, target: course.target, targetName: course.targetName, nativeName: course.nativeName,
-        level: tutorLevel(twin.difficulty, Object.keys(state.completed).length > 8 ? "beginner (CEFR A1–A2), knows basic greetings, family and food words" : state.profile.level === "new" ? "absolute beginner (CEFR A1)" : "beginner (CEFR A1–A2)", twin.prefs.personalise ? twin.brief : []), history: history.map((m) => ({ role: m.role, text: m.text })), ...cursor.current }) });
+        level: ((base) => twin.prefs.personalise ? tutorLevel(twin.difficulty, base, twin.brief) : base)(Object.keys(state.completed).length > 8 ? "beginner (CEFR A1–A2), knows basic greetings, family and food words" : state.profile.level === "new" ? "absolute beginner (CEFR A1)" : "beginner (CEFR A1–A2)"), history: history.map((m) => ({ role: m.role, text: m.text })), ...cursor.current }) });
       const data = (await res.json()) as TutorReply & { error?: string };
       if (!res.ok || data.error) { setError(data.error ?? "The tutor couldn’t answer. Please try again."); return; }
       cursor.current = { step: data.step, retry: data.retry };

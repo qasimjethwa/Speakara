@@ -27,7 +27,8 @@ export type Interest = "travel" | "study" | "work" | "food" | "social" | "everyd
 export type TeachingStyle = "visual" | "explain" | "practice" | "conversation";
 export type Correction = "gentle" | "balanced" | "detailed";
 export interface TwinPrefs {
-  personalise: boolean;                 // recommendations on/off
+  personalise: boolean;                 // Personal Learning Twin on/off (off by default; on only with explicit consent)
+  consentedAt?: number;                 // when the learner explicitly turned it on
   companionContext: boolean;            // share a short learning summary with the AI companion (consent)
   goal?: "travel" | "study" | "work" | "family" | "culture" | "other";
   selfLevel?: "new" | "beginner" | "intermediate";
@@ -41,7 +42,13 @@ export interface TwinPrefs {
   explanationLang?: "en" | "es" | "hi";
   onboarded: boolean;
 }
-export const defaultPrefs = (): TwinPrefs => ({ personalise: true, companionContext: false, interests: [], hardAreas: [], confidence: {}, onboarded: false });
+export const defaultPrefs = (): TwinPrefs => ({ personalise: false, companionContext: false, interests: [], hardAreas: [], confidence: {}, onboarded: false });
+
+/** Personalisation is active only after an explicit opt-in. Older saved prefs that defaulted to "on" without consent read as off. */
+export function normalisePrefs(p: TwinPrefs): TwinPrefs {
+  const on = !!p.personalise && !!p.consentedAt;
+  return { ...p, personalise: on, companionContext: on && !!p.companionContext };
+}
 
 /* ---------------- capture ---------------- */
 

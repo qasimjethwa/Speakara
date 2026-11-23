@@ -50,8 +50,8 @@ export function useTwinView() {
       estimates: SKILLS.map((s) => estimate(events, s, now, s === "isl" ? undefined : course.id)),
       mistakes: repeatedMistakes(events, now, course.id).map((m) => ({ ...m, label: label(m.item) ?? m.item })),
       recommendations: prefs.personalise ? recommend(events, prefs, ctx, now) : [],
-      difficulty: difficultyFor(events, prefs, course.id, now),
-      brief: companionBrief(events, prefs, course.id, now, label),
+      difficulty: prefs.personalise ? difficultyFor(events, prefs, course.id, now) : 1 as const,
+      brief: prefs.personalise ? companionBrief(events, prefs, course.id, now, label) : [],
     };
   }, [state, course, twin, ready, userId]);
 }

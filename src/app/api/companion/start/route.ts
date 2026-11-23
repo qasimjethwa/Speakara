@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const avatar = avatarCatalog().find((a) => a.id === prefs.avatar_id)!;
     // Personal Learning Twin: a short, learner-consented teaching brief (measured facts and stated preferences only).
     const { data: twin } = await db.from("learning_twin").select("prefs, brief").eq("user_id", userId).maybeSingle();
-    const twinBrief = twin?.prefs?.companionContext && Array.isArray(twin.brief) ? (twin.brief as unknown[]).filter((x): x is string => typeof x === "string").slice(0, 12).map((x) => x.slice(0, 300)) : [];
+    const twinBrief = twin?.prefs?.personalise && twin.prefs.consentedAt && twin.prefs.companionContext && Array.isArray(twin.brief) ? (twin.brief as unknown[]).filter((x): x is string => typeof x === "string").slice(0, 12).map((x) => x.slice(0, 300)) : [];
     const started = await liveOp<Started>({ op: "avatar_start", uid: userId, config: { ...prefs, avatar_name: avatar.name, ...(twinBrief.length ? { twin_brief: twinBrief } : {}) } }, token);
     try {
       const t = await roomToken({ room: started.room_name, identity: userId, name: me?.display_name ?? "Learner", camera: false, dispatch: { sessionId: started.session_id } });

@@ -7,7 +7,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
-import { ArrowRight, BookOpenText, Camera, ChevronsDown, ChevronsUp, ExternalLink, Lightbulb, MessageCircleQuestion, Repeat2, Send, Snail, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpenText, Camera, ChevronsDown, ChevronsUp, ExternalLink, Lightbulb, Repeat2, Snail, Sparkles } from "lucide-react";
 import { useT } from "@/lib/i18n";
 import { checkWritten, ISLRTC_DICTIONARY, type IslCourse, type IslUnit } from "@/lib/isl/courses";
 import { recordEvents } from "@/lib/twin/store";
@@ -30,7 +30,6 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
   const [s, dispatch] = useReducer((st: LessonState, a: Action | { type: "reset"; model: LearnerModel }) => a.type === "reset" ? startLesson(course, unit, a.model) : reduce(st, unit, a), null, () => startLesson(course, unit));
   const [replay, setReplay] = useState(0);
   const [typed, setTyped] = useState("");
-  const [ask, setAsk] = useState(""); const [reply, setReply] = useState<{ q: string; a: string } | null>(null); const [asking, setAsking] = useState(false);
   const recorded = useRef(false);
   useEffect(() => { dispatch({ type: "reset", model: loadModel(course.id) }); }, [course.id, unit.id]);
   useEffect(() => { try { localStorage.setItem(MODEL_KEY(course.id), JSON.stringify({ difficulty: s.model.difficulty, speed: s.model.speed, mistakes: s.model.mistakes })); } catch { /* ignore */ } }, [s.model, course.id]);
@@ -38,10 +37,10 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
 
   const w = unit.vocab.find((x) => x.id === (s.step.wordId ?? s.queue[s.current]));
   const clip = w && ["teach", "example", "meaning", "practice"].includes(s.step.kind) ? clips[w.sign] ?? null : null;
-  const mood: Mood = asking ? "thinking" : reply ? "explaining" : s.step.mood;
+  const mood: Mood = s.step.mood;
   const lines = useMemo(() => s.step.lines.map((l, i) => ({ text: t(l.key, l.params), lang: l.target ? lang : undefined, strong: i === 0 })), [s.step.lines, t, lang]);
   const act = (a: Action) => {
-    setReply(null); setTyped("");
+    setTyped("");
     if (a.type === "answer" && s.step.kind === "check" && s.step.question && w) {   // Learning Twin: graded ISL answer
       const ok = s.step.question.kind === "type" ? checkWritten(a.value, [w.text]) : a.value === s.step.question.wordId;
       recordEvents([{ at: Date.now(), course: `isl-${lang}`, skill: "isl", correct: ok, item: w.id, topic: unit.title, source: "isl" }]);
@@ -51,17 +50,6 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
   const progress = Math.min(1, s.current / s.queue.length);
   const q = s.step.question;
 
-  const askTeacher = async () => {
-    const question = ask.trim(); if (!question) return; setAsking(true); setReply(null);
-    let answer = "";
-    try {
-      const r = await fetch("/api/isl/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ course: course.id, unit: unit.id, word: w?.id, question }) });
-      const j = await r.json(); if (r.ok && typeof j.answer === "string") answer = j.answer;
-    } catch { /* offline: fall through */ }
-    if (!answer && w) answer = t("“{w}” means “{m}”. Example: {e} ({em})", { w: w.text, m: w.meaning, e: w.example, em: w.exampleMeaning });
-    setReply({ q: question, a: answer || t("I couldn’t answer that right now. Try “Explain again” or “Show another example”.") }); setAsk(""); setAsking(false);
-  };
-
   const pill = "inline-flex min-h-11 items-center gap-1.5 rounded-full border border-line bg-paper px-4 text-sm font-bold text-ink hover:bg-mist disabled:opacity-40";
   const canHelp = !!w && !["greet", "intro", "recap", "done"].includes(s.step.kind);
 
@@ -69,7 +57,7 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_400px]">
       <div>
         <SignTeacher clip={clip} mood={mood} speed={s.model.speed} replayKey={replay} targetLang={lang} fallback={{ start: 0, end: 1, text: w?.text ?? "" }}
-          captionLines={reply ? [{ text: reply.a, strong: true }] : lines} />
+          captionLines={lines} />
       </div>
 
       <section className="space-y-4" aria-label={t("Lesson")}>
@@ -143,13 +131,6 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
           </div>
         )}
 
-        <form onSubmit={(e) => { e.preventDefault(); void askTeacher(); }} className="flex gap-2">
-          <label className="sr-only" htmlFor="isl-ask">{t("Ask a question")}</label>
-          <div className="relative flex-1"><MessageCircleQuestion size={18} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sub" aria-hidden="true" />
-            <input id="isl-ask" value={ask} onChange={(e) => setAsk(e.target.value)} maxLength={300} placeholder={t("Ask a question about this word…")} className="min-h-12 w-full rounded-2xl border border-line bg-paper pl-10 pr-3" /></div>
-          <button type="submit" disabled={asking || !ask.trim()} className="min-h-12 min-w-12 rounded-2xl bg-ink px-4 text-white disabled:opacity-40" aria-label={t("Send question")}><Send size={18} aria-hidden="true" /></button>
-        </form>
-        {reply && <p className="text-sm text-sub">{t("You asked: {q}", { q: reply.q })}</p>}
       </section>
     </div>
   );

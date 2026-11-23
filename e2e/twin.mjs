@@ -77,10 +77,36 @@ async function setup(p, answers) {
   await p.getByRole("button", { name: "Save", exact: true }).click(); await p.waitForURL(/learning-twin$/);
 }
 const recIds = async (p) => p.locator("[data-testid=next-best-step] [data-rec]").evaluateAll((els) => els.map((e) => e.getAttribute("data-rec")));
+const events = (p) => p.evaluate(() => JSON.parse(localStorage.getItem("speakara:twin:v1:guest") ?? '{"events":[]}').events ?? []);
+async function enable(p) {
+  await p.goto(`${BASE}/profile/learning-twin`, { waitUntil: "networkidle" });
+  const on = p.getByRole("button", { name: "Turn on personalised learning" });
+  expect(await on.isDisabled(), "turning it on needs the consent box ticked first");
+  await p.getByLabel(/I agree to Speakara using my exercise results/).check(); await on.click();
+  await p.locator("[data-testid=twin-status][data-on=true]").waitFor();
+}
 const bandOf = async (p, skill) => p.locator(`[data-skill=${skill}]`).getAttribute("data-band");
 
 const browser = await chromium.launch();
 const A = await learner(browser, "Asha"), B = await learner(browser, "Ben");
+
+// 0. default: the original Learn experience, personalisation OFF until the learner consents
+await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" });
+expect(await A.locator("[data-testid=next-best-step]").count() === 0, "the Learn path has no recommendation panel (original layout)");
+expect(await A.getByRole("link", { name: /Learn through Indian Sign Language/ }).count() === 1 && await A.locator("main a[href^='/lesson']").count() > 0, "the course path, ISL banner and lessons are shown as before");
+const btn = A.getByTestId("learning-companion-button"); const bb = await btn.boundingBox(); const mb = await A.locator("main").boundingBox();
+expect(bb && mb && bb.x + bb.width > mb.x + mb.width * 0.6 && bb.y < mb.y + 140, "a small Learning Companion button sits in the top-right of the Learn page");
+await shot(A, "learn-default");
+await btn.click(); await A.waitForURL(/learning-twin$/);
+expect(await A.locator("[data-testid=twin-status][data-on=false]").count() === 1, "the button opens the Personal Learning Twin page, off by default");
+expect(await A.locator("#map-title").count() === 0, "while off, no personalised learning map is shown");
+await shot(A, "twin-off");
+await lesson(A, "/lesson?lesson=es1.1", () => false);
+expect((await events(A)).length === 0, "while off (no consent yet), no learning events are recorded");
+const t0 = await A.evaluate(() => JSON.parse(localStorage.getItem("speakara:learner:v1")));
+expect(t0.xp > 0 && Object.keys(t0.completed).length === 1, "lessons, XP and progress work normally while it is off");
+await enable(A); await enable(B);
+await shot(A, "twin-on");
 
 // 1–2. different goals and preferences (through the real onboarding form)
 await setup(A, { buttons: ["I know a little", "Travel", "Explanations first, then practice", "Detailed corrections", "@Travel"], speaking: 4 });
@@ -116,7 +142,7 @@ expect(ra.includes("weak-grammar") && !ra.includes("weak-vocabulary"), "Asha is 
 expect(rb.includes("weak-vocabulary") && !rb.includes("weak-grammar"), "Ben is sent to vocabulary practice");
 expect(JSON.stringify(ra) !== JSON.stringify(rb), "the two learners get different learning paths");
 expect(/Recommended because you got \d+ of \d+ grammar/i.test(await A.locator("[data-testid=next-best-step]").innerText()), "Asha’s grammar suggestion explains itself with her real numbers");
-await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" }); expect(await A.locator("[data-testid=next-best-step]").count() === 1, "the next best step appears on the course path");
+await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" }); expect(await A.locator("[data-testid=next-best-step]").count() === 0 && await A.getByTestId("learning-companion-button").count() === 1, "even when on, the Learn path keeps its original layout");
 
 // 7. different AI teaching instructions (the tutor request carries the Twin's brief)
 async function tutorLevel(p) {
@@ -139,12 +165,16 @@ await B.goto(`${BASE}/profile/learning-twin`, { waitUntil: "networkidle" });
 await B.getByRole("button", { name: "Reset preferences" }).click(); await B.getByRole("button", { name: "Reset", exact: true }).click();
 expect(/preferences were reset/i.test(await B.locator("main").innerText()), "preferences can be reset");
 expect(await bandOf(B, "vocabulary") === "needs work", "resetting preferences keeps measured skills (they are separate)");
-await B.getByLabel(/Personalised recommendations/).uncheck(); await B.waitForTimeout(300);
+await B.getByRole("button", { name: "Turn off" }).click(); await B.locator("[data-testid=twin-status][data-on=false]").waitFor();
 expect(await B.locator("[data-testid=next-best-step] [data-rec]").count() === 0, "turning personalisation off removes recommendations");
+const lbOff = await tutorLevel(B);
+expect(!/vocabulary|gently|speaking feels hard/i.test(lbOff), `with it off the tutor gets no learning context: "${lbOff.slice(0, 80)}"`);
+await B.goto(`${BASE}/live/community`, { waitUntil: "networkidle" }); expect(await B.locator("[data-testid=conversation-plan]").count() === 0, "with it off there is no personalised conversation plan");
+await B.goto(`${BASE}/profile/learning-twin`, { waitUntil: "networkidle" });
 const before = (await B.evaluate(() => JSON.parse(localStorage.getItem("speakara:twin:v1:guest")).events)).length;
 await lesson(B, `/lesson?lesson=${firstLessons[0]}`, () => false);
 expect((await B.evaluate(() => JSON.parse(localStorage.getItem("speakara:twin:v1:guest")).events)).length === before, "with personalisation off, no learning events are recorded");
-await B.goto(`${BASE}/profile/learning-twin`, { waitUntil: "networkidle" });
+await enable(B); expect(await bandOf(B, "vocabulary") === "needs work", "it can be turned on again; the earlier measurements are still there");
 await B.getByRole("button", { name: "Delete learning history" }).click(); await B.getByRole("button", { name: "Delete", exact: true }).click();
 expect(await bandOf(B, "vocabulary") === "unknown", "learning history can be deleted");
 
@@ -154,7 +184,7 @@ expect(st.xp > 0 && Object.keys(st.completed).length >= 1, "existing guest progr
 
 // sidebar entry + AI coach panel (without a Gemini key it must fall back to the rule-based reason)
 await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" });
-await A.getByRole("link", { name: "Learning companion" }).first().click(); await A.waitForURL(/learning-twin$/);
+await A.locator("nav").getByRole("link", { name: "Learning companion" }).first().click(); await A.waitForURL(/learning-twin$/);
 expect(true, "the sidebar has a Learning companion entry that opens the dashboard");
 await A.getByRole("button", { name: "Explain my next step" }).click();
 await A.waitForFunction(() => { const t = document.querySelector("[data-testid=companion-coach] [aria-live]")?.textContent ?? ""; return t.length > 0 && !/Thinking/.test(t); }, null, { timeout: 25000 });
@@ -162,13 +192,17 @@ const coach = await A.locator("[data-testid=companion-coach]").innerText();
 expect(/Recommended because|\w{20,}/.test(coach), "the AI coach answers, or falls back to the rule-based reason when AI is unavailable");
 
 // accessibility of the new pages
-for (const [p, path] of [[A, "/profile/learning-twin"], [A, "/profile/learning-twin/setup"]]) {
+for (const [p, path] of [[A, "/profile/learning-twin"], [B, "/profile/learning-twin"], [A, "/profile/learning-twin/setup"]]) {
   await p.goto(BASE + path, { waitUntil: "networkidle" }); await p.addScriptTag({ content: axeSource });
   const r = await p.evaluate(async () => await window.axe.run(document, { runOnly: { type: "tag", values: ["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"] } }));
   expect(r.violations.length === 0, `axe ${path}: ${r.violations.map((v) => v.id).join(", ") || "clean"}`);
 }
-const m = await browser.newPage({ viewport: { width: 360, height: 780 } });
-for (const path of ["/profile/learning-twin", "/profile/learning-twin/setup"]) { await m.goto(BASE + path, { waitUntil: "networkidle" }); const o = await m.evaluate(() => document.documentElement.scrollWidth - innerWidth); expect(o <= 0, `${path} fits 360px`); }
+const mctx = await browser.newContext({ viewport: { width: 360, height: 780 }, isMobile: true, hasTouch: true });
+await mctx.addInitScript((x) => { if (!localStorage.getItem("speakara:learner:v1")) localStorage.setItem("speakara:learner:v1", x); }, seed("Mia"));
+const m = await mctx.newPage();
+await m.goto(`${BASE}/learn`, { waitUntil: "networkidle" }); expect(await m.getByTestId("learning-companion-button").isVisible(), "the Learning Companion button is visible on a 360px phone"); await shot(m, "learn-mobile");
+await m.goto(`${BASE}/profile/learning-twin`, { waitUntil: "networkidle" }); await shot(m, "twin-off-mobile");
+for (const path of ["/learn", "/profile/learning-twin", "/profile/learning-twin/setup"]) { await m.goto(BASE + path, { waitUntil: "networkidle" }); const o = await m.evaluate(() => document.documentElement.scrollWidth - innerWidth); expect(o <= 0, `${path} fits 360px`); }
 expect(A.errs.length + B.errs.length === 0, `no page errors ${[...A.errs, ...B.errs].join(" | ")}`);
 await browser.close();
 console.log(failures ? `${failures} FAILED` : "ALL LEARNING TWIN CHECKS PASSED"); process.exit(failures ? 1 : 0);

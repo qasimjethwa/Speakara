@@ -1,19 +1,49 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ArrowDown, ArrowUp, Info, Pencil, RotateCcw, ShieldCheck, Trash2 } from "lucide-react";
+import { ArrowDown, ArrowUp, Brain, Check, Info, Pencil, Power, RotateCcw, ShieldCheck, Trash2 } from "lucide-react";
 import { AppShell, PageTitle } from "@/components/AppShell";
 import { NextBestStep } from "@/components/twin/NextBestStep";
 import { CompanionCoach } from "@/components/twin/CompanionCoach";
 import { Button, Card, Notice } from "@/components/ui";
 import { useT } from "@/lib/i18n";
 import { band, SKILL_LABEL, type SkillEstimate } from "@/lib/twin/model";
-import { deleteAiMemory, deleteHistory, resetPrefs, saveBrief, savePrefs } from "@/lib/twin/store";
+import { deleteAiMemory, deleteHistory, resetPrefs, saveBrief, savePrefs, setPersonalisation } from "@/lib/twin/store";
 import { useTwinView } from "@/lib/twin/view";
 
 const BAND_STYLE = { strength: "bg-brand-soft text-brand-dark", steady: "bg-sky-soft text-sky-dark", "needs work": "bg-sun-soft text-sun-dark", unknown: "bg-mist text-sub" } as const;
 const BAND_LABEL = { strength: /*i18n*/ "Strength", steady: /*i18n*/ "Steady", "needs work": /*i18n*/ "Needs practice", unknown: /*i18n*/ "Not enough data" } as const;
 const CONF_LABEL = { "no data": /*i18n*/ "Not measured yet", "early estimate": /*i18n*/ "Early estimate", "developing estimate": /*i18n*/ "Developing estimate", "well measured": /*i18n*/ "Well measured" } as const;
+
+/** What the Twin does, and the explicit consent switch. Off is the default. */
+function Consent({ on }: { on: boolean }) {
+  const { t } = useT(); const [agree, setAgree] = useState(false);
+  if (on) return (
+    <section aria-labelledby="consent-title" data-testid="twin-status" data-on="true" className="mb-6 flex flex-wrap items-center gap-3 rounded-3xl border-2 border-brand bg-brand-soft p-4">
+      <Check size={22} className="text-brand-dark" aria-hidden="true" />
+      <div className="min-w-0 flex-1"><h2 id="consent-title" className="text-lg text-brand-dark">{t("Personalised learning is on")}</h2>
+        <p className="text-sm">{t("Speakara adapts recommendations, difficulty, revision and AI teaching to your progress. Turn it off at any time.")}</p></div>
+      <Button variant="secondary" onClick={() => void setPersonalisation(false)}><Power size={18} aria-hidden="true" />{t("Turn off")}</Button>
+    </section>
+  );
+  return (
+    <section aria-labelledby="consent-title" data-testid="twin-status" data-on="false" className="mb-6 rounded-3xl border-2 border-line bg-paper p-5">
+      <div className="mb-3 flex items-center gap-2"><Brain size={24} className="text-grape-dark" aria-hidden="true" /><h2 id="consent-title" className="text-xl">{t("Personalised learning is off")}</h2></div>
+      <p className="mb-3">{t("Your lessons, XP, gems, streaks and quests work exactly the same either way. Turn this on if you want Speakara to adapt to you.")}</p>
+      <h3 className="mb-1 text-base">{t("When it is on, Speakara will:")}</h3>
+      <ul className="mb-3 list-disc space-y-1 pl-5 text-sm">
+        <li>{t("Record whether each exercise answer was right or wrong, and which skill it practised.")}</li>
+        <li>{t("Suggest your next lesson and revision, with the reason for each suggestion.")}</li>
+        <li>{t("Adjust the AI tutor’s difficulty and conversation suggestions to your progress.")}</li>
+        <li>{t("Optionally share a short learning summary with the AI companion, only if you also allow it.")}</li>
+      </ul>
+      <p className="mb-4 flex items-start gap-2 text-sm text-sub"><ShieldCheck size={18} className="mt-0.5 shrink-0" aria-hidden="true" />{t("No audio, video or transcripts are stored for this. Other learners never see your results. You can turn it off or delete the history at any time.")}</p>
+      <label className="mb-3 flex min-h-11 items-start gap-3"><input type="checkbox" className="mt-1 h-5 w-5 accent-brand" checked={agree} onChange={(e) => setAgree(e.target.checked)} />
+        <span className="font-bold">{t("I agree to Speakara using my exercise results to personalise my learning.")}</span></label>
+      <Button disabled={!agree} onClick={() => void setPersonalisation(true)}><Power size={18} aria-hidden="true" />{t("Turn on personalised learning")}</Button>
+    </section>
+  );
+}
 
 function SkillRow({ e }: { e: SkillEstimate }) {
   const { t } = useT(); const b = band(e);
@@ -53,8 +83,10 @@ export default function LearningTwinPage() {
 
   return (
     <AppShell>
-      <PageTitle title={t("Learning companion")} sub={t("How Speakara adapts to you, based on your answers and what you’ve told us.")} />
+      <PageTitle title={t("Personal Learning Twin")} sub={t("An optional layer that adapts Speakara to your progress. Off unless you turn it on.")} />
       {done && <div className="mb-4"><Notice tone="success">{done}</Notice></div>}
+      {v.ready && <Consent on={p.personalise} />}
+      {p.personalise && <>
       {!p.onboarded && <div className="mb-4 rounded-2xl border-2 border-grape bg-grape-soft p-4"><p className="font-extrabold text-grape-dark">{t("Tell Speakara about your goals")}</p><p className="mb-3 text-sm">{t("Six quick questions, all optional. Your answers shape your recommendations.")}</p><Link href="/profile/learning-twin/setup" className="font-extrabold text-sky-dark underline">{t("Set up my Learning Twin")}</Link></div>}
 
       <NextBestStep max={4} />
@@ -99,13 +131,13 @@ export default function LearningTwinPage() {
         <p className="mt-1 text-xs text-sub">{t("Self-reported answers guide recommendations but never change your measured estimates.")}</p>
       </section>
 
+      </>}
+
       <section aria-labelledby="priv-title" className="mb-6 space-y-3">
         <h2 id="priv-title" className="flex items-center gap-2 text-lg"><ShieldCheck size={20} aria-hidden="true" />{t("Privacy and control")}</h2>
-        <label className="flex min-h-11 items-start gap-3 rounded-2xl border-2 border-line p-3"><input type="checkbox" className="mt-1 h-5 w-5" checked={p.personalise} onChange={(e) => void savePrefs({ personalise: e.target.checked })} />
-          <span><span className="block font-extrabold">{t("Personalised recommendations")}</span><span className="block text-sm text-sub">{t("When off, Speakara stops recording learning events and shows the standard course.")}</span></span></label>
-        <label className="flex min-h-11 items-start gap-3 rounded-2xl border-2 border-line p-3"><input type="checkbox" className="mt-1 h-5 w-5" checked={p.companionContext} disabled={!v.userId} onChange={(e) => void savePrefs({ companionContext: e.target.checked })} />
+        {p.personalise && <label className="flex min-h-11 items-start gap-3 rounded-2xl border-2 border-line p-3"><input type="checkbox" className="mt-1 h-5 w-5" checked={p.companionContext} disabled={!v.userId} onChange={(e) => void savePrefs({ companionContext: e.target.checked })} />
           <span><span className="block font-extrabold">{t("Share a learning summary with the AI companion")}</span><span className="block text-sm text-sub">{v.userId ? t("Sends only your measured strengths and weaker areas, repeated mistakes and stated preferences, so it can adapt. No audio or transcripts.") : t("Sign in to use the AI companion.")}</span>
-            {p.companionContext && v.brief.length > 0 && <details className="mt-1 text-sm"><summary className="cursor-pointer font-bold text-sky-dark">{t("See exactly what is shared")}</summary><ul className="mt-1 list-disc pl-5 text-sub">{v.brief.map((b) => <li key={b}>{b}</li>)}</ul></details>}</span></label>
+            {p.companionContext && v.brief.length > 0 && <details className="mt-1 text-sm"><summary className="cursor-pointer font-bold text-sky-dark">{t("See exactly what is shared")}</summary><ul className="mt-1 list-disc pl-5 text-sub">{v.brief.map((b) => <li key={b}>{b}</li>)}</ul></details>}</span></label>}
         <p className="text-sm text-sub">{t("Your learning data is private. Other learners never see your weaker areas or mistakes.")}</p>
         <div className="flex flex-wrap gap-2">
           <Button variant="secondary" onClick={() => setConfirm("prefs")}><RotateCcw size={18} aria-hidden="true" />{t("Reset preferences")}</Button>

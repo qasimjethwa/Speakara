@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { BookOpen, Check, Lock, NotebookText, Star, FastForward } from "lucide-react";
+import { BookOpen, Brain, Check, Lock, NotebookText, Star, FastForward } from "lucide-react";
 import { AppShell } from "@/components/AppShell";
 import { Mascot } from "@/components/Mascot";
 import { useStore } from "@/lib/state/store";
@@ -8,7 +8,6 @@ import { allLessons, getCourse, lessonKey } from "@/lib/content";
 import { isLessonUnlocked } from "@/lib/state/actions";
 import type { UnitColor } from "@/lib/content/types";
 import { useT } from "@/lib/i18n";
-import { NextBestStep } from "@/components/twin/NextBestStep";
 
 const TONE: Record<UnitColor, { bg: string; edge: string; text: string }> = {
   brand: { bg: "bg-brand", edge: "border-brand-dark", text: "text-brand-dark" }, sky: { bg: "bg-sky", edge: "border-sky-dark", text: "text-sky-dark" },
@@ -25,7 +24,11 @@ function Path() {
   let n = -1;
   return (
     <div>
-      <NextBestStep compact />
+      <div className="mb-3 flex justify-end">
+        <Link href="/profile/learning-twin" data-testid="learning-companion-button" className="flex min-h-11 items-center gap-1.5 rounded-full border-2 border-b-4 border-line bg-paper px-3 text-sm font-extrabold text-grape-dark hover:bg-mist">
+          <Brain size={16} aria-hidden="true" />{t("Learning Companion")}
+        </Link>
+      </div>
       <Link href="/learn/isl" className="key mb-5 flex items-center gap-3 rounded-2xl border-2 border-b-4 border-grape bg-grape-soft p-3 text-grape-dark">
         <span className="text-2xl" aria-hidden="true">🤟</span>
         <span className="min-w-0 flex-1"><span className="block font-extrabold">{t("Learn through Indian Sign Language")}</span><span className="block text-sm">{t("English and Spanish courses designed for Deaf learners.")}</span></span>

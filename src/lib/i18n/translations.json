@@ -4982,5 +4982,77 @@
  "Written by AI from your measured results and preferences. It explains Speakara’s suggestions; it doesn’t change your scores.": [
   "Escrito por IA a partir de tus resultados medidos y preferencias. Explica las sugerencias de Speakara; no cambia tus puntuaciones.",
   "आपके मापे गए नतीजों और पसंद से AI द्वारा लिखा गया। यह Speakara के सुझाव समझाता है; आपके स्कोर नहीं बदलता।"
+ ],
+ "Adjust the AI tutor’s difficulty and conversation suggestions to your progress.": [
+  "Ajustar la dificultad del tutor de IA y las sugerencias de conversación a tu progreso.",
+  "एआई ट्यूटर की कठिनाई और बातचीत के सुझाव आपकी प्रगति के अनुसार बदलेगा।"
+ ],
+ "An optional layer that adapts Speakara to your progress. Off unless you turn it on.": [
+  "Una capa opcional que adapta Speakara a tu progreso. Desactivada salvo que la actives.",
+  "एक वैकल्पिक सुविधा जो Speakara को आपकी प्रगति के अनुसार ढालती है। जब तक आप चालू न करें, यह बंद रहती है।"
+ ],
+ "I agree to Speakara using my exercise results to personalise my learning.": [
+  "Acepto que Speakara use los resultados de mis ejercicios para personalizar mi aprendizaje.",
+  "मैं सहमत हूँ कि Speakara मेरे अभ्यास के परिणामों से मेरी पढ़ाई को व्यक्तिगत बनाए।"
+ ],
+ "Learning Companion": [
+  "Compañero de aprendizaje",
+  "लर्निंग साथी"
+ ],
+ "No audio, video or transcripts are stored for this. Other learners never see your results. You can turn it off or delete the history at any time.": [
+  "Para esto no se guarda audio, vídeo ni transcripciones. Otros estudiantes nunca ven tus resultados. Puedes desactivarlo o borrar el historial cuando quieras.",
+  "इसके लिए कोई ऑडियो, वीडियो या ट्रांसक्रिप्ट सेव नहीं होता। दूसरे सीखने वाले आपके परिणाम कभी नहीं देखते। आप इसे कभी भी बंद कर सकते हैं या इतिहास मिटा सकते हैं।"
+ ],
+ "Optionally share a short learning summary with the AI companion, only if you also allow it.": [
+  "Compartir, si lo permites, un breve resumen de aprendizaje con el compañero de IA.",
+  "अगर आप अनुमति दें, तो एआई साथी के साथ एक छोटा लर्निंग सारांश साझा करेगा।"
+ ],
+ "Personal Learning Twin": [
+  "Gemelo de aprendizaje personal",
+  "पर्सनल लर्निंग ट्विन"
+ ],
+ "Personal Learning Twin is off, so the companion uses its standard teaching.": [
+  "El Gemelo de aprendizaje personal está desactivado, así que el compañero usa su enseñanza estándar.",
+  "पर्सनल लर्निंग ट्विन बंद है, इसलिए साथी सामान्य तरीके से पढ़ाता है।"
+ ],
+ "Personalised learning is off": [
+  "El aprendizaje personalizado está desactivado",
+  "व्यक्तिगत लर्निंग बंद है"
+ ],
+ "Personalised learning is on": [
+  "El aprendizaje personalizado está activado",
+  "व्यक्तिगत लर्निंग चालू है"
+ ],
+ "Record whether each exercise answer was right or wrong, and which skill it practised.": [
+  "Registrar si cada respuesta fue correcta o no, y qué habilidad practicó.",
+  "हर अभ्यास का उत्तर सही था या गलत, और उसने कौन-सा कौशल अभ्यास कराया, यह दर्ज करेगा।"
+ ],
+ "Speakara adapts recommendations, difficulty, revision and AI teaching to your progress. Turn it off at any time.": [
+  "Speakara adapta las recomendaciones, la dificultad, el repaso y la enseñanza de IA a tu progreso. Desactívalo cuando quieras.",
+  "Speakara सुझाव, कठिनाई, दोहराव और एआई शिक्षण को आपकी प्रगति के अनुसार ढालता है। इसे कभी भी बंद करें।"
+ ],
+ "Suggest your next lesson and revision, with the reason for each suggestion.": [
+  "Sugerir tu próxima lección y repaso, con el motivo de cada sugerencia.",
+  "आपका अगला पाठ और दोहराव सुझाएगा, हर सुझाव का कारण बताते हुए।"
+ ],
+ "Turn it on": [
+  "Actívalo",
+  "इसे चालू करें"
+ ],
+ "Turn off": [
+  "Desactivar",
+  "बंद करें"
+ ],
+ "Turn on personalised learning": [
+  "Activar el aprendizaje personalizado",
+  "व्यक्तिगत लर्निंग चालू करें"
+ ],
+ "When it is on, Speakara will:": [
+  "Cuando esté activado, Speakara:",
+  "चालू होने पर Speakara:"
+ ],
+ "Your lessons, XP, gems, streaks and quests work exactly the same either way. Turn this on if you want Speakara to adapt to you.": [
+  "Tus lecciones, XP, gemas, rachas y misiones funcionan igual en ambos casos. Actívalo si quieres que Speakara se adapte a ti.",
+  "आपके पाठ, XP, जेम्स, स्ट्रीक और क्वेस्ट दोनों हालात में बिल्कुल वैसे ही चलते हैं। अगर आप चाहते हैं कि Speakara आपके अनुसार ढले, तो इसे चालू करें।"
  ]
 }
