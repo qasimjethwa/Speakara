@@ -4,7 +4,9 @@ import { cloudConfigured, supabase } from "../supabase";
 import { clearLocal, loadCloud, loadLocal, saveLocal, saveProfile } from "./persistence";
 import { initialState, type Conversation, type LearnerState, type Profile } from "./types";
 import { buyStreakFreeze, completeSession, saveConversation as saveConversationLocal, updateProfile as applyProfile, type SessionSummary } from "./actions";
-import { getCourse } from "../content";
+import { findLesson, getCourse } from "../content";
+import { eventsFromSession } from "../twin/model";
+import { loadTwin, recordEvents } from "../twin/store";
 import { buildSession, type SessionPlan } from "../engine/plan";
 import { gradeAttempts, type Attempt } from "../engine/grade";
 import type { ProgressRequest, ProgressResponse } from "../server/progress";
@@ -30,10 +32,20 @@ const Ctx = createContext<Store | null>(null);
 const newOpId = () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}${Math.random().toString(36).slice(2, 8)}`;
 const hasProgress = (s: LearnerState) => s.xp > 0 || Object.keys(s.completed).length > 0;
 
+/** Personal Learning Twin: grade first attempts with the same answer key and record skill events (never blocks a session). */
+function captureTwin(plan: SessionPlan, attempts: Attempt[]) {
+  try {
+    const course = getCourse(plan.courseId); const built = buildSession(course, plan); if (!built) return;
+    const topic = plan.type === "lesson" ? findLesson(course, plan.lessonId)?.lesson.title : plan.type === "story" ? plan.storyId : undefined;
+    recordEvents(eventsFromSession(built.exercises, attempts, course.id, plan.type === "placement" ? "placement" : plan.type, Date.now(), topic));
+  } catch { /* personalisation must never break learning */ }
+}
+
 export function StoreProvider({ children }: { children: ReactNode }) {
   const [state, setState] = useState<LearnerState>(() => initialState(0));
   const [ready, setReady] = useState(false);
   const [userId, setUserId] = useState<string | null>(null);
+  useEffect(() => { void loadTwin(userId); }, [userId]);
   const [email, setEmail] = useState<string | null>(null);
   const [syncError, setSyncError] = useState<string | null>(null);
   const [recovering, setRecovering] = useState(false);
@@ -102,12 +114,14 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         const r = await callServer({ op: "session", tzOffsetMin: -new Date().getTimezoneOffset(), plan, attempts, seconds });
         put(r.state); setSyncError(null);
         if (!r.summary) throw new Error("This session was already saved.");
+        captureTwin(plan, attempts);
         return r.summary;
       }
       const course = getCourse(plan.courseId); const built = buildSession(course, plan);
       if (!built) throw new Error("That session does not exist.");
       const done = completeSession(stateRef.current, gradeAttempts(course, built, attempts, seconds), Date.now());
       put(done.state); saveLocal(done.state);
+      captureTwin(plan, attempts);
       return done.summary;
     },
     buyFreeze: async () => {

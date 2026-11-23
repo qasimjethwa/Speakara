@@ -66,7 +66,7 @@ export default function Profile() {
       <div className="mb-6 flex items-center gap-4">
         <span className="grid h-20 w-20 shrink-0 place-items-center rounded-full bg-brand text-3xl font-extrabold text-white" aria-hidden="true">{(state.profile.name || "L").slice(0, 1).toUpperCase()}</span>
         <div className="min-w-0 flex-1"><h1 className="truncate text-2xl">{state.profile.name || t("Learner")}</h1><p className="truncate text-sub">{mode === "cloud" ? `@${state.profile.username} · ${email}` : t("Guest · saved on this device")}</p><p className="text-sm text-sub">{t("Joined {date}", { date: date(state.profile.createdAt, { month: "long", year: "numeric" }) })}</p></div>
-        <Link href="/settings" aria-label={t("Settings")} className="grid h-11 w-11 place-items-center rounded-xl border-2 border-line-dark text-sub"><Settings /></Link>
+        <Link href="/profile/learning-twin" className="flex min-h-11 items-center gap-1 rounded-xl border-2 border-line-dark px-3 text-sm font-extrabold text-grape-dark">{t("Learning Twin")}</Link><Link href="/settings" aria-label={t("Settings")} className="grid h-11 w-11 place-items-center rounded-xl border-2 border-line-dark text-sub"><Settings /></Link>
       </div>
       <h2 className="mb-3 text-lg">{t("Statistics")}</h2>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">

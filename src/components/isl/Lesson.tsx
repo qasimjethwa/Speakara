@@ -9,7 +9,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { ArrowRight, BookOpenText, Camera, ChevronsDown, ChevronsUp, ExternalLink, Lightbulb, MessageCircleQuestion, Repeat2, Send, Snail, Sparkles } from "lucide-react";
 import { useT } from "@/lib/i18n";
-import { ISLRTC_DICTIONARY, type IslCourse, type IslUnit } from "@/lib/isl/courses";
+import { checkWritten, ISLRTC_DICTIONARY, type IslCourse, type IslUnit } from "@/lib/isl/courses";
+import { recordEvents } from "@/lib/twin/store";
 import { itemId, useIslProgress, useValidatedClips } from "@/lib/isl/data";
 import { lessonScore, newModel, reduce, startLesson, type Action, type LearnerModel, type LessonState } from "@/lib/isl/engine";
 import type { Mood } from "@/lib/isl/expression";
@@ -39,7 +40,14 @@ export function Lesson({ course, unit }: { course: IslCourse; unit: IslUnit }) {
   const clip = w && ["teach", "example", "meaning", "practice"].includes(s.step.kind) ? clips[w.sign] ?? null : null;
   const mood: Mood = asking ? "thinking" : reply ? "explaining" : s.step.mood;
   const lines = useMemo(() => s.step.lines.map((l, i) => ({ text: t(l.key, l.params), lang: l.target ? lang : undefined, strong: i === 0 })), [s.step.lines, t, lang]);
-  const act = (a: Action) => { setReply(null); setTyped(""); dispatch(a); if (a.type === "repeat") setReplay((r) => r + 1); };
+  const act = (a: Action) => {
+    setReply(null); setTyped("");
+    if (a.type === "answer" && s.step.kind === "check" && s.step.question && w) {   // Learning Twin: graded ISL answer
+      const ok = s.step.question.kind === "type" ? checkWritten(a.value, [w.text]) : a.value === s.step.question.wordId;
+      recordEvents([{ at: Date.now(), course: `isl-${lang}`, skill: "isl", correct: ok, item: w.id, topic: unit.title, source: "isl" }]);
+    }
+    dispatch(a); if (a.type === "repeat") setReplay((r) => r + 1);
+  };
   const progress = Math.min(1, s.current / s.queue.length);
   const q = s.step.question;
 

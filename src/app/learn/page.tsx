@@ -8,6 +8,7 @@ import { allLessons, getCourse, lessonKey } from "@/lib/content";
 import { isLessonUnlocked } from "@/lib/state/actions";
 import type { UnitColor } from "@/lib/content/types";
 import { useT } from "@/lib/i18n";
+import { NextBestStep } from "@/components/twin/NextBestStep";
 
 const TONE: Record<UnitColor, { bg: string; edge: string; text: string }> = {
   brand: { bg: "bg-brand", edge: "border-brand-dark", text: "text-brand-dark" }, sky: { bg: "bg-sky", edge: "border-sky-dark", text: "text-sky-dark" },
@@ -24,6 +25,7 @@ function Path() {
   let n = -1;
   return (
     <div>
+      <NextBestStep compact />
       <Link href="/learn/isl" className="key mb-5 flex items-center gap-3 rounded-2xl border-2 border-b-4 border-grape bg-grape-soft p-3 text-grape-dark">
         <span className="text-2xl" aria-hidden="true">🤟</span>
         <span className="min-w-0 flex-1"><span className="block font-extrabold">{t("Learn through Indian Sign Language")}</span><span className="block text-sm">{t("English and Spanish courses designed for Deaf learners.")}</span></span>

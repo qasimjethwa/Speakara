@@ -5,7 +5,7 @@ import { Volume2 } from "lucide-react";
 import { useStore } from "@/lib/state/store";
 import { allLessons, allSentences, allWords, findLesson, getCourse, lessonKey, wordKey } from "@/lib/content";
 import { PRACTICE_MODES, type PracticeMode } from "@/lib/engine/exercises";
-import { buildSession, type SessionPlan } from "@/lib/engine/plan";
+import { buildSession, PLACEMENT_SEED, type SessionPlan } from "@/lib/engine/plan";
 import type { Attempt } from "@/lib/engine/grade";
 import { isDue } from "@/lib/engine/srs";
 import type { SessionSummary } from "@/lib/state/actions";
@@ -21,7 +21,7 @@ function Session() {
   const [seed] = useState(() => Date.now() % 2_000_000_000); const [summary, setSummary] = useState<SessionSummary | null>(null);
   const [started, setStarted] = useState(false); const [pending, setPending] = useState<{ attempts: Attempt[]; seconds: number; plan: SessionPlan; title: string; gated: boolean } | null>(null);
   const [saving, setSaving] = useState(false); const [error, setError] = useState<string | null>(null); const [ai, setAi] = useState(false);
-  const lessonId = q.get("lesson"), modeParam = q.get("mode"), testout = q.get("testout");
+  const lessonId = q.get("lesson"), modeParam = q.get("mode"), testout = q.get("testout"), placement = q.get("placement");
   const mode = PRACTICE_MODES.includes(modeParam as PracticeMode) ? (modeParam as PracticeMode) : "review";
   const course = getCourse(state.profile.courseId);
   useEffect(() => { fetch("/api/tutor").then((r) => r.json()).then((d: { provider: string }) => setAi(d.provider !== "scripted"), () => {}); }, []);
@@ -35,6 +35,8 @@ function Session() {
       const due = allWords(course).filter((w) => { const it = state.review[wordKey(course.id, w.id)]; return it && isDue(it, now) && !hit.lesson.words.some((x) => x.id === w.id); });
       return { plan: { type: "lesson", courseId: course.id, lessonId, seed, speech, reviewWordIds: due.slice(0, 2).map((w) => w.id) }, title: `${hit.unit.title}: ${hit.lesson.title}` };
     }
+    // optional starting check (Learning Twin diagnostic): the existing placement test; it can only open units, never lock them
+    if (placement !== null && course.units.length > 1) return { plan: { type: "placement", courseId: course.id, seed: PLACEMENT_SEED }, title: "Starting check" };
     if (testout !== null) return { plan: { type: "testout", courseId: course.id, unit: Number(testout), seed }, title: "You jumped ahead!" };
     const done = allLessons(course).filter((x) => state.completed[lessonKey(course.id, x.lesson.id)]).map((x) => x.lesson);
     let words = done.flatMap((l) => l.words), sentences = done.flatMap((l) => l.sentences);
@@ -43,7 +45,7 @@ function Session() {
     if (!sentences.length || !words.length) return { title: "", empty: mode === "mistakes" ? "No mistakes waiting — you’ve cleared them all!" : "Finish your first lesson and practice will be ready for you." };
     return { plan: { type: "practice", courseId: course.id, mode, seed, speech, wordIds: words.map((w) => w.id), sentenceIds: sentences.map((s) => s.id) }, title: "Practice makes it stick." };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ready, lessonId, mode, testout, seed, course.id]);
+  }, [ready, lessonId, mode, testout, placement, seed, course.id]);
   const built = useMemo(() => (plan?.plan ? buildSession(course, plan.plan) : null), [plan, course]);
 
   // The session being saved is kept with its own plan: if the account session expires while saving, the learner is

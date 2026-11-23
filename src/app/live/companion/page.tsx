@@ -7,6 +7,8 @@ import { Button, Card, LinkButton, Notice } from "@/components/ui";
 import { BackLink, CallControls, CallStatus, LiveGate, QuotaMeter, ReportView } from "@/components/live/LiveUi";
 import { useStore } from "@/lib/state/store";
 import { useT } from "@/lib/i18n";
+import { useTwinView } from "@/lib/twin/view";
+import { saveBrief, savePrefs } from "@/lib/twin/store";
 import { supabase } from "@/lib/supabase";
 import { getCourse } from "@/lib/content";
 import { clock, DEFAULT_PREFS, LEVELS, LIVE_LANGS, LIVE_SCENARIOS, PERSONALITIES, TEACHING_STYLES, VOICES, type AvatarChoice, type CompanionPrefs, type LearningReport } from "@/lib/live/catalog";
@@ -50,6 +52,8 @@ function Companion() {
   const initialLang = LIVE_LANGS.some((l) => l.code === course.target) ? course.target : "es";
   const [prefs, setPrefs] = useState<CompanionPrefs | null>(null);
   const [memoryConsent, setMemoryConsent] = useState(false);
+  const twin = useTwinView();
+  useEffect(() => { if (userId && twin.prefs.companionContext) void saveBrief(twin.brief); }, [userId, twin.prefs.companionContext, twin.brief]);
   const [phase, setPhase] = useState<Phase>("setup");
   const [busy, setBusy] = useState(false); const [error, setError] = useState<string | null>(null);
   const [session, setSession] = useState<Started | null>(null); const [report, setReport] = useState<LearningReport | null>(null); const [reportWait, setReportWait] = useState(false);
@@ -144,6 +148,8 @@ function Companion() {
           <Card className="space-y-3">
             <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 h-5 w-5 accent-brand" checked={memoryConsent} onChange={(e) => void setConsent(e.target.checked)} />
               <span><span className="block font-extrabold">{t("Remember what I learn")}</span><span className="text-sm text-sub">{t("Save words, corrections and pronunciation tips from my conversations so my companion can build on them. You can view or delete them at any time.")}</span></span></label>
+            <label className="flex items-start gap-3"><input type="checkbox" className="mt-1 h-5 w-5 accent-brand" checked={twin.prefs.companionContext} onChange={(e) => { void savePrefs({ companionContext: e.target.checked }).then(() => saveBrief(twin.brief)); }} />
+              <span><span className="block font-extrabold">{t("Use my Learning Twin")}</span><span className="text-sm text-sub">{t("Share my measured strengths, weaker areas, repeated mistakes and stated preferences so the companion adapts its difficulty, topics and corrections.")} <a href="/profile/learning-twin" className="font-bold text-sky-dark underline">{t("See what is shared")}</a></span></span></label>
             <p className="flex items-start gap-2 text-sm text-sub"><ShieldCheck size={18} className="mt-0.5 shrink-0" aria-hidden="true" />{t("You’ll be talking to an AI, not a person. Nothing is recorded; the conversation is transcribed only to write your report.")}</p>
           </Card>
           {error && <Notice tone="error">{t(error)}</Notice>}

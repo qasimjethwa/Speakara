@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { ArrowLeft, Mic, Send, Volume2, BookmarkPlus, Check } from "lucide-react";
 import { AppShell, PageTitle } from "@/components/AppShell";
 import { Mascot } from "@/components/Mascot";
 import { Notice } from "@/components/ui";
 import { useStore } from "@/lib/state/store";
+import { useSearchParams } from "next/navigation";
+import { useTwinView } from "@/lib/twin/view";
 import { getCourse } from "@/lib/content";
 import { SCENARIOS, hasScript, type Scenario } from "@/lib/tutor/scenarios";
 import type { TutorReply } from "@/lib/tutor/engine";
@@ -13,7 +15,14 @@ import { listenOnce, say, speechRecognizer } from "@/lib/audio";
 import { useT } from "@/lib/i18n";
 import { ArabicKeyboard } from "@/components/lesson/ArabicKeyboard";
 
+/** Learning Twin: the level line sent to the tutor, adjusted by measured difficulty and the learner's stated preferences. */
+function tutorLevel(d: 1 | 2 | 3, base: string, brief: string[]) {
+  const pace = ["Use very short, simple sentences.", "Use short everyday sentences.", "You can use richer vocabulary and longer sentences."][d - 1];
+  return [base, pace, ...brief.slice(1, 6)].join(" ").slice(0, 600);
+}
+
 function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => void; resume?: Conversation }) {
+  const twin = useTwinView();
   const { state, saveConversation, setProfile } = useStore(); const { t } = useT(); const course = getCourse(state.profile.courseId);
   const [id] = useState(() => resume?.id ?? `c-${Date.now().toString(36)}`);
   const [messages, setMessages] = useState<TutorMessage[]>(resume?.messages ?? []); const [input, setInput] = useState(""); const [busy, setBusy] = useState(false);
@@ -27,7 +36,7 @@ function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => 
     setBusy(true); setError(null);
     try {
       const res = await fetch("/api/tutor", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ scenario: scenario.id, target: course.target, targetName: course.targetName, nativeName: course.nativeName,
-        level: Object.keys(state.completed).length > 8 ? "beginner (CEFR A1–A2), knows basic greetings, family and food words" : state.profile.level === "new" ? "absolute beginner (CEFR A1)" : "beginner (CEFR A1–A2)", history: history.map((m) => ({ role: m.role, text: m.text })), ...cursor.current }) });
+        level: tutorLevel(twin.difficulty, Object.keys(state.completed).length > 8 ? "beginner (CEFR A1–A2), knows basic greetings, family and food words" : state.profile.level === "new" ? "absolute beginner (CEFR A1)" : "beginner (CEFR A1–A2)", twin.prefs.personalise ? twin.brief : []), history: history.map((m) => ({ role: m.role, text: m.text })), ...cursor.current }) });
       const data = (await res.json()) as TutorReply & { error?: string };
       if (!res.ok || data.error) { setError(data.error ?? "The tutor couldn’t answer. Please try again."); return; }
       cursor.current = { step: data.step, retry: data.retry };
@@ -76,20 +85,24 @@ function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => 
   );
 }
 
-export default function Tutor() {
+function Tutor() {
   const { state } = useStore(); const { t, date } = useT(); const course = getCourse(state.profile.courseId);
   const [active, setActive] = useState<{ s: Scenario; resume?: Conversation } | null>(null); const [provider, setProvider] = useState<string | null>(null);
   useEffect(() => { fetch("/api/tutor").then((r) => r.json()).then((d: { provider: string }) => setProvider(d.provider), () => setProvider("scripted")); }, []);
   const ai = provider !== null && provider !== "scripted";
   const past = state.conversations.filter((c) => c.courseId === course.id);
+  const twin = useTwinView(); const wanted = useSearchParams().get("scenario");
+  const fav = new Set<string>(twin.prefs.personalise ? [...twin.prefs.interests, twin.prefs.goal ?? ""].map((i) => ({ travel: "travel", study: "university", work: "interview", food: "restaurant", social: "meet", everyday: "everyday", family: "meet", culture: "everyday" } as Record<string, string>)[i]).filter(Boolean) : []);
+  const ordered = [...SCENARIOS].sort((a, b) => Number(fav.has(b.id)) - Number(fav.has(a.id)));
+  useEffect(() => { const s = SCENARIOS.find((x) => x.id === wanted); if (s && (ai || hasScript(s, course.target))) setActive({ s }); }, [wanted, ai, course.target]);
   return (
     <AppShell>
       {active ? <Chat key={active.resume?.id ?? active.s.id} scenario={active.s} resume={active.resume} onBack={() => setActive(null)} /> : <>
         <PageTitle title={t("Tutor & role-play")} sub={t("Practise real conversations. Free, with no message cap for normal use.")} />
         {provider !== null && <div className="mb-4"><Notice tone={ai ? "success" : "info"}>{ai ? t("AI tutor connected: open-ended conversation with corrections is on for every scenario.") : t("Kiko is running scripted scenes with instant feedback. Open-ended AI conversation switches on when this site is connected to an AI provider.")}</Notice></div>}
-        <div className="grid gap-3 sm:grid-cols-2">{SCENARIOS.map((s) => {
+        <div className="grid gap-3 sm:grid-cols-2">{ordered.map((s) => {
           const ok = ai || hasScript(s, course.target);
-          return <button key={s.id} disabled={!ok} onClick={() => setActive({ s })} className={`key rounded-2xl border-2 border-b-4 p-4 text-left ${ok ? "border-line-dark" : "border-line bg-mist text-sub"}`}><span className="text-3xl" aria-hidden="true">{s.emoji}</span><span className="mt-1 block text-lg font-extrabold">{t(s.title)}</span><span className="block text-sm text-sub">{ok ? t(s.description) : t("This scene isn’t available in this course yet.")}</span></button>;
+          return <button key={s.id} disabled={!ok} onClick={() => setActive({ s })} className={`key rounded-2xl border-2 border-b-4 p-4 text-left ${ok ? "border-line-dark" : "border-line bg-mist text-sub"}`}><span className="text-3xl" aria-hidden="true">{s.emoji}</span><span className="mt-1 block text-lg font-extrabold">{t(s.title)}</span>{fav.has(s.id) && <span className="mt-1 inline-block rounded-full bg-grape-soft px-2 py-0.5 text-xs font-extrabold text-grape-dark">{t("Matches your goals")}</span>}<span className="block text-sm text-sub">{ok ? t(s.description) : t("This scene isn’t available in this course yet.")}</span></button>;
         })}</div>
         {past.length > 0 && <><h2 className="mb-3 mt-8 text-lg">{t("Conversation history")}</h2><ul className="divide-y-2 divide-line rounded-2xl border-2 border-line">{past.map((c) => { const s = SCENARIOS.find((x) => x.id === c.scenario) ?? SCENARIOS[0]; return (
           <li key={c.id}><button onClick={() => setActive({ s, resume: c })} className="flex w-full items-center justify-between gap-3 p-3 text-left hover:bg-mist"><span>{s.emoji} <strong>{t(s.title)}</strong><span className="block text-sm text-sub">{t("{n} replies", { n: c.messages.filter((m) => m.role === "learner").length })} · {date(c.at)}</span></span><span className="text-sm font-extrabold uppercase text-sky-dark">{t("Transcript")}</span></button></li>); })}</ul></>}
@@ -97,3 +110,5 @@ export default function Tutor() {
     </AppShell>
   );
 }
+
+export default function TutorPage() { return <Suspense fallback={null}><Tutor /></Suspense>; }

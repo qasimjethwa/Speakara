@@ -53,6 +53,10 @@ def instructions(cfg: dict[str, Any], learner_name: str, memory: list[dict[str, 
         f"The conversation lasts at most {max(1, seconds // 60)} minutes. Never mention the timer unless you are told to wrap up.",
         "Stay safe and kind: no personal data requests (address, phone, social media), no romance, no medical, legal or financial advice. Keep everything suitable for teenagers.",
     ]
+    brief = cfg.get("twin_brief")
+    if isinstance(brief, list) and brief:
+        lines.append("Personal learning profile (shared with the learner's consent; use it to adapt, never mention it as data):")
+        lines.extend("- " + str(b)[:300] for b in brief[:12] if isinstance(b, str))
     if memory:
         vocab = [m["content"].get("term") for m in memory if m.get("kind") == "vocabulary" and isinstance(m.get("content"), dict)][:10]
         errs = [m["content"].get("better") for m in memory if m.get("kind") == "mistake" and isinstance(m.get("content"), dict)][:5]

@@ -4238,5 +4238,717 @@
  "“¿Qué tal?” needs more than yes.": [
   "«¿Qué tal?» necesita algo más que «sí».",
   "“¿Qué tal?” में सिर्फ़ हाँ से ज़्यादा चाहिए।"
+ ],
+ "A partner at an early-intermediate level suits you.": [
+  "Te conviene una pareja de nivel intermedio inicial.",
+  "शुरुआती-मध्यम स्तर का साथी आपके लिए ठीक है।"
+ ],
+ "A short, simple text roleplay": [
+  "Un juego de rol corto y sencillo por texto",
+  "एक छोटा, आसान टेक्स्ट रोलप्ले"
+ ],
+ "A typical day at college": [
+  "Un día normal en la universidad",
+  "कॉलेज का एक सामान्य दिन"
+ ],
+ "A typical working day": [
+  "Un día normal de trabajo",
+  "काम का एक सामान्य दिन"
+ ],
+ "Answer what you like and skip the rest. You can change any answer later.": [
+  "Responde lo que quieras y omite el resto. Puedes cambiar cualquier respuesta después.",
+  "जो चाहें जवाब दें, बाकी छोड़ दें। आप कोई भी जवाब बाद में बदल सकते हैं।"
+ ],
+ "Answers per week for the last six weeks": [
+  "Respuestas por semana en las últimas seis semanas",
+  "पिछले छह हफ़्तों में हर हफ़्ते के जवाब"
+ ],
+ "Areas you find hard (self-reported)": [
+  "Áreas que te resultan difíciles (según tú)",
+  "आपको कठिन लगने वाले क्षेत्र (आपके अनुसार)"
+ ],
+ "Ask three simple questions and listen to the answers.": [
+  "Haz tres preguntas sencillas y escucha las respuestas.",
+  "तीन आसान सवाल पूछें और जवाब सुनें।"
+ ],
+ "Balanced corrections": [
+  "Correcciones equilibradas",
+  "संतुलित सुधार"
+ ],
+ "Build sentences: targeted grammar practice": [
+  "Construye frases: práctica de gramática dirigida",
+  "वाक्य बनाएँ: लक्षित व्याकरण अभ्यास"
+ ],
+ "Challenge me": [
+  "Ponme a prueba",
+  "मुझे चुनौती दें"
+ ],
+ "Completely new": [
+  "Totalmente nuevo",
+  "बिल्कुल नया"
+ ],
+ "Continue your course": [
+  "Continúa tu curso",
+  "अपना कोर्स जारी रखें"
+ ],
+ "Conversation and roleplay": [
+  "Conversación y juego de rol",
+  "बातचीत और रोलप्ले"
+ ],
+ "Culture and media": [
+  "Cultura y medios",
+  "संस्कृति और मीडिया"
+ ],
+ "Delete AI learning memory": [
+  "Borrar la memoria de aprendizaje de la IA",
+  "AI की सीखने की स्मृति हटाएँ"
+ ],
+ "Delete all graded answers the Twin has recorded? Your lessons, XP and streak are not affected.": [
+  "¿Borrar todas las respuestas calificadas que registró tu Gemelo? Tus lecciones, XP y racha no cambian.",
+  "ट्विन द्वारा दर्ज सभी जाँचे गए जवाब हटाएँ? आपके पाठ, XP और स्ट्रीक पर असर नहीं होगा।"
+ ],
+ "Delete learning history": [
+  "Borrar historial de aprendizaje",
+  "सीखने का इतिहास हटाएँ"
+ ],
+ "Delete what the AI companion remembers about your learning?": [
+  "¿Borrar lo que el compañero de IA recuerda de tu aprendizaje?",
+  "AI साथी को आपकी पढ़ाई के बारे में जो याद है, उसे हटाएँ?"
+ ],
+ "Detailed corrections": [
+  "Correcciones detalladas",
+  "विस्तृत सुधार"
+ ],
+ "Developing estimate": [
+  "Estimación en desarrollo",
+  "विकसित होता अनुमान"
+ ],
+ "Difficulty": [
+  "Dificultad",
+  "कठिनाई"
+ ],
+ "Early estimate": [
+  "Estimación inicial",
+  "शुरुआती अनुमान"
+ ],
+ "Edit": [
+  "Editar",
+  "बदलें"
+ ],
+ "Estimated range {lo}–{hi}%": [
+  "Rango estimado {lo}–{hi} %",
+  "अनुमानित दायरा {lo}–{hi}%"
+ ],
+ "Estimates come only from your graded answers, weighted towards recent ones. The shaded band shows how certain the estimate is.": [
+  "Las estimaciones salen solo de tus respuestas calificadas, con más peso para las recientes. La franja sombreada muestra la certeza de la estimación.",
+  "अनुमान केवल आपके जाँचे गए जवाबों से बनते हैं, हाल के जवाबों को ज़्यादा महत्व मिलता है। छायांकित पट्टी दिखाती है कि अनुमान कितना पक्का है।"
+ ],
+ "Everyday life": [
+  "Vida cotidiana",
+  "रोज़मर्रा की ज़िंदगी"
+ ],
+ "Explanations first, then practice": [
+  "Primero explicaciones, luego práctica",
+  "पहले समझाना, फिर अभ्यास"
+ ],
+ "Family and friends": [
+  "Familia y amigos",
+  "परिवार और दोस्त"
+ ],
+ "Favourite dishes": [
+  "Platos favoritos",
+  "पसंदीदा व्यंजन"
+ ],
+ "Fix your repeated mistakes": [
+  "Corrige tus errores repetidos",
+  "अपनी बार-बार की गलतियाँ सुधारें"
+ ],
+ "Gentle corrections": [
+  "Correcciones suaves",
+  "नरम सुधार"
+ ],
+ "Goal": [
+  "Objetivo",
+  "लक्ष्य"
+ ],
+ "Grammar and sentence building": [
+  "Gramática y construcción de frases",
+  "व्याकरण और वाक्य निर्माण"
+ ],
+ "How Speakara adapts to you, based on your answers and what you’ve told us.": [
+  "Cómo se adapta Speakara a ti, según tus respuestas y lo que nos has contado.",
+  "आपके जवाबों और आपकी बताई बातों के आधार पर Speakara आपके अनुसार कैसे ढलता है।"
+ ],
+ "How confident do you feel speaking? (1 = not at all, 5 = very)": [
+  "¿Qué confianza sientes al hablar? (1 = nada, 5 = mucha)",
+  "बोलने में आप कितना आत्मविश्वास महसूस करते हैं? (1 = बिल्कुल नहीं, 5 = बहुत)"
+ ],
+ "How do you like to be taught?": [
+  "¿Cómo prefieres aprender?",
+  "आप कैसे सीखना पसंद करते हैं?"
+ ],
+ "I can hold simple conversations": [
+  "Puedo mantener conversaciones sencillas",
+  "मैं आसान बातचीत कर सकता/सकती हूँ"
+ ],
+ "I know a little": [
+  "Sé un poco",
+  "मुझे थोड़ा आता है"
+ ],
+ "ISL comprehension": [
+  "Comprensión de ISL",
+  "ISL समझ"
+ ],
+ "Improving": [
+  "Mejorando",
+  "सुधार हो रहा है"
+ ],
+ "Introduce yourselves": [
+  "Presentaos",
+  "एक-दूसरे से परिचय करें"
+ ],
+ "Keep it easy": [
+  "Que sea fácil",
+  "आसान रखें"
+ ],
+ "Learning Twin": [
+  "Gemelo de aprendizaje",
+  "लर्निंग ट्विन"
+ ],
+ "Learning map: {course}": [
+  "Mapa de aprendizaje: {course}",
+  "सीखने का नक्शा: {course}"
+ ],
+ "Listening and dictation practice": [
+  "Práctica de comprensión auditiva y dictado",
+  "सुनने और श्रुतलेख का अभ्यास"
+ ],
+ "Live conversation with the AI companion": [
+  "Conversación en vivo con el compañero de IA",
+  "AI साथी के साथ लाइव बातचीत"
+ ],
+ "Look for a partner who is also a beginner.": [
+  "Busca una pareja que también sea principiante.",
+  "ऐसा साथी खोजें जो खुद भी शुरुआती हो।"
+ ],
+ "Lots of practice exercises": [
+  "Muchos ejercicios de práctica",
+  "ढेर सारे अभ्यास"
+ ],
+ "Matches your goals": [
+  "Encaja con tus objetivos",
+  "आपके लक्ष्यों से मेल"
+ ],
+ "Matches your interests": [
+  "Encaja con tus intereses",
+  "आपकी रुचियों से मेल"
+ ],
+ "Measured: {c} of {n} answers right in the last 30 days.": [
+  "Medido: {c} de {n} respuestas correctas en los últimos 30 días.",
+  "मापा गया: पिछले 30 दिनों में {n} में से {c} जवाब सही।"
+ ],
+ "Meeting people": [
+  "Conocer gente",
+  "लोगों से मिलना"
+ ],
+ "Mission": [
+  "Misión",
+  "मिशन"
+ ],
+ "Needs practice": [
+  "Necesita práctica",
+  "अभ्यास चाहिए"
+ ],
+ "No change measured yet": [
+  "Aún no se ha medido ningún cambio",
+  "अभी कोई बदलाव नहीं मापा गया"
+ ],
+ "No item has been missed twice recently.": [
+  "Últimamente no has fallado ningún elemento dos veces.",
+  "हाल में कोई चीज़ दो बार गलत नहीं हुई।"
+ ],
+ "None measured yet": [
+  "Aún no hay medidas",
+  "अभी कुछ नहीं मापा गया"
+ ],
+ "Not enough data": [
+  "Datos insuficientes",
+  "पर्याप्त डेटा नहीं"
+ ],
+ "Not measured yet": [
+  "Aún sin medir",
+  "अभी मापा नहीं गया"
+ ],
+ "Not measured yet. Complete exercises of this type to see an estimate.": [
+  "Aún sin medir. Completa ejercicios de este tipo para ver una estimación.",
+  "अभी मापा नहीं गया। अनुमान देखने के लिए इस तरह के अभ्यास पूरे करें।"
+ ],
+ "Nothing flagged": [
+  "Nada señalado",
+  "कुछ चिह्नित नहीं"
+ ],
+ "Only you can see this. It comes from your Learning Twin.": [
+  "Solo tú puedes verlo. Viene de tu Gemelo de aprendizaje.",
+  "इसे सिर्फ़ आप देख सकते हैं। यह आपके लर्निंग ट्विन से आता है।"
+ ],
+ "Ordering in a restaurant": [
+  "Pedir en un restaurante",
+  "रेस्टोरेंट में ऑर्डर करना"
+ ],
+ "Partner level": [
+  "Nivel de la pareja",
+  "साथी का स्तर"
+ ],
+ "Personalised recommendations": [
+  "Recomendaciones personalizadas",
+  "व्यक्तिगत सुझाव"
+ ],
+ "Personalised recommendations are off.": [
+  "Las recomendaciones personalizadas están desactivadas.",
+  "व्यक्तिगत सुझाव बंद हैं।"
+ ],
+ "Plan a trip together": [
+  "Planead un viaje juntos",
+  "साथ में यात्रा की योजना बनाएँ"
+ ],
+ "Practise vocabulary with quick matching": [
+  "Practica vocabulario emparejando rápido",
+  "तेज़ मिलान से शब्दावली का अभ्यास करें"
+ ],
+ "Practise with a learner at a similar level": [
+  "Practica con alguien de un nivel parecido",
+  "मिलते-जुलते स्तर के शिक्षार्थी के साथ अभ्यास करें"
+ ],
+ "Privacy and control": [
+  "Privacidad y control",
+  "गोपनीयता और नियंत्रण"
+ ],
+ "Progress over time": [
+  "Progreso a lo largo del tiempo",
+  "समय के साथ प्रगति"
+ ],
+ "Read the grammar tips for your current unit": [
+  "Lee los consejos de gramática de tu unidad actual",
+  "अपनी मौजूदा इकाई के व्याकरण सुझाव पढ़ें"
+ ],
+ "Reading review of sentences you’ve learned": [
+  "Repaso de lectura de las frases aprendidas",
+  "सीखे हुए वाक्यों का पठन अभ्यास"
+ ],
+ "Recently improved": [
+  "Mejorado recientemente",
+  "हाल में सुधरा"
+ ],
+ "Recommended because Speakara has no measured answers from you in this course yet. It’s optional and helps pick your starting point.": [
+  "Recomendado porque Speakara aún no tiene respuestas medidas tuyas en este curso. Es opcional y ayuda a elegir tu punto de partida.",
+  "सुझाया गया क्योंकि इस कोर्स में Speakara के पास अभी आपके मापे गए जवाब नहीं हैं। यह वैकल्पिक है और शुरुआत तय करने में मदद करता है।"
+ ],
+ "Recommended because fewer than half of your recent ISL lesson answers were right.": [
+  "Recomendado porque menos de la mitad de tus respuestas recientes en ISL fueron correctas.",
+  "सुझाया गया क्योंकि आपके हाल के ISL पाठ के आधे से कम जवाब सही थे।"
+ ],
+ "Recommended because grammar is your lowest measured area and you prefer explanations before practice.": [
+  "Recomendado porque la gramática es tu área medida más baja y prefieres explicaciones antes de practicar.",
+  "सुझाया गया क्योंकि व्याकरण आपका सबसे कमज़ोर मापा गया क्षेत्र है और आप अभ्यास से पहले समझाना पसंद करते हैं।"
+ ],
+ "Recommended because it matches an interest you chose: {i}.": [
+  "Recomendado porque encaja con un interés que elegiste: {i}.",
+  "सुझाया गया क्योंकि यह आपकी चुनी रुचि से मेल खाता है: {i}।"
+ ],
+ "Recommended because it matches your goal or interests.": [
+  "Recomendado porque encaja con tu objetivo o tus intereses.",
+  "सुझाया गया क्योंकि यह आपके लक्ष्य या रुचियों से मेल खाता है।"
+ ],
+ "Recommended because reading is one of your lower measured areas.": [
+  "Recomendado porque la lectura es una de tus áreas medidas más bajas.",
+  "सुझाया गया क्योंकि पठन आपके कमज़ोर मापे गए क्षेत्रों में से है।"
+ ],
+ "Recommended because you answered {n} items wrong at least twice in recent exercises.": [
+  "Recomendado porque fallaste {n} elementos al menos dos veces en ejercicios recientes.",
+  "सुझाया गया क्योंकि हाल के अभ्यासों में आपने {n} चीज़ें कम से कम दो बार गलत कीं।"
+ ],
+ "Recommended because you got {c} of {t} {skill} answers right in the last 30 days, your lowest measured area.": [
+  "Recomendado porque acertaste {c} de {t} respuestas de {skill} en los últimos 30 días, tu área medida más baja.",
+  "सुझाया गया क्योंकि पिछले 30 दिनों में {skill} के {t} में से {c} जवाब सही थे, यह आपका सबसे कमज़ोर मापा गया क्षेत्र है।"
+ ],
+ "Recommended because you said speaking feels hard right now. Text roleplay lets you build up gradually.": [
+  "Recomendado porque dijiste que ahora te cuesta hablar. El juego de rol por texto te permite avanzar poco a poco.",
+  "सुझाया गया क्योंकि आपने कहा कि अभी बोलना कठिन लगता है। टेक्स्ट रोलप्ले से आप धीरे-धीरे आगे बढ़ सकते हैं।"
+ ],
+ "Recommended because you said you feel confident speaking.": [
+  "Recomendado porque dijiste que te sientes seguro al hablar.",
+  "सुझाया गया क्योंकि आपने कहा कि आप बोलने में आत्मविश्वासी हैं।"
+ ],
+ "Recommended because your last three lessons were 90% or better, so you’re ready for new material.": [
+  "Recomendado porque tus últimas tres lecciones fueron del 90 % o más, así que estás listo para material nuevo.",
+  "सुझाया गया क्योंकि आपके पिछले तीन पाठ 90% या बेहतर रहे, इसलिए आप नई सामग्री के लिए तैयार हैं।"
+ ],
+ "Recommended because your measured speaking answers are strong.": [
+  "Recomendado porque tus respuestas orales medidas son sólidas.",
+  "सुझाया गया क्योंकि आपके मापे गए बोलने के जवाब मज़बूत हैं।"
+ ],
+ "Recommended because your vocabulary is measured as steady or better and you prefer conversation practice.": [
+  "Recomendado porque tu vocabulario se mide como estable o mejor y prefieres practicar conversando.",
+  "सुझाया गया क्योंकि आपकी शब्दावली स्थिर या बेहतर मापी गई है और आप बातचीत से अभ्यास पसंद करते हैं।"
+ ],
+ "Recommended because {n} words you learned are due for spaced review.": [
+  "Recomendado porque toca repasar {n} palabras que aprendiste.",
+  "सुझाया गया क्योंकि आपके सीखे {n} शब्द दोहराने का समय आ गया है।"
+ ],
+ "Repeated mistakes": [
+  "Errores repetidos",
+  "बार-बार की गलतियाँ"
+ ],
+ "Reset": [
+  "Restablecer",
+  "रीसेट करें"
+ ],
+ "Reset everything you told the Twin (goals, interests, preferences)?": [
+  "¿Restablecer todo lo que le contaste al Gemelo (objetivos, intereses, preferencias)?",
+  "ट्विन को बताई सारी बातें (लक्ष्य, रुचियाँ, पसंद) रीसेट करें?"
+ ],
+ "Reset preferences": [
+  "Restablecer preferencias",
+  "पसंद रीसेट करें"
+ ],
+ "Review words before you forget them": [
+  "Repasa palabras antes de olvidarlas",
+  "भूलने से पहले शब्द दोहराएँ"
+ ],
+ "Revise your ISL lesson": [
+  "Repasa tu lección de ISL",
+  "अपना ISL पाठ दोहराएँ"
+ ],
+ "Right / total answers per week, oldest on the left.": [
+  "Respuestas correctas / totales por semana; la más antigua a la izquierda.",
+  "हर हफ़्ते सही / कुल जवाब, सबसे पुराना बाईं ओर।"
+ ],
+ "Roleplay a real situation": [
+  "Representa una situación real",
+  "एक असली स्थिति का रोलप्ले करें"
+ ],
+ "Save and take the 3-minute starting check": [
+  "Guardar y hacer la prueba inicial de 3 minutos",
+  "सहेजें और 3 मिनट की शुरुआती जाँच दें"
+ ],
+ "See exactly what is shared": [
+  "Ver exactamente qué se comparte",
+  "देखें ठीक क्या साझा होता है"
+ ],
+ "See what is shared": [
+  "Ver qué se comparte",
+  "देखें क्या साझा होता है"
+ ],
+ "Self-reported answers guide recommendations but never change your measured estimates.": [
+  "Lo que nos cuentas orienta las recomendaciones, pero nunca cambia tus estimaciones medidas.",
+  "आपकी बताई बातें सुझावों को दिशा देती हैं, पर आपके मापे गए अनुमान नहीं बदलतीं।"
+ ],
+ "Sends only your measured strengths and weaker areas, repeated mistakes and stated preferences, so it can adapt. No audio or transcripts.": [
+  "Envía solo tus fortalezas y áreas débiles medidas, errores repetidos y preferencias, para que se adapte. Sin audio ni transcripciones.",
+  "सिर्फ़ आपकी मापी गई मज़बूतियाँ और कमज़ोरियाँ, बार-बार की गलतियाँ और बताई पसंद भेजता है ताकि वह ढल सके। कोई ऑडियो या ट्रांसक्रिप्ट नहीं।"
+ ],
+ "Set up my Learning Twin": [
+  "Configurar mi Gemelo de aprendizaje",
+  "मेरा लर्निंग ट्विन सेट करें"
+ ],
+ "Set up your Learning Twin": [
+  "Configura tu Gemelo de aprendizaje",
+  "अपना लर्निंग ट्विन सेट करें"
+ ],
+ "Share a learning summary with the AI companion": [
+  "Compartir un resumen de aprendizaje con el compañero de IA",
+  "AI साथी के साथ सीखने का सारांश साझा करें"
+ ],
+ "Share my measured strengths, weaker areas, repeated mistakes and stated preferences so the companion adapts its difficulty, topics and corrections.": [
+  "Compartir mis fortalezas, áreas débiles, errores repetidos y preferencias para que el compañero adapte dificultad, temas y correcciones.",
+  "मेरी मापी गई मज़बूतियाँ, कमज़ोरियाँ, बार-बार की गलतियाँ और पसंद साझा करें ताकि साथी कठिनाई, विषय और सुधार ढाल सके।"
+ ],
+ "Sign in to use the AI companion.": [
+  "Inicia sesión para usar el compañero de IA.",
+  "AI साथी इस्तेमाल करने के लिए साइन इन करें।"
+ ],
+ "Six quick questions, all optional. Your answers shape your recommendations.": [
+  "Seis preguntas rápidas, todas opcionales. Tus respuestas orientan tus recomendaciones.",
+  "छह छोटे सवाल, सब वैकल्पिक। आपके जवाब आपके सुझाव तय करते हैं।"
+ ],
+ "Skip for now": [
+  "Omitir por ahora",
+  "अभी छोड़ें"
+ ],
+ "Slipping": [
+  "Bajando",
+  "गिरावट"
+ ],
+ "Speaking confidence (self-reported)": [
+  "Confianza al hablar (según tú)",
+  "बोलने का आत्मविश्वास (आपके अनुसार)"
+ ],
+ "Speaking practice": [
+  "Práctica oral",
+  "बोलने का अभ्यास"
+ ],
+ "Speaking practice with feedback": [
+  "Práctica oral con comentarios",
+  "प्रतिक्रिया के साथ बोलने का अभ्यास"
+ ],
+ "Standard": [
+  "Estándar",
+  "सामान्य"
+ ],
+ "Starting check": [
+  "Prueba inicial",
+  "शुरुआती जाँच"
+ ],
+ "Strength": [
+  "Fortaleza",
+  "मज़बूती"
+ ],
+ "Strengths": [
+  "Fortalezas",
+  "मज़बूतियाँ"
+ ],
+ "Study or university": [
+  "Estudios o universidad",
+  "पढ़ाई या विश्वविद्यालय"
+ ],
+ "Take the 3-minute starting check": [
+  "Haz la prueba inicial de 3 minutos",
+  "3 मिनट की शुरुआती जाँच दें"
+ ],
+ "Tell Speakara about your goals": [
+  "Cuéntale a Speakara tus objetivos",
+  "Speakara को अपने लक्ष्य बताएँ"
+ ],
+ "Tell a short story about your week.": [
+  "Cuenta una historia corta sobre tu semana.",
+  "अपने हफ़्ते के बारे में छोटी कहानी सुनाएँ।"
+ ],
+ "The AI companion’s learning memory was deleted.": [
+  "Se borró la memoria de aprendizaje del compañero de IA.",
+  "AI साथी की सीखने की स्मृति हटा दी गई।"
+ ],
+ "Topics": [
+  "Temas",
+  "विषय"
+ ],
+ "Topics you enjoy": [
+  "Temas que te gustan",
+  "आपको पसंद विषय"
+ ],
+ "Turn them on": [
+  "Activarlas",
+  "इन्हें चालू करें"
+ ],
+ "Use my Learning Twin": [
+  "Usar mi Gemelo de aprendizaje",
+  "मेरा लर्निंग ट्विन इस्तेमाल करें"
+ ],
+ "Use these in the call: {w}": [
+  "Úsalas en la llamada: {w}",
+  "कॉल में इनका इस्तेमाल करें: {w}"
+ ],
+ "Visual: pictures, cards and matching": [
+  "Visual: imágenes, tarjetas y emparejar",
+  "दृश्य: चित्र, कार्ड और मिलान"
+ ],
+ "Vocabulary": [
+  "Vocabulario",
+  "शब्दावली"
+ ],
+ "Well measured": [
+  "Bien medido",
+  "अच्छी तरह मापा गया"
+ ],
+ "What is your current level?": [
+  "¿Cuál es tu nivel actual?",
+  "आपका मौजूदा स्तर क्या है?"
+ ],
+ "What you study and why": [
+  "Qué estudias y por qué",
+  "आप क्या पढ़ते हैं और क्यों"
+ ],
+ "What you told us": [
+  "Lo que nos contaste",
+  "आपने हमें क्या बताया"
+ ],
+ "When off, Speakara stops recording learning events and shows the standard course.": [
+  "Si está desactivado, Speakara deja de registrar eventos de aprendizaje y muestra el curso estándar.",
+  "बंद होने पर Speakara सीखने की घटनाएँ दर्ज करना बंद करता है और सामान्य कोर्स दिखाता है।"
+ ],
+ "Which areas do you find most difficult?": [
+  "¿Qué áreas te resultan más difíciles?",
+  "आपको कौन से क्षेत्र सबसे कठिन लगते हैं?"
+ ],
+ "Which language do you want to learn?": [
+  "¿Qué idioma quieres aprender?",
+  "आप कौन सी भाषा सीखना चाहते हैं?"
+ ],
+ "Which language should explanations use?": [
+  "¿En qué idioma quieres las explicaciones?",
+  "समझाने के लिए कौन सी भाषा इस्तेमाल हो?"
+ ],
+ "Why do you want to learn it?": [
+  "¿Por qué quieres aprenderlo?",
+  "आप इसे क्यों सीखना चाहते हैं?"
+ ],
+ "Writing practice: type full sentences": [
+  "Práctica de escritura: escribe frases completas",
+  "लेखन अभ्यास: पूरे वाक्य लिखें"
+ ],
+ "Your Learning Twin": [
+  "Tu Gemelo de aprendizaje",
+  "आपका लर्निंग ट्विन"
+ ],
+ "Your conversation plan": [
+  "Tu plan de conversación",
+  "आपकी बातचीत योजना"
+ ],
+ "Your daily routine": [
+  "Tu rutina diaria",
+  "आपकी दिनचर्या"
+ ],
+ "Your favourite place to visit": [
+  "Tu lugar favorito para visitar",
+  "घूमने की आपकी पसंदीदा जगह"
+ ],
+ "Your job or dream job": [
+  "Tu trabajo o tu trabajo soñado",
+  "आपकी नौकरी या सपनों की नौकरी"
+ ],
+ "Your learning data is private. Other learners never see your weaker areas or mistakes.": [
+  "Tus datos de aprendizaje son privados. Otros estudiantes nunca ven tus áreas débiles ni tus errores.",
+  "आपका सीखने का डेटा निजी है। दूसरे शिक्षार्थी आपकी कमज़ोरियाँ या गलतियाँ कभी नहीं देखते।"
+ ],
+ "Your learning history was deleted.": [
+  "Se borró tu historial de aprendizaje.",
+  "आपका सीखने का इतिहास हटा दिया गया।"
+ ],
+ "Your level (self-reported)": [
+  "Tu nivel (según tú)",
+  "आपका स्तर (आपके अनुसार)"
+ ],
+ "Your next best step": [
+  "Tu siguiente mejor paso",
+  "आपका अगला सबसे अच्छा कदम"
+ ],
+ "Your next lesson in the course, after some targeted practice.": [
+  "Tu siguiente lección del curso, después de algo de práctica dirigida.",
+  "कुछ लक्षित अभ्यास के बाद, कोर्स का आपका अगला पाठ।"
+ ],
+ "Your next lesson in the course.": [
+  "Tu siguiente lección del curso.",
+  "कोर्स का आपका अगला पाठ।"
+ ],
+ "Your preferences were reset.": [
+  "Se restablecieron tus preferencias.",
+  "आपकी पसंद रीसेट कर दी गई।"
+ ],
+ "Your weekend": [
+  "Tu fin de semana",
+  "आपका सप्ताहांत"
+ ],
+ "You’re ready for a more confident partner.": [
+  "Estás listo para una pareja con más soltura.",
+  "आप ज़्यादा आत्मविश्वासी साथी के लिए तैयार हैं।"
+ ],
+ "balanced": [
+  "equilibradas",
+  "संतुलित"
+ ],
+ "beginner": [
+  "principiante",
+  "शुरुआती"
+ ],
+ "challenge": [
+  "reto",
+  "चुनौती"
+ ],
+ "conversation": [
+  "conversación",
+  "बातचीत"
+ ],
+ "culture": [
+  "cultura",
+  "संस्कृति"
+ ],
+ "detailed": [
+  "detalladas",
+  "विस्तृत"
+ ],
+ "easier": [
+  "más fácil",
+  "आसान"
+ ],
+ "everyday": [
+  "vida cotidiana",
+  "रोज़मर्रा"
+ ],
+ "explain": [
+  "explicaciones primero",
+  "पहले समझाना"
+ ],
+ "family": [
+  "familia",
+  "परिवार"
+ ],
+ "food": [
+  "comida",
+  "भोजन"
+ ],
+ "for {lang} speakers": [
+  "para hablantes de {lang}",
+  "{lang} बोलने वालों के लिए"
+ ],
+ "gentle": [
+  "suaves",
+  "नरम"
+ ],
+ "intermediate": [
+  "intermedio",
+  "मध्यम"
+ ],
+ "new": [
+  "nuevo",
+  "नया"
+ ],
+ "optional": [
+  "opcional",
+  "वैकल्पिक"
+ ],
+ "other": [
+  "otro",
+  "अन्य"
+ ],
+ "practice": [
+  "mucha práctica",
+  "ज़्यादा अभ्यास"
+ ],
+ "social": [
+  "conocer gente",
+  "लोगों से मिलना"
+ ],
+ "standard": [
+  "estándar",
+  "सामान्य"
+ ],
+ "study": [
+  "estudios",
+  "पढ़ाई"
+ ],
+ "travel": [
+  "viajes",
+  "यात्रा"
+ ],
+ "visual": [
+  "visual",
+  "दृश्य"
+ ],
+ "work": [
+  "trabajo",
+  "काम"
+ ],
+ "{n} misses": [
+  "{n} fallos",
+  "{n} गलतियाँ"
  ]
 }

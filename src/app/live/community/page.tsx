@@ -6,6 +6,7 @@ import { Mascot } from "@/components/Mascot";
 import { Button, Card, Dialog, LinkButton, Notice } from "@/components/ui";
 import { BackLink, CallControls, CallStatus, LiveGate } from "@/components/live/LiveUi";
 import { useStore } from "@/lib/state/store";
+import { ConversationPlan } from "@/components/twin/ConversationPlan";
 import { useT } from "@/lib/i18n";
 import { supabase } from "@/lib/supabase";
 import { COURSES } from "@/lib/content";
@@ -262,5 +263,5 @@ function Community() {
 
 export default function CommunityPage() {
   const { t } = useT();
-  return <AppShell rail={false}><BackLink href="/live" label={t("Live")} /><PageTitle title={t("Language exchange")} sub={t("One-to-one video calls with other Speakara learners.")} /><Community /></AppShell>;
+  return <AppShell rail={false}><BackLink href="/live" label={t("Live")} /><PageTitle title={t("Language exchange")} sub={t("One-to-one video calls with other Speakara learners.")} /><ConversationPlan /><Community /></AppShell>;
 }

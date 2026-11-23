@@ -22,3 +22,12 @@ def test_memory_items_and_json_parsing():
     assert [m["kind"] for m in prompts.memory_items(r)] == ["vocabulary", "mistake"]
     assert prompts.parse_json('```json\n{"summary": "ok"}\n```')["summary"] == "ok"
     assert prompts.parse_json('noise {"a": 1} tail') == {"a": 1}
+
+
+def test_twin_brief_is_added_only_when_present():
+    base = {"target_lang": "es", "level": 1}
+    without = prompts.instructions(base, "Ana", [], 165)
+    assert "Personal learning profile" not in without
+    withb = prompts.instructions({**base, "twin_brief": ["Measured weaker areas: grammar.", 5, "x" * 500]}, "Ana", [], 165)
+    assert "- Measured weaker areas: grammar." in withb
+    assert "x" * 301 not in withb
