@@ -23,7 +23,10 @@ async function tiles(page, answer) {
 async function solve(page, miss) {
   const h1 = page.locator("main h1[data-ex-type]"); await h1.waitFor();
   const type = await h1.getAttribute("data-ex-type"); const instruction = await h1.getAttribute("data-instruction");
-  const check = page.locator("footer button").last(); const wrong = miss(type);
+  const check = page.locator("footer button").last();
+  // miss only the first time an exercise is seen (the Twin records first attempts; retries must succeed to finish)
+  const key = `${type}|${await page.locator("main").innerText().catch(() => "")}`.slice(0, 400);
+  const wrong = miss(type) && !page.seen.has(key); page.seen.add(key);
   if (type === "listen" || type === "dictation" || type === "speak") { await page.locator("footer button").first().click(); return; }   // speech off: skipped (not graded)
   if (type === "match") {
     const left = page.locator("[data-match] [role=group]").first().locator("button"), right = page.locator("[data-match] [role=group]").nth(1).locator("button");
@@ -52,7 +55,7 @@ async function solve(page, miss) {
   await page.locator("footer button").last().click();
 }
 async function lesson(page, href, miss) {
-  await page.goto(BASE + href, { waitUntil: "networkidle" });
+  page.seen = new Set(); await page.goto(BASE + href, { waitUntil: "networkidle" });
   for (const end = Date.now() + 120000; Date.now() < end;) {
     if (await page.locator("[data-summary]").count()) return;
     if (await page.locator("[data-start]").count()) { await page.locator("[data-start]").click(); continue; }
@@ -64,7 +67,7 @@ async function lesson(page, href, miss) {
 async function learner(browser, name) {
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   await ctx.addInitScript((s) => { if (!localStorage.getItem("speakara:learner:v1")) localStorage.setItem("speakara:learner:v1", s); }, seed(name));
-  const p = await ctx.newPage(); p.errs = []; p.on("pageerror", (e) => p.errs.push(e.message)); return p;
+  const p = await ctx.newPage(); p.seen = new Set(); p.errs = []; p.on("pageerror", (e) => p.errs.push(e.message)); return p;
 }
 async function setup(p, answers) {
   await p.goto(`${BASE}/profile/learning-twin/setup`, { waitUntil: "networkidle" });
