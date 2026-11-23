@@ -4950,5 +4950,37 @@
  "{n} misses": [
   "{n} fallos",
   "{n} गलतियाँ"
+ ],
+ "Ask a question about your learning": [
+  "Haz una pregunta sobre tu aprendizaje",
+  "अपनी पढ़ाई के बारे में सवाल पूछें"
+ ],
+ "Ask a question about your learning…": [
+  "Haz una pregunta sobre tu aprendizaje…",
+  "अपनी पढ़ाई के बारे में सवाल पूछें…"
+ ],
+ "Ask your learning companion": [
+  "Pregunta a tu compañero de aprendizaje",
+  "अपने लर्निंग साथी से पूछें"
+ ],
+ "Coach me on {skill}": [
+  "Ayúdame con {skill}",
+  "{skill} में मेरी मदद करें"
+ ],
+ "Explain my next step": [
+  "Explica mi siguiente paso",
+  "मेरा अगला कदम समझाएँ"
+ ],
+ "Learning companion": [
+  "Compañero de aprendizaje",
+  "लर्निंग साथी"
+ ],
+ "The AI companion isn’t available right now.": [
+  "El compañero de IA no está disponible ahora mismo.",
+  "AI साथी अभी उपलब्ध नहीं है।"
+ ],
+ "Written by AI from your measured results and preferences. It explains Speakara’s suggestions; it doesn’t change your scores.": [
+  "Escrito por IA a partir de tus resultados medidos y preferencias. Explica las sugerencias de Speakara; no cambia tus puntuaciones.",
+  "आपके मापे गए नतीजों और पसंद से AI द्वारा लिखा गया। यह Speakara के सुझाव समझाता है; आपके स्कोर नहीं बदलता।"
  ]
 }

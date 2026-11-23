@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowDown, ArrowUp, Info, Pencil, RotateCcw, ShieldCheck, Trash2 } from "lucide-react";
 import { AppShell, PageTitle } from "@/components/AppShell";
 import { NextBestStep } from "@/components/twin/NextBestStep";
+import { CompanionCoach } from "@/components/twin/CompanionCoach";
 import { Button, Card, Notice } from "@/components/ui";
 import { useT } from "@/lib/i18n";
 import { band, SKILL_LABEL, type SkillEstimate } from "@/lib/twin/model";
@@ -52,11 +53,12 @@ export default function LearningTwinPage() {
 
   return (
     <AppShell>
-      <PageTitle title={t("Your Learning Twin")} sub={t("How Speakara adapts to you, based on your answers and what you’ve told us.")} />
+      <PageTitle title={t("Learning companion")} sub={t("How Speakara adapts to you, based on your answers and what you’ve told us.")} />
       {done && <div className="mb-4"><Notice tone="success">{done}</Notice></div>}
       {!p.onboarded && <div className="mb-4 rounded-2xl border-2 border-grape bg-grape-soft p-4"><p className="font-extrabold text-grape-dark">{t("Tell Speakara about your goals")}</p><p className="mb-3 text-sm">{t("Six quick questions, all optional. Your answers shape your recommendations.")}</p><Link href="/profile/learning-twin/setup" className="font-extrabold text-sky-dark underline">{t("Set up my Learning Twin")}</Link></div>}
 
       <NextBestStep max={4} />
+      <CompanionCoach />
 
       <section aria-labelledby="map-title" className="mb-6">
         <h2 id="map-title" className="mb-1 text-lg">{t("Learning map: {course}", { course: t(v.course.targetName) })}</h2>

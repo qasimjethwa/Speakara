@@ -152,6 +152,15 @@ expect(await bandOf(B, "vocabulary") === "unknown", "learning history can be del
 const st = await A.evaluate(() => JSON.parse(localStorage.getItem("speakara:learner:v1")));
 expect(st.xp > 0 && Object.keys(st.completed).length >= 1, "existing guest progress (XP, completed lessons) is saved as before");
 
+// sidebar entry + AI coach panel (without a Gemini key it must fall back to the rule-based reason)
+await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" });
+await A.getByRole("link", { name: "Learning companion" }).first().click(); await A.waitForURL(/learning-twin$/);
+expect(true, "the sidebar has a Learning companion entry that opens the dashboard");
+await A.getByRole("button", { name: "Explain my next step" }).click();
+await A.locator("[data-testid=companion-coach] [aria-live] p").first().waitFor({ timeout: 20000 });
+const coach = await A.locator("[data-testid=companion-coach]").innerText();
+expect(/Recommended because|\w{20,}/.test(coach), "the AI coach answers, or falls back to the rule-based reason when AI is unavailable");
+
 // accessibility of the new pages
 for (const [p, path] of [[A, "/profile/learning-twin"], [A, "/profile/learning-twin/setup"]]) {
   await p.goto(BASE + path, { waitUntil: "networkidle" }); await p.addScriptTag({ content: axeSource });
