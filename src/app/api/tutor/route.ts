@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   const history = Array.isArray(body.history) ? body.history.filter((t) => t && (t.role === "tutor" || t.role === "learner") && typeof t.text === "string").slice(-16).map((t) => ({ role: t.role, text: t.text.slice(0, 500) })) : [];
   if (!SCENARIOS.some((s) => s.id === body.scenario)) return NextResponse.json({ error: "Unknown scenario or language." }, { status: 400 });
   const req: TutorRequest = { scenario: body.scenario!, target: body.target!, targetName: str(body.targetName, 30), nativeName: str(body.nativeName, 30),
-    level: str(body.level ?? "beginner", 40), history, step: Number.isInteger(body.step) ? Math.max(0, body.step!) : 0, retry: !!body.retry };
+    level: str(body.level ?? "beginner", 600), history, step: Number.isInteger(body.step) ? Math.max(0, body.step!) : 0, retry: !!body.retry };
 
   if (provider) {
     const openKey = history.length === 0 ? `o|${req.scenario}|${req.target}|${req.nativeName}|${req.level}` : null;

@@ -18,7 +18,9 @@ import { ArabicKeyboard } from "@/components/lesson/ArabicKeyboard";
 /** Learning Twin: the level line sent to the tutor, adjusted by measured difficulty and the learner's stated preferences. */
 function tutorLevel(d: 1 | 2 | 3, base: string, brief: string[]) {
   const pace = ["Use very short, simple sentences.", "Use short everyday sentences.", "You can use richer vocabulary and longer sentences."][d - 1];
-  return [base, pace, ...brief.slice(1, 6)].join(" ").slice(0, 600);
+  // most useful lines first: weaker areas, correction style, confidence; the long mistakes list last
+  const rank = (l: string) => /weaker/.test(l) ? 0 : /^Correct/.test(l) ? 1 : /speaking feels hard/.test(l) ? 2 : /Topics|goal/.test(l) ? 3 : /strengths/i.test(l) ? 4 : 5;
+  return [base, pace, ...brief.slice(1).sort((x, y) => rank(x) - rank(y))].join(" ").slice(0, 600);
 }
 
 function Chat({ scenario, onBack, resume }: { scenario: Scenario; onBack: () => void; resume?: Conversation }) {
