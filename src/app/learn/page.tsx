@@ -29,10 +29,6 @@ function Path() {
           <Brain size={16} aria-hidden="true" />{t("Learning Companion")}
         </Link>
       </div>
-      <Link href="/learn/isl" className="key mb-5 flex items-center gap-3 rounded-2xl border-2 border-b-4 border-grape bg-grape-soft p-3 text-grape-dark">
-        <span className="text-2xl" aria-hidden="true">🤟</span>
-        <span className="min-w-0 flex-1"><span className="block font-extrabold">{t("Learn through Indian Sign Language")}</span><span className="block text-sm">{t("English and Spanish courses designed for Deaf learners.")}</span></span>
-      </Link>
       <h1 className="mb-5 text-sm font-extrabold uppercase tracking-wide text-sub"><span aria-hidden="true">{course.flag}</span> {t(course.targetName)} · {t("Section {n}", { n: 1 })} · CEFR A1</h1>
       {course.units.map((unit, ui) => {
         const tone = TONE[unit.color];

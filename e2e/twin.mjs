@@ -93,7 +93,7 @@ const A = await learner(browser, "Asha"), B = await learner(browser, "Ben");
 // 0. default: the original Learn experience, personalisation OFF until the learner consents
 await A.goto(`${BASE}/learn`, { waitUntil: "networkidle" });
 expect(await A.locator("[data-testid=next-best-step]").count() === 0, "the Learn path has no recommendation panel (original layout)");
-expect(await A.getByRole("link", { name: /Learn through Indian Sign Language/ }).count() === 1 && await A.locator("main a[href^='/lesson']").count() > 0, "the course path, ISL banner and lessons are shown as before");
+expect(await A.locator("main a[href='/learn/isl']").count() === 0 && await A.locator("main a[href^='/lesson']").count() > 0, "the course path and lessons are shown; no ISL box on the Learn tab");
 const btn = A.getByTestId("learning-companion-button"); const bb = await btn.boundingBox(); const mb = await A.locator("main").boundingBox();
 expect(bb && mb && bb.x + bb.width > mb.x + mb.width * 0.6 && bb.y < mb.y + 140, "a small Learning Companion button sits in the top-right of the Learn page");
 await shot(A, "learn-default");
