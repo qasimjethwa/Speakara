@@ -5294,5 +5294,129 @@
  "Too bright": [
   "Demasiado brillante",
   "बहुत ज़्यादा रोशनी"
+ ],
+ "1 hand tracked": [
+  "1 mano detectada",
+  "1 हाथ ट्रैक हो रहा है"
+ ],
+ "2 hands tracked": [
+  "2 manos detectadas",
+  "2 हाथ ट्रैक हो रहे हैं"
+ ],
+ "A lifelike teacher who demonstrates signs reviewed by Deaf ISL educators.": [
+  "Un profesor realista que muestra señas revisadas por educadores sordos de ISL.",
+  "एक जीवंत शिक्षक जो बधिर ISL शिक्षकों द्वारा जाँचे गए संकेत दिखाएगा।"
+ ],
+ "A1 courses in written English and Spanish, taught in Indian Sign Language.": [
+  "Cursos A1 de inglés y español escritos, enseñados en lengua de señas india.",
+  "भारतीय सांकेतिक भाषा में पढ़ाए जाने वाले लिखित अंग्रेज़ी और स्पेनिश के A1 पाठ्यक्रम।"
+ ],
+ "Coming soon": [
+  "Próximamente",
+  "जल्द आ रहा है"
+ ],
+ "English and Spanish through ISL": [
+  "Inglés y español a través de ISL",
+  "ISL के माध्यम से अंग्रेज़ी और स्पेनिश"
+ ],
+ "Face a window or lamp; avoid bright light behind you.": [
+  "Ponte frente a una ventana o lámpara; evita luz fuerte detrás de ti.",
+  "खिड़की या लैंप की ओर मुँह करें; अपने पीछे तेज़ रोशनी से बचें।"
+ ],
+ "Hand movement": [
+  "Movimiento de manos",
+  "हाथों की गति"
+ ],
+ "Hand tracking runs on this device. Your video is never uploaded or saved.": [
+  "El seguimiento de manos funciona en este dispositivo. Tu vídeo nunca se sube ni se guarda.",
+  "हाथ ट्रैकिंग इसी डिवाइस पर चलती है। आपका वीडियो कभी अपलोड या सेव नहीं होता।"
+ ],
+ "Hands seen in {n} of {m} frames": [
+  "Manos vistas en {n} de {m} fotogramas",
+  "{m} में से {n} फ़्रेम में हाथ दिखे"
+ ],
+ "Interactive AI teaching": [
+  "Enseñanza interactiva con IA",
+  "इंटरैक्टिव एआई शिक्षण"
+ ],
+ "Lessons that respond to you, explain and adapt as you go.": [
+  "Lecciones que responden, explican y se adaptan a ti.",
+  "ऐसे पाठ जो आपके अनुसार जवाब दें, समझाएँ और ढलें।"
+ ],
+ "Live hand tracking": [
+  "Seguimiento de manos en vivo",
+  "लाइव हाथ ट्रैकिंग"
+ ],
+ "Personalised ISL sessions": [
+  "Sesiones de ISL personalizadas",
+  "व्यक्तिगत ISL सत्र"
+ ],
+ "Pick a female or male teacher.": [
+  "Elige una profesora o un profesor.",
+  "महिला या पुरुष शिक्षक चुनें।"
+ ],
+ "Practice planned around your progress.": [
+  "Práctica planificada según tu progreso.",
+  "आपकी प्रगति के अनुसार योजनाबद्ध अभ्यास।"
+ ],
+ "Realistic AI signing teacher": [
+  "Profesor de señas con IA realista",
+  "यथार्थवादी एआई सांकेतिक शिक्षक"
+ ],
+ "Record 5 seconds": [
+  "Grabar 5 segundos",
+  "5 सेकंड रिकॉर्ड करें"
+ ],
+ "Record your hands to replay the movement here.": [
+  "Graba tus manos para ver aquí el movimiento.",
+  "यहाँ गति दोबारा देखने के लिए अपने हाथ रिकॉर्ड करें।"
+ ],
+ "Recording…": [
+  "Grabando…",
+  "रिकॉर्ड हो रहा है…"
+ ],
+ "Replay of your hand movement": [
+  "Repetición del movimiento de tus manos",
+  "आपके हाथों की गति का रीप्ले"
+ ],
+ "See your hands and fingers tracked in real time, then record and replay your movements. This shows hand positions only; it does not check signs yet.": [
+  "Mira cómo se siguen tus manos y dedos en tiempo real, y graba y repite tus movimientos. Solo muestra la posición de las manos; todavía no revisa señas.",
+  "अपने हाथ और उँगलियाँ रियल टाइम में ट्रैक होते देखें, फिर अपनी गति रिकॉर्ड करके दोबारा देखें। यह केवल हाथों की स्थिति दिखाता है; अभी संकेत नहीं जाँचता।"
+ ],
+ "Show your hands": [
+  "Muestra tus manos",
+  "अपने हाथ दिखाएँ"
+ ],
+ "Sign recognition and feedback": [
+  "Reconocimiento de señas y comentarios",
+  "संकेत पहचान और प्रतिक्रिया"
+ ],
+ "Sit so your head, shoulders and both hands are in view.": [
+  "Colócate de modo que se vean tu cabeza, hombros y ambas manos.",
+  "ऐसे बैठें कि आपका सिर, कंधे और दोनों हाथ दिखें।"
+ ],
+ "Speakara will check your signs and help you correct them.": [
+  "Speakara revisará tus señas y te ayudará a corregirlas.",
+  "Speakara आपके संकेत जाँचेगा और उन्हें सुधारने में मदद करेगा।"
+ ],
+ "The camera couldn’t start. Please try again.": [
+  "La cámara no pudo iniciarse. Inténtalo de nuevo.",
+  "कैमरा शुरू नहीं हो सका। कृपया फिर से कोशिश करें।"
+ ],
+ "The future of ISL on Speakara": [
+  "El futuro de ISL en Speakara",
+  "Speakara पर ISL का भविष्य"
+ ],
+ "Turn on your camera to start": [
+  "Activa la cámara para empezar",
+  "शुरू करने के लिए कैमरा चालू करें"
+ ],
+ "Video": [
+  "Vídeo",
+  "वीडियो"
+ ],
+ "Your video stays on this device and is never uploaded or saved.": [
+  "Tu vídeo se queda en este dispositivo y nunca se sube ni se guarda.",
+  "आपका वीडियो इसी डिवाइस पर रहता है और कभी अपलोड या सेव नहीं होता।"
  ]
 }

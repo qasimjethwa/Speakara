@@ -63,3 +63,5 @@
 .choice { position: relative; border-radius: 22px; border: 1px solid var(--isl-line); background: var(--isl-panel); padding: 22px 52px 22px 22px; box-shadow: var(--isl-shadow); transition: border-color .15s, transform .15s; }
 .choice:hover { border-color: var(--isl-green); transform: translateY(-1px); }
 .choiceArrow { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--isl-green); }
+.soonIcon { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 12px; background: var(--isl-green-soft); color: var(--isl-green-dark); }
+.soonTag { display: inline-block; margin-top: 10px; border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; background: var(--isl-stage); color: var(--isl-muted); }
