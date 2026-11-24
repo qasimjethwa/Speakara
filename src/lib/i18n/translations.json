@@ -5062,5 +5062,237 @@
  "{n} answers": [
   "{n} respuestas",
   "{n} उत्तर"
+ ],
+ "Adjusting": [
+  "Ajustando",
+  "समायोजन"
+ ],
+ "Camera access was blocked. Allow it in your browser settings to get feedback.": [
+  "Se bloqueó el acceso a la cámara. Permítelo en la configuración del navegador para recibir comentarios.",
+  "कैमरा एक्सेस ब्लॉक है। प्रतिक्रिया पाने के लिए ब्राउज़र सेटिंग में इसकी अनुमति दें।"
+ ],
+ "Camera feedback isn’t available for this sign yet.": [
+  "Los comentarios con cámara aún no están disponibles para esta seña.",
+  "इस संकेत के लिए कैमरा प्रतिक्रिया अभी उपलब्ध नहीं है।"
+ ],
+ "Checking": [
+  "Revisando",
+  "जाँच हो रही है"
+ ],
+ "Hands": [
+  "Manos",
+  "हाथ"
+ ],
+ "Hide my attempt": [
+  "Ocultar mi intento",
+  "मेरा प्रयास छिपाएँ"
+ ],
+ "Indian Sign Language": [
+  "Lengua de señas india",
+  "भारतीय सांकेतिक भाषा"
+ ],
+ "I’m ready — watch me": [
+  "Estoy listo: mírame",
+  "मैं तैयार हूँ — मुझे देखिए"
+ ],
+ "I’ve practised it": [
+  "Ya lo practiqué",
+  "मैंने अभ्यास कर लिया"
+ ],
+ "Move a little closer or further": [
+  "Acércate o aléjate un poco",
+  "थोड़ा पास या दूर जाएँ"
+ ],
+ "Next lesson": [
+  "Siguiente lección",
+  "अगला पाठ"
+ ],
+ "Next sign": [
+  "Siguiente seña",
+  "अगला संकेत"
+ ],
+ "None": [
+  "Ninguno",
+  "कोई नहीं"
+ ],
+ "Normal speed": [
+  "Velocidad normal",
+  "सामान्य गति"
+ ],
+ "Please check back soon. Everything else in Speakara works as usual.": [
+  "Vuelve pronto. Todo lo demás en Speakara funciona con normalidad.",
+  "कृपया जल्द दोबारा देखें। Speakara का बाकी सब सामान्य रूप से चलता है।"
+ ],
+ "Practise with your camera": [
+  "Practica con tu cámara",
+  "अपने कैमरे के साथ अभ्यास करें"
+ ],
+ "Replay my attempt": [
+  "Ver mi intento",
+  "मेरा प्रयास फिर देखें"
+ ],
+ "Show again": [
+  "Mostrar otra vez",
+  "फिर से दिखाएँ"
+ ],
+ "Signing": [
+  "Señando",
+  "संकेत कर रहे हैं"
+ ],
+ "Signing…": [
+  "Señando…",
+  "संकेत कर रहे हैं…"
+ ],
+ "Skip": [
+  "Saltar",
+  "छोड़ें"
+ ],
+ "Soft": [
+  "Suave",
+  "हल्का"
+ ],
+ "Solid": [
+  "Sólido",
+  "गहरा"
+ ],
+ "Start the lesson": [
+  "Empezar la lección",
+  "पाठ शुरू करें"
+ ],
+ "Teaching": [
+  "Enseñando",
+  "पढ़ा रहे हैं"
+ ],
+ "Teaching controls": [
+  "Controles de enseñanza",
+  "शिक्षण नियंत्रण"
+ ],
+ "Text size": [
+  "Tamaño del texto",
+  "टेक्स्ट का आकार"
+ ],
+ "The ISL classroom is taking a short break": [
+  "El aula de ISL está en una breve pausa",
+  "ISL कक्षा थोड़े समय के लिए बंद है"
+ ],
+ "The camera couldn’t start. You can still practise without it.": [
+  "La cámara no pudo iniciarse. Puedes practicar sin ella.",
+  "कैमरा शुरू नहीं हो सका। आप इसके बिना भी अभ्यास कर सकते हैं।"
+ ],
+ "Turn on your camera to get feedback.": [
+  "Activa la cámara para recibir comentarios.",
+  "प्रतिक्रिया पाने के लिए कैमरा चालू करें।"
+ ],
+ "Upper body": [
+  "Parte superior del cuerpo",
+  "शरीर का ऊपरी भाग"
+ ],
+ "Watch each sign, copy it on camera, and get feedback straight away.": [
+  "Mira cada seña, cópiala ante la cámara y recibe comentarios al instante.",
+  "हर संकेत देखें, कैमरे पर उसे दोहराएँ और तुरंत प्रतिक्रिया पाएँ।"
+ ],
+ "Well done": [
+  "Muy bien",
+  "बहुत बढ़िया"
+ ],
+ "Which phrase did you just sign?": [
+  "¿Qué frase acabas de señar?",
+  "आपने अभी कौन-सा वाक्यांश संकेत किया?"
+ ],
+ "Your live ISL classroom": [
+  "Tu aula de ISL en vivo",
+  "आपकी लाइव ISL कक्षा"
+ ],
+ "Your turn": [
+  "Tu turno",
+  "आपकी बारी"
+ ],
+ "Your video stays on this device. Only hand and body positions are used to check your sign, and nothing is saved.": [
+  "Tu vídeo se queda en este dispositivo. Solo se usan las posiciones de las manos y del cuerpo para revisar tu seña, y no se guarda nada.",
+  "आपका वीडियो इसी डिवाइस पर रहता है। संकेत जाँचने के लिए केवल हाथ और शरीर की स्थिति का उपयोग होता है, और कुछ भी सेव नहीं होता।"
+ ],
+ "{n}% of signs completed": [
+  "{n} % de las señas completadas",
+  "{n}% संकेत पूरे हुए"
+ ],
+ "Welcome to class. I’ll show you each sign, then you try it.": [
+  "Bienvenido a clase. Te mostraré cada seña y luego la intentas tú.",
+  "कक्षा में स्वागत है। मैं हर संकेत दिखाऊँगा, फिर आप कोशिश करें।"
+ ],
+ "Watch: “{p}”.": [
+  "Mira: “{p}”.",
+  "देखिए: “{p}”।"
+ ],
+ "Watch slowly: “{p}”.": [
+  "Mira despacio: “{p}”.",
+  "धीरे से देखिए: “{p}”।"
+ ],
+ "Your turn. Sign “{p}” when you’re ready.": [
+  "Tu turno. Seña “{p}” cuando estés listo.",
+  "आपकी बारी। तैयार हों तो “{p}” का संकेत करें।"
+ ],
+ "I’m watching…": [
+  "Te estoy mirando…",
+  "मैं देख रहा हूँ…"
+ ],
+ "Let me look at that…": [
+  "Déjame revisarlo…",
+  "मुझे देखने दीजिए…"
+ ],
+ "Quick check: which phrase did you just sign?": [
+  "Comprobación rápida: ¿qué frase acabas de señar?",
+  "जल्दी जाँच: आपने अभी कौन-सा वाक्यांश संकेत किया?"
+ ],
+ "Lesson complete. Lovely signing today.": [
+  "Lección completada. ¡Qué bien has señado hoy!",
+  "पाठ पूरा हुआ। आज बहुत अच्छा संकेत किया।"
+ ],
+ "Yes! That’s “{p}”.": [
+  "¡Sí! Eso es “{p}”.",
+  "हाँ! यह “{p}” है।"
+ ],
+ "Well done for practising. Camera checking is off, so I couldn’t check it.": [
+  "Bien hecho por practicar. La revisión con cámara está desactivada, así que no pude comprobarlo.",
+  "अभ्यास के लिए शाबाश। कैमरा जाँच बंद है, इसलिए मैं इसे जाँच नहीं सका।"
+ ],
+ "Not quite — that looked like a different sign. Let’s watch it again.": [
+  "Casi: parecía otra seña. Vamos a verla otra vez.",
+  "पूरी तरह नहीं — यह कोई दूसरा संकेत लगा। चलिए फिर से देखते हैं।"
+ ],
+ "I couldn’t see you clearly. Keep your upper body and both hands in the frame, then try again.": [
+  "No te vi con claridad. Mantén la parte superior del cuerpo y ambas manos en el encuadre e inténtalo de nuevo.",
+  "मैं आपको साफ़ नहीं देख सका। शरीर का ऊपरी भाग और दोनों हाथ फ़्रेम में रखें, फिर कोशिश करें।"
+ ],
+ "I’m not sure about that one. Could you try once more?": [
+  "No estoy seguro de esa. ¿Puedes intentarlo una vez más?",
+  "मुझे इस पर पक्का नहीं है। क्या आप एक बार और कोशिश करेंगे?"
+ ],
+ "Greetings": [
+  "Saludos",
+  "अभिवादन"
+ ],
+ "Small talk": [
+  "Conversación breve",
+  "छोटी बातचीत"
+ ],
+ "Signs demonstrated by Deaf ISL signers · INCLUDE dataset, AI4Bharat (CC BY 4.0)": [
+  "Señas demostradas por señantes sordos de ISL · conjunto de datos INCLUDE, AI4Bharat (CC BY 4.0)",
+  "बधिर ISL संकेतकों द्वारा दिखाए गए संकेत · INCLUDE डेटासेट, AI4Bharat (CC BY 4.0)"
+ ],
+ "Learn written English": [
+  "Aprende inglés escrito",
+  "लिखित अंग्रेज़ी सीखें"
+ ],
+ "Learn written Spanish": [
+  "Aprende español escrito",
+  "लिखित स्पेनिश सीखें"
+ ],
+ "Too dark": [
+  "Demasiado oscuro",
+  "बहुत अंधेरा"
+ ],
+ "Too bright": [
+  "Demasiado brillante",
+  "बहुत ज़्यादा रोशनी"
  ]
 }

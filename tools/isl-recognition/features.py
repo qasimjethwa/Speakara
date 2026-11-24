@@ -14,6 +14,7 @@ label (that label flips with mirrored video).
 import math
 
 T = 24
+RAISED, PAD = 2.0, 2
 POSE_L_SH, POSE_R_SH, POSE_L_EL, POSE_R_EL, POSE_L_WR, POSE_R_WR = 11, 12, 13, 14, 15, 16
 D = 2 * (1 + 2 + 40) + 8
 
@@ -49,14 +50,24 @@ def frame_features(fr, mirror=False):
         out += [nx(pose[i][0]), ny(pose[i][1])]
     return out
 
+def active_span(vis, gap=3):
+    """Longest run of hand-visible frames, bridging gaps of up to `gap` frames (one sign = one continuous run)."""
+    best, start, last = (0, -1), None, None
+    for i, v in enumerate(vis):
+        if not v: continue
+        if start is None or i - last > gap + 1: start = i
+        last = i
+        if i - start > best[1] - best[0]: best = (start, i)
+    return best
+
 def sequence(frames, mirror=False):
     """Fixed-length sequence (T x D) by linear resampling over the frames that have a body; None if unusable."""
     fs = [f for f in (frame_features(x, mirror) for x in frames) if f is not None]
-    # keep only the active part: frames where at least one hand is visible (trim idle start/end)
-    act = [i for i, f in enumerate(fs) if f[0] or f[43]]
-    if len(act) < 4:
+    # the sign = hands raised above resting height (wrists at rest sit ~2.8 shoulder-widths below the shoulders)
+    a, b = active_span([min(f[-3], f[-1]) < RAISED for f in fs])
+    if b - a + 1 < 4:
         return None
-    fs = fs[act[0]:act[-1] + 1]
+    fs = fs[max(0, a - PAD):b + 1 + PAD]
     n = len(fs); seq = []
     for k in range(T):
         t = k * (n - 1) / (T - 1); a = int(t); b = min(n - 1, a + 1); u = t - a

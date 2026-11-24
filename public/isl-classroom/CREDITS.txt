@@ -1,0 +1,6 @@
+ISL classroom sign videos and recogniser training data:
+INCLUDE: A Large Scale Dataset for Indian Sign Language Recognition
+Advaith Sridhar, Rohith Gandhi Ganesan, Pratyush Kumar, Mitesh Khapra (AI4Bharat), ACM Multimedia 2020.
+Signers: students of St. Louis School for the Deaf, Adyar, Chennai.
+https://zenodo.org/records/4010759 — licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+Changes: clips trimmed, cropped to the signer's upper body and re-encoded; landmarks extracted with MediaPipe to train the recogniser.
